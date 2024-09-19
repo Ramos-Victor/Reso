@@ -35,7 +35,7 @@
       
       <ul class="nav flex-column" style="margin-top:0.5rem">
         <li class="nav-item d-flex flex-row align-self-baseline">
-          <i class="bi bi-bar-chart-fill"></i>
+          <i class="bi bi-question-circle-fill"></i>
           <a class="nav-link" href="#">FAQ</a>
         </li>
         <li class="nav-item d-flex flex-row align-self-baseline">
