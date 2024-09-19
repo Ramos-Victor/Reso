@@ -1,34 +1,78 @@
 
  <div id="sidebar">
-    <div>
-      <h4 class="text-white">Resolut.on</h4>
-      <ul class="nav flex-column">
-        <li class="nav-item">
+    <div class="container-fluid">
+      <div class="d-flex flex-row align-self-baseline titulo">
+        <img src="../assets/img/logoresoluton.jpg" class="img-fluid reso" alt="Logo-Resolution">
+        <h4 class="text-white">Resolut.on</h4>
+      </div>
+
+      <div class="divisor"></div>
+
+      <ul class="nav flex-column" style="margin-top:0.5rem">
+        <li class="nav-item d-flex flex-row align-self-baseline">
+          <i class="bi bi-bar-chart-fill"></i>
           <a class="nav-link" href="#">Dashboard</a>
         </li>
-        <li class="nav-item">
+        <li class="nav-item d-flex flex-row align-self-baseline">
+          <i class="bi bi-telephone-fill"></i>
           <a class="nav-link" href="#">Chamados</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Cadastrar Sala</a>
+        <li class="nav-item d-flex flex-row align-self-baseline">
+          <i class="bi bi-house-gear-fill"></i>
+          <a class="nav-link" href="#">Salas</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Cadastrar Equipamento</a>
+        <li class="nav-item d-flex flex-row align-self-baseline">
+          <i class="bi bi-tag-fill"></i>
+          <a class="nav-link" href="#">Categoria Equipamentos</a>
+        </li>
+        <li class="nav-item d-flex flex-row align-self-baseline">
+          <i class="bi bi-pc-display"></i>
+          <a class="nav-link" href="#">Equipamentos</a>
         </li>
       </ul>
+
+      <div class="divisor"></div>
+      
+      <ul class="nav flex-column" style="margin-top:0.5rem">
+        <li class="nav-item d-flex flex-row align-self-baseline">
+          <i class="bi bi-bar-chart-fill"></i>
+          <a class="nav-link" href="#">FAQ</a>
+        </li>
+        <li class="nav-item d-flex flex-row align-self-baseline">
+          <i class="bi bi-bookmark-fill"></i>
+          <a class="nav-link" href="#">Categoria FAQ</a>
+        </li>
+      </ul>
+
+      <div class="divisor"></div>
+
+      <ul class="nav flex-column" style="margin-top:0.5rem">
+        <li class="nav-item d-flex flex-row align-self-baseline">
+          <i class="bi bi-people-fill"></i>
+          <a class="nav-link" href="#">Usuarios</a>
+        </li>
+        <li class="nav-item d-flex flex-row align-self-baseline">
+          <i class="bi bi-pencil-fill"></i>
+          <a class="nav-link" href="#">Editar Usuarios</a>
+        </li>
+      </ul>
+
     </div>
    
-    <ul class="nav flex-column">
-      <li class="nav-item">
+  <div class="container-fluid">
+    <div class="divisor"></div>
+
+    <ul class="nav flex-column" style="margin-top:0.5rem">
+      <li class="nav-item d-flex flex-row align-self-baseline">
+        <i class="bi bi-gear"></i>
         <a class="nav-link" href="#">Configurações</a>
       </li>
-      <li class="nav-item">
+      <li class="nav-item d-flex flex-row align-self-baseline">
+        <i class="bi bi-person-circle"></i>
         <a class="nav-link" href="#">Perfil</a>
       </li>
     </ul>
   </div>
+</div>
 
-  <div id="main-content">
-    <h1>Conteúdo principal</h1>
-    <p>Aqui vai o conteúdo da página. A sidebar fica fixa à esquerda.</p>
-  </div>
+ 
