@@ -1,18 +1,3 @@
-<?php
-session_start(); 
-error_reporting(E_ALL ^ E_WARNING);
-ini_set('display_errors', 1) ;
-if(!empty($_SESSION['id'])){
-    $_SESSION['id'];
-    $_SESSION['usuario'];
-    require_once '../conect.php';
-    require_once 'dialog.php';
-}
-else{
-    header("Location: ../logout.php");
-}
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -24,7 +9,3 @@ else{
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-
-<?php
-    require_once '../conect.php';
-?>

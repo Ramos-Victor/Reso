@@ -11,7 +11,7 @@
       <ul class="nav flex-column" style="margin-top:0.5rem">
         <li class="nav-item d-flex flex-row align-self-baseline">
           <i class="bi bi-bar-chart-fill"></i>
-          <a class="nav-link" href="#">Dashboard</a>
+          <a class="nav-link" href="index.php">Dashboard</a>
         </li>
         <li class="nav-item d-flex flex-row align-self-baseline">
           <i class="bi bi-telephone-fill"></i>
@@ -22,12 +22,8 @@
           <a class="nav-link" href="#">Salas</a>
         </li>
         <li class="nav-item d-flex flex-row align-self-baseline">
-          <i class="bi bi-tag-fill"></i>
-          <a class="nav-link" href="#">Categoria Equipamentos</a>
-        </li>
-        <li class="nav-item d-flex flex-row align-self-baseline">
           <i class="bi bi-pc-display"></i>
-          <a class="nav-link" href="#">Equipamentos</a>
+          <a class="nav-link" href="equipamento.php">Equipamentos</a>
         </li>
       </ul>
 
@@ -38,10 +34,6 @@
           <i class="bi bi-bar-chart-fill"></i>
           <a class="nav-link" href="#">FAQ</a>
         </li>
-        <li class="nav-item d-flex flex-row align-self-baseline">
-          <i class="bi bi-bookmark-fill"></i>
-          <a class="nav-link" href="#">Categoria FAQ</a>
-        </li>
       </ul>
 
       <div class="divisor"></div>
@@ -50,10 +42,6 @@
         <li class="nav-item d-flex flex-row align-self-baseline">
           <i class="bi bi-people-fill"></i>
           <a class="nav-link" href="#">Usuarios</a>
-        </li>
-        <li class="nav-item d-flex flex-row align-self-baseline">
-          <i class="bi bi-pencil-fill"></i>
-          <a class="nav-link" href="#">Editar Usuarios</a>
         </li>
       </ul>
 
@@ -69,7 +57,7 @@
       </li>
       <li class="nav-item d-flex flex-row align-self-baseline">
         <i class="bi bi-person-circle"></i>
-        <a class="nav-link" href="#">Perfil</a>
+        <a class="nav-link" href="#"><?php echo $_SESSION['usuario']?></a>
       </li>
     </ul>
   </div>
