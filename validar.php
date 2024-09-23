@@ -18,10 +18,10 @@
 			$r = $stmt->fetch_array();
 			$_SESSION['id'] = $r['cd_usuario'];
 			$_SESSION['usuario'] = $r['nm_usuario'];
-			Confirma("Bem vindo ".$_SESSION['usuario'], "adm/index.php");
+			Confirma("Sucesso ao entrar", "adm/index.php");
 		}
 		else{
-			Erro("Ops! Usuário e/ou senha inválidos!");
+			Erro("Não foi possivel realizar o login :(");
 		}
 	}
 
@@ -30,13 +30,13 @@
 			<div class="modal fade" id="myModal" data-backdrop="static">
 				<div class="modal-dialog modal-md">
 					<div class="modal-content">
-						<div class="modal-body text-center font-weight-bolder text-success">
+						<div class="modal-body text-center font-weight-bolder text-primary">
 							<i class="bi bi-check2-circle"></i>
 							<br>
 							<h3>'.$msg.'</h3>
 						</div>
 						<div class="modal-footer">
-							<button class="btn btn-success btn-block mx-auto" onclick="redirecionar()">OK</button>
+							<button class="btn btn-primary btn-block mx-auto" onclick="redirecionar()">OK</button>
 						</div>
 					</div>
 				</div>
