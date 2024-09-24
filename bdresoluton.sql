@@ -32,17 +32,17 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_resoluton`.`tb_unidade`
+-- Table `db_resoluton`.`tb_conexao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_unidade` (
-  `cd_unidade` INT NOT NULL AUTO_INCREMENT,
-  `nm_unidade` VARCHAR(100) NOT NULL,
-  `dt_unidade` DATETIME NOT NULL DEFAULT current_timestamp,
-  `codigo_unidade` VARCHAR(255) NOT NULL,
+CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_conexao` (
+  `cd_conexao` INT NOT NULL AUTO_INCREMENT,
+  `nm_conexao` VARCHAR(100) NOT NULL,
+  `dt_conexao` DATETIME NOT NULL DEFAULT current_timestamp,
+  `codigo_conexao` VARCHAR(255) NOT NULL UNIQUE,
   `id_criador` INT NOT NULL,
-  PRIMARY KEY (`cd_unidade`),
-  INDEX `fk_tb_unidade_tb_usuario1_idx` (`id_criador` ASC) ,
-  CONSTRAINT `fk_tb_unidade_tb_usuario1`
+  PRIMARY KEY (`cd_conexao`),
+  INDEX `fk_tb_conexao_tb_usuario1_idx` (`id_criador` ASC) ,
+  CONSTRAINT `fk_tb_conexao_tb_usuario1`
     FOREIGN KEY (`id_criador`)
     REFERENCES `db_resoluton`.`tb_usuario` (`cd_usuario`)
     ON DELETE NO ACTION
@@ -51,24 +51,24 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_resoluton`.`tb_usuario_unidade`
+-- Table `db_resoluton`.`tb_usuario_conexao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_usuario_unidade` (
+CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_usuario_conexao` (
   `id_usuario` INT NOT NULL,
-  `id_unidade` INT NOT NULL,
-  `cargo_usuario` ENUM('admin', 'suporte', 'comum') NOT NULL,
+  `id_conexao` INT NOT NULL,
+  `cargo_usuario` ENUM('criador','admin', 'suporte', 'comum') NOT NULL,
   `dt_entrada` TIMESTAMP NOT NULL DEFAULT current_timestamp,
-  PRIMARY KEY (`id_usuario`, `id_unidade`),
-  INDEX `fk_tb_usuario_has_tb_unidade_tb_unidade1_idx` (`id_unidade` ASC) ,
-  INDEX `fk_tb_usuario_has_tb_unidade_tb_usuario1_idx` (`id_usuario` ASC) ,
-  CONSTRAINT `fk_tb_usuario_has_tb_unidade_tb_usuario1`
+  PRIMARY KEY (`id_usuario`, `id_conexao`),
+  INDEX `fk_tb_usuario_has_tb_conexao_tb_conexao1_idx` (`id_conexao` ASC) ,
+  INDEX `fk_tb_usuario_has_tb_conexao_tb_usuario1_idx` (`id_usuario` ASC) ,
+  CONSTRAINT `fk_tb_usuario_has_tb_conexao_tb_usuario1`
     FOREIGN KEY (`id_usuario`)
     REFERENCES `db_resoluton`.`tb_usuario` (`cd_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tb_usuario_has_tb_unidade_tb_unidade1`
-    FOREIGN KEY (`id_unidade`)
-    REFERENCES `db_resoluton`.`tb_unidade` (`cd_unidade`)
+  CONSTRAINT `fk_tb_usuario_has_tb_conexao_tb_conexao1`
+    FOREIGN KEY (`id_conexao`)
+    REFERENCES `db_resoluton`.`tb_conexao` (`cd_conexao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -83,13 +83,13 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_sala` (
   `localizacao_sala` VARCHAR(255) NOT NULL,
   `dt_sala` DATETIME NOT NULL DEFAULT current_timestamp,
   `id_usuario` INT NOT NULL,
-  `id_unidade` INT NOT NULL,
+  `id_conexao` INT NOT NULL,
   PRIMARY KEY (`cd_sala`),
   UNIQUE INDEX `nr_sala_UNIQUE` (`nr_sala` ASC) ,
-  INDEX `fk_tb_sala_tb_usuario_unidade1_idx` (`id_usuario` ASC, `id_unidade` ASC) ,
-  CONSTRAINT `fk_tb_sala_tb_usuario_unidade1`
-    FOREIGN KEY (`id_usuario` , `id_unidade`)
-    REFERENCES `db_resoluton`.`tb_usuario_unidade` (`id_usuario` , `id_unidade`)
+  INDEX `fk_tb_sala_tb_usuario_conexao1_idx` (`id_usuario` ASC, `id_conexao` ASC) ,
+  CONSTRAINT `fk_tb_sala_tb_usuario_conexao1`
+    FOREIGN KEY (`id_usuario` , `id_conexao`)
+    REFERENCES `db_resoluton`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -103,12 +103,12 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_equipamento_categoria` (
   `categoria_nm` VARCHAR(100) NOT NULL,
   `dt_categoria` DATETIME NOT NULL DEFAULT current_timestamp,
   `id_usuario` INT NOT NULL,
-  `id_unidade` INT NOT NULL,
+  `id_conexao` INT NOT NULL,
   PRIMARY KEY (`cd_categoria`),
-  INDEX `fk_tb_equipamento_categoria_tb_usuario_unidade1_idx` (`id_usuario` ASC, `id_unidade` ASC) ,
-  CONSTRAINT `fk_tb_equipamento_categoria_tb_usuario_unidade1`
-    FOREIGN KEY (`id_usuario` , `id_unidade`)
-    REFERENCES `db_resoluton`.`tb_usuario_unidade` (`id_usuario` , `id_unidade`)
+  INDEX `fk_tb_equipamento_categoria_tb_usuario_conexao1_idx` (`id_usuario` ASC, `id_conexao` ASC) ,
+  CONSTRAINT `fk_tb_equipamento_categoria_tb_usuario_conexao1`
+    FOREIGN KEY (`id_usuario` , `id_conexao`)
+    REFERENCES `db_resoluton`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -126,11 +126,11 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_equipamento` (
   `id_sala` INT NOT NULL,
   `id_categoria` INT NULL,
   `id_usuario` INT NOT NULL,
-  `id_unidade` INT NOT NULL,
+  `id_conexao` INT NOT NULL,
   PRIMARY KEY (`cd_equipamento`),
   INDEX `fk_tb_equipamento_tb_sala1_idx` (`id_sala` ASC) ,
   INDEX `fk_tb_equipamento_tb_equipamento_categoria1_idx` (`id_categoria` ASC) ,
-  INDEX `fk_tb_equipamento_tb_usuario_unidade1_idx` (`id_usuario` ASC, `id_unidade` ASC) ,
+  INDEX `fk_tb_equipamento_tb_usuario_conexao1_idx` (`id_usuario` ASC, `id_conexao` ASC) ,
   CONSTRAINT `fk_tb_equipamento_tb_sala1`
     FOREIGN KEY (`id_sala`)
     REFERENCES `db_resoluton`.`tb_sala` (`cd_sala`)
@@ -141,9 +141,9 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_equipamento` (
     REFERENCES `db_resoluton`.`tb_equipamento_categoria` (`cd_categoria`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tb_equipamento_tb_usuario_unidade1`
-    FOREIGN KEY (`id_usuario` , `id_unidade`)
-    REFERENCES `db_resoluton`.`tb_usuario_unidade` (`id_usuario` , `id_unidade`)
+  CONSTRAINT `fk_tb_equipamento_tb_usuario_conexao1`
+    FOREIGN KEY (`id_usuario` , `id_conexao`)
+    REFERENCES `db_resoluton`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -161,18 +161,18 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_chamado` (
   `st_chamado` CHAR(1) NOT NULL,
   `id_equipamento` INT NOT NULL,
   `id_usuario` INT NOT NULL,
-  `id_unidade` INT NOT NULL,
+  `id_conexao` INT NOT NULL,
   PRIMARY KEY (`cd_chamado`),
   INDEX `fk_tb_chamado_tb_equipamento1_idx` (`id_equipamento` ASC) ,
-  INDEX `fk_tb_chamado_tb_usuario_unidade1_idx` (`id_usuario` ASC, `id_unidade` ASC) ,
+  INDEX `fk_tb_chamado_tb_usuario_conexao1_idx` (`id_usuario` ASC, `id_conexao` ASC) ,
   CONSTRAINT `fk_tb_chamado_tb_equipamento1`
     FOREIGN KEY (`id_equipamento`)
     REFERENCES `db_resoluton`.`tb_equipamento` (`cd_equipamento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tb_chamado_tb_usuario_unidade1`
-    FOREIGN KEY (`id_usuario` , `id_unidade`)
-    REFERENCES `db_resoluton`.`tb_usuario_unidade` (`id_usuario` , `id_unidade`)
+  CONSTRAINT `fk_tb_chamado_tb_usuario_conexao1`
+    FOREIGN KEY (`id_usuario` , `id_conexao`)
+    REFERENCES `db_resoluton`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -185,12 +185,12 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_categoria_faq` (
   `cd_categoria_faq` INT NOT NULL AUTO_INCREMENT,
   `nm_categoria_faq` VARCHAR(45) NOT NULL,
   `id_usuario` INT NOT NULL,
-  `id_unidade` INT NOT NULL,
+  `id_conexao` INT NOT NULL,
   PRIMARY KEY (`cd_categoria_faq`),
-  INDEX `fk_tb_categoria_faq_tb_usuario_unidade1_idx` (`id_usuario` ASC, `id_unidade` ASC) ,
-  CONSTRAINT `fk_tb_categoria_faq_tb_usuario_unidade1`
-    FOREIGN KEY (`id_usuario` , `id_unidade`)
-    REFERENCES `db_resoluton`.`tb_usuario_unidade` (`id_usuario` , `id_unidade`)
+  INDEX `fk_tb_categoria_faq_tb_usuario_conexao1_idx` (`id_usuario` ASC, `id_conexao` ASC) ,
+  CONSTRAINT `fk_tb_categoria_faq_tb_usuario_conexao1`
+    FOREIGN KEY (`id_usuario` , `id_conexao`)
+    REFERENCES `db_resoluton`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -206,18 +206,18 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_faq` (
   `dt_cadastro_faq` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_categoria_faq` INT NOT NULL,
   `id_usuario` INT NOT NULL,
-  `id_unidade` INT NOT NULL,
+  `id_conexao` INT NOT NULL,
   PRIMARY KEY (`cd_faq`),
   INDEX `fk_tb_faq_tb_categoria_faq1_idx` (`id_categoria_faq` ASC) ,
-  INDEX `fk_tb_faq_tb_usuario_unidade1_idx` (`id_usuario` ASC, `id_unidade` ASC) ,
+  INDEX `fk_tb_faq_tb_usuario_conexao1_idx` (`id_usuario` ASC, `id_conexao` ASC) ,
   CONSTRAINT `fk_tb_faq_tb_categoria_faq1`
     FOREIGN KEY (`id_categoria_faq`)
     REFERENCES `db_resoluton`.`tb_categoria_faq` (`cd_categoria_faq`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
-  CONSTRAINT `fk_tb_faq_tb_usuario_unidade1`
-    FOREIGN KEY (`id_usuario` , `id_unidade`)
-    REFERENCES `db_resoluton`.`tb_usuario_unidade` (`id_usuario` , `id_unidade`)
+  CONSTRAINT `fk_tb_faq_tb_usuario_conexao1`
+    FOREIGN KEY (`id_usuario` , `id_conexao`)
+    REFERENCES `db_resoluton`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -231,3 +231,13 @@ select * from tb_usuario;
 
 insert into tb_usuario (nm_usuario, nm_email, cd_senha) values
  ('victor','victor@gmail.com',sha2('123',256));
+ 
+select * from tb_conexao;
+
+select * from tb_usuario_conexao;
+
+insert into tb_conexao (nm_conexao,codigo_conexao,id_criador) values
+        ("CUCUCU",sha2("123",256),"1");
+        
+
+        
