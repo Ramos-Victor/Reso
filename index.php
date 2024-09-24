@@ -1,27 +1,43 @@
 <?php
     require_once 'header.php';
 ?>
-
+<style>
+	.card{
+		margin-top: 40%;
+	}
+	.btn{
+		background-color: #ffd700;
+		color:white;
+	}
+	.card{
+		border-radius: 10px;
+	}
+	.container-fluid{
+		background: rgb(3,48,92);
+		background: linear-gradient(90deg, rgba(3,48,92,1) 49%, rgba(0,0,0,1) 100%);
+		height: 100vh;
+	}
+</style>
 	<div class="container-fluid">
-		<div class="row">
-			<div class="col-sm-6">
-				<div class="card">
+		<div class="row d-flex justify-content-center h-100">
+			<div class="col-sm-4 ">
+				<div class="card ">
 					<div class="card-body">
 						<h1 class="font-cutes text-center">
 							Resoluton
 						</h1>
 						<br>
 						<form method="post" action="validar.php" class="form-group">
-						<div data-mdb-input-init class="form-outline mb-4">
-							<label class="form-label" for="form2Example1">Endereço de Email</label>
+						<div  class="form-outline mb-4">
+							<label class="form-label"><h4>Endereço de Email: </h4></label>
 							<input type="email" name="email" id="email" class="form-control" required/>
 						</div>
 
-						<div data-mdb-input-init class="form-outline mb-4">
-							<label class="form-label" for="form2Example2">Sua Senha</label>
+						<div class="form-outline mb-4">
+							<label class="form-label"><h4>Sua senha: </h4></label>
 							<input type="password" name="senha" id="senha" class="form-control" required/>
 						</div>
-						<input  type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-block mb-4" placeholder="Entrar"></input>
+						<input type="submit" class="btn form-control" value="Entrar"/>	
 						</form>
 					</div>
 				</div>
