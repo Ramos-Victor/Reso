@@ -18,7 +18,7 @@
 			$r = $stmt->fetch_array();
 			$_SESSION['id'] = $r['cd_usuario'];
 			$_SESSION['usuario'] = $r['nm_usuario'];
-			Confirma("Bem vindo ao Resolut.on", "unidades/unidades.php");
+			Confirma("Bem vindo ao Resolut.on", "conexoes/conexao.php");
 		}
 		else{
 			Erro("Acesso NEGADO!!");

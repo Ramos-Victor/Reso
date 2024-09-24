@@ -14,8 +14,8 @@
 
       <ul class="nav flex-column" style="margin-top:0.5rem">
         <li class="nav-item d-flex flex-row align-self-baseline">
-          <i class="bi bi-house-fill"></i>
-          <a class="nav-link" href="unidades.php">Unidades</a>
+          <i class="navicon bi bi-house-fill"></i>
+          <a class="nav-link" href="unidades.php">Conexões</a>
         </li>
       </ul>
 
@@ -26,13 +26,13 @@
 
     <ul class="nav flex-column" style="margin-top:0.5rem">
       <li class="nav-item d-flex flex-row align-self-baseline">
-        <i class="bi bi-gear"></i>
+        <i class="navicon bi bi-gear"></i>
         <a class="nav-link" href="#">Configurações</a>
       </li>
       <li class="nav-item d-flex flex-row align-self-baseline">
-        <i class="bi bi-person-circle"></i>
+        <i class=" navicon bi bi-person-circle"></i>
         <a class="nav-link" href="#"><?php echo $_SESSION['usuario']?></a>
-        <a class="btn btn-sm sair" href="../logout.php" style="margin-top:0.5rem">
+        <a class="navicon btn btn-sm sair" href="../logout.php" style="margin-top:0.5rem">
           <i class="bi bi-box-arrow-left"></i>
         </a>
       </li>
