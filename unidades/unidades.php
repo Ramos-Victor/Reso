@@ -1,7 +1,4 @@
 <?php
-    require_once '../conect.php';
-
-    CriarUnidade($nome,$code,$id){
-
-    };
+    require_once '../adm/header.php';
+    require_once 'nav.php';
 ?>

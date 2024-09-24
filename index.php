@@ -27,7 +27,7 @@
 			<div class="col-sm-4 ">
 				<div class="card shadow-lg p-3 mb-5 bg-white rounded">
 					<div class="card-body">
-						<h1 class="font-cutes text-center titulo">
+						<h1 class="font-cutes text-center titulo cor">
 							Resolut.on
 						</h1>
 						<br>

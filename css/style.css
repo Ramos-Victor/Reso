@@ -49,6 +49,10 @@
   .titulo{
     column-gap: 5px;
     font-family: Mont;
+    
+  }
+
+  .cor{
     color: rgb(255,215,0);
     color: linear-gradient(90deg, rgba(255,215,0,1) 0%, rgba(170,127,25,1) 54%);
   }
