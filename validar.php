@@ -18,10 +18,10 @@
 			$r = $stmt->fetch_array();
 			$_SESSION['id'] = $r['cd_usuario'];
 			$_SESSION['usuario'] = $r['nm_usuario'];
-			Confirma("Sucesso ao entrar", "adm/index.php");
+			Confirma("Bem vindo ao Resolut.on", "adm/index.php");
 		}
 		else{
-			Erro("Não foi possivel realizar o login :(");
+			Erro("Acesso NEGADO!!");
 		}
 	}
 
@@ -31,9 +31,9 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content">
 						<div class="modal-body text-center font-weight-bolder text-primary">
-							<i class="bi bi-check2-circle"></i>
+							<i class="bi bi-check2-circle text-primary"></i>
 							<br>
-							<h3>'.$msg.'</h3>
+							<h3 class="titulo"><b>'.$msg.'</b></h3>
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-primary btn-block mx-auto" onclick="redirecionar()">OK</button>
@@ -55,9 +55,9 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content">
 						<div class="modal-body text-center font-weight-bolder text-danger">
-							<i class="bi bi-x-circle"></i>
+							<i class="bi bi-x-circle text-danger"></i>
 							<br>
-							<h3>'.$msg.'</h3>
+							<h3><b>'.$msg.'</b></h3>
 						</div>
 						<div class="modal-footer">
 							<button class="btn btn-danger btn-block mx-auto" onclick="redirecionar()">OK</button>
@@ -77,7 +77,7 @@
 ?>
 <style>
 	.myModal .modal-body{height: 370px;}
-	i{font-size: 44pt;}
+	i, .bi{font-size: 44pt;}
 </style>
 <script>
     $(document).ready(function(){

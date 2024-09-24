@@ -58,7 +58,7 @@
       <li class="nav-item d-flex flex-row align-self-baseline">
         <i class="bi bi-person-circle"></i>
         <a class="nav-link" href="#"><?php echo $_SESSION['usuario']?></a>
-        <a class="btn btn-sm sair" href="../logout.php">
+        <a class="btn btn-sm sair" href="../logout.php" style="margin-top:0.5rem">
           <i class="bi bi-box-arrow-left"></i>
         </a>
       </li>
