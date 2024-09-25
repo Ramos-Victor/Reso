@@ -30,7 +30,15 @@
     }
 
     function ListarConexao(){
-       $sql = 'select con.nm_conexao, con.codigo_conexao, usucon.cargo_usuario from tb_conexao as con
-        inner join tb_usuario_conexao as usucon on usucon.id_usuario = "'.$_SESSION['id'].'" where usocon.id_conexao = con.cd_conexao';
+       $sql = 'select nm_conexao, codigo_conexao, dt_entrada, cd_conexao, cargo_usuario, id_criador from tb_conexao
+        inner join tb_usuario_conexao on id_usuario = "'.$_SESSION['id'].'" where id_conexao = cd_conexao';
+
+        $res = $GLOBALS['con']->query($sql);
+
+        if($res->num_rows>0){
+            return $res;
+        }else{
+            echo'<div class="ml-3"> Sem conexões nesse momento. </div>';
+        }
     }
 ?>

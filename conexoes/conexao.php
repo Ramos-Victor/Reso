@@ -34,8 +34,45 @@
                 </button>
             </div>
         </div>
-        <div class="row">
-
+        <div class="row mt-3">
+            <?php
+            $listar = ListarConexao();
+            if($listar){
+                foreach($listar as $l){
+            ?>
+            <div class="col-sm-12">
+                <div class="card">
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <td scope="col">Nome da Conexão</td>
+                                    <td scope="col">Cargo na conexão</td>
+                                    <?php
+                                        if($l['id_criador']==$_SESSION['id']){
+                                            echo '<td scope="col">Data de criação</td>';
+                                        }else{
+                                            echo '<td scope="col">Data entrada</td>';
+                                        }
+                                    ?>
+                                    <td scope="col">Botões</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td scope="row"><?php echo $l['nm_conexao']?></td>
+                                    <td scope="row"><?php echo strtoupper($l['cargo_usuario'])?></td>
+                                    <td scope="row"><?php echo $l['dt_entrada']?></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <?php
+                }
+            }
+            ?>
         </div>
     </div>
 </div>

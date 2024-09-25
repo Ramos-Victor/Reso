@@ -236,9 +236,6 @@ insert into tb_usuario (nm_usuario, nm_email, cd_senha) values
 select * from tb_conexao;
 
 select * from tb_usuario_conexao;
-
-insert into tb_conexao (nm_conexao,codigo_conexao,id_criador) values
-        ("CUCUCU",sha2("123",256),"1");
         
         select cd_conexao, nm_conexao,codigo_conexao, id_usuario, cargo_usuario, id_conexao from tb_conexao
         inner join tb_usuario_conexao on id_usuario = 2 where id_conexao = cd_conexao;
