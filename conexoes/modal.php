@@ -19,3 +19,102 @@
         </form>
     </div>
 </div>
+
+<div class="modal fade" id="ver" data-backdrop="static">
+    <div class="modal-dialog modal-md div modal-content">
+        <form method="post" enctype="multipart/form-data" class="form-group">
+            <div class="modal-header">
+                VER CONEXÃO
+            </div>
+            <div class="modal-body">
+                <label for="cd" class="">Codigo da conexão</label>
+                <input type="text" name="cd" id="cd" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="nome" class="">Nome da conexão</label>
+                <input type="text" name="nome" id="nome" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="cargo" class="">Cargo dentro da conexão</label>
+                <input type="text" name="cargo" id="cargo" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="codigo" class="">Codigo de acesso conexão</label>
+                <input type="text" name="codigo" id="codigo" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="data" class="">Data</label>
+                <input type="text" name="data" id="data" class="form-control" rows="5" readonly></input>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dimiss="modal">
+                    Fechar
+                </button>
+                <input type="submit" class="btn btn-success text-white" name="action" value="Entrar nessa conexão">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="sair" data-backdrop="static">
+    <div class="modal-dialog modal-md div modal-content">
+        <form method="post" enctype="multipart/form-data" class="form-group">
+            <div class="modal-header">
+                SAIR DA CONEXÃO
+            </div>
+            <div class="modal-body">
+                <label for="cd" class="">Codigo da conexão</label>
+                <input type="text" name="cd" id="cd" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="nome" class="">Nome da conexão</label>
+                <input type="text" name="nome" id="nome" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="cargo" class="">Cargo dentro da conexão</label>
+                <input type="text" name="cargo" id="cargo" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="codigo" class="">Codigo de acesso conexão</label>
+                <input type="text" name="codigo" id="codigo" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="data" class="">Data</label>
+                <input type="text" name="data" id="data" class="form-control" rows="5" readonly></input>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dimiss="modal">
+                    Fechar
+                </button>
+                <input type="submit" class="btn btn-danger text-white" name="action" value="Sair">
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="deletar" data-backdrop="static">
+    <div class="modal-dialog modal-md div modal-content">
+        <form method="post" enctype="multipart/form-data" class="form-group">
+            <div class="modal-header">
+                DELETAR CONEXÂO
+            </div>
+            <div class="modal-body">
+                <label for="cd" class="">Codigo da conexão</label>
+                <input type="text" name="cd" id="cd" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="nome" class="">Nome da conexão</label>
+                <input type="text" name="nome" id="nome" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="cargo" class="">Cargo dentro da conexão</label>
+                <input type="text" name="cargo" id="cargo" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="codigo" class="">Codigo de acesso conexão</label>
+                <input type="text" name="codigo" id="codigo" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="data" class="">Data</label>
+                <input type="text" name="data" id="data" class="form-control" rows="5" readonly></input>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dimiss="modal">
+                    Fechar
+                </button>
+                <input type="submit" class="btn btn-danger text-white" name="action" value="Deletar">
+            </div>
+        </form>
+    </div>
+</div>

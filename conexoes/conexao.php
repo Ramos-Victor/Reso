@@ -63,6 +63,53 @@
                                     <td scope="row"><?php echo $l['nm_conexao']?></td>
                                     <td scope="row"><?php echo strtoupper($l['cargo_usuario'])?></td>
                                     <td scope="row"><?php echo $l['dt_entrada']?></td>
+                                    <td scope="row btn-group">
+                                        <button class="btn btn-success btn-sm ver"
+                                        data-toggle="modal"
+                                        data-target="#ver"
+                                        title="ver"
+                                        cd="<?php echo $l['cd_conexao']; ?>"
+                                        nome="<?php echo $l['nm_conexao']; ?>"
+                                        cargo="<?php echo $l['cargo_usuario']; ?>"
+                                        codigo="<?php echo $l['codigo_conexao']; ?>"
+                                        data="<?php echo $l['dt_entrada'];?>"
+                                        >
+                                            <i class="bi bi-eye-fill"></i>
+                                        </button>
+                                        <?php
+                                            if($l['cargo_usuario']=="criador"){
+                                        ?>
+                                        <button class="btn btn-danger btn-sm deletar"
+                                        data-toggle="modal"
+                                        data-target="#deletar"
+                                        title="deletar"
+                                        cd="<?php echo $l['cd_conexao']; ?>"
+                                        nome="<?php echo $l['nm_conexao']; ?>"
+                                        cargo="<?php echo $l['cargo_usuario']; ?>"
+                                        codigo="<?php echo $l['codigo_conexao']; ?>"
+                                        data="<?php echo $l['dt_entrada'];?>"
+                                        >
+                                        <i class="bi bi-trash3-fill"></i>
+                                        </button>
+                                        <?php                                               
+                                            }else{
+                                        ?>
+                                            <button class="btn btn-danger btn-sm sair"
+                                        data-toggle="modal"
+                                        data-target="#sair"
+                                        title="sair"
+                                        cd="<?php echo $l['cd_conexao']; ?>"
+                                        nome="<?php echo $l['nm_conexao']; ?>"
+                                        cargo="<?php echo $l['cargo_usuario']; ?>"
+                                        codigo="<?php echo $l['codigo_conexao']; ?>"
+                                        data="<?php echo $l['dt_entrada'];?>"
+                                        >
+                                        <i class="bi bi-box-arrow-right"></i>
+                                        </button>
+                                        <?php                                               
+                                            }
+                                        ?>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
