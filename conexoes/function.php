@@ -2,9 +2,11 @@
    require_once 'header.php';
 
     function CriarConexao($nome, $code, $criador, $pagina){
+        $codi = $code.time().$nome;
+
         $sql = 'insert into tb_conexao
          (nm_conexao,codigo_conexao,id_criador) values
-        ("'.$nome.'",sha2("'.$code.'",256),"'.$criador.'")';
+        ("'.$nome.'",sha2("'.$codi.'",256),"'.$criador.'")';
 
         $res = $GLOBALS['con']->query($sql);
 
