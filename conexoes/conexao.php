@@ -43,3 +43,16 @@
     require_once '../footer.php';
 ?>
 </body>
+
+<?php
+ if(!empty($_POST)){
+    if($_POST['action'] == "Criar"){
+        CriarConexao(
+            $_POST['name'],
+            $_POST['code'],
+            $_SESSION['id'],
+            "conexao.php"
+        );
+    }
+ }
+?>
