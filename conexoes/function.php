@@ -41,4 +41,22 @@
             echo'<div class="ml-3"> Sem conexões nesse momento. </div>';
         }
     }
+
+    function DeletarConexao($cd,$pagina){
+        $sql='delete from tb_usuario_conexao where id_conexao='.$cd;
+
+        $sql2= 'delete from tb_conexao where cd_conexao='.$cd;
+
+        $res = $GLOBALS['con']->query($sql);
+
+        $res2 = $GLOBALS['con']->query($sql2);
+
+        if($res && $res2){
+            Confirma("Excluido com sucesso!!", $pagina);
+        }else{
+            Erro("Não foi possivel excluir a conexão");
+        }
+    }
+
+    
 ?>

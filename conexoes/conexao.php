@@ -137,6 +137,11 @@
             $_SESSION['id'],
             "conexao.php"
         );
+    }else if($_POST['action']== "Deletar"){
+        DeletarConexao(
+            $_POST['cd'],
+            "conexao.php"
+        );
     }
  }
 ?>

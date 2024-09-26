@@ -31,8 +31,6 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content">
 						<div class="modal-body text-center font-weight-bolder text-primary">
-							<i class="bi bi-check2-circle text-primary"></i>
-							<br>
 							<h3 class="titulo"><b>'.$msg.'</b></h3>
 						</div>
 						<div class="modal-footer">
@@ -55,8 +53,6 @@
 				<div class="modal-dialog modal-md">
 					<div class="modal-content">
 						<div class="modal-body text-center font-weight-bolder text-danger">
-							<i class="bi bi-x-circle text-danger"></i>
-							<br>
 							<h3><b>'.$msg.'</b></h3>
 						</div>
 						<div class="modal-footer">
@@ -77,7 +73,7 @@
 ?>
 <style>
 	.myModal .modal-body{height: 370px;}
-	i, .bi{font-size: 44pt;}
+	i, .bi{font-size: 55px;}
 </style>
 <script>
     $(document).ready(function(){
