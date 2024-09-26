@@ -58,5 +58,24 @@
         }
     }
 
+    function EntrarConexao($usuario,$code){
+        $sql = 'select cd_conexao from tb_conexao where codigo_conexao="'.$code.'"';
+
+        $res = $GLOBALS['con']->query($sql);
+        $res=$res->fetch_assoc();
+        
+        $sql1 = 'insert into tb_usuario_conexao (id_usuario,id_conexao,cargo_usuario) values
+                ("'.$usuario.'","'.$res['cd_conexao'].'","comum")';
+
+        $res2 = $GLOBALS['con']->query($sql1);
+
+        if($res2){
+            Confirma("Conexão adicionada", $pagina);
+        }else{
+            Erro("Não foi possivel adicionar conexão :(");
+        }
+        
+    }
+
     
 ?>

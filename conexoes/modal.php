@@ -20,6 +20,26 @@
     </div>
 </div>
 
+<div class="modal fade" id="entrarconexao" data-backdrop="static">
+    <div class="modal-dialog modal-md div modal-content">
+        <form method="post" enctype="multipart/form-data" class="form-group">
+            <div class="modal-header">
+                Entrar na conexão
+            </div>
+            <div class="modal-body">
+                <input type="text" name="code" class="form-control" rows="5" placeholder="Digite o código da conexão que deseja entrar"></input>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dimiss="modal">
+                    Fechar
+                </button>
+                <input type="submit" class="btn text-white" name="action" value="Entrar" style="background-color:#03305c">
+            </div>
+        </form>
+    </div>
+</div>
+
 <div class="modal fade" id="ver" data-backdrop="static">
     <div class="modal-dialog modal-md div modal-content">
         <form method="post" enctype="multipart/form-data" class="form-group">
@@ -47,7 +67,7 @@
                 <button class="btn btn-secondary" data-dimiss="modal">
                     Fechar
                 </button>
-                <input type="submit" class="btn btn-success text-white" name="action" value="Entrar nessa conexão">
+                <input type="submit" class="btn btn-success text-white" name="action" value="EntrarCon">
             </div>
         </form>
     </div>

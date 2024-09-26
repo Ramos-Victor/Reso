@@ -25,12 +25,12 @@
             <div class="col-sm-8"></div>
             <div class="col-sm-2">
                 <button class="btn btn-block text-white" style="background-color:#03305c" data-toggle="modal" data-target="#addconexao">
-                <i class="navicon bi bi-plus-circle "></i> Conexão
+                <i class="navicon bi bi-plus-circle "></i> Criar
                 </button>
             </div>
             <div class="col-sm-2">
                 <button class="btn btn-block text-white" style="background-color:#03305c" data-toggle="modal" data-target="#entrarconexao">
-                <i class="navicon bi bi-plus-circle "></i> Entrar Con
+                <i class="navicon bi bi-plus-circle "></i> Conectar
                 </button>
             </div>
         </div>
@@ -140,6 +140,12 @@
     }else if($_POST['action']== "Deletar"){
         DeletarConexao(
             $_POST['cd'],
+            "conexao.php"
+        );
+    }else if($_POST['action']== "Entrar"){
+        EntrarConexao(
+            $_SESSION['id'],
+            $_POST['code'],
             "conexao.php"
         );
     }
