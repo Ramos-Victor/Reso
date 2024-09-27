@@ -75,7 +75,17 @@
                                         cd="<?php echo $l['cd_conexao']; ?>"
                                         nome="<?php echo $l['nm_conexao']; ?>"
                                         cargo="<?php echo $l['cargo_usuario']; ?>"
+                                        <?php
+                                            if($l['cargo_usuario']=="comum" || "suporte"){
+                                        ?>
+                                        codigo="Sem permissão para ver o código da conexão"
+                                        <?php
+                                            }else{
+                                        ?>
                                         codigo="<?php echo $l['codigo_conexao']; ?>"
+                                        <?php
+                                            }
+                                        ?>
                                         data="<?php echo $l['dt_entrada'];?>"
                                         >
                                             <i class="botoes bi bi-eye-fill"></i>
@@ -136,7 +146,7 @@
  if(!empty($_POST)){
     if($_POST['action'] == "Criar"){
         CriarConexao(
-            $_POST['name'],
+            $_POST['nome'],
             $_POST['code'],
             $_SESSION['id'],
             "conexao.php"

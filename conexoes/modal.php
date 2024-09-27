@@ -5,7 +5,7 @@
                 Criar Conexão
             </div>
             <div class="modal-body">
-                <input type="text" name="name" class="form-control" rows="5" placeholder="Nome conexão"></input>
+                <input type="text" name="nome" class="form-control" rows="5" placeholder="Nome conexão"></input>
                 <br>
                 <input type="text" name="code" class="form-control" rows="5" placeholder="Código de acesso conexão"></input>
                 <br>
@@ -64,13 +64,28 @@
                 <br>
             </div>
             <div class="modal-footer">
+                    <button class="btn btn-primary btn-sm copiar"
+                        onclick="copiarTexto()"
+                        title="copiar"
+                        >
+                            <i class="botoes bi bi-clipboard-fill"></i>
+                    </button>
                 <button class="btn btn-secondary" data-dimiss="modal">
                     Fechar
                 </button>
-                <input type="submit" class="btn btn-success text-white" name="action" value="EntrarCon">
+                <input type="submit" class="btn btn-success text-white" name="action" value="Acessar">
             </div>
         </form>
     </div>
+    <script>
+    function copiarTexto(){
+        let textoCopiado = document.getElementById("codigo");
+        textoCopiado.select();
+        textoCopiado.setSelectionRange(0,99999);
+
+        document.execCommand("copy");
+    }
+</script>
 </div>
 
 <div class="modal fade" id="sair" data-backdrop="static">
@@ -138,3 +153,4 @@
         </form>
     </div>
 </div>
+
