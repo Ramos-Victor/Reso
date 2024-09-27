@@ -17,7 +17,7 @@
   .navicon{
     margin-top: 0.8rem;
     color: #ffd700;
-    font-size: 1rem;
+    font-size: 1.5rem;
     background-color: none;
   }
 
@@ -25,9 +25,10 @@
     width: 2rem;
     height: 2rem;
     border-radius: 50%;
+    
   }
 
-  .nav-item:hover{
+  .nav-link:hover{
     font-size: 18px;
     color: #ffd700;
     transition: 300ms;
@@ -60,4 +61,9 @@
   @font-face {
     font-family: Mont;
     src: url('../assets/fontes/Montserrat/Montserrat-Italic-VariableFont_wght.ttf');
+  }
+
+  .texto{
+    margin-top: 0.8rem;
+    margin-left: 0.5rem;
   }

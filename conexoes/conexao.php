@@ -5,9 +5,13 @@
     require_once 'script.php';
 ?>
 <style>
-    .bi{
-        font-size:1rem; 
+    .botoes{
+        font-size:1.5rem; 
     }
+
+    @media(max-width: 1000px){
+     
+}
 </style>
 <body>
 <?php
@@ -16,19 +20,19 @@
 <div id="main-content">
     <div class="container-fluid">
         <div class="row ">
-            <div class="col-sm-12 text-center">
+            <div class="col-sm-12 col-xs-12 text-center">
                 <h2>Conexões</h2>
             </div>
         </div>
                 
         <div class="row">
-            <div class="col-sm-8"></div>
-            <div class="col-sm-2">
-                <button class="btn btn-block text-white" style="background-color:#03305c" data-toggle="modal" data-target="#addconexao">
+            <div class="col-sm-8 col-xs-8"></div>
+            <div class="col-sm-2 col-xs-2">
+                <button class="btn btn-block text-white" style="background-color:#03305c;" data-toggle="modal" data-target="#addconexao">
                 <i class="navicon bi bi-plus-circle "></i> Criar
                 </button>
             </div>
-            <div class="col-sm-2">
+            <div class="col-sm-2 col-xs-2">
                 <button class="btn btn-block text-white" style="background-color:#03305c" data-toggle="modal" data-target="#entrarconexao">
                 <i class="navicon bi bi-plus-circle "></i> Conectar
                 </button>
@@ -40,7 +44,7 @@
             if($listar){
                 foreach($listar as $l){
             ?>
-            <div class="col-sm-12">
+            <div class="col-xs-12 col-md-12 mt-3">
                 <div class="card">
                     <div class="card-body">
                         <table class="table">
@@ -63,7 +67,7 @@
                                     <td scope="row"><?php echo $l['nm_conexao']?></td>
                                     <td scope="row"><?php echo strtoupper($l['cargo_usuario'])?></td>
                                     <td scope="row"><?php echo $l['dt_entrada']?></td>
-                                    <td scope="row btn-group">
+                                    <td scope="row">
                                         <button class="btn btn-success btn-sm ver"
                                         data-toggle="modal"
                                         data-target="#ver"
@@ -74,7 +78,7 @@
                                         codigo="<?php echo $l['codigo_conexao']; ?>"
                                         data="<?php echo $l['dt_entrada'];?>"
                                         >
-                                            <i class="bi bi-eye-fill"></i>
+                                            <i class="botoes bi bi-eye-fill"></i>
                                         </button>
                                         <?php
                                             if($l['cargo_usuario']=="criador"){
@@ -89,7 +93,7 @@
                                         codigo="<?php echo $l['codigo_conexao']; ?>"
                                         data="<?php echo $l['dt_entrada'];?>"
                                         >
-                                        <i class="bi bi-trash3-fill"></i>
+                                        <i class="botoes bi bi-trash3-fill"></i>
                                         </button>
                                         <?php                                               
                                             }else{
@@ -104,7 +108,7 @@
                                         codigo="<?php echo $l['codigo_conexao']; ?>"
                                         data="<?php echo $l['dt_entrada'];?>"
                                         >
-                                        <i class="bi bi-box-arrow-right"></i>
+                                        <i class="botoes bi bi-box-arrow-right"></i>
                                         </button>
                                         <?php                                               
                                             }
