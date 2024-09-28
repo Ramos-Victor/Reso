@@ -28,13 +28,15 @@
         <div class="row">
             <div class="col-sm-8 col-xs-8"></div>
             <div class="col-sm-2 col-xs-2">
-                <button class="btn btn-block text-white" style="background-color:#03305c;" data-toggle="modal" data-target="#addconexao">
-                <i class="navicon bi bi-plus-circle "></i> Criar
+                <button class="btn btn-block text-white d-flex flex-row" style="background-color:#03305c; height:3.5rem" data-toggle="modal" data-target="#addconexao">
+                <i class="navicon bi bi-plus-circle "></i> 
+                <p class="texto">Criar</p>
                 </button>
             </div>
             <div class="col-sm-2 col-xs-2">
-                <button class="btn btn-block text-white" style="background-color:#03305c" data-toggle="modal" data-target="#entrarconexao">
-                <i class="navicon bi bi-plus-circle "></i> Conectar
+                <button class="btn btn-block text-white d-flex flex-row" style="background-color:#03305c; height:3.5rem" data-toggle="modal" data-target="#entrarconexao">
+                <i class="navicon bi bi-plus-circle "></i> 
+                <p class="texto">Conectar</p>
                 </button>
             </div>
         </div>
@@ -76,7 +78,7 @@
                                         nome="<?php echo $l['nm_conexao']; ?>"
                                         cargo="<?php echo $l['cargo_usuario']; ?>"
                                         <?php
-                                            if($l['cargo_usuario']=="comum" || "suporte"){
+                                            if($l['cargo_usuario']=="comum" || $l['cargo_usuario']==    "suporte"){
                                         ?>
                                         codigo="Sem permissão para ver o código da conexão"
                                         <?php
@@ -156,12 +158,33 @@
             $_POST['cd'],
             "conexao.php"
         );
+    }else if($_POST['action']=="Sair"){
+        SairConexao(
+            $_SESSION['id'],
+            $_POST['cd'],
+            "conexao.php"
+        );
     }else if($_POST['action']== "Entrar"){
         EntrarConexao(
             $_SESSION['id'],
             $_POST['code'],
             "conexao.php"
         );
+    }else if($_POST['action']=="Acessar"){
+        $_SESSION['conexao']=$_POST['cd'];
+        if($_POST['cargo']=="criador"){
+            ?>
+        <script>
+            location.href = "../criador/index.php";
+        </script>
+            <?php
+        }else if($_POST['cargo']=="comum"){
+            ?>
+            <script>
+                location.href = "../comum/index.php";
+            </script>
+            <?php
+        }
     }
  }
 ?>

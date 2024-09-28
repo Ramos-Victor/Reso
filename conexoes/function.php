@@ -1,33 +1,34 @@
 <?php
    require_once 'header.php';
 
-    function CriarConexao($nome, $code, $criador, $pagina){
-        $codi = $code.time().$nome;
+   function CriarConexao($nome, $code, $criador, $pagina) {
+    $codi = $code . time() . $nome;
 
-        $sql = 'insert into tb_conexao
-         (nm_conexao,codigo_conexao,id_criador) values
-        ("'.$nome.'",sha2("'.$codi.'",256),"'.$criador.'")';
+    // Prepara a consulta SQL para criar a conexão
+    $sql = 'INSERT INTO tb_conexao (nm_conexao, codigo_conexao, id_criador) VALUES (?, SHA2(?, 256), ?)';
+    $stmt = $GLOBALS['con']->prepare($sql);
+    $stmt->bind_param('sss', $nome, $codi, $criador);
 
-        $res = $GLOBALS['con']->query($sql);
+    // Executa a consulta
+    $res = $stmt->execute();
 
-        $last_id =$GLOBALS['con']->insert_id;
-        Conexao('criador',$criador,$last_id);
+    // Obtém o ID da última inserção
+    $last_id = $GLOBALS['con']->insert_id;
 
-        if($res){
-            Confirma("Conexão criada com sucesso", $pagina);
-        }else{
-            Erro("Não foi possivel criar a conexão");
-        }
+    // Verifica se a criação da conexão foi bem-sucedida
+    if ($res) {
+        // Insere o usuário na tabela tb_usuario_conexao
+        $cargo = 'criador';
+        $sqlUsuario = 'INSERT INTO tb_usuario_conexao (id_usuario, id_conexao, cargo_usuario) VALUES (?, ?, ?)';
+        $stmtUsuario = $GLOBALS['con']->prepare($sqlUsuario);
+        $stmtUsuario->bind_param('sss', $criador, $last_id, $cargo);
+        $stmtUsuario->execute();
+
+        Confirma("Conexão criada com sucesso", $pagina);
+    } else {
+        Erro("Não foi possível criar a conexão");
     }
-
-    function Conexao($cargo, $usuario, $conexao){
-        $sql= 'insert into tb_usuario_conexao 
-        (id_usuario,id_conexao,cargo_usuario) values
-        ("'.$usuario.'","'.$conexao.'","'.$cargo.'")';
-        
-        $res = $GLOBALS['con']->query($sql);
-
-    }
+}
 
     function ListarConexao(){
        $sql = 'select nm_conexao, codigo_conexao, dt_entrada, cd_conexao, cargo_usuario, id_criador from tb_conexao
@@ -58,23 +59,57 @@
         }
     }
 
-    function EntrarConexao($usuario,$code){
-        $sql = 'select cd_conexao from tb_conexao where codigo_conexao="'.$code.'"';
+    function SairConexao($usuario,$conexao,$pagina){
+        $sql='delete from tb_usuario_conexao where id_usuario="'.$usuario.'" and id_conexao="'.$conexao.'"';
 
         $res = $GLOBALS['con']->query($sql);
-        $res=$res->fetch_assoc();
-        
-        $sql1 = 'insert into tb_usuario_conexao (id_usuario,id_conexao,cargo_usuario) values
-                ("'.$usuario.'","'.$res['cd_conexao'].'","comum")';
 
-        $res2 = $GLOBALS['con']->query($sql1);
-
-        if($res2){
-            Confirma("Conexão adicionada", $pagina);
+        if($res){
+            Confirma("Você saiu desta conexão", $pagina);
         }else{
-            Erro("Não foi possivel adicionar conexão :(");
+            Erro("Não foi possivel sair da conexão");
         }
-        
+    }
+
+    function EntrarConexao($usuario, $code, $pagina) {
+        // Obtendo a conexão global
+        $conn = $GLOBALS['con'];
+    
+        // Verifica se o código de conexão é válido
+        $sql = 'SELECT cd_conexao FROM tb_conexao WHERE codigo_conexao = ?';
+        $stmt = $conn->prepare($sql);
+        $stmt->bind_param('s', $code); // 's' indica que o parâmetro é uma string
+        $stmt->execute();
+        $res = $stmt->get_result()->fetch_assoc();
+    
+        if ($res) {
+            $cd_conexao = $res['cd_conexao'];
+    
+            // Verifica se a conexão já existe para o usuário
+            $sqlCheck = 'SELECT * FROM tb_usuario_conexao WHERE id_usuario = ? AND id_conexao = ?';
+            $stmtCheck = $conn->prepare($sqlCheck);
+            $stmtCheck->bind_param('ss', $usuario, $cd_conexao);
+            $stmtCheck->execute();
+            $resCheck = $stmtCheck->get_result();
+    
+            if ($resCheck->num_rows == 0) { // Verifica se a conexão já existe
+                // Realiza o insert
+                $sqlInsert = 'INSERT INTO tb_usuario_conexao (id_usuario, id_conexao, cargo_usuario) VALUES (?, ?, ?)';
+                $stmtInsert = $conn->prepare($sqlInsert);
+                $cargo_usuario = 'comum';
+                $stmtInsert->bind_param('sss', $usuario, $cd_conexao, $cargo_usuario);
+    
+                if ($stmtInsert->execute()) {
+                    Confirma("Conexão adicionada", $pagina);
+                } else {
+                    Erro("Não foi possível adicionar conexão :(");
+                }
+            } else {
+                Erro("Conexão já existe.");
+            }
+        } else {
+            Erro("Código de conexão inválido.");
+        }
     }
 
     
