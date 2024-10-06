@@ -35,13 +35,16 @@
 						<div  class="form-outline mb-4">
 							<input type="email" name="email" id="email" class="form-control" placeholder="Digite seu email" required/>
 						</div>
+						<div  class="form-outline mb-4">
+							<input type="text" name="usuario" id="usuario" class="form-control" placeholder="Digite seu usuario" required/>
+						</div>
 						<div class="form-outline mb-4">
 							<input type="password" name="senha" id="senha" class="form-control" placeholder="Digite sua senha" required/>
 						</div>
 						<div class="form-outline mb-4">
 							<a href="registro.php">Registre-se aqui</a>
 						</div>
-						<input type="submit" class="btn form-control" value="Entrar"/>	
+						<input type="submit" class="btn form-control" value="Cadastrar"/>	
 						</form>
 					</div>
 				</div>

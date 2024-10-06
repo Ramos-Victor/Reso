@@ -34,7 +34,7 @@
 <div id="sidebar" class="row">
     <div class="container-fluid">
       <div class="d-flex flex-row align-self-baseline titulo">
-        <img src="../assets/img/logoresoluton.jpg" class="img-fluid reso" alt="Logo-Resolution">
+        <img src="../assets/img/logoresoluton.png" class="img-fluid reso" alt="Logo-Resolution">
         <h4 class="text-white reso-texto">Resolut.on</h4>
       </div>
 

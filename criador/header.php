@@ -2,14 +2,15 @@
 session_start(); 
 error_reporting(E_ALL ^ E_WARNING);
 ini_set('display_errors', 1) ;
-if(!empty($_SESSION['id'])){
+if(!empty($_SESSION['conexao'])){
     $_SESSION['id'];
     $_SESSION['usuario'];
+    $_SESSION['conexao'];
     require_once '../conect.php';
     require_once '../dialog.php';
 }
 else{
-    header("Location: ../logout.php");
+    header("Location: ../conexoes/conexao.php");
 }
 ?>
 

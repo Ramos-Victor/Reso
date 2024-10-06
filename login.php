@@ -35,7 +35,9 @@
 						<div  class="form-outline mb-4">
 							<input type="email" name="email" id="email" class="form-control" placeholder="Digite seu email" required/>
 						</div>
-
+						<div class="form-outline mb-4">
+							<a href="registro.php">Registre-se aqui</a>
+						</div>
 						<div class="form-outline mb-4">
 							<input type="password" name="senha" id="senha" class="form-control" placeholder="Digite sua senha" required/>
 						</div>

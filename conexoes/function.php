@@ -39,7 +39,7 @@
         if($res->num_rows>0){
             return $res;
         }else{
-            echo'<div class="ml-3"> Sem conexões nesse momento. </div>';
+            echo'<div class="ml-3"> Você não tem conexões. </div>';
         }
     }
 
@@ -111,6 +111,5 @@
             Erro("Código de conexão inválido.");
         }
     }
-
     
 ?>
