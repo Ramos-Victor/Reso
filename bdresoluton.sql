@@ -10,7 +10,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 -- Schema db_resoluton
 -- -----------------------------------------------------
-
 -- -----------------------------------------------------
 -- Schema db_resoluton
 -- -----------------------------------------------------
@@ -25,12 +24,11 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_usuario` (
   `nm_usuario` VARCHAR(50) NOT NULL,
   `nm_email` VARCHAR(100) NOT NULL,
   `cd_senha` VARCHAR(255) NOT NULL,
+--  `verificado` CHAR(1) NOT NULL,
   `dt_cadastro` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`cd_usuario`),
   UNIQUE INDEX `usuario_email_UNIQUE` (`nm_email` ASC) )
 ENGINE = InnoDB;
-
-
 -- -----------------------------------------------------
 -- Table `db_resoluton`.`tb_conexao`
 -- -----------------------------------------------------
@@ -229,16 +227,17 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 select * from tb_usuario;
 
+
 insert into tb_usuario (nm_usuario, nm_email, cd_senha) values
  ('victor','victor@gmail.com',sha2('123',256)),
- ('lais','lais@gmail.com',sha2('123',256));
+ ('lais','lais@gmail.com',sha2('123',256) );
  
 select * from tb_conexao;
 
 select * from tb_usuario_conexao;
         
-        select cd_conexao, nm_conexao,codigo_conexao, id_usuario, cargo_usuario, id_conexao from tb_conexao
-        inner join tb_usuario_conexao on id_usuario = 2 where id_conexao = cd_conexao;
+select cd_conexao, nm_conexao,codigo_conexao, id_usuario, cargo_usuario, id_conexao from tb_conexao
+inner join tb_usuario_conexao on id_usuario = 2 where id_conexao = cd_conexao;
         
 
         

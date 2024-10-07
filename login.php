@@ -1,11 +1,12 @@
 <?php
     require_once 'header.php';
+	include 'validar.php';
 ?>
 <style>
 	.card{
 		margin-top: 40%;
 	}
-	.btn{
+	.login{
 		background-color: #ffd700;
 		color:white;
 	}
@@ -27,21 +28,21 @@
 			<div class="col-sm-4 ">
 				<div class="card shadow-lg p-3 mb-5 bg-white rounded">
 					<div class="card-body">
-						<h1 class="font-cutes text-center titulo">
+						<h1 class="font-cutes text-center titulo cor">
 							Resolut.on
 						</h1>
 						<br>
-						<form method="post" action="validar.php" class="form-group">
+						<form method="post" class="form-group">
 						<div  class="form-outline mb-4">
 							<input type="email" name="email" id="email" class="form-control" placeholder="Digite seu email" required/>
 						</div>
 						<div class="form-outline mb-4">
-							<a href="registro.php">Registre-se aqui</a>
-						</div>
-						<div class="form-outline mb-4">
 							<input type="password" name="senha" id="senha" class="form-control" placeholder="Digite sua senha" required/>
 						</div>
-						<input type="submit" class="btn form-control" value="Entrar"/>	
+						<input type="submit" class="btn form-control login" name="action" value="Entrar"/>	
+						<div class="form-outline mb-4">
+							<a href="registro.php">Registre-se aqui</a>
+						</div>
 						</form>
 					</div>
 				</div>
@@ -49,3 +50,14 @@
 		</div>
 	</div>
 </body>
+
+<?php
+	if(!empty($_POST)){
+		if($_POST['action']=="Entrar"){
+			ValidarLogin(
+				$_POST['email'],
+				$_POST['senha']
+			);
+		}
+	}
+?>

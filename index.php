@@ -1,11 +1,12 @@
 <?php
     require_once 'header.php';
+	include 'validar.php';
 ?>
 <style>
 	.card{
 		margin-top: 40%;
 	}
-	.btn{
+	.login{
 		background-color: #ffd700;
 		color:white;
 	}
@@ -31,17 +32,17 @@
 							Resolut.on
 						</h1>
 						<br>
-						<form method="post" action="validar.php" class="form-group">
+						<form method="post" class="form-group">
 						<div  class="form-outline mb-4">
 							<input type="email" name="email" id="email" class="form-control" placeholder="Digite seu email" required/>
 						</div>
 						<div class="form-outline mb-4">
 							<input type="password" name="senha" id="senha" class="form-control" placeholder="Digite sua senha" required/>
 						</div>
+						<input type="submit" class="btn form-control login" name="action" value="Entrar"/>	
 						<div class="form-outline mb-4">
 							<a href="registro.php">Registre-se aqui</a>
 						</div>
-						<input type="submit" class="btn form-control" value="Entrar"/>	
 						</form>
 					</div>
 				</div>
@@ -49,3 +50,14 @@
 		</div>
 	</div>
 </body>
+
+<?php
+	if(!empty($_POST)){
+		if($_POST['action']=="Entrar"){
+			ValidarLogin(
+				$_POST['email'],
+				$_POST['senha']
+			);
+		}
+	}
+?>

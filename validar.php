@@ -1,30 +1,64 @@
 <?php  
 	require_once 'header.php';
 	require_once 'conect.php';
-	if($_POST){
-		ValidarLogin($_POST['email'], $_POST['senha']);
-	}
 
 	function ValidarLogin($email, $senha){
-		$sql = 'select 
+		$sql = 'SELECT 
 				cd_usuario, nm_usuario
-				from tb_usuario 
-				where
-				nm_email = "'.$email.'" and
-				cd_senha = sha2("'.$senha.'", 256)';
-		$stmt = $GLOBALS['con']->query($sql);
-		if($stmt->num_rows > 0){
+				FROM tb_usuario 
+				WHERE
+				nm_email = ? AND
+				cd_senha = sha2(?, 256)';
+		
+		$stmt = $GLOBALS['con']->prepare($sql);
+		$stmt->bind_param('ss', $email, $senha);  // 'ss' - duas strings
+		$stmt->execute();
+		$result = $stmt->get_result();
+		
+		if($result->num_rows > 0){
 			session_start();
-			$r = $stmt->fetch_array();
+			$r = $result->fetch_assoc();
 			$_SESSION['id'] = $r['cd_usuario'];
 			$_SESSION['usuario'] = $r['nm_usuario'];
 			Confirma("Bem vindo ao Resolut.on", "conexoes/conexao.php");
-		}
-		else{
+		} else {
 			Erro("Acesso NEGADO!!");
 		}
 	}
 
+	function ValidarCadastro($usuario, $email, $senha){
+		$sql = 'SELECT COUNT(*) as total FROM tb_usuario WHERE nm_usuario = ?';
+		$sql2 = 'SELECT COUNT(*) as total FROM tb_usuario WHERE nm_email = ?';
+	
+		$stmt = $GLOBALS['con']->prepare($sql);
+		$stmt->bind_param('s', $usuario);
+		$stmt->execute();
+		$result = $stmt->get_result();
+		$row = $result->fetch_assoc();
+	
+		$stmt2 = $GLOBALS['con']->prepare($sql2);
+		$stmt2->bind_param('s', $email);
+		$stmt2->execute();
+		$result2 = $stmt2->get_result();
+		$row2 = $result2->fetch_assoc();
+	
+		if ($row['total'] == 1 || $row2['total'] == 1) {
+			Erro("Email ou usuário já existem!!");
+		} else {
+			$sql3 = 'INSERT INTO tb_usuario (nm_usuario, nm_email, cd_senha) VALUES (?, ?, sha2(?, 256))';
+			$stmt3 = $GLOBALS['con']->prepare($sql3);
+			$stmt3->bind_param('sss', $usuario, $email, $senha);
+	
+			$res = $stmt3->execute();
+	
+			if ($res) {
+				Confirma("Cadastrado com sucesso!!", "./login.php");
+			} else {
+				Erro("Não foi possível cadastrar o usuário :(");
+			}
+		}
+	}
+	
 	function Confirma($msg, $pagina){
 		print'
 			<div class="modal fade" id="myModal" data-backdrop="static">
