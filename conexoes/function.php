@@ -1,8 +1,8 @@
 <?php
    require_once 'header.php';
 
-   function CriarConexao($nome, $code, $criador, $pagina) {
-    $codi = $code . time() . $nome;
+   function CriarConexao($nome,$criador, $pagina) {
+    $codi = time() . $nome;
 
     // Prepara a consulta SQL para criar a conexão
     $sql = 'INSERT INTO tb_conexao (nm_conexao, codigo_conexao, id_criador) VALUES (?, SHA2(?, 256), ?)';

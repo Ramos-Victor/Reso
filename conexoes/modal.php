@@ -7,8 +7,6 @@
             <div class="modal-body">
                 <input type="text" name="nome" class="form-control" rows="5" placeholder="Nome conexão"></input>
                 <br>
-                <input type="text" name="code" class="form-control" rows="5" placeholder="Código de acesso conexão"></input>
-                <br>
             </div>
             <div class="modal-footer">
                 <button class="btn btn-secondary" data-dimiss="modal">

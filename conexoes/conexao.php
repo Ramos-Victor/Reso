@@ -149,7 +149,6 @@
     if($_POST['action'] == "Criar"){
         CriarConexao(
             $_POST['nome'],
-            $_POST['code'],
             $_SESSION['id'],
             "conexao.php"
         );

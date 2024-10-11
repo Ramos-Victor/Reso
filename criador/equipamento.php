@@ -36,7 +36,7 @@ require_once './equipamentos/script.php';
                         </div>
                         <div class="col-sm-4">
                             <button class="btnequi btn btn-block" data-toggle="modal" data-target="#upload">
-                            <i class="bi bi-plus-circle "></i> Categoria
+                            + Categoria
                             </button>
                         </div>
                     </div>
