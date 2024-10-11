@@ -233,11 +233,12 @@ insert into tb_usuario (nm_usuario, nm_email, cd_senha) values
  ('lais','lais@gmail.com',sha2('123',256) );
  
 select * from tb_conexao;
-
+	
 select * from tb_usuario_conexao;
         
 select cd_conexao, nm_conexao,codigo_conexao, id_usuario, cargo_usuario, id_conexao from tb_conexao
 inner join tb_usuario_conexao on id_usuario = 2 where id_conexao = cd_conexao;
         
-
+select cd_usuario, nm_usuario, nm_email, dt_entrada, cargo_usuario from tb_usuario 
+inner join tb_usuario_conexao on id_usuario = cd_usuario where id_conexao = 1 and cargo_usuario != "criador";
         
