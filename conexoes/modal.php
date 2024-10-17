@@ -151,4 +151,27 @@
         </form>
     </div>
 </div>
+<div class="modal fade" id="editar" data-backdrop="static">
+    <div class="modal-dialog modal-md div modal-content">
+        <form method="post" enctype="multipart/form-data" class="form-group">
+            <div class="modal-header">
+                EDITAR CONEXÂO
+            </div>
+            <div class="modal-body">
+                <label for="cd" class="">Codigo da conexão</label>
+                <input type="text" name="cd" id="cd" class="form-control" rows="5" readonly></input>
+                <br>
+                <label for="nome" class="">Nome da conexão</label>
+                <input type="text" name="nome" id="nome" class="form-control" rows="5"></input>
+                <br>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" data-dimiss="modal">
+                    Fechar
+                </button>
+                <input type="submit" class="btn btn-primary text-white" name="action" value="Editar">
+            </div>
+        </form>
+    </div>
+</div>
 

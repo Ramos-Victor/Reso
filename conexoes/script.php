@@ -36,4 +36,10 @@ $(document).on('click', '.deletar', function(){
     var data = $(this).attr('data');
     $('.modal #data').val(data);
 });
+$(document).on('click', '.editar', function(){
+    var cd = $(this).attr('cd');
+    $('.modal #cd').val(cd);
+    var nome = $(this).attr('nome');
+    $('.modal #nome').val(nome);
+});
 </script>

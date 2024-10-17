@@ -1,8 +1,9 @@
 <?php
     function ListarUsuarios(){
         $sql = 'select cd_usuario, nm_usuario,
-        nm_email, dt_entrada, cargo_usuario from tb_usuario 
-        inner join tb_usuario_conexao on id_usuario = cd_usuario where id_conexao ="'.$_SESSION['conexao'].'" and cargo_usuario != "criador"';
+                nm_email, dt_entrada, cargo_usuario from tb_usuario 
+                inner join tb_usuario_conexao on id_usuario = cd_usuario
+                where id_conexao ="'.$_SESSION['conexao'].'" and cargo_usuario != "criador"';
 
         $res = $GLOBALS['con']->query($sql);
 

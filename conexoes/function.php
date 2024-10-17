@@ -4,20 +4,16 @@
    function CriarConexao($nome,$criador, $pagina) {
     $codi = time() . $nome;
 
-    // Prepara a consulta SQL para criar a conexão
     $sql = 'INSERT INTO tb_conexao (nm_conexao, codigo_conexao, id_criador) VALUES (?, SHA2(?, 256), ?)';
     $stmt = $GLOBALS['con']->prepare($sql);
     $stmt->bind_param('sss', $nome, $codi, $criador);
 
-    // Executa a consulta
     $res = $stmt->execute();
 
-    // Obtém o ID da última inserção
     $last_id = $GLOBALS['con']->insert_id;
 
-    // Verifica se a criação da conexão foi bem-sucedida
     if ($res) {
-        // Insere o usuário na tabela tb_usuario_conexao
+
         $cargo = 'criador';
         $sqlUsuario = 'INSERT INTO tb_usuario_conexao (id_usuario, id_conexao, cargo_usuario) VALUES (?, ?, ?)';
         $stmtUsuario = $GLOBALS['con']->prepare($sqlUsuario);
@@ -72,28 +68,26 @@
     }
 
     function EntrarConexao($usuario, $code, $pagina) {
-        // Obtendo a conexão global
+        
         $conn = $GLOBALS['con'];
-    
-        // Verifica se o código de conexão é válido
+
         $sql = 'SELECT cd_conexao FROM tb_conexao WHERE codigo_conexao = ?';
         $stmt = $conn->prepare($sql);
-        $stmt->bind_param('s', $code); // 's' indica que o parâmetro é uma string
+        $stmt->bind_param('s', $code); 
         $stmt->execute();
         $res = $stmt->get_result()->fetch_assoc();
     
         if ($res) {
             $cd_conexao = $res['cd_conexao'];
     
-            // Verifica se a conexão já existe para o usuário
             $sqlCheck = 'SELECT * FROM tb_usuario_conexao WHERE id_usuario = ? AND id_conexao = ?';
             $stmtCheck = $conn->prepare($sqlCheck);
             $stmtCheck->bind_param('ss', $usuario, $cd_conexao);
             $stmtCheck->execute();
             $resCheck = $stmtCheck->get_result();
     
-            if ($resCheck->num_rows == 0) { // Verifica se a conexão já existe
-                // Realiza o insert
+            if ($resCheck->num_rows == 0) { 
+
                 $sqlInsert = 'INSERT INTO tb_usuario_conexao (id_usuario, id_conexao, cargo_usuario) VALUES (?, ?, ?)';
                 $stmtInsert = $conn->prepare($sqlInsert);
                 $cargo_usuario = 'comum';
@@ -112,4 +106,18 @@
         }
     }
     
+    function EditarConexao($cd,$nome,$pagina){
+        $sql = 'update tb_conexao set nm_conexao = ? where cd_conexao = ? ';
+
+        $stmt = $GLOBALS['con']->prepare($sql);
+        $stmt->bind_param('ss', $nome, $cd);
+
+        $res = $stmt->execute();
+
+        if($res){
+            Confirma("Editado com sucesso!", $pagina);
+        }else{
+            Erro("Não foi possivel editar");
+        }
+    }
 ?>

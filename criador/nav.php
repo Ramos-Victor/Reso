@@ -71,12 +71,13 @@
             <p class="texto">Voltar</p>
           </a>
         </li>
-      </ul> 
+      </ul>
+  </div> 
   
+  <div class="container-fluid">
     <div class="divisor"></div>
 
     <ul class="nav flex-column final" style="margin-top:0.5rem">
-      
       <li class="nav-item">
         <a class="nav-link d-flex flex-row align-self-baseline" href="#">
         <i class="navicon bi bi-gear"></i>

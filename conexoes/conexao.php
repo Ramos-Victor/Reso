@@ -78,7 +78,7 @@
                                         nome="<?php echo $l['nm_conexao']; ?>"
                                         cargo="<?php echo $l['cargo_usuario']; ?>"
                                         <?php
-                                            if($l['cargo_usuario']=="comum" || $l['cargo_usuario']==    "suporte"){
+                                            if($l['cargo_usuario']=="comum" || $l['cargo_usuario'] == "suporte"){
                                         ?>
                                         codigo="Sem permissão para ver o código da conexão"
                                         <?php
@@ -121,6 +121,24 @@
                                         data="<?php echo $l['dt_entrada'];?>"
                                         >
                                         <i class="botoes bi bi-box-arrow-right"></i>
+                                        </button>
+                                        <?php                                               
+                                            }
+                                        ?>
+                                        <?php                                               
+                                           if($l['cargo_usuario']=="criador"){
+                                        ?>
+                                            <button class="btn btn-primary btn-sm editar"
+                                        data-toggle="modal"
+                                        data-target="#editar"
+                                        title="editar"
+                                        cd="<?php echo $l['cd_conexao']; ?>"
+                                        nome="<?php echo $l['nm_conexao']; ?>"
+                                        cargo="<?php echo $l['cargo_usuario']; ?>"
+                                        codigo="<?php echo $l['codigo_conexao']; ?>"
+                                        data="<?php echo $l['dt_entrada'];?>"
+                                        >
+                                        <i class="botoes bi bi-pencil-fill"></i>
                                         </button>
                                         <?php                                               
                                             }
@@ -184,6 +202,12 @@
             </script>
             <?php
         }
+    }else if($_POST['action']=="Editar"){
+        EditarConexao(
+            $_POST['cd'],
+            $_POST['nome'],
+            "conexao.php"
+        );
     }
  }
 ?>
