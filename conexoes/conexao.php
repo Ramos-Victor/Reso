@@ -8,10 +8,10 @@
     .botoes{
         font-size:1.5rem; 
     }
-
-    @media(max-width: 1000px){
-     
-}
+    a:hover{
+        color: #ffd700;
+        text-decoration: none;
+    }
 </style>
 <body>
 <?php
@@ -28,15 +28,19 @@
         <div class="row">
             <div class="col-sm-8 col-xs-8"></div>
             <div class="col-sm-2 col-xs-2">
-                <button class="btn btn-block text-white d-flex flex-row" style="background-color:#03305c; height:3.5rem" data-toggle="modal" data-target="#addconexao">
-                <i class="navicon bi bi-plus-circle "></i> 
-                <p class="texto">Criar</p>
+                <button class="btn btn-block d-flex flex-row" style="background-color:#03305c;" data-toggle="modal" data-target="#addconexao">
+                <a class="mx-auto text-white">
+                <i class="navicon bi bi-plus-circle"></i> 
+                Criar
+                </a>
                 </button>
             </div>
             <div class="col-sm-2 col-xs-2">
-                <button class="btn btn-block text-white d-flex flex-row" style="background-color:#03305c; height:3.5rem" data-toggle="modal" data-target="#entrarconexao">
-                <i class="navicon bi bi-plus-circle "></i> 
-                <p class="texto">Conectar</p>
+                <button class="btn btn-block d-flex flex-row" style="background-color:#03305c;" data-toggle="modal" data-target="#entrarconexao">
+                <a class="mx-auto text-white">
+                <i class="navicon bi bi-plus-circle"></i> 
+                Conectar
+                </a>
                 </button>
             </div>
         </div>

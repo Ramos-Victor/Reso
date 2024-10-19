@@ -3,33 +3,6 @@
         background: none;
     }
 
-    @media(max-width: 1000px){
-     #sidebar{
-        width: 7rem;
-    }
-    #main-content{
-      margin-left: 8rem;
-    }
-
-    .texto, .reso-texto{
-      display: none;
-    }
-
-    .bi{
-      font-size: 2rem;
-    }
-
-    .reso{
-      width: 2rem;
-      height: 2rem;
-      margin-left: 1rem;
-    }
-
-    .final{
-      display: flex;
-      flex-direction: row;
-    }
-   }
 </style>
 <div id="sidebar" class="row">
     <div class="container-fluid">
