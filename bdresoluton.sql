@@ -120,7 +120,7 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_equipamento` (
   `equipamento_nm` VARCHAR(45) NOT NULL,
   `equipamento_ds` LONGTEXT NOT NULL,
   `equipamento_dt` DATETIME NOT NULL DEFAULT current_timestamp,
-  `st_equipamento` ENUM('Funcionando', 'Manuntenção', 'Desativado') NOT NULL DEFAULT 'Funcionando',
+  `st_equipamento` ENUM('Ativo', 'Manuntenção', 'Desativado') NOT NULL DEFAULT 'Ativo',
   `id_sala` INT NOT NULL,
   `id_categoria` INT NULL,
   `id_usuario` INT NOT NULL,
@@ -156,7 +156,7 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_chamado` (
   `ds_chamado` LONGTEXT NOT NULL,
   `dt_abertura` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `dt_fechamento` DATETIME NULL,
-  `st_chamado` CHAR(1) NOT NULL,
+  `st_equipamento` ENUM('Pendente', 'Andamento', 'Concluido') NOT NULL DEFAULT 'Pendente',
   `id_equipamento` INT NOT NULL,
   `id_usuario` INT NOT NULL,
   `id_conexao` INT NOT NULL,
@@ -227,7 +227,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 select * from tb_usuario;
 
-
 insert into tb_usuario (nm_usuario, nm_email, cd_senha) values
  ('victor','victor@gmail.com',sha2('123',256)),
  ('lais','lais@gmail.com',sha2('123',256) );
@@ -241,4 +240,10 @@ inner join tb_usuario_conexao on id_usuario = 2 where id_conexao = cd_conexao;
         
 select cd_usuario, nm_usuario, nm_email, dt_entrada, cargo_usuario from tb_usuario 
 inner join tb_usuario_conexao on id_usuario = cd_usuario where id_conexao = 1 and cargo_usuario != "criador";
+
+show tables;
+
+select * from tb_equipamento;
+
+select * from tb_equipamento_categoria;
         
