@@ -38,3 +38,18 @@ function EditarUsuario($id, $cargo, $conexao, $pagina)
         Erro("Não foi possível editar");
     }
 }
+
+function ExcluirUsuario($id, $conexao, $pagina){
+    $sql = 'delete from tb_usuario_conexao where id_usuario = ? and id_conexao = ?';
+
+    $stmt = $GLOBALS['con']->prepare($sql);
+    $stmt->bind_param('ii',$id,$conexao);
+
+    $res = $stmt->execute();
+
+    if ($res) {
+        Confirma("Excluido com sucesso!", $pagina);
+    } else {
+        Erro("Não foi possível excluir");
+    }
+}

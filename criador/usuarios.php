@@ -33,8 +33,7 @@ require_once './usuarios/script.php';
                     
                 ?>
                 <div class="col-sm-12">
-                    <div class="card">
-                        <div class="card-body">
+                    <div class="card shadow p-3 mb-5 bg-white rounded">
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -57,17 +56,6 @@ require_once './usuarios/script.php';
                                             cd="<?php echo $l['id_usuario']; ?>"
                                             nome="<?php echo $l['nm_usuario']; ?>"
                                             cargo="<?php echo $l['cargo_usuario']; ?>"
-                                            <?php
-                                                if($l['cargo_usuario']=="comum" || $l['cargo_usuario']==    "suporte"){
-                                            ?>
-                                            codigo="Sem permissão para ver o código da conexão"
-                                            <?php
-                                                }else{
-                                            ?>
-                                            codigo="<?php echo $l['codigo_conexao']; ?>"
-                                            <?php
-                                                }
-                                            ?>
                                             data="<?php echo $l['dt_entrada'];?>"
                                             >
                                                 <i class="botoes bi bi-pencil-fill"></i>
@@ -76,10 +64,9 @@ require_once './usuarios/script.php';
                                             data-toggle="modal"
                                             data-target="#deletar"
                                             title="deletar"
-                                            cd="<?php echo $l['cd_conexao']; ?>"
-                                            nome="<?php echo $l['nm_conexao']; ?>"
+                                            cd="<?php echo $l['id_usuario']; ?>"
+                                            nome="<?php echo $l['nm_usuario']; ?>"
                                             cargo="<?php echo $l['cargo_usuario']; ?>"
-                                            codigo="<?php echo $l['codigo_conexao']; ?>"
                                             data="<?php echo $l['dt_entrada'];?>"
                                             >
                                             <i class="botoes bi bi-trash-fill"></i>
@@ -90,7 +77,6 @@ require_once './usuarios/script.php';
                                 </tbody>
                             </table>
                         </div>
-                    </div>
                 </div>
                 <?php
                         }
@@ -107,6 +93,12 @@ require_once './usuarios/script.php';
             EditarUsuario(
                 $_POST['cd'],
                 $_POST['cargo'],
+                $_SESSION['conexao'],
+                "usuarios.php"
+            );
+        }elseif($_POST['action']=="Deletar"){
+            ExcluirUsuario(
+                $_POST['cd'],
                 $_SESSION['conexao'],
                 "usuarios.php"
             );
