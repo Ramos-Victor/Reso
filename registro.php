@@ -37,7 +37,7 @@
 							<input type="email" name="email" id="email" class="form-control" placeholder="Digite seu email" required/>
 						</div>
 						<div  class="form-outline mb-3">
-							<input type="text" name="usuario" id="usuario" class="form-control" placeholder="Digite seu usuario" required/>
+							<input type="text" name="usuario" id="usuario" class="form-control" placeholder="Digite seu usuario" maxlength="10" required/>
 						</div>
 						<div class="form-outline mb-3">
 							<input type="password" name="senha" id="senha" class="form-control" placeholder="Digite sua senha" required/>
