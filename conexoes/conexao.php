@@ -14,17 +14,16 @@ a:hover {
     text-decoration: none;
 }
 
-/* Nova classe para garantir o alinhamento dos botões */
+
 .btn-group {
     display: flex;
     justify-content: space-around;
     width: 200px;
-    /* Defina a largura fixa da célula */
 }
 
 .btn-group button {
     margin: 0 5px;
-    /* Espaçamento entre os botões */
+
 }
 </style>
 </style>

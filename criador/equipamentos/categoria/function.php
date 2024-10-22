@@ -16,14 +16,18 @@
         }
     }
 
-    function ListarCategorias(){
-        $sql = 'select * from tb_equipamento_categoria where id_conexao ='.$_SESSION['conexao'];
-
-        $res=$GLOBALS['con']->query($sql);
-
-        if($res->num_rows >0){
+    function ListarCategorias() {
+        $sql = 'SELECT cd_usuario, nm_usuario, cd_categoria, categoria_nm, dt_categoria, id_usuario, id_conexao 
+                FROM tb_equipamento_categoria 
+                INNER JOIN tb_usuario 
+                ON id_conexao = "' . $_SESSION['conexao'] . '" and cd_usuario = id_usuario';
+    
+        $res = $GLOBALS['con']->query($sql);
+    
+        if ($res->num_rows > 0) {
             return $res;
-        }else{
-            echo "Sem categorias";
+        } else {
+            echo "<h3 class='mx-auto text-white'>Cadastre categorias, elas serão exibidas aqui!</h3>";
         }
     }
+    

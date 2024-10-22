@@ -31,7 +31,7 @@ a {
             <li class="nav-item">
                 <a class="d-flex flex-row texto" href="unidades.php">
                     <i class="navicon bi bi-telephone-fill"></i>
-                    chamados
+                    Chamados
                 </a>
             </li>
             <li class="nav-item dropdown">
