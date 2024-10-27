@@ -5,11 +5,11 @@
                 Criar Categoria
             </div>
             <div class="modal-body">
-                <input type="text" name="nome" class="form-control" rows="5" placeholder="Nome da categoria"></input>
+                <input type="text" name="nome" class="form-control" rows="5" placeholder="Nome da categoria" required></input>
                 <br>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-dimiss="modal">
+                <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
                 </button>
                 <input type="submit" class="btn text-white" name="action" value="Criar" style="background-color:#03305c">
@@ -33,7 +33,7 @@
                 <br>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-dimiss="modal">
+                <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
                 </button>
                 <input type="submit" class="btn btn-danger text-white" name="action" value="Deletar">
@@ -53,11 +53,11 @@
                 <input type="text" name="cd" id="cd" class="form-control" rows="5" readonly></input>
                 <br>
                 <label for="nome" class="">Nome da categoria</label>
-                <input type="text" name="nome" id="nome" class="form-control" rows="5"></input>
+                <input type="text" name="nome" id="nome" class="form-control" rows="5" required></input>
                 <br>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-dimiss="modal">
+                <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
                 </button>
                 <input type="submit" class="btn btn-primary text-white" name="action" value="Editar">
