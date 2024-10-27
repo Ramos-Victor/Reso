@@ -50,7 +50,7 @@ function ExcluirUsuario($id, $conexao, $pagina){
     $res = $stmt->execute();
 
     if ($res) {
-        Confirma("Excluido com sucesso!", $pagina);
+        Confirma("Deletado com sucesso!", $pagina);
     } else {
         Erro("Não foi possível excluir");
     }

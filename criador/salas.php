@@ -50,17 +50,15 @@ require_once './equipamentos/categoria/script.php';
                     </button>
                 </div>
             </div>
-            <div class="row mt-3 overflow-auto"
-                style="max-height: 850px; overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
+            <div class="row mt-3 overflow-auto" style="max-height: 850px; overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
                 <?php
         $listar = ListarCategorias();
 
         if($listar){
-            foreach($listar as $index => $l){
+            foreach($listar as $l){
     ?>
                 <div class="col-sm-2 text-white">
-                    <div class="card mt-3"
-                        style="width: 14rem; <?php if ($index % 2 == 0) { echo "background-color:#03305c;"; } else { echo "background-color:#0a4a8a;"; } ?> border-radius:10px;">
+                    <div class="card mt-3" style="width: 14rem;<?php if($l['cd_categoria'] % 2 ==0){ echo "background-color:#03305c";}else{ echo "background-color:#0a4a8a";} ?>; border-radius:10px;">
                         <div class="card-body mx-auto">
                             <h5 class="card-title"><?= $l['categoria_nm']?></h5>
                             <h6 class="card-subtitle text-white">Criado: <?=$l['dt_categoria'] ?> </h6>
@@ -107,11 +105,6 @@ if(!empty($_POST)){
             $_SESSION['conexao'],
             "categoria.php"
         );
-    }elseif($_POST['action'] == "Deletar"){
-        DeletarCategoria(
-            $_POST['cd'],
-            "categoria.php"
-            );
     }
 }
 ?>

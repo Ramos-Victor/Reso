@@ -47,12 +47,11 @@
         }
     }
 
-    function DeletarCategoria($cd_catego,$conexao,$pagina){
-
-        $sql = 'DELETE FROM tb_sala WHERE cd_categoria = ? AND id_conexao = ?';
+    function DeletarCategoria($cd_catego,$pagina){
+        $sql = 'DELETE FROM tb_equipamento_categoria WHERE cd_categoria = ? AND id_conexao = ?';
 
         $stmt = $GLOBALS['con']->prepare($sql);
-        $stmt->bind_param('ii',$cd_catego,$conexao);
+        $stmt->bind_param('ii',$cd_catego,$_SESSION['conexao']);
 
         $res = $stmt->execute();
 
@@ -61,6 +60,7 @@
         }else{
             Erro("Não foi possivel excluir a categoria");
         }
+       
     }
 
 
