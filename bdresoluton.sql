@@ -247,8 +247,10 @@ select * from tb_equipamento;
 
 select * from tb_equipamento_categoria;
 
-SELECT cd_usuario, nm_usuario, cd_categoria, categoria_nm, dt_categoria, id_usuario, id_conexao 
-                FROM tb_equipamento_categoria 
-                INNER JOIN tb_usuario 
-                ON id_conexao = 1 and and cd_usuario = id_usuario;
+SELECT cd_usuario, nm_usuario, cd_categoria, categoria_nm, dt_categoria, id_usuario, id_conexao FROM tb_equipamento_categoria INNER JOIN tb_usuario ON id_conexao = 1 and cd_usuario = id_usuario;
+                
+select * from tb_sala;
+
+ALTER TABLE tb_sala
+RENAME COLUMN localizacao_sala to ds_sala;
         

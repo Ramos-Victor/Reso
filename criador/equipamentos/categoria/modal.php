@@ -52,7 +52,7 @@
                 <label for="cd" class="">Codigo da categoria</label>
                 <input type="text" name="cd" id="cd" class="form-control" rows="5" readonly></input>
                 <br>
-                <label for="nome" class="">Nome da conexão</label>
+                <label for="nome" class="">Nome da categoria</label>
                 <input type="text" name="nome" id="nome" class="form-control" rows="5"></input>
                 <br>
             </div>

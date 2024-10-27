@@ -1,10 +1,11 @@
 <?php
 function ListarUsuarios()
 {
-    $sql = 'select cd_usuario, nm_usuario,
-                nm_email, dt_entrada, cargo_usuario, id_usuario from tb_usuario 
-                inner join tb_usuario_conexao on id_usuario = cd_usuario
-                where id_conexao ="' . $_SESSION['conexao'] . '" and cargo_usuario != "criador"';
+    $sql = 'SELECT cd_usuario, nm_usuario, nm_email, DATE_FORMAT(dt_entrada, "%d/%m/%Y") as dt_entrada, cargo_usuario, id_usuario 
+            FROM tb_usuario 
+            INNER JOIN tb_usuario_conexao 
+            ON id_usuario = cd_usuario
+            WHERE id_conexao = "' . $_SESSION['conexao'] . '" AND cargo_usuario != "criador"';
 
     $res = $GLOBALS['con']->query($sql);
 
@@ -15,13 +16,14 @@ function ListarUsuarios()
                     <div class="row mt-3">
                         <div class="col-sm-12 text-center">
                             <h4>
-                                Sem usuarios na sua conexão!!
+                                Sem usuários na sua conexão!!
                             </h4>
                         </div>
                     </div>
                   </div>';
     }
 }
+
 
 function EditarUsuario($id, $cargo, $conexao, $pagina)
 {

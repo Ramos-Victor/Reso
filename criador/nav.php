@@ -38,12 +38,12 @@ a {
                 <a class="d-flex flex-row texto dropdown-toggle" href="#" id="dropdownManutencao" role="button"
                     data-toggle="dropdown" aria-expanded="false">
                     <i class="navicon bi bi-tools"></i>
-                    Manutenção
+                    Equipamentos
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownManutencao">
                     <a class="dropdown-item" href="equipamento.php">Equipamentos</a>
-                    <a class="dropdown-item" href="categoria.php">Categorias</a>
                     <a class="dropdown-item" href="salas.php">Salas</a>
+                    <a class="dropdown-item" href="categoria.php">Categorias</a>
                 </div>
             </li>
             <li class="nav-item ">
