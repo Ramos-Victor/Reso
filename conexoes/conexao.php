@@ -32,6 +32,23 @@ a:hover {
 thead {
     border-bottom: 1px solid;
 }
+
+.card {
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.table td {
+    white-space: nowrap; /* Mantém o texto em uma linha */
+    overflow: hidden; /* Esconde o texto excedente */
+    text-overflow: ellipsis; /* Adiciona "..." para texto longo */
+    max-width: 150px; /* Define a largura máxima para a célula */
+}
+
+.card-body {
+    overflow-wrap: break-word; /* Quebra palavras longas */
+    word-break: break-word; /* Quebra palavras longas */
+}
 </style>
 </style>
 
@@ -66,65 +83,93 @@ thead {
             </div>
 
 
-            <div class="row mt-3 overflow-auto"
+            <div class="row mt-3 overflow-auto "
                 style="max-height: 850px; overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
                 <?php
             $listar = ListarConexao();
             if($listar){
-                foreach($listar as $l){
+                foreach($listar as $index => $l){
             ?>
-                <div class="col-md-3 mt-3">
-                    <div class="card"
-                        style="<?php if($l['cd_conexao'] % 2 == 0){ echo "background-color:#03305c";} else { echo "background-color:#0a4a8a";} ?>; border-radius:10px; width:18rem">
-                        <div class="card-body" style="padding:1rem">
-                            <h5 class="card-title text-white"><?php echo $l['nm_conexao']; ?></h5>
-                            <h6 class="card-subtitle mb-2 text-white"><?php echo strtoupper($l['cargo_usuario']); ?>
-                            </h6>
-                            <p class="card-text text-white">
-                                <?php
-                if($l['id_criador'] == $_SESSION['id']){
-                    echo 'Data de criação: ' . $l['dt_entrada'];
-                } else {
-                    echo 'Data entrada: ' . $l['dt_entrada'];
-                }
-                ?>
-                            </p>
-                            <div class="btn-group mx-auto" role="group">
-                                <button class="btn btn-success btn-sm ver" data-toggle="modal" data-target="#ver"
-                                    title="ver" cd="<?php echo $l['cd_conexao']; ?>"
-                                    nome="<?php echo $l['nm_conexao']; ?>" cargo="<?php echo $l['cargo_usuario']; ?>"
-                                    <?php if($l['cargo_usuario'] == "comum" || $l['cargo_usuario'] == "suporte"){ ?>
-                                    codigo="Sem permissão para ver o código da conexão" <?php } else { ?>
-                                    codigo="<?php echo $l['codigo_conexao']; ?>" <?php } ?>
-                                    data="<?php echo $l['dt_entrada'];?>">
-                                    <i class="botoes bi bi-eye-fill"></i>
-                                </button>
+                <div class="col-md-6 mt-3 abuble">
+                    <div class="card" style="<?php if ($index % 2 == 0) { echo "background-color:#03305c;"; } else { echo "background-color:#0a4a8a;"; } ?>">
+                        <div class="card-body">
+                            <table class="table text-white">
+                                <thead>
+                                    <tr>
+                                        <td scope="col">Nome</td>
+                                        <td scope="col">Cargo</td>                                     
+                                        <td scope="col">Data</td>                               
+                                        <td scope="col">Botões</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td scope="row"><?php echo $l['nm_conexao']?></td>
+                                        <td scope="row"><?php echo strtoupper($l['cargo_usuario'])?></td>
+                                        <td scope="row"><?php echo $l['dt_entrada']?></td>
+                                        <td scope="row">
+                                            <div class="btn-group">
+                                                <button class="btn btn-success btn-sm ver" data-toggle="modal"
+                                                    data-target="#ver" title="ver" cd="<?php echo $l['cd_conexao']; ?>"
+                                                    nome="<?php echo $l['nm_conexao']; ?>"
+                                                    cargo="<?php echo $l['cargo_usuario']; ?>" <?php
+                                                    if($l['cargo_usuario']=="comum" || $l['cargo_usuario'] == "suporte"){
+                                                ?> codigo="Sem permissão para ver o código da conexão" <?php
+                                                    }else{
+                                                ?> codigo="<?php echo $l['codigo_conexao']; ?>" <?php
+                                                    }
+                                                ?> data="<?php echo $l['dt_entrada'];?>">
+                                                    <i class="botoes bi bi-eye-fill"></i>
+                                                </button>
 
-                                <?php if($l['cargo_usuario'] == "criador"){ ?>
-                                <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
-                                    title="deletar" cd="<?php echo $l['cd_conexao']; ?>"
-                                    nome="<?php echo $l['nm_conexao']; ?>" cargo="<?php echo $l['cargo_usuario']; ?>"
-                                    codigo="<?php echo $l['codigo_conexao']; ?>" data="<?php echo $l['dt_entrada'];?>">
-                                    <i class="botoes bi bi-trash3-fill"></i>
-                                </button>
-                                <?php } else { ?>
-                                <button class="btn btn-danger btn-sm sair" data-toggle="modal" data-target="#sair"
-                                    title="sair" cd="<?php echo $l['cd_conexao']; ?>"
-                                    nome="<?php echo $l['nm_conexao']; ?>" cargo="<?php echo $l['cargo_usuario']; ?>"
-                                    codigo="<?php echo $l['codigo_conexao']; ?>" data="<?php echo $l['dt_entrada'];?>">
-                                    <i class="botoes bi bi-box-arrow-right"></i>
-                                </button>
-                                <?php } ?>
+                                                <?php
+                                                    if($l['cargo_usuario']=="criador"){
+                                                ?>
+                                                <button class="btn btn-danger btn-sm deletar" data-toggle="modal"
+                                                    data-target="#deletar" title="deletar"
+                                                    cd="<?php echo $l['cd_conexao']; ?>"
+                                                    nome="<?php echo $l['nm_conexao']; ?>"
+                                                    cargo="<?php echo $l['cargo_usuario']; ?>"
+                                                    codigo="<?php echo $l['codigo_conexao']; ?>"
+                                                    data="<?php echo $l['dt_entrada'];?>">
+                                                    <i class="botoes bi bi-trash3-fill"></i>
+                                                </button>
+                                                <?php                                               
+                                                    }else{
+                                                ?>
+                                                <button class="btn btn-danger btn-sm sair" data-toggle="modal"
+                                                    data-target="#sair" title="sair"
+                                                    cd="<?php echo $l['cd_conexao']; ?>"
+                                                    nome="<?php echo $l['nm_conexao']; ?>"
+                                                    cargo="<?php echo $l['cargo_usuario']; ?>"
+                                                    codigo="<?php echo $l['codigo_conexao']; ?>"
+                                                    data="<?php echo $l['dt_entrada'];?>">
+                                                    <i class="botoes bi bi-box-arrow-right"></i>
+                                                </button>
+                                                <?php                                               
+                                                    }
+                                                ?>
 
-                                <?php if($l['cargo_usuario'] == "criador"){ ?>
-                                <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
-                                    title="editar" cd="<?php echo $l['cd_conexao']; ?>"
-                                    nome="<?php echo $l['nm_conexao']; ?>" cargo="<?php echo $l['cargo_usuario']; ?>"
-                                    codigo="<?php echo $l['codigo_conexao']; ?>" data="<?php echo $l['dt_entrada'];?>">
-                                    <i class="botoes bi bi-pencil-fill"></i>
-                                </button>
-                                <?php } ?>
-                            </div>
+                                                <?php                                               
+                                                    if($l['cargo_usuario']=="criador"){
+                                                ?>
+                                                <button class="btn btn-primary btn-sm editar" data-toggle="modal"
+                                                    data-target="#editar" title="editar"
+                                                    cd="<?php echo $l['cd_conexao']; ?>"
+                                                    nome="<?php echo $l['nm_conexao']; ?>"
+                                                    cargo="<?php echo $l['cargo_usuario']; ?>"
+                                                    codigo="<?php echo $l['codigo_conexao']; ?>"
+                                                    data="<?php echo $l['dt_entrada'];?>">
+                                                    <i class="botoes bi bi-pencil-fill"></i>
+                                                </button>
+                                                <?php                                               
+                                                    }
+                                                ?>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                 </div>

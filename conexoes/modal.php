@@ -5,11 +5,11 @@
                 Criar Conexão
             </div>
             <div class="modal-body">
-                <input type="text" name="nome" class="form-control" rows="5" placeholder="Nome conexão"></input>
+                <input type="text" name="nome" class="form-control" rows="5" placeholder="Nome conexão" required></input>
                 <br>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-dimiss="modal">
+                <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
                 </button>
                 <input type="submit" class="btn text-white" name="action" value="Criar" style="background-color:#03305c">
@@ -25,11 +25,11 @@
                 Entrar na conexão
             </div>
             <div class="modal-body">
-                <input type="text" name="code" class="form-control" rows="5" placeholder="Digite o código da conexão que deseja entrar"></input>
+                <input type="text" name="code" class="form-control" placeholder="Digite o código da conexão que deseja entrar" required></input>
                 <br>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-dimiss="modal">
+                <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
                 </button>
                 <input type="submit" class="btn text-white" name="action" value="Entrar" style="background-color:#03305c">
@@ -68,7 +68,7 @@
                         >
                             <i class="botoes bi bi-clipboard-fill"></i>
                     </button>
-                <button class="btn btn-secondary" data-dimiss="modal">
+                <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
                 </button>
                 <input type="submit" class="btn btn-success text-white" name="action" value="Acessar">
@@ -110,7 +110,7 @@
                 <br>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-dimiss="modal">
+                <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
                 </button>
                 <input type="submit" class="btn btn-danger text-white" name="action" value="Sair">
@@ -143,7 +143,7 @@
                 <br>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-dimiss="modal">
+                <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
                 </button>
                 <input type="submit" class="btn btn-danger text-white" name="action" value="Deletar">
@@ -162,11 +162,11 @@
                 <input type="text" name="cd" id="cd" class="form-control" rows="5" readonly></input>
                 <br>
                 <label for="nome" class="">Nome da conexão</label>
-                <input type="text" name="nome" id="nome" class="form-control" rows="5"></input>
+                <input type="text" name="nome" id="nome" class="form-control" rows="5" required></input>
                 <br>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-dimiss="modal">
+                <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
                 </button>
                 <input type="submit" class="btn btn-primary text-white" name="action" value="Editar">
