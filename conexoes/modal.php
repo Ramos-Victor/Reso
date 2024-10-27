@@ -62,11 +62,11 @@
                 <br>
             </div>
             <div class="modal-footer">
-                    <button class="btn btn-primary btn-sm copiar"
+                    <button class="btn btn-primary copiar"
                         onclick="copiarTexto()"
-                        title="copiar"
+                        title="copiar" data-dismiss="modal"
                         >
-                            <i class="botoes bi bi-clipboard-fill"></i>
+                            Copiar
                     </button>
                 <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
