@@ -10,7 +10,12 @@ require_once './usuarios/script.php';
         font-size:1.5rem; 
     }
 
-    @media(max-width: 1000px){
+    .table td {
+    border-top: none;
+    }
+
+    thead {
+        border-bottom: 1px solid;
     }
 </style>
 
@@ -21,7 +26,7 @@ require_once './usuarios/script.php';
     <div id="main-content">
         <div class="container-fluid">
             <div class="row">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-12 text-center text-white">
                     <h1>Usuarios Conectados</h1>
                 </div>
             </div>
@@ -29,17 +34,17 @@ require_once './usuarios/script.php';
                 <?php
                     $listar =ListarUsuarios();
                     if($listar){
-                        foreach($listar as $l){
+                        foreach($listar as $index => $l){
                     
                 ?>
-                <div class="col-sm-12">
-                    <div class="card shadow p-3 mb-5 bg-white rounded">
-                            <table class="table">
+                <div class="col-sm-4">
+                    <div class="card shadow p-3 mb-5 rounded" style="<?php if ($index % 2 == 0) { echo "background-color:#03305c;"; } else { echo "background-color:#0a4a8a;"; } ?>">
+                            <table class="table text-white">
                                 <thead>
                                     <tr>
-                                        <td scope="col">Nome do Usuario</td>
-                                        <td scope="col">Cargo na conexão</td>
-                                        <td scope="col">Data de entrada</td>
+                                        <td scope="col">Nome</td>
+                                        <td scope="col">Cargo</td>
+                                        <td scope="col">Data</td>
                                         <td scope="col">Botões</td>
                                     </tr>
                                 </thead>
