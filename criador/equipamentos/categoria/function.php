@@ -47,5 +47,21 @@
         }
     }
 
+    function DeletarCategoria($cd_catego,$conexao,$pagina){
+
+        $sql = 'DELETE FROM tb_sala WHERE cd_categoria = ? AND id_conexao = ?';
+
+        $stmt = $GLOBALS['con']->prepare($sql);
+        $stmt->bind_param('ii',$cd_catego,$conexao);
+
+        $res = $stmt->execute();
+
+        if($res){
+            Confirma("Categoria excluida com sucesso!",$pagina);
+        }else{
+            Erro("Não foi possivel excluir a categoria");
+        }
+    }
+
 
     
