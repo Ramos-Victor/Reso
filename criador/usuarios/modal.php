@@ -21,7 +21,7 @@
                 </select>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-dimiss="modal">
+                <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
                 </button>
                 <input type="submit" class="btn btn-primary text-white" name="action" value="Editar">
@@ -51,7 +51,7 @@
                 <br>
             </div>
             <div class="modal-footer">
-                <button class="btn btn-secondary" data-dimiss="modal">
+                <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
                 </button>
                 <input type="submit" class="btn btn-danger text-white" name="action" value="Deletar">
