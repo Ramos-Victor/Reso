@@ -12,7 +12,7 @@
                 <button class="btn btn-secondary" data-dismiss="modal">
                     Fechar
                 </button>
-                <input type="submit" class="btn text-white" name="action" value="Criar" style="background-color:#03305c">
+                <input type="submit" class="btn btn-success text-white" name="action" value="Criar">
             </div>
         </form>
     </div>

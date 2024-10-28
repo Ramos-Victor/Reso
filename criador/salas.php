@@ -45,7 +45,7 @@ require_once './salas/script.php';
                         data-target="#addsala">
                         <a class="text-white mx-auto">
                             <i class="navicon bi bi-plus-circle"></i>
-                            Salas
+                            SALAS
                         </a>
                     </button>
                 </div>

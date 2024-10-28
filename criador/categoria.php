@@ -45,7 +45,7 @@ require_once './equipamentos/categoria/script.php';
                         data-target="#addcategoria">
                         <a class="text-white mx-auto">
                             <i class="navicon bi bi-plus-circle"></i>
-                            Categoria
+                            CATEGORIAS
                         </a>
                     </button>
                 </div>

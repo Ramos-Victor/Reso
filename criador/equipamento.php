@@ -1,8 +1,8 @@
 <?php
 require_once 'header.php';
-require_once './equipamentos/categoria/function.php';
-require_once './equipamentos/categoria/modal.php';
-require_once './equipamentos/categoria/script.php';
+require_once './equipamentos/function.php';
+require_once './equipamentos/modal.php';
+require_once './equipamentos/script.php';
 
 ?>
 
@@ -42,69 +42,96 @@ require_once './equipamentos/categoria/script.php';
                 </div>
                 <div class="col-sm-2 col-xs-2">
                     <button class="btn btn-block d-flex flex-row" style="background-color:#03305c;" data-toggle="modal"
-                        data-target="#addcategoria">
+                        data-target="#addequipamento">
                         <a class="text-white mx-auto">
                             <i class="navicon bi bi-plus-circle"></i>
-                            Categoria
+                            EQUIPAMENTOS
                         </a>
                     </button>
                 </div>
             </div>
-            <div class="row mt-3 overflow-auto" style="max-height: 850px; overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
-                <?php
-        $listar = ListarCategorias();
+            <div class="row mt-3">
+        <?php
+        $listar = ListarEquipamentos();
 
-        if($listar){
-            foreach($listar as $l){
-    ?>
+        if ($listar) {
+            foreach ($listar as $index =>$l) {
+               
+        ?>
                 <div class="col-sm-2 text-white">
-                    <div class="card mt-3" style="width: 14rem;<?php if($l['cd_categoria'] % 2 ==0){ echo "background-color:#03305c";}else{ echo "background-color:#0a4a8a";} ?>; border-radius:10px;">
-                        <div class="card-body mx-auto">
-                            <h5 class="card-title"><?= $l['categoria_nm']?></h5>
-                            <h6 class="card-subtitle text-white">Criado: <?=$l['dt_categoria'] ?> </h6>
-                            <h7 class="card-subtitle text-white">Por: <?=$l['nm_usuario'] ?></h7>
-                        </div>
-                        <div class="card-footer mx-auto btn-group" style="margin-top:-10px ">
-                            <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
-                                title="deletar" cd="<?php echo $l['cd_categoria']; ?>"
-                                nome="<?php echo $l['categoria_nm']; ?>" criado="<?php echo $l['id_usuario']; ?>"
-                                data="<?php echo $l['dt_categoria'];?>">
-                                <i class="botoes bi bi-trash3-fill"></i>
-                            </button>
-                            <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
-                                title="editar" cd="<?php echo $l['cd_categoria']; ?>"
-                                nome="<?php echo $l['categoria_nm']; ?>" criado="<?php echo $l['id_usuario']; ?>"
-                                data="<?php echo $l['dt_categoria'];?>">
-                                <i class="botoes bi bi-pencil-fill"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-                <?php
+    <div class="card mt-3"
+        style="width: 14rem; height:27rem; <?php if ($index % 2 == 0) { echo "background-color:#03305c;"; } else { echo "background-color:#0a4a8a;"; } ?> border-radius:10px;">
+        <div class="card-body">
+            <h5 class="card-title"><?= $l['nm_equipamento']?></h5>
+            <h6 class="card-subtitle text-white mt-2"><?=$l['ds_equipamento']?></h6>
+            <div class="mt-2">
+                <span class="badge bg-secondary mt-3"><?=$l['categoria_nm']?></span>
+            </div>
+            <div class="mt-2">
+                <p><strong>Localização:</strong> <?=$l['nm_sala']?></p>
+                <p><strong>Por:</strong> <?=$l['nm_usuario']?></p>
+                <p><strong>Registrado em:</strong> <?=$l['dt_equipamento']?></p>
+            </div>
+            <div style="margin-bottom:0">
+                <span class="badge bg-primary">Status: <?=$l['st_equipamento']?></span><br>
+            </div>
+        </div>
+        <div class="card-footer mx-auto btn-group">
+            <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
+                title="Deletar" 
+                cd="<?= $l['cd_equipamento']; ?>"
+                nome="<?= $l['nm_equipamento']; ?>">
+                <i class="botoes bi bi-trash3-fill"></i>
+            </button>
+            <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
+                title="Editar" cd="<?= $l['cd_equipamento']; ?>"
+                nome="<?= $l['nm_equipamento']; ?>" 
+                desc="<?= $l['ds_equipamento']; ?>" 
+                sala="<?= $l['id_sala']; ?>" 
+                categoria="<?= $l['id_categoria']; ?>" 
+                data="<?= $l['dt_equipamento']; ?>"
+                status="<?= $l['st_equipamento']; ?>">
+                <i class="botoes bi bi-pencil-fill"></i>
+            </button>
+        </div>
+    </div>
+</div>
+        <?php
             }
         }
-    ?>
-            </div>
+        ?>
+    </div>
 
         </div>
     </div>
 </body>
 <?php
-if(!empty($_POST)){
-    if($_POST['action'] == "Criar"){
-        CriarCategoria(
-            $_POST['nome'],
-            $_SESSION['id'],
-            $_SESSION['conexao'],
-            "categoria.php"
-        );
-    }elseif($_POST['action'] == "Editar"){
-        EditarCategoria(
-            $_POST['cd'],
-            $_POST['nome'],
-            $_SESSION['conexao'],
-            "categoria.php"
-        );
+if (!empty($_POST)) {
+    if ($_POST['action'] == "Criar") {
+        CriarEquipamento(
+            $_POST['nome'], 
+            $_POST['desc'], 
+            $_POST['sala'], 
+            $_POST['categoria'], 
+            $_SESSION['id'], 
+            $_SESSION['conexao'], 
+            "equipamento.php");
+    } elseif ($_POST['action'] == "Editar") {
+        EditarEquipamento(
+            $_POST['cd'], 
+            $_POST['nome'], 
+            $_POST['desc'], 
+            $_POST['status'], 
+            $_POST['sala'], 
+            $_POST['categoria'], 
+            $_SESSION['id'], 
+            $_SESSION['conexao'], 
+            "equipamento.php");
+    } elseif ($_POST['action'] == "Deletar") {
+        ExcluirEquipamento(
+            $_POST['cd'], 
+            $_SESSION['conexao'], 
+            "equipamento.php");
     }
 }
 ?>

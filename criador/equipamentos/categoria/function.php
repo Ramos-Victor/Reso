@@ -1,4 +1,4 @@
-<?php
+<?php  
 
     function CriarCategoria($nomecat,$id,$conexao,$pagina){
         $sql = 'INSERT INTO tb_equipamento_categoria (categoria_nm, id_usuario, id_conexao) VALUES 
