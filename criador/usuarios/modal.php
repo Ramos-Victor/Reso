@@ -14,6 +14,7 @@
                 <label for="nome" class="">Data de entrada</label>
                 <input type="text" name="data" id="data" class="form-control" rows="5" readonly></input>
                 <br>
+                <label for="cargo" class="">Cargo na conexao</label>
                 <select name="cargo" id="cargo" class="form-control" aria-label="Default select example">
                     <option value="comum">comum</option>
                     <option value="suporte">suporte</option>
