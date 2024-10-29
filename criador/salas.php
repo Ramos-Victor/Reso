@@ -74,10 +74,11 @@ require_once './salas/script.php';
                                 title="editar" cd="<?php echo $l['cd_sala']; ?>"
                                 nome="<?php echo $l['nm_sala']; ?>" 
                                 desc="<?php echo $l['ds_sala']; ?>" 
-                                criado="<?php echo $l['id_usuario']; ?>"
+                                criado="<?php echo $l['nm_usuario']; ?>"
                                 data="<?php echo $l['dt_sala'];?>">
                                 <i class="botoes bi bi-eye-fill"></i>
                             </button>
+                            <?php if($l['nm_sala']!="ESTOQUE"){?>
                             <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                                 title="deletar" cd="<?php echo $l['cd_sala']; ?>"
                                 nome="<?php echo $l['nm_sala']; ?>" 
@@ -86,6 +87,7 @@ require_once './salas/script.php';
                                 data="<?php echo $l['dt_sala'];?>">
                                 <i class="botoes bi bi-trash3-fill"></i>
                             </button>
+                            <?php } ?>
                             <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
                                 title="editar" cd="<?php echo $l['cd_sala']; ?>"
                                 nome="<?php echo $l['nm_sala']; ?>" 
@@ -110,7 +112,7 @@ require_once './salas/script.php';
 if(!empty($_POST)){
     if($_POST['action'] == "Criar"){
         CriarSala(
-            $_POST['nome'],
+           strtoupper($_POST['nome']),
             $_POST['desc'],
             $_SESSION['id'],
             $_SESSION['conexao'],
@@ -119,7 +121,7 @@ if(!empty($_POST)){
     }elseif($_POST['action'] == "Editar"){
         EditarSala(
             $_POST['cd'],
-            $_POST['nome'],
+            strtoupper($_POST['nome']),
             $_POST['desc'],
             $_SESSION['id'],
             $_SESSION['conexao'],

@@ -27,8 +27,7 @@
                 DESEJA MESMO DELETAR?
             </div>
             <div class="modal-body">
-                <label for="cd" class="">Codigo da sala</label>
-                <input type="text" name="cd" id="cd" class="form-control" readonly>
+                <input type="hidden" name="cd" id="cd">
                 <br>
                 <label for="nome" class="">Nome da sala</label>
                 <input type="text" name="nome" id="nome" class="form-control" readonly>
@@ -51,8 +50,7 @@
                 EDITAR SALA
             </div>
             <div class="modal-body">
-                <label for="cd" class="">Codigo da sala</label>
-                <input type="text" name="cd" id="cd" class="form-control" readonly></input>
+                <input type="hidden" name="cd" id="cd">
                 <br>
                 <label for="nome" class="">Nome da sala</label>
                 <input type="text" name="nome" id="nome" class="form-control" required></input>
@@ -77,8 +75,7 @@
                 VER MAIS
             </div>
             <div class="modal-body">
-                <label for="cd" class="">Codigo da sala</label>
-                <input type="text" name="cd" id="cd" class="form-control" readonly></input>
+                <input type="hidden" name="cd" id="cd">
                 <br>
                 <label for="nome" class="">Nome da sala</label>
                 <input type="text" name="nome" id="nome" class="form-control" readonly></input>

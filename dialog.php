@@ -16,7 +16,7 @@ function Confirma($msg, $pagina)
         </div>
         <script>
             function redirecionar(){
-                location.href = "' . $pagina . '";
+                location.href = "' . $pagina . '?";
             }
         </script>
     ';
@@ -45,15 +45,6 @@ function Erro($msg)
     ';
 }
 
-function DML($sql, $confirma, $erro, $pagina)
-{
-    $stmt = $GLOBALS['con']->query($sql);
-    if ($stmt) {
-        Confirma($confirma, $pagina);
-    } else {
-        erro($erro);
-    }
-}
 require_once '../footer.php';
 ?>
 <style>

@@ -22,7 +22,7 @@
 			$_SESSION['usuario'] = $r['nm_usuario'];
 			Confirma("Bem vindo ao Resolut.on", "conexoes/conexao.php");
 		} else {
-			Erro("Acesso NEGADO!!");
+			Erro("Acesso recusado!");
 		}
 	}
 

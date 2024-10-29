@@ -16,29 +16,13 @@
                     <br>
                     <textarea name="desc" class="form-control" placeholder="Descrição do Equipamento" required rows="2"></textarea>
                     <br>
-                    <select name="sala" id="sala" class="form-control">
-                        <option value="" disabled>Selecione uma sala</option>
-                        <?php
-                            $salas = ListarSalas();
-                            $salaSelecionada = 1; // Exemplo de ID da sala selecionada
-
-                            if($salas){
-                                foreach($salas as $index => $l){
-                                    $selected = ($l['cd_sala'] == $salaSelecionada) ? 'selected' : '';
-                        ?>
-                        <option value="<?= $l['cd_sala']?>" <?= $selected ?>><?=$l['nm_sala']?></option>
-                        <?php
-                                }
-                            }
-                        ?>
-                    </select>
-                    <br>
+                    <?php
+                            $categorias = ListarCategorias("<input type='text' class='form-control' placeholder='Cadastre categorias, elas serão exibidas aqui' readonly>");
+                            if($categorias->num_rows>0){
+                    ?>
                     <select name="categoria" id="categoria" class="form-control">
-                        <option value="" disabled>Selecione uma categoria</option>
-                        <?php
-                            $categorias = ListarCategorias();
-                            $categoriaSelecionada = 2; // Exemplo de ID da categoria selecionada
-
+                        <option value="" selected>Selecione uma categoria</option>
+                            <?php 
                             if($categorias){
                                 foreach($categorias as $index => $l){
                                     $selected = ($l['cd_categoria'] == $categoriaSelecionada) ? 'selected' : '';
@@ -49,6 +33,7 @@
                             }
                         ?>
                     </select>
+                    <?php }?>
                 </div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" data-dismiss="modal">
@@ -71,8 +56,7 @@
                     <h5 class="modal-title">Editar Equipamento</h5>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="cd" id="cd" class="form-control" readonly>
-                    <br>
+                    <input type="hidden" name="cd" id="cd">
                     <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome do Equipamento"
                         required>
                     <br>
@@ -94,21 +78,24 @@
                         ?>
                     </select>
                     <br>
+                    <?php
+                            $categorias = ListarCategorias("<input type='text' class='form-control' placeholder='Cadastre categorias, elas serão exibidas aqui' readonly>");
+                            if($categorias->num_rows>0){
+                    ?>
                     <select name="categoria" id="categoria" class="form-control">
-                    <option value="" disabled>Selecione uma categoria</option>
-                        <?php
-                            $categoria = ListarCategorias();
-
-                            if($categoria){
-                                foreach($categoria as $index => $l){
-
+                        <option value="" disabled>Selecione uma categoria</option>
+                            <?php 
+                            if($categorias){
+                                foreach($categorias as $index => $l){
+                                    $selected = ($l['cd_categoria'] == $categoriaSelecionada) ? 'selected' : '';
                         ?>
-                        <option value="<?=$l['cd_categoria']?>"><?=$l['categoria_nm']?></option>
+                        <option value="<?= $l['cd_categoria']?>" <?= $selected ?>><?=$l['categoria_nm']?></option>
                         <?php
                                 }
                             }
                         ?>
                     </select>
+                    <?php }?>
                     <br>
                     <select name="status" class="form-control">
                         <option value="Ativo">Ativo</option>
@@ -134,9 +121,8 @@
                     <h5 class="modal-title">Excluir Equipamento</h5>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="cd" id="cd" class="form-control" placeholder="Código do Equipamento" readonly>
-                    <br>
-                    <input type="text" name="nome" class="form-control" placeholder="Nome do Equipamento" readonly>
+                    <input type="hidden" name="cd" id="cd">
+                    <input type="text" name="nome" id="nome"class="form-control" placeholder="Nome do Equipamento" readonly>
                     <br>
                 </div>
                 <div class="modal-footer">

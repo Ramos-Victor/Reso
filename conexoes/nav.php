@@ -24,7 +24,7 @@
 
       <ul class="nav flex-column" style="row-gap:1rem">
         <li class="nav-item">
-          <a class="d-flex flex-row texto" href="unidades.php">
+          <a class="d-flex flex-row texto" href="conexao.php">
           <i class="navicon bi bi-house-fill"></i>
             Conexões
           </a>

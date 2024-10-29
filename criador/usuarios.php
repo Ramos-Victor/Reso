@@ -42,10 +42,12 @@ require_once './usuarios/script.php';
                             <table class="table text-white">
                                 <thead>
                                     <tr>
-                                        <td scope="col">Nome</td>
+                                        <td scope="col">Usuario</td>
                                         <td scope="col">Cargo</td>
                                         <td scope="col">Data</td>
+                                        <?php if($l['cargo_usuario']!='criador'){ ?>
                                         <td scope="col">Botões</td>
+                                        <?php }?>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -53,6 +55,7 @@ require_once './usuarios/script.php';
                                         <td scope="row"><?php echo $l['nm_usuario']?></td>
                                         <td scope="row"><?php echo strtoupper($l['cargo_usuario'])?></td>
                                         <td scope="row"><?php echo $l['dt_entrada']?></td>
+                                        <?php if($l['cargo_usuario']!='criador'){ ?>
                                         <td scope="row">
                                             <button class="btn btn-primary btn-sm editar"
                                             data-toggle="modal"
@@ -78,6 +81,7 @@ require_once './usuarios/script.php';
                                             </button>
                                          
                                         </td>
+                                        <?php }?>
                                     </tr>
                                 </tbody>
                             </table>

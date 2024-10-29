@@ -1,29 +1,54 @@
 <?php
 
-   function CriarConexao($nome,$criador, $pagina) {
+function CriarConexao($nome, $criador, $pagina) {
+    // Gera o código único para a conexão
     $codi = time() . $nome;
+    $GLOBALS['con']->begin_transaction(); // Inicia a transação
 
-    $sql = 'INSERT INTO tb_conexao (nm_conexao, codigo_conexao, id_criador) VALUES (?, SHA2(?, 256), ?)';
-    $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('sss', $nome, $codi, $criador);
+    try {
+        // Insere a nova conexão
+        $sql = 'INSERT INTO tb_conexao (nm_conexao, codigo_conexao, id_criador) VALUES (?, SHA2(?, 256), ?)';
+        $stmt = $GLOBALS['con']->prepare($sql);
+        $stmt->bind_param('sss', $nome, $codi, $criador);
+        
+        if (!$stmt->execute()) {
+            throw new Exception("Erro ao criar a conexão.");
+        }
 
-    $res = $stmt->execute();
+        $last_id = $GLOBALS['con']->insert_id; // ID da nova conexão
 
-    $last_id = $GLOBALS['con']->insert_id;
-
-    if ($res) {
-
+        // Insere o usuário como criador da conexão
         $cargo = 'criador';
         $sqlUsuario = 'INSERT INTO tb_usuario_conexao (id_usuario, id_conexao, cargo_usuario) VALUES (?, ?, ?)';
         $stmtUsuario = $GLOBALS['con']->prepare($sqlUsuario);
         $stmtUsuario->bind_param('sss', $criador, $last_id, $cargo);
-        $stmtUsuario->execute();
+        
+        if (!$stmtUsuario->execute()) {
+            throw new Exception("Erro ao associar o criador à conexão.");
+        }
 
-        Confirma("Conexão criada com sucesso", $pagina);
-    } else {
-        Erro("Não foi possível criar a conexão");
+        // Criação da sala "estoque" na nova conexão
+        $nomeSala = "ESTOQUE";
+        $descSala = "Sala para guardar os equipamentos.";
+        $sqlSala = 'INSERT INTO tb_sala (nm_sala, ds_sala, id_usuario, id_conexao) VALUES (?, ?, ?, ?)';
+        $stmtSala = $GLOBALS['con']->prepare($sqlSala);
+        $stmtSala->bind_param('ssii', $nomeSala, $descSala, $criador, $last_id);
+        
+        if (!$stmtSala->execute()) {
+            throw new Exception("Erro ao criar a sala 'estoque'.");
+        }
+
+        // Confirma a transação se todas as operações foram bem-sucedidas
+        $GLOBALS['con']->commit();
+        Confirma("Conexão criada com sucesso!", $pagina);
+
+    } catch (Exception $e) {
+        // Em caso de erro, desfaz todas as operações da transação
+        $GLOBALS['con']->rollback();
+        Erro($e->getMessage());
     }
 }
+
 
     function ListarConexao(){
        $sql = 'select nm_conexao, codigo_conexao, DATE_FORMAT(dt_entrada, "%d/%m/%Y") as dt_entrada, cd_conexao, cargo_usuario, id_criador from tb_conexao
@@ -34,25 +59,62 @@
         if($res->num_rows>0){
             return $res;
         }else{
-            echo'<div class="ml-3"> Você não tem conexões. </div>';
+            echo'<h2 class="text-white mx-auto mt-3"> Você não tem conexões. </h2>';
         }
     }
 
-    function DeletarConexao($cd,$pagina){
-        $sql='delete from tb_usuario_conexao where id_conexao='.$cd;
-
-        $sql2= 'delete from tb_conexao where cd_conexao='.$cd;
-
-        $res = $GLOBALS['con']->query($sql);
-
-        $res2 = $GLOBALS['con']->query($sql2);
-
-        if($res && $res2){
-            Confirma("Excluido com sucesso!!", $pagina);
-        }else{
-            Erro("Não foi possivel excluir a conexão");
+    function DeletarConexao($cd, $pagina) {
+        $GLOBALS['con']->begin_transaction(); // Inicia a transação
+    
+        try {
+            // Exclui os registros de tb_equipamento vinculados à conexão (caso exista essa relação)
+            $sqlEquipamento = 'DELETE FROM tb_equipamento WHERE id_conexao = ?';
+            $stmtEquipamento = $GLOBALS['con']->prepare($sqlEquipamento);
+            $stmtEquipamento->bind_param('i', $cd);
+    
+            if (!$stmtEquipamento->execute()) {
+                throw new Exception("Erro ao excluir os equipamentos vinculados à conexão.");
+            }
+    
+            // Exclui os registros de tb_sala que fazem referência à conexão
+            $sqlSala = 'DELETE FROM tb_sala WHERE id_conexao = ?';
+            $stmtSala = $GLOBALS['con']->prepare($sqlSala);
+            $stmtSala->bind_param('i', $cd);
+    
+            if (!$stmtSala->execute()) {
+                throw new Exception("Erro ao excluir as salas vinculadas à conexão.");
+            }
+    
+            // Exclui os registros de tb_usuario_conexao vinculados à conexão
+            $sqlUsuarioConexao = 'DELETE FROM tb_usuario_conexao WHERE id_conexao = ?';
+            $stmtUsuarioConexao = $GLOBALS['con']->prepare($sqlUsuarioConexao);
+            $stmtUsuarioConexao->bind_param('i', $cd);
+    
+            if (!$stmtUsuarioConexao->execute()) {
+                throw new Exception("Erro ao excluir os usuários vinculados à conexão.");
+            }
+    
+            // Exclui a própria conexão de tb_conexao
+            $sqlConexao = 'DELETE FROM tb_conexao WHERE cd_conexao = ?';
+            $stmtConexao = $GLOBALS['con']->prepare($sqlConexao);
+            $stmtConexao->bind_param('i', $cd);
+    
+            if (!$stmtConexao->execute()) {
+                throw new Exception("Erro ao excluir a conexão.");
+            }
+    
+            // Confirma a transação se todas as exclusões foram bem-sucedidas
+            $GLOBALS['con']->commit();
+            Confirma("Conexão e todos os registros relacionados foram excluídos com sucesso!", $pagina);
+    
+        } catch (Exception $e) {
+            // Em caso de erro, desfaz todas as operações da transação
+            $GLOBALS['con']->rollback();
+            Erro($e->getMessage());
         }
     }
+    
+    
 
     function SairConexao($usuario,$conexao,$pagina){
         $sql='delete from tb_usuario_conexao where id_usuario="'.$usuario.'" and id_conexao="'.$conexao.'"';

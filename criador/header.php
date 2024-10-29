@@ -6,6 +6,8 @@ if(!empty($_SESSION['conexao'])){
     $_SESSION['id'];
     $_SESSION['usuario'];
     $_SESSION['conexao'];
+    $_SESSION['nm_conexao'];
+    $_SESSION['cargo'];
     require_once '../conect.php';
     require_once '../dialog.php';
 }

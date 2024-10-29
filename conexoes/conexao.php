@@ -212,6 +212,8 @@ thead {
         );
     }else if($_POST['action']=="Acessar"){
         $_SESSION['conexao']=$_POST['cd'];
+        $_SESSION['nm_conexao']=$_POST['nome'];
+        $_SESSION['cargo']=$_POST['cargo'];
         if($_POST['cargo']=="criador"){
             ?>
 <script>

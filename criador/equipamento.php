@@ -108,11 +108,11 @@ require_once './equipamentos/script.php';
 <?php
 if (!empty($_POST)) {
     if ($_POST['action'] == "Criar") {
+        $id_categoria = !empty($_POST['categoria']) ? intval($_POST['categoria']) : null;
         CriarEquipamento(
-            $_POST['nome'], 
+            strtoupper($_POST['nome']), 
             $_POST['desc'], 
-            $_POST['sala'], 
-            $_POST['categoria'], 
+            $id_categoria,
             $_SESSION['id'], 
             $_SESSION['conexao'], 
             "equipamento.php");

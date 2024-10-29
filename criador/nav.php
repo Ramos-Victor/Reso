@@ -25,11 +25,11 @@ a {
             <li class="nav-item">
                 <a class="d-flex flex-row texto" href="index.php">
                     <i class="navicon bi bi-bar-chart-fill"></i>
-                    dashboard
+                    Dashboard
                 </a>
             </li>
             <li class="nav-item">
-                <a class="d-flex flex-row texto" href="unidades.php">
+                <a class="d-flex flex-row texto" href="chamados.php">
                     <i class="navicon bi bi-telephone-fill"></i>
                     Chamados
                 </a>
@@ -55,7 +55,7 @@ a {
             <li class="nav-item">
                 <a class="d-flex flex-row texto" href="../conexoes/conexao.php">
                     <i class="navicon bi bi-arrow-90deg-left"></i>
-                    Voltar
+                    <?php echo $_SESSION['nm_conexao'] ?>
                 </a>
             </li>
         </ul>

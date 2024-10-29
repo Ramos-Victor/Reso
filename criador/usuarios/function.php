@@ -5,22 +5,14 @@ function ListarUsuarios()
             FROM tb_usuario 
             INNER JOIN tb_usuario_conexao 
             ON id_usuario = cd_usuario
-            WHERE id_conexao = "' . $_SESSION['conexao'] . '" AND cargo_usuario != "criador"';
+            WHERE id_conexao =' . $_SESSION['conexao'];
 
     $res = $GLOBALS['con']->query($sql);
 
     if ($res->num_rows > 0) {
         return $res;
     } else {
-        echo '<div class="container-fluid">
-                    <div class="row mt-3">
-                        <div class="col-sm-12 text-center">
-                            <h4>
-                                Sem usuários na sua conexão!!
-                            </h4>
-                        </div>
-                    </div>
-                  </div>';
+        echo "<h3 class='mx-auto text-white mt-3'>Sem usuarios na sua conexão!</h3>";
     }
 }
 

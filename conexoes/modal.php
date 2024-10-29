@@ -45,8 +45,7 @@
                 VER CONEXÃO
             </div>
             <div class="modal-body">
-                <label for="cd" class="">Codigo da conexão</label>
-                <input type="text" name="cd" id="cd" class="form-control" rows="5" readonly></input>
+                <input type="hidden" name="cd" id="cd">
                 <br>
                 <label for="nome" class="">Nome da conexão</label>
                 <input type="text" name="nome" id="nome" class="form-control" rows="5" readonly></input>
@@ -93,8 +92,7 @@
                 SAIR DA CONEXÃO
             </div>
             <div class="modal-body">
-                <label for="cd" class="">Codigo da conexão</label>
-                <input type="text" name="cd" id="cd" class="form-control" rows="5" readonly></input>
+                <input type="hidden" name="cd" id="cd">
                 <br>
                 <label for="nome" class="">Nome da conexão</label>
                 <input type="text" name="nome" id="nome" class="form-control" rows="5" readonly></input>
@@ -126,8 +124,7 @@
                 DELETAR CONEXÂO
             </div>
             <div class="modal-body">
-                <label for="cd" class="">Codigo da conexão</label>
-                <input type="text" name="cd" id="cd" class="form-control" rows="5" readonly></input>
+                <input type="hidden" name="cd" id="cd">
                 <br>
                 <label for="nome" class="">Nome da conexão</label>
                 <input type="text" name="nome" id="nome" class="form-control" rows="5" readonly></input>
@@ -158,8 +155,7 @@
                 EDITAR CONEXÂO
             </div>
             <div class="modal-body">
-                <label for="cd" class="">Codigo da conexão</label>
-                <input type="text" name="cd" id="cd" class="form-control" rows="5" readonly></input>
+                <input type="hidden" name="cd" id="cd">
                 <br>
                 <label for="nome" class="">Nome da conexão</label>
                 <input type="text" name="nome" id="nome" class="form-control" rows="5" required></input>

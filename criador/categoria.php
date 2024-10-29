@@ -53,7 +53,7 @@ require_once './equipamentos/categoria/script.php';
             <div class="row mt-3 overflow-auto"
                 style="max-height: 850px; overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
                 <?php
-        $listar = ListarCategorias();
+        $listar = ListarCategorias("<h2 class='mx-auto text-white'>Cadastre suas categorias, elas serão exibidas aqui!</h2>");
 
         if($listar){
             foreach($listar as $index => $l){
@@ -63,7 +63,7 @@ require_once './equipamentos/categoria/script.php';
                         style="width: 14rem; <?php if ($index % 2 == 0) { echo "background-color:#03305c;"; } else { echo "background-color:#0a4a8a;"; } ?> border-radius:10px;">
                         <div class="card-body mx-auto">
                             <h5 class="card-title"><?= $l['categoria_nm']?></h5>
-                            <h6 class="card-subtitle text-white">Criado: <?=$l['dt_categoria'] ?> </h6>
+                            <h6 class="card-subtitle text-white">Data: <?=$l['dt_categoria'] ?> </h6>
                             <h7 class="card-subtitle text-white">Por: <?=$l['nm_usuario'] ?></h7>
                         </div>
                         <div class="card-footer mx-auto btn-group" style="margin-top:-10px ">
@@ -95,7 +95,7 @@ require_once './equipamentos/categoria/script.php';
 if(!empty($_POST)){
     if($_POST['action'] == "Criar"){
         CriarCategoria(
-            $_POST['nome'],
+            strtoupper($_POST['nome']),
             $_SESSION['id'],
             $_SESSION['conexao'],
             "categoria.php"
@@ -103,13 +103,14 @@ if(!empty($_POST)){
     }elseif($_POST['action'] == "Editar"){
         EditarCategoria(
             $_POST['cd'],
-            $_POST['nome'],
+           strtoupper($_POST['nome']),
             $_SESSION['conexao'],
             "categoria.php"
         );
     }elseif($_POST['action'] == "Deletar"){
         DeletarCategoria(
             $_POST['cd'],
+            $_POST['conexao'],
             "categoria.php"
             );
     }
