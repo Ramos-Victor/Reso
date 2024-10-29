@@ -223,6 +223,43 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 insert into tb_usuario (nm_usuario, nm_real, nm_email, cd_senha) values
  ('victor','Victor Ramos','victor@gmail.com',sha2('123',256)),
- ('lais','Lais Liborio','lais@gmail.com',sha2('123',256) );
+ ('lais','Lais Liborio','lais@gmail.com',sha2('123',256) ),
+ ('marcio','Marcio Gustavo','marcio@gmail.com',sha2('123',256) );
  
- select * from tb_chamado;
+ INSERT INTO `db_resoluton2`.`tb_conexao` (nm_conexao, codigo_conexao, id_criador) VALUES 
+('Conexão 1', 'Codigo_Conexao_1', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'));
+
+INSERT INTO `db_resoluton2`.`tb_usuario_conexao` (id_usuario, id_conexao, cargo_usuario) VALUES
+((SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1, 'criador'),
+((SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='lais'),1, 'suporte'),
+((SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='marcio'), 1, 'comum');
+
+INSERT INTO `db_resoluton2`.`tb_sala` (nm_sala, ds_sala, id_usuario, id_conexao) VALUES 
+('estoque', 'Sala de Estoque', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+
+INSERT INTO `db_resoluton2`.`tb_equipamento_categoria` (categoria_nm, id_usuario, id_conexao) VALUES 
+('Notebook', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
+('Teclado', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
+('Mouse', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+
+INSERT INTO `db_resoluton2`.`tb_sala` (nm_sala, ds_sala, id_usuario, id_conexao) VALUES 
+('lab01', 'Laboratório 01', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
+('lab02', 'Laboratório 02', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+
+INSERT INTO `db_resoluton2`.`tb_equipamento` (nm_equipamento, ds_equipamento, id_categoria, id_sala, id_usuario, id_conexao) VALUES 
+('note01', 'Notebook da marca X', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Notebook'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'),1),
+('teclado01', 'Teclado mecânico', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Teclado'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
+('mouse01', 'Mouse óptico', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Mouse'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+
+INSERT INTO `db_resoluton2`.`tb_chamado` (nm_chamado, ds_chamado, id_equipamento, id_usuario_abertura, id_conexao) VALUES 
+('Problema no notebook', 'Relato de que o notebook não liga', (SELECT cd_equipamento FROM db_resoluton2.tb_equipamento WHERE nm_equipamento='note01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='marcio'), 1);
+
+UPDATE `db_resoluton2`.`tb_chamado` 
+SET st_chamado='Concluido', dt_fechamento=CURRENT_TIMESTAMP, id_usuario_fechamento=(SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='lais')
+WHERE cd_chamado = 1;
+
+select * from tb_equipamento;
+
+select * from tb_chamado;
+
+ 

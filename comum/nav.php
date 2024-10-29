@@ -25,25 +25,13 @@
         <li class="nav-item">
           <a class="d-flex flex-row texto" href="index.php">
             <i class="navicon bi bi-bar-chart-fill"></i>
-            dashboard
+            Dashboard
           </a>
         </li>
         <li class="nav-item">
-          <a class="d-flex flex-row texto" href="unidades.php">
+          <a class="d-flex flex-row texto" href="chamados.php">
           <i class="navicon bi bi-telephone-fill"></i>
-            chamados
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="d-flex flex-row texto" href="equipamento.php">
-          <i class="navicon bi bi-tools"></i>
-            manuntenção
-          </a>
-        </li>
-        <li class="nav-item ">
-          <a class="d-flex flex-row texto" href="usuarios.php">
-          <i class="navicon bi bi-people-fill"></i>
-            Usuarios
+            Chamados
           </a>
         </li>
         <li class="nav-item">
