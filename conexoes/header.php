@@ -1,5 +1,7 @@
 <?php
-session_start(); 
+ if (session_status() === PHP_SESSION_NONE) {
+    session_start();  // Inicie a sessão aqui
+}
 error_reporting(E_ALL ^ E_WARNING);
 ini_set('display_errors', 1) ;
 if(!empty($_SESSION['id'])){

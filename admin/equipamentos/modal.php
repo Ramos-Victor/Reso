@@ -1,6 +1,6 @@
 <?php
-    include_once 'C:\xampp\htdocs\resoluton\criador\salas\function.php';
-    include_once 'C:\xampp\htdocs\resoluton\criador\equipamentos\categoria\function.php';
+    include_once 'C:\xampp\htdocs\reso\criador\salas\function.php';
+    include_once 'C:\xampp\htdocs\reso\criador\equipamentos\categoria\function.php';
 ?>
 
 <!-- Modal Criar Equipamento -->

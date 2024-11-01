@@ -1,5 +1,5 @@
 <?php
-    include_once 'C:\xampp\htdocs\resoluton\comum\equipamentos\function.php';
+    include_once 'C:\xampp\htdocs\reso\comum\equipamentos\function.php';
 ?>
 
 <!-- Modal Criar Chamado -->
