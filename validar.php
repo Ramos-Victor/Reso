@@ -1,5 +1,7 @@
 <?php  
-	require_once 'header.php';
+	if (session_status() === PHP_SESSION_NONE) {
+		session_start();  // Inicie a sessão aqui
+	}
 	require_once 'conect.php';
 
 	function ValidarLogin($email, $senha){
@@ -11,53 +13,71 @@
 				cd_senha = sha2(?, 256)';
 		
 		$stmt = $GLOBALS['con']->prepare($sql);
-		$stmt->bind_param('ss', $email, $senha);  // 'ss' - duas strings
+		$stmt->bind_param('ss', $email, $senha);  
 		$stmt->execute();
 		$result = $stmt->get_result();
 		
 		if($result->num_rows > 0){
-			session_start();
+			
 			$r = $result->fetch_assoc();
 			$_SESSION['id'] = $r['cd_usuario'];
 			$_SESSION['usuario'] = $r['nm_usuario'];
 			Confirma("Bem vindo ao Resolut.on", "conexoes/conexao.php");
 		} else {
 			Erro("Acesso recusado!");
+			session_destroy();
 		}
 	}
 
-	function ValidarCadastro($usuario, $email, $senha){
+	function ValidarCadastro($usuario, $email, $senha) {
+		global $con;  // Certifique-se de que a variável de conexão está acessível
+	
+		// Verificar se o usuário já existe
 		$sql = 'SELECT COUNT(*) as total FROM tb_usuario WHERE nm_usuario = ?';
 		$sql2 = 'SELECT COUNT(*) as total FROM tb_usuario WHERE nm_email = ?';
 	
-		$stmt = $GLOBALS['con']->prepare($sql);
+		$stmt = $con->prepare($sql);
+		if (!$stmt) {
+			die("Erro na preparação da query SQL para nome de usuário: " . $con->error);
+		}
 		$stmt->bind_param('s', $usuario);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		$row = $result->fetch_assoc();
 	
-		$stmt2 = $GLOBALS['con']->prepare($sql2);
+		$stmt2 = $con->prepare($sql2);
+		if (!$stmt2) {
+			die("Erro na preparação da query SQL para email: " . $con->error);
+		}
 		$stmt2->bind_param('s', $email);
 		$stmt2->execute();
 		$result2 = $stmt2->get_result();
 		$row2 = $result2->fetch_assoc();
 	
-		if ($row['total'] == 1 || $row2['total'] == 1) {
-			Erro("Email ou usuário já existem!!");
+		// Verifique se já existe um registro com o mesmo nome de usuário ou email
+		if ($row['total'] >= 1 || $row2['total'] >= 1) {
+			return false;  // Retorne falso caso já exista
 		} else {
+			// Caso não exista, insira o novo usuário
 			$sql3 = 'INSERT INTO tb_usuario (nm_usuario, nm_email, cd_senha) VALUES (?, ?, sha2(?, 256))';
-			$stmt3 = $GLOBALS['con']->prepare($sql3);
+			$stmt3 = $con->prepare($sql3);
+			if (!$stmt3) {
+				die("Erro na preparação da query SQL de inserção: " . $con->error);
+			}
 			$stmt3->bind_param('sss', $usuario, $email, $senha);
 	
 			$res = $stmt3->execute();
 	
 			if ($res) {
 				Confirma("Cadastrado com sucesso!!", "./login.php");
+				return true;  // Cadastro bem-sucedido
 			} else {
 				Erro("Não foi possível cadastrar o usuário :(");
+				return false;
 			}
 		}
 	}
+	
 	
 	function Confirma($msg, $pagina){
 		print'
