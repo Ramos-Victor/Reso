@@ -1,60 +1,39 @@
 <style>
-    button{
-        background: none;
-    }
+button {
+    background: none;
+}
 
-    a:hover{
-        color: #ffd700;
-        text-decoration: none;
-    }
-    
-    a{
-      color:#fff;
-    }
-
+.reso {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+}
 </style>
-<div id="sidebar">
-<div class="container-fluid">
-      <div class="d-flex flex-row titulo">
-        <img src="../assets/img/logoresoluton.png" class="img-fluid reso" alt="Logo-Resolution">
-        <h5 class="text-white mt-2">Resolut.on</h5>
-      </div>
 
-      <div class="divisor"></div>
-
-      <ul class="nav flex-column" style="row-gap:1rem">
-        <li class="nav-item">
-          <a class="d-flex flex-row texto" href="conexao.php">
-          <i class="navicon bi bi-house-fill"></i>
-            Conexões
-          </a>
-        </li>
-      </ul>
-
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #03305c">
+    <a class="navbar-brand" href="conexao.php">
+        <img src="../assets/img/logoresoluton.png" class="img-fluid reso" alt="Responsive image">
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
+        <div class="mx-auto">
+            <a class="nav-link text-white">Conexões</a>
+        </div>
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">Configurações</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="#">
+              <?php echo strtoupper($_SESSION['usuario']) ?>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="../logout.php">Encerrar Sessão</a>
+          </li>
+        </ul>
     </div>
-   
-  <div class="container-fluid">
-    <div class="divisor"></div>
-
-    <ul class="nav flex-column final" style="row-gap:1rem">
-      <li class="nav-item">
-        <a class="d-flex flex-row texto" href="#">
-        <i class="navicon bi bi-gear"></i>
-        Configurações
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="d-flex flex-row texto"  href="#">
-          <i class="navicon bi bi-person-circle"></i>
-          <?php echo $_SESSION['usuario']?>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="sair d-flex flex-row texto" href="../logout.php">
-          <i class="navicon bi bi-box-arrow-left"></i>
-          Sair
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
+</nav>

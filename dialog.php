@@ -2,21 +2,21 @@
 function Confirma($msg, $pagina)
 {
     print '
-        <div class="modal fade" id="myModal" data-backdrop="static">
+        <div class="modal fade" id="myModal" data-backdrop="static" tabindex="-1">
             <div class="modal-dialog modal-md">
                 <div class="modal-content">
-                    <div class="modal-body text-center font-weight-bolder text-primary">
-                        <h3>' . $msg . '</h3>
+                    <div class="modal-body text-center font-weight-bold text-success">
+                        <h4>' . $msg . '</h4>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-primary btn-block mx-auto" onclick="redirecionar()">OK</button>
+                        <button class="btn btn-success mx-auto" onclick="redirecionar()">OK</button>
                     </div>
                 </div>
             </div>
         </div>
         <script>
-            function redirecionar(){
-                location.href = "' . $pagina . '?";
+            function redirecionar() {
+                location.href = "' . $pagina . '";
             }
         </script>
     ';
@@ -25,20 +25,20 @@ function Confirma($msg, $pagina)
 function Erro($msg)
 {
     print '
-        <div class="modal fade" id="myModal" data-backdrop="static">
+        <div class="modal fade" id="myModal" data-backdrop="static" tabindex="-1">
             <div class="modal-dialog modal-md">
                 <div class="modal-content">
-                    <div class="modal-body text-center font-weight-bolder text-danger">
-                        <h3>' . $msg . '</h3>
+                    <div class="modal-body text-center font-weight-bold text-danger">
+                        <h4>' . $msg . '</h4>
                     </div>
                     <div class="modal-footer">
-                        <button class="btn btn-danger btn-block mx-auto" onclick="redirecionar()">OK</button>
+                        <button class="btn btn-danger mx-auto" onclick="redirecionar()">OK</button>
                     </div>
                 </div>
             </div>
         </div>
         <script>
-            function redirecionar(){
+            function redirecionar() {
                 history.go(-1);
             }
         </script>

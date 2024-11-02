@@ -1,2 +1,0 @@
-# resoluton
-projeto de tcc
