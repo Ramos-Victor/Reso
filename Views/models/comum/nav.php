@@ -35,7 +35,7 @@
           </a>
         </li>
         <li class="nav-item">
-          <a class="d-flex flex-row texto" href="../conexoes/conexao.php">
+          <a class="d-flex flex-row texto" href="../conexoes/index.php">
             <i class="navicon bi bi-arrow-90deg-left"></i>
             Voltar
           </a>

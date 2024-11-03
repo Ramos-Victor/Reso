@@ -11,7 +11,7 @@ body {
 
 body {
     background: linear-gradient(135deg, #f5f5dc 25%, #ffffff 75%);
-    background-size: 400% 400%; /* Para criar um efeito de movimento */
+    background-size: 400% 400%;
 }
 
 .navicon{

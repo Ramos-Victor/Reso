@@ -1,4 +1,5 @@
 <?php
+
 function Confirma($msg, $pagina)
 {
     print '
@@ -45,7 +46,7 @@ function Erro($msg)
     ';
 }
 
-require_once '../footer.php';
+include_once 'C:\xampp\htdocs\Reso\footer.php';
 ?>
 <style>
     .myModal .modal-body {

@@ -1,18 +1,18 @@
 <?php
-session_start(); 
+ if (session_status() === PHP_SESSION_NONE) {
+    session_start();  // Inicie a sessão aqui
+}
 error_reporting(E_ALL ^ E_WARNING);
 ini_set('display_errors', 1) ;
-if(!empty($_SESSION['conexao'])){
+if(!empty($_SESSION['id'])){
     $_SESSION['id'];
     $_SESSION['usuario'];
-    $_SESSION['conexao'];
-    $_SESSION['nm_conexao'];
-    $_SESSION['cargo'];
-    require_once '../conect.php';
-    require_once '../dialog.php';
+    unset($_SESSION['conexao']);
+    include_once 'C:\xampp\htdocs\Reso\conect.php';
+    include_once 'C:\xampp\htdocs\Reso\dialog.php';
 }
 else{
-    header("Location: ../conexoes/conexao.php");
+    header("Location: ../logout.php");
 }
 ?>
 
@@ -22,12 +22,8 @@ else{
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resolut.On</title>
-    <link rel="shortcut icon" type="imagex/png" href="../assets/img/logoresoluton.jpg">
+    <link rel="shortcut icon" type="imagex/png" href="../assets/img/logoresoluton.png">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="../../../css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
-
-<?php
-    require_once '../conect.php';
-?>

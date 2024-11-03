@@ -1,6 +1,6 @@
 <?php  
 	if (session_status() === PHP_SESSION_NONE) {
-		session_start();  // Inicie a sessão aqui
+		session_start();
 	}
 	require_once 'conect.php';
 
@@ -22,7 +22,7 @@
 			$r = $result->fetch_assoc();
 			$_SESSION['id'] = $r['cd_usuario'];
 			$_SESSION['usuario'] = $r['nm_usuario'];
-			Confirma("Bem vindo ao Resolut.on", "conexoes/conexao.php");
+			Confirma("Bem vindo ao Resolut.on", "./Views/models/conexoes/index.php");
 		} else {
 			Erro("Acesso recusado!");
 			session_destroy();

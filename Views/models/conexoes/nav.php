@@ -12,7 +12,7 @@ button {
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #03305c">
     <a class="navbar-brand" href="conexao.php">
-        <img src="../assets/img/logoresoluton.png" class="img-fluid reso" alt="Responsive image">
+        <img src="../../../assets/img/logoresoluton.png" class="img-fluid reso" alt="Responsive image">
     </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
         aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

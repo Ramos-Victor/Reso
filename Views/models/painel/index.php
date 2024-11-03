@@ -6,11 +6,9 @@ require_once 'header.php';
 <?php
 require_once 'nav.php';
 ?>
- <div id="main-content">
     <div class="container-fluid">
         
     <div>
-  </div>
 <?php
-require_once '../footer.php';
+require_once '/Reso/footer.php';
 ?>

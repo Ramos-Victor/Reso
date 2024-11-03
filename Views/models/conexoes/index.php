@@ -46,7 +46,6 @@
                                 <th scope="col" style="border-bottom:none;">Cargo</th>
                                 <th scope="col" style="border-bottom:none;">Data</th>
                                 <th scope="col" style="border-bottom:none; width: 200px;">Ações</th>
-                                <!-- Ajuste a largura aqui -->
                             </tr>
                         </thead>
                         <tbody>
@@ -119,7 +118,7 @@
 
 
         <?php
-    require_once '../footer.php';
+    include_once 'C:\xampp\htdocs\Reso\footer.php';
 ?>
 </body>
 
@@ -129,24 +128,24 @@
         CriarConexao(
             $_POST['nome'],
             $_SESSION['id'],
-            "conexao.php"
+            "index.php"
         );
     }else if($_POST['action']== "Deletar"){
         DeletarConexao(
             $_POST['cd'],
-            "conexao.php"
+            "index.php"
         );
     }else if($_POST['action']=="Sair"){
         SairConexao(
             $_SESSION['id'],
             $_POST['cd'],
-            "conexao.php"
+            "index.php"
         );
     }else if($_POST['action']== "Entrar"){
         EntrarConexao(
             $_SESSION['id'],
             $_POST['code'],
-            "conexao.php"
+            "index.php"
         );
     }else if($_POST['action']=="Acessar"){
         $_SESSION['conexao']=$_POST['cd'];
@@ -169,7 +168,7 @@ location.href = "../comum/index.php";
         EditarConexao(
             $_POST['cd'],
             $_POST['nome'],
-            "conexao.php"
+            "index.php"
         );
     }
  }

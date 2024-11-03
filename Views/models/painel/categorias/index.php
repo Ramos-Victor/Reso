@@ -1,8 +1,8 @@
 <?php
-require_once 'header.php';
-require_once './equipamentos/categoria/function.php';
-require_once './equipamentos/categoria/modal.php';
-require_once './equipamentos/categoria/script.php';
+require_once '../header.php';
+require_once './categoria/function.php';
+require_once './categoria/modal.php';
+require_once './categoria/script.php';
 
 ?>
 
@@ -16,7 +16,7 @@ require_once './equipamentos/categoria/script.php';
 
 <body>
     <?php
-        require_once 'nav.php';
+        require_once '../nav.php';
     ?>
     <br><br><br>
     <div class="container-fluid">
@@ -87,20 +87,20 @@ if(!empty($_POST)){
             strtoupper($_POST['nome']),
             $_SESSION['id'],
             $_SESSION['conexao'],
-            "categoria.php"
+            "index.php"
         );
     }elseif($_POST['action'] == "Editar"){
         EditarCategoria(
             $_POST['cd'],
            strtoupper($_POST['nome']),
             $_SESSION['conexao'],
-            "categoria.php"
+            "index.php"
         );
     }elseif($_POST['action'] == "Deletar"){
         DeletarCategoria(
             $_POST['cd'],
             $_POST['conexao'],
-            "categoria.php"
+            "index.php"
             );
     }
 }

@@ -1,5 +1,5 @@
 <?php
-require_once 'header.php';
+require_once '../header.php';
 require_once './salas/function.php';
 require_once './salas/modal.php';
 require_once './salas/script.php';
@@ -20,7 +20,7 @@ require_once './salas/script.php';
 
 <body>
     <?php
-        require_once 'nav.php';
+        require_once '../nav.php';
     ?>
     <br><br><br>
     <div class="container-fluid">
@@ -48,7 +48,6 @@ require_once './salas/script.php';
             style="max-height: 850px; overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
             <?php
     $listar = ListarSalas();
-
     if ($listar) {
         foreach ($listar as $index => $l) {
     ?>
@@ -101,7 +100,7 @@ if(!empty($_POST)){
             $_POST['desc'],
             $_SESSION['id'],
             $_SESSION['conexao'],
-            "salas.php"
+            "index.php"
         );
     }elseif($_POST['action'] == "Editar"){
         EditarSala(
@@ -110,13 +109,13 @@ if(!empty($_POST)){
             $_POST['desc'],
             $_SESSION['id'],
             $_SESSION['conexao'],
-            "salas.php"
+            "index.php"
         );
     }elseif($_POST['action'] == "Deletar"){
         ExcluirSala(
             $_POST['cd'],
             $_SESSION['conexao'],
-            "salas.php"
+            "index.php"
             );
     }
 }

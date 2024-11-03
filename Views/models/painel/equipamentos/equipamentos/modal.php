@@ -1,6 +1,6 @@
 <?php
-    include_once '../salas/function.php';
-    include_once './categoria/function.php';
+    include_once 'C:\xampp\htdocs\Reso\Views\models\painel\salas\salas\function.php';
+    include_once 'C:\xampp\htdocs\Reso\Views\models\painel\categorias\categoria\function.php';
 ?>
 
 <!-- Modal Criar Equipamento -->
@@ -14,7 +14,8 @@
                 <div class="modal-body">
                     <input type="text" name="nome" class="form-control" placeholder="Nome do Equipamento" required>
                     <br>
-                    <textarea name="desc" class="form-control" placeholder="Descrição do Equipamento" required rows="2"></textarea>
+                    <textarea name="desc" class="form-control" placeholder="Descrição do Equipamento" required
+                        rows="2"></textarea>
                     <br>
                     <?php
                             $categorias = ListarCategorias("<input type='text' class='form-control' placeholder='Cadastre categorias, elas serão exibidas aqui' readonly>");
@@ -22,7 +23,7 @@
                     ?>
                     <select name="categoria" id="categoria" class="form-control">
                         <option value="" selected>Selecione uma categoria</option>
-                            <?php 
+                        <?php 
                             if($categorias){
                                 foreach($categorias as $index => $l){
                                     $selected = ($l['cd_categoria'] == $categoriaSelecionada) ? 'selected' : '';
@@ -64,7 +65,7 @@
                         required>
                     <br>
                     <select name="sala" id="sala" class="form-control">
-                         <option value="" disabled>Selecione uma Sala</option>
+                        <option value="" disabled>Selecione uma Sala</option>
                         <?php
                             $salas = ListarSalas();
 
@@ -84,7 +85,7 @@
                     ?>
                     <select name="categoria" id="categoria" class="form-control">
                         <option value="" disabled>Selecione uma categoria</option>
-                            <?php 
+                        <?php 
                             if($categorias){
                                 foreach($categorias as $index => $l){
                                     $selected = ($l['cd_categoria'] == $categoriaSelecionada) ? 'selected' : '';
@@ -122,7 +123,8 @@
                 </div>
                 <div class="modal-body">
                     <input type="hidden" name="cd" id="cd">
-                    <input type="text" name="nome" id="nome"class="form-control" placeholder="Nome do Equipamento" readonly>
+                    <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome do Equipamento"
+                        readonly>
                     <br>
                 </div>
                 <div class="modal-footer">

@@ -47,7 +47,7 @@ nav{
 
 <nav class="navbar navbar-expand-lg fixed-top">
   <a class="navbar-brand" href="index.php">
-    <img src="../assets/img/logoresoluton.png" class="img-fluid reso" alt="Responsive image">
+    <img src="/Reso/assets/img/logoresoluton.png" class="img-fluid reso" alt="Responsive image">
   </a>
   
   <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,19 +57,19 @@ nav{
   <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="index.php">Dashboard <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="/Reso/Views/models/painel/index.php">Dashboard <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="chamados.php">Chamados</a>
+        <a class="nav-link" href="/Reso/Views/models/painel/chamados/index.php">Chamados</a>
       </li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
           Equipamentos
         </a>
         <div class="dropdown-menu">
-          <a class="dropdown-item" href="equipamento.php">Equipamentos</a>
-          <a class="dropdown-item" href="salas.php">Salas</a>
-          <a class="dropdown-item" href="categoria.php">Categorias</a>
+          <a class="dropdown-item" href="/Reso/Views/models/painel/equipamentos/index.php">Equipamentos</a>
+          <a class="dropdown-item" href="/Reso/Views/models/painel/salas/index.php">Salas</a>
+          <a class="dropdown-item" href="/Reso/Views/models/painel/categorias/index.php">Categorias</a>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -78,7 +78,7 @@ nav{
         </a>
         <div class="dropdown-menu">
           <a class="dropdown-item" href="#">Configurações</a>
-          <a class="dropdown-item" href="../logout.php">Encerrar Sessão</a>
+          <a class="dropdown-item" href="/Reso/logout.php">Encerrar Sessão</a>
         </div>
       </li>
     </ul>

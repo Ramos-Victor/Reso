@@ -1,5 +1,7 @@
 <?php
-require_once 'header.php';
+
+
+require_once '../header.php';
 require_once './equipamentos/function.php';
 require_once './equipamentos/modal.php';
 require_once './equipamentos/script.php';
@@ -16,7 +18,7 @@ require_once './equipamentos/script.php';
 
 <body>
     <?php
-        require_once 'nav.php';
+        require_once '../nav.php';
     ?>
     <br><br><br>
     <div class="container-fluid">
@@ -42,6 +44,7 @@ require_once './equipamentos/script.php';
             </div>
         </div>
         <div class="row mt-3">
+       
     <?php
     $listar = ListarEquipamentos();
 
@@ -94,7 +97,7 @@ if (!empty($_POST)) {
             $id_categoria,
             $_SESSION['id'], 
             $_SESSION['conexao'], 
-            "equipamento.php");
+            "index.php");
     } elseif ($_POST['action'] == "Editar") {
         EditarEquipamento(
             $_POST['cd'], 
@@ -105,12 +108,12 @@ if (!empty($_POST)) {
             $_POST['categoria'], 
             $_SESSION['id'], 
             $_SESSION['conexao'], 
-            "equipamento.php");
+            "index.php");
     } elseif ($_POST['action'] == "Deletar") {
         ExcluirEquipamento(
             $_POST['cd'], 
             $_SESSION['conexao'], 
-            "equipamento.php");
+            "index.php");
     }
 }
 ?>
