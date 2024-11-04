@@ -87,7 +87,6 @@ CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_sala` (
   `id_usuario` INT NOT NULL,
   `id_conexao` INT NOT NULL,
   PRIMARY KEY (`cd_sala`),
-  UNIQUE INDEX `nr_sala_UNIQUE` (`nm_sala` ASC) ,
   INDEX `fk_tb_sala_tb_usuario_unidade1_idx` (`id_usuario` ASC, `id_conexao` ASC) ,
   CONSTRAINT `fk_tb_sala_tb_usuario_unidade1`
     FOREIGN KEY (`id_usuario` , `id_conexao`)
@@ -235,21 +234,21 @@ INSERT INTO `db_resoluton2`.`tb_usuario_conexao` (id_usuario, id_conexao, cargo_
 ((SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='marcio'), 1, 'comum');
 
 INSERT INTO `db_resoluton2`.`tb_sala` (nm_sala, ds_sala, id_usuario, id_conexao) VALUES 
-('estoque', 'Sala de Estoque', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+('ESTOQUE', 'Sala de Estoque', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
 
 INSERT INTO `db_resoluton2`.`tb_equipamento_categoria` (categoria_nm, id_usuario, id_conexao) VALUES 
-('Notebook', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
-('Teclado', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
-('Mouse', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+('NOTEBOOK', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
+('TECLADO', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
+('MOUSE', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
 
 INSERT INTO `db_resoluton2`.`tb_sala` (nm_sala, ds_sala, id_usuario, id_conexao) VALUES 
-('lab01', 'Laboratório 01', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
-('lab02', 'Laboratório 02', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+('LAB01', 'Laboratório 01', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
+('LAB01', 'Laboratório 02', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
 
 INSERT INTO `db_resoluton2`.`tb_equipamento` (nm_equipamento, ds_equipamento, id_categoria, id_sala, id_usuario, id_conexao) VALUES 
-('note01', 'Notebook da marca X', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Notebook'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'),1),
-('teclado01', 'Teclado mecânico', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Teclado'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
-('mouse01', 'Mouse óptico', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Mouse'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+('NOTE01', 'Notebook da marca X', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Notebook'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'),1),
+('TECLADO01', 'Teclado mecânico', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Teclado'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
+('MOUSE01', 'Mouse óptico', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Mouse'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
 
 INSERT INTO `db_resoluton2`.`tb_chamado` (nm_chamado, ds_chamado, id_equipamento, id_usuario_abertura, id_conexao) VALUES 
 ('Problema no notebook', 'Relato de que o notebook não liga', (SELECT cd_equipamento FROM db_resoluton2.tb_equipamento WHERE nm_equipamento='note01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='marcio'), 1);
