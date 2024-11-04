@@ -47,8 +47,6 @@
     </div>
 </div>
 
-
-<!-- Modal Editar Equipamento -->
 <div class="modal fade" id="editar" data-backdrop="static">
     <div class="modal-dialog modal-md">
         <div class="modal-content">

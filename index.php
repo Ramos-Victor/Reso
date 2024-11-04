@@ -246,8 +246,8 @@ body {
     
 
     <div class="dark-section" id="dark-section">
-        <h2 class="abubu">Implemente um help desk de nível empresarial</h2>
-        <div class="text-center abubu">
+        <h2>Implemente um help desk de nível empresarial</h2>
+        <div class="text-center">
             <a href="login.php" type="button" class="btn custom-btn2">Testar</a>
         </div>    
         <div class="card-container">

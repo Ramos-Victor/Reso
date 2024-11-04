@@ -1,6 +1,6 @@
 <?php
 
-function ListarEquipamentos() {
+function ListarEquipamentos($categoria = null, $data = null, $sala = null) {
     $sql = 'SELECT 
                 e.cd_equipamento, 
                 e.nm_equipamento, 
@@ -18,29 +18,45 @@ function ListarEquipamentos() {
             LEFT JOIN tb_sala s ON e.id_sala = s.cd_sala
             WHERE e.id_conexao = ?';
 
+    $params = [$_SESSION['conexao']];
+    $types = 'i';
+
+    if ($categoria) {
+        $sql .= ' AND e.id_categoria = ?';
+        $params[] = $categoria;
+        $types .= 'i';
+    }
+    if ($data) {
+        $sql .= ' AND DATE(e.dt_equipamento) = ?';
+        $params[] = $data;
+        $types .= 's';
+    }
+    if ($sala) {
+        $sql .= ' AND e.id_sala = ?';
+        $params[] = $sala;
+        $types .= 'i';
+    }
+
     $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('i', $_SESSION['conexao']);
+    $stmt->bind_param($types, ...$params);
     $stmt->execute();
     $res = $stmt->get_result();
 
     if ($res && $res->num_rows > 0) {
         return $res->fetch_all(MYSQLI_ASSOC);
     } else {
-        echo "<h3 class='mx-auto text-white'>Cadastre seus Equipamentos, eles serão exibidos aqui!</h3>";
         return []; 
     }
 }
 
 function CriarEquipamento($nome, $desc, $categoria, $usuario, $conexao, $pagina) {
-    // Primeiro, obter o ID da sala "ESTOQUE"
     $sqlSala = 'SELECT cd_sala FROM tb_sala WHERE nm_sala = "ESTOQUE" LIMIT 1';
     $stmtSala = $GLOBALS['con']->prepare($sqlSala);
     $stmtSala->execute();
     $resultado = $stmtSala->get_result();
 
     if ($resultado->num_rows === 0) {
-        // Se a sala "ESTOQUE" não existir, retorne um erro
-        Erro("A sala 'ESTOQUE' não existe. Crie a sala antes de adicionar equipamentos.");
+        Erro("A sala 'ESTOQUE' não existe. Crie a sala estoque antes de adicionar equipamentos.");
         return;
     }
 

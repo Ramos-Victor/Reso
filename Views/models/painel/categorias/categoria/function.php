@@ -48,7 +48,6 @@
     }
 
     function DeletarCategoria($cd_catego, $pagina) {
-        // Verifica se há equipamentos vinculados a esta categoria
         $sqlVerificaVinculo = 'SELECT * FROM tb_equipamento WHERE id_categoria = ?';
         $stmtVerifica = $GLOBALS['con']->prepare($sqlVerificaVinculo);
     
@@ -62,16 +61,14 @@
         $result = $stmtVerifica->get_result();
     
         if ($result->num_rows > 0) {
-            // Caso existam itens vinculados, exiba-os
             $mensagem = "Deseja realmente deletar esta categoria? Os seguintes equipamentos estão vinculados a ela:<br>";
             while ($row = $result->fetch_assoc()) {
                 $mensagem .= " Nome: " . $row['nm_equipamento'] . "<br>";
             }
-            ConfirmaExclusaoCategoria($mensagem, $pagina, $cd_catego); // Exibe a mensagem com os itens vinculados
+            ConfirmaExclusaoCategoria($mensagem, $pagina, $cd_catego);
             return;
         }
     
-        // Exclui a categoria
         $sql = 'DELETE FROM tb_equipamento_categoria WHERE cd_categoria = ?';
         $stmt = $GLOBALS['con']->prepare($sql);
     
@@ -84,17 +81,15 @@
         $res = $stmt->execute();
     
         if ($res) {
-            Confirma("Categoria Excluida",$pagina);
+            Confirma("Categoria Excluida",$pagina."?");
         } else {
             Erro("Não foi possível deletar a categoria: " . $GLOBALS['con']->error);
         }
     }
     
-    // Verifica a confirmação da exclusão da categoria
     if (isset($_GET['confirmacao']) && $_GET['confirmacao'] === 'true' && isset($_GET['cd_categoria'])) {
         $cd_categoria = intval($_GET['cd_categoria']);
         
-        // Atualiza os equipamentos para mover a categoria para NULL
         $sqlMoverEquipamentos = 'UPDATE tb_equipamento SET id_categoria = NULL WHERE id_categoria = ?';
         $stmtMover = $GLOBALS['con']->prepare($sqlMoverEquipamentos);
     
@@ -110,7 +105,6 @@
         DeletarCategoria($cd_categoria, $pagina);
     }
     
-    // Exibir mensagem de sucesso se a categoria foi excluída
     if (isset($_GET['msg']) && $_GET['msg'] === 'categoria_excluida') {
         Confirma("Categoria removida com sucesso!", $pagina);
     }

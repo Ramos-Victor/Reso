@@ -2,7 +2,6 @@
     include_once 'C:\xampp\htdocs\Reso\Views\models\painel\equipamentos\equipamentos\function.php';
 ?>
 
-<!-- Modal Criar Chamado -->
 <div class="modal fade" id="abrirChamado" data-backdrop="static">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -32,7 +31,6 @@
     </div>
 </div>
 
-<!-- Modal para confirmar a mudança de status para "Em Andamento" com detalhes -->
 <div class="modal fade" id="modalAndamento" tabindex="-1" role="dialog" aria-labelledby="modalAndamentoLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -104,9 +102,6 @@
             <form method="post">
                 <div class="modal-header">
                     <h5 class="modal-title" id="deletarLabel">Confirmar Deleção</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
                 </div>
                 <div class="modal-body">
                     <p>Você tem certeza que deseja deletar este chamado?</p>
@@ -115,7 +110,7 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                    <button type="submit" class="btn btn-danger">Deletar</button>
+                    <button type="submit" class="btn btn-danger" name="action" value="DeletarChamado">Deletar</button>
                 </div>
             </form>
         </div>

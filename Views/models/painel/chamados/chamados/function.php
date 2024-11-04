@@ -24,7 +24,7 @@ function ListarChamados($status = null) {
                    c.ds_recado,
                    e.nm_equipamento, 
                    u.nm_usuario as usuario_abertura,
-                   uf.nm_usuario as usuario_fechamento  -- Adiciona o nome do usuário que fechou
+                   uf.nm_usuario as usuario_fechamento
             FROM tb_chamado c
             LEFT JOIN tb_equipamento e ON c.id_equipamento = e.cd_equipamento
             LEFT JOIN tb_usuario u ON c.id_usuario_abertura = u.cd_usuario
@@ -47,7 +47,7 @@ function ListarChamados($status = null) {
     while ($row = $result->fetch_assoc()) {
         $chamados[] = $row;
     }
-
+    
     return $chamados;
 }
 
@@ -80,15 +80,12 @@ function ConcluirChamado($cd_chamado, $recado, $id_fechamento, $conexao, $pagina
 }
 
 function DeletarChamado($cd_chamado, $conexao, $pagina) {
-    // Preparar a consulta para deletar o chamado
     $sql = "DELETE FROM tb_chamado WHERE cd_chamado = ? AND id_conexao = ?";
     $stmt = $GLOBALS['con']->prepare($sql);
     
-    // Bind dos parâmetros
     $stmt->bind_param('ii', $cd_chamado, $conexao);
     $res = $stmt->execute();
 
-    // Verificar o resultado da execução
     if ($res) {
         Confirma("Chamado deletado com sucesso!", $pagina);
     } else {

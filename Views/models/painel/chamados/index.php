@@ -20,9 +20,19 @@ include_once './chamados/script.php';
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-2 col-xs-2">
-                <button class="btn btn-block" style="background-color:#03305c; position: sticky; top: 0; z-index: 100;">
-                    <span class="text-white mx-auto">FILTROS</span>
-                </button>
+                <form method="GET" action="">
+                    <button class="btn btn-block"
+                        style="background-color:#03305c; position: sticky; top: 0; z-index: 100;" type="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span class="text-white mx-auto">FILTROS</span>
+                    </button>
+                    <div class="dropdown-menu">
+                        <button class="dropdown-item" type="submit" name="status" value="Aberto">Aberto</button>
+                        <button class="dropdown-item" type="submit" name="status" value="Andamento">Andamento</button>
+                        <button class="dropdown-item" type="submit" name="status" value="Concluido">Concluído</button>
+                        <button class="dropdown-item" type="submit" name="status" value="">Todos</button>
+                    </div>
+                </form>
             </div>
             <div class="col-sm-8">
             </div>
@@ -38,9 +48,11 @@ include_once './chamados/script.php';
         <div class="row mt-3 overflow-auto"
             style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
             <?php
-        $listar = ListarChamados();
+        $status = isset($_GET['status']) ? $_GET['status'] : null;
+        $listar = ListarChamados($status);
+        
 
-        if ($listar) {
+        if ($listar && count($listar)> 0 ) {
             foreach ($listar as $index => $l) {
         ?>
             <div class="col-md-4 col-sm-6 mb-4">
@@ -99,7 +111,8 @@ include_once './chamados/script.php';
   scrollbar-width: none;
   scroll-behavior: smooth;">
                             <?php if (!empty($l['ds_recado'])) { ?>
-                            <p style="word-wrap: break-word; max-width: 200px; "><strong>Recado:</strong><br> <?= $l['ds_recado'] ?></p>
+                            <p style="word-wrap: break-word; max-width: 200px; "><strong>Recado:</strong><br>
+                                <?= $l['ds_recado'] ?></p>
                             <?php } ?>
                         </div>
                     </div>
@@ -133,6 +146,8 @@ include_once './chamados/script.php';
 
             <?php
             }
+        }else {
+            echo "<div class='col-12 text-center text-muted my-3'><h5>Nenhum chamado encontrado.</h5></div>";
         }
         ?>
         </div>

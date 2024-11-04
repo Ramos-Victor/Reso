@@ -10,5 +10,6 @@ require_once 'nav.php';
         
     <div>
 <?php
-require_once '/Reso/footer.php';
+require_once '../../../footer.php';
 ?>
+</body>

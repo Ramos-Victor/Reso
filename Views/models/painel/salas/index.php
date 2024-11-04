@@ -75,12 +75,14 @@ require_once './salas/script.php';
                             desc="<?= $l['ds_sala']; ?>" criado="<?= $l['id_usuario']; ?>" data="<?= $l['dt_sala']; ?>">
                             <i class="botoes bi bi-trash3-fill"></i> Deletar
                         </button>
-                        <?php } ?>
+                        <?php } 
+                        if ($l['nm_sala'] != "ESTOQUE") { ?>
                         <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
                             title="Editar" cd="<?= $l['cd_sala']; ?>" nome="<?= $l['nm_sala']; ?>"
                             desc="<?= $l['ds_sala']; ?>" criado="<?= $l['id_usuario']; ?>" data="<?= $l['dt_sala']; ?>">
                             <i class="botoes bi bi-pencil-fill"></i> Editar
                         </button>
+                        <?php } ?>
                     </div>
                 </div>
             </div>
