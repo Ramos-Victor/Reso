@@ -1,7 +1,4 @@
 <?php
-
-
-
     function ListarSalas(){
         $sql = 'SELECT  cd_usuario, nm_usuario, cd_sala, nm_sala, ds_sala, DATE_FORMAT(dt_sala, "%d/%m/%Y") as dt_sala, id_usuario, id_conexao FROM tb_sala INNER JOIN tb_usuario on id_usuario = cd_usuario and id_conexao ='.$_SESSION['conexao'];
 
@@ -48,7 +45,6 @@
     }
 
     function ExcluirSala($cd_sala, $conexao, $pagina) {
-        // Verifica se há itens vinculados a esta sala
         $sqlVerificaVinculo = 'SELECT * FROM tb_equipamento WHERE id_sala = ?';
         $stmtVerifica = $GLOBALS['con']->prepare($sqlVerificaVinculo);
         $stmtVerifica->bind_param('i', $cd_sala);
@@ -56,16 +52,14 @@
         $result = $stmtVerifica->get_result();
     
         if ($result->num_rows > 0) {
-            // Caso existam itens vinculados, exiba-os
             $mensagem = "Deseja realmente deletar essa sala? Os seguintes equipamentos estão vinculados a ela:<br>";
             while ($row = $result->fetch_assoc()) {
                 $mensagem .= " Nome: " . $row['nm_equipamento'] . "<br>";
             }
-            ConfirmaExclusaoSala($mensagem, $pagina, $cd_sala, $conexao); // Exibe a mensagem com os itens vinculados
+            ConfirmaExclusaoSala($mensagem, $pagina, $cd_sala, $conexao);
             return;
         }
     
-        // Se não houver itens vinculados, procede com a exclusão
         $sql = 'DELETE FROM tb_sala WHERE cd_sala = ? AND id_conexao = ?';
         $stmt = $GLOBALS['con']->prepare($sql);
         $stmt->bind_param('ii', $cd_sala, $conexao);
@@ -73,7 +67,6 @@
         $res = $stmt->execute();
     
         if ($res) {
-            // Redireciona para a página e evita reexibir o modal
             header("Location: $pagina?msg=sala_excluida");
             exit();
         } else {
@@ -81,12 +74,10 @@
         }
     }
     
-    // Verifica a confirmação da exclusão
     if (isset($_GET['confirmacao']) && $_GET['confirmacao'] === 'true' && isset($_GET['cd_sala'])) {
         $cd_sala = intval($_GET['cd_sala']);
         $conexao = intval($_GET['conexao']);
     
-        // Mover equipamentos para a sala "ESTOQUE"
         $sqlEstoque = 'SELECT cd_sala FROM tb_sala WHERE nm_sala = "ESTOQUE" LIMIT 1';
         $stmtEstoque = $GLOBALS['con']->prepare($sqlEstoque);
         $stmtEstoque->execute();
@@ -96,20 +87,17 @@
         if ($salaEstoque) {
             $idEstoque = $salaEstoque['cd_sala'];
     
-            // Atualiza os equipamentos para mover para a sala "ESTOQUE"
             $sqlMoverEquipamentos = 'UPDATE tb_equipamento SET id_sala = ? WHERE id_sala = ?';
             $stmtMover = $GLOBALS['con']->prepare($sqlMoverEquipamentos);
             $stmtMover->bind_param('ii', $idEstoque, $cd_sala);
             $stmtMover->execute();
-    
-            // Exclui a sala
+
             ExcluirSala($cd_sala, $conexao, $pagina);
         } else {
             Erro("Sala 'ESTOQUE' não encontrada.");
         }
     }
-    
-    // Exibir mensagem de sucesso se a sala foi excluída
+
     if (isset($_GET['msg']) && $_GET['msg'] === 'sala_excluida') {
         Confirma("Sala removida com sucesso!", $pagina);
     }

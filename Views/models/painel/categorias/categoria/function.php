@@ -101,7 +101,6 @@
         $stmtMover->bind_param('i', $cd_categoria);
         $stmtMover->execute();
     
-        // Exclui a categoria
         DeletarCategoria($cd_categoria, $pagina);
     }
     

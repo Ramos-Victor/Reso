@@ -60,11 +60,9 @@ function CriarEquipamento($nome, $desc, $categoria, $usuario, $conexao, $pagina)
         return;
     }
 
-    // Recupera o ID da sala "ESTOQUE"
     $salaEstoque = $resultado->fetch_assoc();
     $idSalaEstoque = $salaEstoque['cd_sala'];
 
-    // Agora, insira o equipamento na sala "ESTOQUE"
     $sql = 'INSERT INTO tb_equipamento (nm_equipamento, ds_equipamento, id_sala, id_categoria, id_usuario, id_conexao)
             VALUES (?, ?, ?, ?, ?, ?)';
     

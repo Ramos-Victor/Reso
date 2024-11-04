@@ -32,23 +32,19 @@ function ListarEquipamentos() {
 }
 
 function CriarEquipamento($nome, $desc, $categoria, $usuario, $conexao, $pagina) {
-    // Primeiro, obter o ID da sala "ESTOQUE"
     $sqlSala = 'SELECT cd_sala FROM tb_sala WHERE nm_sala = "ESTOQUE" LIMIT 1';
     $stmtSala = $GLOBALS['con']->prepare($sqlSala);
     $stmtSala->execute();
     $resultado = $stmtSala->get_result();
 
     if ($resultado->num_rows === 0) {
-        // Se a sala "ESTOQUE" não existir, retorne um erro
         Erro("A sala 'ESTOQUE' não existe. Crie a sala antes de adicionar equipamentos.");
         return;
     }
 
-    // Recupera o ID da sala "ESTOQUE"
     $salaEstoque = $resultado->fetch_assoc();
     $idSalaEstoque = $salaEstoque['cd_sala'];
 
-    // Agora, insira o equipamento na sala "ESTOQUE"
     $sql = 'INSERT INTO tb_equipamento (nm_equipamento, ds_equipamento, id_sala, id_categoria, id_usuario, id_conexao)
             VALUES (?, ?, ?, ?, ?, ?)';
     

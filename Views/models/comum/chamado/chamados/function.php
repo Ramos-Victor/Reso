@@ -24,26 +24,24 @@ function ListarChamados($status = null) {
                    c.ds_recado,
                    e.nm_equipamento, 
                    u.nm_usuario as usuario_abertura,
-                   uf.nm_usuario as usuario_fechamento  -- Adiciona o nome do usuário que fechou
+                   uf.nm_usuario as usuario_fechamento
             FROM tb_chamado c
             LEFT JOIN tb_equipamento e ON c.id_equipamento = e.cd_equipamento
             LEFT JOIN tb_usuario u ON c.id_usuario_abertura = u.cd_usuario
             LEFT JOIN tb_usuario uf ON c.id_usuario_fechamento = uf.cd_usuario
-            WHERE c.id_usuario_abertura = ?';  // Adiciona filtro para o usuário da sessão
+            WHERE c.id_usuario_abertura = ?';
 
-    // Se um status for passado, adiciona à cláusula WHERE
     if ($status) {
         $sql .= ' AND c.st_chamado = ?';
     }
 
     $stmt = $GLOBALS['con']->prepare($sql);
 
-    // Obtém o ID do usuário da sessão
     $userId = $_SESSION['id'];
     if ($status) {
-        $stmt->bind_param('is', $userId, $status); // 'i' para o ID do usuário e 's' para o status
+        $stmt->bind_param('is', $userId, $status);
     } else {
-        $stmt->bind_param('i', $userId); // Apenas o ID do usuário
+        $stmt->bind_param('i', $userId);
     }
 
     $stmt->execute();
@@ -87,15 +85,12 @@ function ConcluirChamado($cd_chamado, $recado, $id_fechamento, $conexao, $pagina
 }
 
 function DeletarChamado($cd_chamado, $conexao, $pagina) {
-    // Preparar a consulta para deletar o chamado
     $sql = "DELETE FROM tb_chamado WHERE cd_chamado = ? AND id_conexao = ?";
     $stmt = $GLOBALS['con']->prepare($sql);
     
-    // Bind dos parâmetros
     $stmt->bind_param('ii', $cd_chamado, $conexao);
     $res = $stmt->execute();
 
-    // Verificar o resultado da execução
     if ($res) {
         Confirma("Chamado deletado com sucesso!", $pagina);
     } else {
