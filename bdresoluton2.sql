@@ -15,7 +15,6 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `db_resoluton2` DEFAULT CHARACTER SET utf8 ;
 USE `db_resoluton2` ;
-
 -- drop database db_resoluton2;
 
 -- -----------------------------------------------------
@@ -24,7 +23,6 @@ USE `db_resoluton2` ;
 CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_usuario` (
   `cd_usuario` INT NOT NULL AUTO_INCREMENT,
   `nm_usuario` VARCHAR(50) NOT NULL,
-  `nm_real` VARCHAR(50) NOT NULL,
   `nm_email` VARCHAR(100) NOT NULL,
   `cd_senha` VARCHAR(255) NOT NULL,
   `dt_cadastro` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -220,10 +218,10 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
-insert into tb_usuario (nm_usuario, nm_real, nm_email, cd_senha) values
- ('victor','Victor Ramos','victor@gmail.com',sha2('123',256)),
- ('lais','Lais Liborio','lais@gmail.com',sha2('123',256) ),
- ('marcio','Marcio Gustavo','marcio@gmail.com',sha2('123',256) );
+insert into tb_usuario (nm_usuario, nm_email, cd_senha) values
+ ('victor','victor@gmail.com',sha2('123',256)),
+ ('lais','lais@gmail.com',sha2('123',256) ),
+ ('marcio','marcio@gmail.com',sha2('123',256) );
  
  INSERT INTO `db_resoluton2`.`tb_conexao` (nm_conexao, codigo_conexao, id_criador) VALUES 
 ('Conexão 1', 'Codigo_Conexao_1', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'));
@@ -242,8 +240,8 @@ INSERT INTO `db_resoluton2`.`tb_equipamento_categoria` (categoria_nm, id_usuario
 ('MOUSE', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
 
 INSERT INTO `db_resoluton2`.`tb_sala` (nm_sala, ds_sala, id_usuario, id_conexao) VALUES 
-('LAB01', 'Laboratório 01', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
-('LAB01', 'Laboratório 02', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+('lAB01', 'Laboratório 01', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
+('lAB02', 'Laboratório 02', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
 
 INSERT INTO `db_resoluton2`.`tb_equipamento` (nm_equipamento, ds_equipamento, id_categoria, id_sala, id_usuario, id_conexao) VALUES 
 ('NOTE01', 'Notebook da marca X', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Notebook'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'),1),
@@ -260,5 +258,7 @@ WHERE cd_chamado = 1;
 select * from tb_equipamento;
 
 select * from tb_chamado;
+
+select * from tb_usuario;
 
  
