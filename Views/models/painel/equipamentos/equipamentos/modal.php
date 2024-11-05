@@ -3,7 +3,6 @@
     include_once 'C:\xampp\htdocs\Reso\Views\models\painel\categorias\categoria\function.php';
 ?>
 
-<!-- Modal Criar Equipamento -->
 <div class="modal fade" id="addequipamento" data-backdrop="static">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -98,7 +97,7 @@
                     <br>
                     <select name="status" class="form-control">
                         <option value="Ativo">Ativo</option>
-                        <option value="Manutenção">Manutenção</option>
+                        <option value="Manuntencao">Manuntencao</option>
                         <option value="Desativado">Desativado</option>
                     </select>
                     <br>

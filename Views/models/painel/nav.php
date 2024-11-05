@@ -17,8 +17,8 @@ button {
 }
 
 .reso {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
 }
 
@@ -35,8 +35,9 @@ nav {
 </style>
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-light">
-    <a class="navbar-brand" href="index.php">
+    <a class="navbar-brand text-white ml-3" href="index.php" style="background-color:none;">
         <img src="/Reso/assets/img/logoresoluton.png" class="img-fluid reso" alt="Responsive image">
+        Resolut.on
     </a>
 
     <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"

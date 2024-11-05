@@ -6,6 +6,7 @@ require_once 'header.php';
 <?php
 require_once 'nav.php';
 ?>
+<br><br><br>
     <div class="container-fluid">
         
     <div>

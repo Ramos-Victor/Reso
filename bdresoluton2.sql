@@ -15,7 +15,7 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 -- -----------------------------------------------------
 CREATE SCHEMA IF NOT EXISTS `db_resoluton2` DEFAULT CHARACTER SET utf8 ;
 USE `db_resoluton2` ;
--- drop database db_resoluton2;
+drop database db_resoluton2;
 
 -- -----------------------------------------------------
 -- Table `db_resoluton2`.`tb_usuario`
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_equipamento` (
   `nm_equipamento` VARCHAR(45) NOT NULL,
   `ds_equipamento` LONGTEXT NOT NULL,
   `dt_equipamento` DATETIME NOT NULL DEFAULT current_timestamp,
-  `st_equipamento` ENUM('Ativo', 'Manuntenção', 'Desativado') NOT NULL DEFAULT 'Desativado',
+  `st_equipamento` ENUM('Ativo', 'Manuntencao', 'Desativado') NOT NULL DEFAULT 'Desativado',
   `id_sala` INT NOT NULL,
   `id_categoria` INT NULL,
   `id_usuario` INT NOT NULL,

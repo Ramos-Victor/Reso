@@ -18,7 +18,7 @@ require_once './equipamentos/script.php';
     <?php
         require_once '../nav.php';
     ?>
-    <br><br><br>
+    <br><br><br><br>
     <div class="container-fluid">
         <div class="row">
             <?php $filtro = ListarEquipamentos(); if(!empty($filtro)):?>
@@ -67,11 +67,10 @@ require_once './equipamentos/script.php';
                 </div>
             </div>
             <?php ELSE:
-                echo '<div class="col-sm-2"></div>';
+                echo '<div class="col-sm-2 col-xs-2"></div>';
                 ENDIF;
             ?>
             <div class="col-sm-8">
-                <h2></h2>
             </div>
             <div class="col-sm-2 col-xs-2">
                 <button class="btn btn-block d-flex flex-row" style="background-color:#03305c;" data-toggle="modal"
@@ -105,7 +104,21 @@ require_once './equipamentos/script.php';
                         <p class="mt-2"><strong>Localização:</strong> <?= $l['nm_sala'] ?></p>
                         <p><strong>Por:</strong> <?= $l['nm_usuario'] ?></p>
                         <p><strong>Registrado em:</strong> <?= $l['dt_equipamento'] ?></p>
-                        <span class="badge bg-primary">Status: <?= $l['st_equipamento'] ?></span>
+                        <?php
+            $badgeClass = '';
+            switch ($l['st_equipamento']) {
+                case 'Ativo':
+                    $badgeClass = 'bg-success';
+                    break;
+                case 'Manuntencao':
+                    $badgeClass = 'bg-warning';
+                    break;
+                case 'Desativado':
+                    $badgeClass = 'bg-secondary';
+                    break;
+            }
+            ?>
+                        <span class="badge <?= $badgeClass ?>">Status: <?= $l['st_equipamento'] ?></span>
                     </div>
                     <div class="card-footer bg-transparent text-center">
                         <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"

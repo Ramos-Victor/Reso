@@ -18,7 +18,7 @@ require_once './categoria/script.php';
     <?php
         require_once '../nav.php';
     ?>
-    <br><br><br>
+     <br><br><br><br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-2 col-xs-2">

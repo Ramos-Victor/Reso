@@ -16,7 +16,7 @@ include_once './chamados/script.php';
     <?php
         include_once '../nav.php';
     ?>
-    <br><br><br>
+     <br><br><br><br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-2 col-xs-2">
@@ -45,7 +45,7 @@ include_once './chamados/script.php';
                 </button>
             </div>
         </div>
-        <div class="row mt-3 overflow-auto"
+        <div class="row overflow-auto"
             style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
             <?php
         $status = isset($_GET['status']) ? $_GET['status'] : null;

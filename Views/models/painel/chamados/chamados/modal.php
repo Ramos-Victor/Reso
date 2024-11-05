@@ -1,5 +1,52 @@
 <?php
-    include_once 'C:\xampp\htdocs\Reso\Views\models\painel\equipamentos\equipamentos\function.php';
+    function ListarEquipamentos($categoria = null, $data = null, $sala = null) {
+        $sql = 'SELECT 
+                    e.cd_equipamento, 
+                    e.nm_equipamento, 
+                    e.ds_equipamento, 
+                    DATE_FORMAT(e.dt_equipamento, "%d/%m/%Y") as dt_equipamento, 
+                    e.st_equipamento, 
+                    e.id_sala, 
+                    e.id_categoria, 
+                    u.nm_usuario, 
+                    c.categoria_nm, 
+                    s.nm_sala
+                FROM tb_equipamento e
+                LEFT JOIN tb_usuario u ON e.id_usuario = u.cd_usuario
+                LEFT JOIN tb_equipamento_categoria c ON e.id_categoria = c.cd_categoria
+                LEFT JOIN tb_sala s ON e.id_sala = s.cd_sala
+                WHERE e.id_conexao = ? AND e.st_equipamento = "Ativo"';
+    
+        $params = [$_SESSION['conexao']];
+        $types = 'i';
+    
+        if ($categoria) {
+            $sql .= ' AND e.id_categoria = ?';
+            $params[] = $categoria;
+            $types .= 'i';
+        }
+        if ($data) {
+            $sql .= ' AND DATE(e.dt_equipamento) = ?';
+            $params[] = $data;
+            $types .= 's';
+        }
+        if ($sala) {
+            $sql .= ' AND e.id_sala = ?';
+            $params[] = $sala;
+            $types .= 'i';
+        }
+    
+        $stmt = $GLOBALS['con']->prepare($sql);
+        $stmt->bind_param($types, ...$params);
+        $stmt->execute();
+        $res = $stmt->get_result();
+    
+        if ($res && $res->num_rows > 0) {
+            return $res->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return []; 
+        }
+    }
 ?>
 
 <div class="modal fade" id="abrirChamado" data-backdrop="static">
@@ -12,15 +59,19 @@
                 <div class="modal-body">
                     <input type="text" name="titulo" class="form-control mb-2" placeholder="Título do Chamado" required>
                     <textarea name="descricao" class="form-control mb-2" placeholder="Descrição do Problema" required rows="3"></textarea>
+                    <?php $equipamentos = ListarEquipamentos();
+                        if($equipamentos){
+                    ?>
                     <select name="equipamento" class="form-control mb-2">
                         <option value="" selected>Selecione um Equipamento (opcional)</option>
                         <?php
-                            $equipamentos = ListarEquipamentos();
+                            
                             foreach ($equipamentos as $equipamento) {
                         ?>
                         <option value="<?= $equipamento['cd_equipamento'] ?>"><?= $equipamento['nm_equipamento'] ?></option>
-                        <?php } ?>
+                        <?php }?>
                     </select>
+                    <?php }?>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
