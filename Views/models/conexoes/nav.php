@@ -4,8 +4,8 @@ button {
 }
 
 .reso {
-    width: 2.5rem;
-    height: 2.5rem;
+    width: 4rem;
+    height: 4rem;
     border-radius: 50%;
 }
 </style>
@@ -32,7 +32,7 @@ button {
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="../logout.php">Encerrar Sessão</a>
+            <a class="nav-link text-white" href="/Reso/logout.php">Encerrar Sessão</a>
           </li>
         </ul>
     </div>

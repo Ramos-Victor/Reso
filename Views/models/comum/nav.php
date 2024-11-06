@@ -1,71 +1,68 @@
 <style>
-    button{
-        background: none;
-    }
-    a:hover{
-        color: #ffd700;
-        text-decoration: none;
-    }
-    
-    a{
-      color:#fff;
-    }
+button {
+    background: none;
+}
 
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ffd700;
+    text-decoration: none;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color:#fff;
+}
+
+.show>.nav-link {
+  color: #fff;
+}
+
+.reso {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+}
+
+nav {
+    background-color: #03305c;
+}
+
+.dropdown-menu {
+    left: auto !important;
+    right: 0;
+    max-width: 400px;
+    overflow-x: hidden;
+}
 </style>
-<div id="sidebar">
-    <div class="container-fluid">
-      <div class="d-flex flex-row titulo">
-        <img src="../assets/img/logoresoluton.png" class="img-fluid reso" alt="Logo-Resolution">
-        <h5 class="text-white mt-2">Resolut.on</h5>
-      </div>
 
-      <div class="divisor"></div>
+<nav class="navbar navbar-expand-lg fixed-top navbar-light">
+    <a class="navbar-brand text-white ml-3" href="index.php" style="background-color:none;">
+        <img src="/Reso/assets/img/logoresoluton.png" class="img-fluid reso" alt="Responsive image">
+        Resolut.on
+    </a>
 
-      <ul class="nav flex-column mx-auto" style="row-gap:1rem">
-        <li class="nav-item">
-          <a class="d-flex flex-row texto" href="index.php">
-            <i class="navicon bi bi-bar-chart-fill"></i>
-            Dashboard
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="d-flex flex-row texto" href="chamados.php">
-          <i class="navicon bi bi-telephone-fill"></i>
-            Chamados
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="d-flex flex-row texto" href="../conexoes/index.php">
-            <i class="navicon bi bi-arrow-90deg-left"></i>
-            Voltar
-          </a>
-        </li>
-      </ul>
-  </div>
-  <div class="container-fluid items">
-    <div class="divisor"></div>
+    <button class="navbar-toggler custom-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
+        aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-    <ul class="nav flex-column final mx-auto" style="row-gap:1rem">
-      <li class="nav-item">
-        <a class="d-flex flex-row texto" href="#">
-        <i class="navicon bi bi-gear"></i>
-        Configurações
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="d-flex flex-row texto"  href="#">
-          <i class="navicon bi bi-person-circle"></i>
-          <?php echo $_SESSION['usuario']?>
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="sair d-flex flex-row texto" href="../logout.php">
-          <i class="navicon bi bi-box-arrow-left"></i>
-          Sair
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
-
- 
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a class="nav-link" href="/Reso/Views/models/comum/index.php">Dashboard </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/Reso/Views/models/comum/chamados/index.php">Chamados</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
+                    data-placement="bottom">
+                    <?php echo $_SESSION['usuario'] ?>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a class="dropdown-item a" href="#">Configurações</a>
+                    <a class="dropdown-item a" href="/Reso/logout.php">Encerrar Sessão</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>

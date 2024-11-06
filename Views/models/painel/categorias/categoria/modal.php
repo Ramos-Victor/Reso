@@ -5,7 +5,7 @@
                 Criar Categoria
             </div>
             <div class="modal-body">
-                <input type="text" name="nome" class="form-control" rows="5" placeholder="Nome da categoria" required></input>
+                <input type="text" name="nome" class="form-control" placeholder="Nome da categoria" maxlength="15" required></input>
                 <br>
             </div>
             <div class="modal-footer">

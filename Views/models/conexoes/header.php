@@ -12,7 +12,7 @@ if(!empty($_SESSION['id'])){
     include_once 'C:\xampp\htdocs\Reso\dialog.php';
 }
 else{
-    header("Location: ../logout.php");
+    header("Location: /Reso/logout.php");
 }
 ?>
 
