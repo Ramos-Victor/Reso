@@ -67,13 +67,13 @@ include_once './chamados/script.php';
                                 <h6 class="card-subtitle text-light mt-2"><?= $l['ds_chamado'] ?></h6>
 
                                 <div class="mt-2">
-                                    <p><strong>Abertura:</strong> <?= $l['dt_abertura'] ?>
+                                    <p><strong>Aberto em:</strong> <?= $l['dt_abertura'] ?>
                                     </p>
                                     <?php if ($l['st_chamado'] == 'Concluido') { ?>
-                                    <p><strong>Fechamento:</strong>
+                                    <p><strong>Finalizado em:</strong>
                                         <?= $l['dt_fechamento'] ?></p>
                                     <?php } elseif ($l['st_chamado'] == 'Andamento') { ?>
-                                    <p><strong>Início:</strong> <?= $l['dt_fechamento'] ?>
+                                    <p><strong>Aberto em:</strong> <?= $l['dt_fechamento'] ?>
                                     </p>
                                     <?php } ?>
 
@@ -111,7 +111,7 @@ include_once './chamados/script.php';
   scrollbar-width: none;
   scroll-behavior: smooth;">
                             <?php if (!empty($l['ds_recado'])) { ?>
-                            <p style="word-wrap: break-word; max-width: 200px; "><strong>Recado:</strong><br>
+                            <p style="word-wrap: break-word; max-width: 200px; "><strong>Feedback:</strong><br>
                                 <?= $l['ds_recado'] ?></p>
                             <?php } ?>
                         </div>

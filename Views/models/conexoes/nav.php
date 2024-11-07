@@ -3,10 +3,34 @@ button {
     background: none;
 }
 
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #ffd700;
+    text-decoration: none;
+}
+
+.navbar-light .navbar-nav .nav-link {
+  color:#fff;
+}
+
+.show>.nav-link {
+  color: #fff;
+}
+
 .reso {
     width: 4rem;
     height: 4rem;
     border-radius: 50%;
+}
+
+nav {
+    background-color: #03305c;
+}
+
+.dropdown-menu {
+    left: auto !important;
+    right: 0;
+    max-width: 400px;
+    overflow-x: hidden;
 }
 </style>
 
@@ -24,15 +48,15 @@ button {
         </div>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">Configurações</a>
+            <a class="nav-link" href="#">Configurações</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">
+            <a class="nav-link" href="#">
               <?php echo strtoupper($_SESSION['usuario']) ?>
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link text-white" href="/Reso/logout.php">Encerrar Sessão</a>
+            <a class="nav-link" href="/Reso/logout.php">Encerrar Sessão</a>
           </li>
         </ul>
     </div>

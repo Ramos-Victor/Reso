@@ -61,7 +61,7 @@ body {
                     </div>
                     <div class="form-group">
                         <label for="senha">Senha</label>
-                        <input type="senha" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
+                        <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha">
                     </div>
                     <input type="submit" name="action" class="btn btn-custom btn-block mt-3" value="Entrar"></input>
                 </form>
