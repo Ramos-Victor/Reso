@@ -22,7 +22,7 @@
 			$r = $result->fetch_assoc();
 			$_SESSION['id'] = $r['cd_usuario'];
 			$_SESSION['usuario'] = $r['nm_usuario'];
-			Confirma("Bem vindo ao Resolut.on", "./Views/models/conexoes/index.php");
+			Confirma("Bem vindo ao Resolut.on", "./Views/models/unidades/index.php");
 		} else {
 			Erro("Acesso recusado!");
 			session_destroy();
