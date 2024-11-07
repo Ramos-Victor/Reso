@@ -55,8 +55,8 @@ include_once './chamados/script.php';
         if ($listar && count($listar)> 0 ) {
             foreach ($listar as $index => $l) {
         ?>
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card mt-3" style="border-radius: 10px; 
+            <div class="col-md-4 col-sm-6">
+                <div class="card mt-2 mb-3" style="border-radius: 10px; 
                 background: linear-gradient(135deg, <?= $index % 2 == 0 ? '#0a4a8a' : '#03305c' ?>, <?= $index % 2 == 0 ? '#03305c' : '#0a4a8a' ?>);
                 height: 350px; overflow: hidden;">
 

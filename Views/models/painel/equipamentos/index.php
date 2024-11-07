@@ -168,7 +168,6 @@ if (!empty($_POST)) {
     } elseif ($_POST['action'] == "Deletar") {
         ExcluirEquipamento(
             $_POST['cd'], 
-            $_SESSION['conexao'], 
             "index.php");
     }
 }

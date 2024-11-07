@@ -16,7 +16,7 @@ function ListarEquipamentos($categoria = null, $data = null, $sala = null) {
             LEFT JOIN tb_usuario u ON e.id_usuario = u.cd_usuario
             LEFT JOIN tb_equipamento_categoria c ON e.id_categoria = c.cd_categoria
             LEFT JOIN tb_sala s ON e.id_sala = s.cd_sala
-            WHERE e.id_conexao = ?';
+            WHERE e.id_conexao = ? ORDER BY dt_equipamento';
 
     $params = [$_SESSION['conexao']];
     $types = 'i';
@@ -95,18 +95,94 @@ function EditarEquipamento($cd_equipamento, $nome, $desc, $status, $sala, $categ
     }
 }
 
-function ExcluirEquipamento($cd_equipamento, $conexao, $pagina) {
-    $sql = 'DELETE FROM tb_equipamento WHERE cd_equipamento = ? AND id_conexao = ?';
+function ExcluirEquipamento($cd_equipamento, $pagina) {
+    $sqlVerifica = 'SELECT * FROM tb_chamado where id_equipamento = ?';
+    $stmtVerifica = $GLOBALS['con']->prepare($sqlVerifica);
+
+    if(!$stmtVerifica){
+        Erro("Erro ao preparar consulta de vinculo".$GLOBALS['con']->error);
+        return;
+    }
+
+    $stmtVerifica->bind_param('i',$cd_equipamento);
+    $stmtVerifica->execute();
+
+    $result = $stmtVerifica->get_result();
+
+    if($result->num_rows > 0){
+        $mensagem = "";
+        while($row = $result->fetch_assoc()){
+            $mensagem .= "<p class='text-warning'>Chamado: ".$row['nm_chamado']."</p>";
+        }
+
+        ConfirmaExclusaoEquipamento($mensagem,$pagina,$cd_equipamento);
+        return;
+    }
+    $sql = 'DELETE FROM tb_equipamento WHERE cd_equipamento = ?';
 
     $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('ii', $cd_equipamento, $conexao);
+    
+    if(!$stmt){
+        Erro("Erro ao preparar a consulta de exclusão: " . $GLOBALS['con']->error);
+            return;
+    }
 
+    $stmt->bind_param('i',$cd_equipamento);
     $res = $stmt->execute();
 
     if ($res) {
         Confirma("Equipamento deletado com sucesso!", $pagina);
     } else {
-        Erro("Não foi possível deletar o Equipamento");
+        Erro("Não foi possível deletar o Equipamento:" .$GLOBALS['con']->error);
     }
 }
+
+    if(isset($_GET['confirmacao']) && $_GET['confirmacao']==='true' && isset($_GET['cd_equipamento'])){
+        $cd_equipamento = intval($_GET['cd_equipamento']);
+
+        $sqlMoverChamados = 'UPDATE tb_categoria SET id_equipamento = NULL WHERE id_equipamento = ?';
+
+        $stmtMover = $GLOBALS['con']->prepare($sqlMoverChamados);
+
+        if(!$stmtMover){
+            Erro("Erro ao preparar a consulta de atualização dos equipamentos: " . $GLOBALS['con']->error);
+            return;
+        }
+
+        $stmtMover->bind_param('i',$cd_equipamento);
+        $stmtMover->execute();
+
+        ExcluirEquipamento($cd_equipamento,$pagina);
+    }
+
+    if(isset($_GET['msg'])&& $_GET['msg']==='equipamento_excluido'){
+        Confirma("Equipamento removida com sucesso!", $pagina);
+    }
+
+    function ConfirmaExclusaoEquipamento($msg,$pagina,$cd_equipamento){
+        print '
+            <div class="modal fade" id="myModal" data-backdrop="static">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-body text-center font-weight-bolder text-danger">
+                            <h3>Deseja realmente deletar este equipamento? Os seguintes chamados estão vinculados a ele: </h3>
+                            <div class="overflow-auto">
+                            <p>'. $msg.' </p>
+                            </div>
+                            <h5>Deseja mesmo deletar?</h5>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-danger" onclick="redirecionar()">Sim, deletar</button>
+                            <button class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <script>
+                function redirecionar(){
+                    location.href = "' . $pagina . '?cd_categoria=' . $cd_equipamento . '&confirmacao=true";
+                }
+            </script>
+        ';
+    }
 ?>
