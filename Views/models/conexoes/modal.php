@@ -2,10 +2,10 @@
     <div class="modal-dialog modal-md div modal-content">
         <form method="post" enctype="multipart/form-data" class="form-group">
             <div class="modal-header">
-                Criar Conexão
+                Criar Unidade
             </div>
             <div class="modal-body">
-                <input type="text" name="nome" class="form-control" rows="5" placeholder="Nome conexão" required></input>
+                <input type="text" name="nome" class="form-control" rows="5" placeholder="Nome Unidade" required></input>
                 <br>
             </div>
             <div class="modal-footer">
@@ -22,10 +22,10 @@
     <div class="modal-dialog modal-md div modal-content">
         <form method="post" enctype="multipart/form-data" class="form-group">
             <div class="modal-header">
-                Entrar na conexão
+                Entrar em uma Unidade
             </div>
             <div class="modal-body">
-                <input type="text" name="code" class="form-control" placeholder="Digite o código da conexão que deseja entrar" required></input>
+                <input type="text" name="code" class="form-control" placeholder="Digite o código da unidade que deseja entrar" required></input>
                 <br>
             </div>
             <div class="modal-footer">
@@ -47,13 +47,13 @@
             <div class="modal-body">
                 <input type="hidden" name="cd" id="cd">
                 <br>
-                <label for="nome" class="">Nome da conexão</label>
+                <label for="nome" class="">Nome da Unidade</label>
                 <input type="text" name="nome" id="nome" class="form-control" rows="5" readonly></input>
                 <br>
-                <label for="cargo" class="">Cargo dentro da conexão</label>
+                <label for="cargo" class="">Cargo dentro da Unidade</label>
                 <input type="text" name="cargo" id="cargo" class="form-control" rows="5" readonly></input>
                 <br>
-                <label for="codigo" class="">Codigo de acesso conexão</label>
+                <label for="codigo" class="">Codigo de acesso a unidade</label>
                 <input type="text" name="codigo" id="codigo" class="form-control" rows="5" readonly></input>
                 <br>
                 <label for="data" class="">Data</label>
@@ -89,18 +89,18 @@
     <div class="modal-dialog modal-md div modal-content">
         <form method="post" enctype="multipart/form-data" class="form-group">
             <div class="modal-header">
-                SAIR DA CONEXÃO
+                Sair da Unidade
             </div>
             <div class="modal-body">
                 <input type="hidden" name="cd" id="cd">
                 <br>
-                <label for="nome" class="">Nome da conexão</label>
+                <label for="nome" class="">Nome da Unidade</label>
                 <input type="text" name="nome" id="nome" class="form-control" rows="5" readonly></input>
                 <br>
-                <label for="cargo" class="">Cargo dentro da conexão</label>
+                <label for="cargo" class="">Cargo dentro da Unidade</label>
                 <input type="text" name="cargo" id="cargo" class="form-control" rows="5" readonly></input>
                 <br>
-                <label for="codigo" class="">Codigo de acesso conexão</label>
+                <label for="codigo" class="">Codigo de acesso Unidade</label>
                 <input type="text" name="codigo" id="codigo" class="form-control" rows="5" readonly></input>
                 <br>
                 <label for="data" class="">Data</label>
@@ -121,18 +121,18 @@
     <div class="modal-dialog modal-md div modal-content">
         <form method="post" enctype="multipart/form-data" class="form-group">
             <div class="modal-header">
-                DELETAR CONEXÂO
+                Deleter Unidade
             </div>
             <div class="modal-body">
                 <input type="hidden" name="cd" id="cd">
                 <br>
-                <label for="nome" class="">Nome da conexão</label>
+                <label for="nome" class="">Nome da Unidade</label>
                 <input type="text" name="nome" id="nome" class="form-control" rows="5" readonly></input>
                 <br>
-                <label for="cargo" class="">Cargo dentro da conexão</label>
+                <label for="cargo" class="">Cargo dentro da Unidade</label>
                 <input type="text" name="cargo" id="cargo" class="form-control" rows="5" readonly></input>
                 <br>
-                <label for="codigo" class="">Codigo de acesso conexão</label>
+                <label for="codigo" class="">Codigo de acesso Unidade</label>
                 <input type="text" name="codigo" id="codigo" class="form-control" rows="5" readonly></input>
                 <br>
                 <label for="data" class="">Data</label>
@@ -152,12 +152,12 @@
     <div class="modal-dialog modal-md div modal-content">
         <form method="post" enctype="multipart/form-data" class="form-group">
             <div class="modal-header">
-                EDITAR CONEXÂO
+                Editar Unidade
             </div>
             <div class="modal-body">
                 <input type="hidden" name="cd" id="cd">
                 <br>
-                <label for="nome" class="">Nome da conexão</label>
+                <label for="nome" class="">Nome da Unidade</label>
                 <input type="text" name="nome" id="nome" class="form-control" rows="5" required></input>
                 <br>
             </div>
