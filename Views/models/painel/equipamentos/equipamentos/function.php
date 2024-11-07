@@ -131,7 +131,7 @@ function ExcluirEquipamento($cd_equipamento, $pagina) {
     $res = $stmt->execute();
 
     if ($res) {
-        Confirma("Equipamento deletado com sucesso!", $pagina);
+        Confirma("Equipamento deletado com sucesso!", $pagina."?");
     } else {
         Erro("Não foi possível deletar o Equipamento:" .$GLOBALS['con']->error);
     }
@@ -140,7 +140,7 @@ function ExcluirEquipamento($cd_equipamento, $pagina) {
     if(isset($_GET['confirmacao']) && $_GET['confirmacao']==='true' && isset($_GET['cd_equipamento'])){
         $cd_equipamento = intval($_GET['cd_equipamento']);
 
-        $sqlMoverChamados = 'UPDATE tb_categoria SET id_equipamento = NULL WHERE id_equipamento = ?';
+        $sqlMoverChamados = 'UPDATE tb_chamado SET id_equipamento = NULL WHERE id_equipamento = ?';
 
         $stmtMover = $GLOBALS['con']->prepare($sqlMoverChamados);
 
@@ -180,7 +180,7 @@ function ExcluirEquipamento($cd_equipamento, $pagina) {
             </div>
             <script>
                 function redirecionar(){
-                    location.href = "' . $pagina . '?cd_categoria=' . $cd_equipamento . '&confirmacao=true";
+                    location.href = "' . $pagina . '?cd_equipamento=' . $cd_equipamento . '&confirmacao=true";
                 }
             </script>
         ';

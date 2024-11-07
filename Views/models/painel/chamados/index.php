@@ -30,11 +30,12 @@ include_once './chamados/script.php';
                         <button class="dropdown-item" type="submit" name="status" value="Aberto">Aberto</button>
                         <button class="dropdown-item" type="submit" name="status" value="Andamento">Andamento</button>
                         <button class="dropdown-item" type="submit" name="status" value="Concluido">Concluído</button>
-                        <button class="dropdown-item" type="submit" name="status" value="">Todos</button>
+                        <button class="dropdown-item" type="submit" name="status" value="">Limpar</button>
                     </div>
                 </form>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 text-left mt-2">
+                <h5><?php if(!empty($_GET['status']) && $_GET['status']!="")echo "<h9 class='text-muted'>Filtro selecionado: ".$_GET['status']."</h9>";?></h5>
             </div>
             <div class="col-sm-2 col-xs-2">
                 <button class="btn btn-block d-flex flex-row"
@@ -132,7 +133,7 @@ include_once './chamados/script.php';
                             equipamento="<?= $l['nm_equipamento'] ?? 'Não especificado' ?>"
                             status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
                             usuario="<?= $l['usuario_abertura']; ?>">
-                            <i class="botoes bi bi-hourglass-split"></i> Andamento
+                            <i class="botoes bi bi-hourglass-split"></i> Atribuir Andamento
                         </button>
                         <?php } elseif ($l['st_chamado'] == 'Andamento' && $_SESSION['cargo'] != 'comum') { ?>
                         <button class="btn btn-success btn-sm concluir" data-toggle="modal"
@@ -148,7 +149,7 @@ include_once './chamados/script.php';
             <?php
             }
         }else {
-            echo "<div class='col-12 text-center text-muted my-3'><h5>Nenhum chamado encontrado.</h5></div>";
+            echo "<div class='col-12 text-center text-muted' style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'><h5>Nenhum chamado encontrado.</h5></div>";
         }
         ?>
         </div>
