@@ -86,7 +86,7 @@ thead {
     </div>
 
     <?php
-    require_once '../../../../footer.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php';
     ?>
 </body>
 

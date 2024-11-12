@@ -1,6 +1,6 @@
 <?php
 
-function ListarEquipamentos($categoria = null, $data = null, $sala = null) {
+function ListarEquipamentos($categoria = null, $sala = null) {
     $sql = 'SELECT 
                 e.cd_equipamento, 
                 e.nm_equipamento, 
@@ -25,11 +25,6 @@ function ListarEquipamentos($categoria = null, $data = null, $sala = null) {
         $sql .= ' AND e.id_categoria = ?';
         $params[] = $categoria;
         $types .= 'i';
-    }
-    if ($data) {
-        $sql .= ' AND DATE(e.dt_equipamento) = ?';
-        $params[] = $data;
-        $types .= 's';
     }
     if ($sala) {
         $sql .= ' AND e.id_sala = ?';

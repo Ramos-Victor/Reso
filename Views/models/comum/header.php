@@ -5,11 +5,11 @@ ini_set('display_errors', 1) ;
 if(!empty($_SESSION['id'])){
     $_SESSION['id'];
     $_SESSION['usuario'];
-    include_once 'C:\xampp\htdocs\Reso\conect.php';
-    include_once 'C:\xampp\htdocs\Reso\dialog.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/conect.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/dialog.php';
 }
 else{
-    header("Location: ../conexoes/conexao.php");
+    header("Location:/Reso/Views/models/unidades/index.php");
 }
 ?>
 

@@ -118,7 +118,7 @@
 
 
         <?php
-    include_once 'C:\xampp\htdocs\Reso\footer.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php';
 ?>
 </body>
 

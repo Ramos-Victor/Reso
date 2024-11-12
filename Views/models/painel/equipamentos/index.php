@@ -21,7 +21,7 @@ require_once './equipamentos/script.php';
     <br><br><br><br>
     <div class="container-fluid">
         <div class="row">
-            <?php $filtro = ListarEquipamentos(); if(!empty($filtro)):?>
+            <?php $filtro = ListarEquipamentos(); if(!empty($filtro)){?>
             <div class="col-sm-2 col-xs-2">
                 <button class="btn btn-block" style="background-color:#03305c;" data-toggle="dropdown"
                     aria-haspopup="true" aria-expanded="false" id="filterDropdownButton">
@@ -34,7 +34,8 @@ require_once './equipamentos/script.php';
                         <h6 class="dropdown-header">Filtrar Equipamentos</h6>
                         <div class="form-group">
                             <label for="categoria">Categoria</label>
-                            <select name="categoria" id="categoria" class="form-control fixed-select" style="min-width: 200px;">
+                            <select name="categoria" id="categoria" class="form-control fixed-select"
+                                style="min-width: 200px;">
                                 <option value="">Selecione uma Categoria</option>
                                 <?php
                     $categorias = ListarCategorias("Nenhuma categoria encontrada.");
@@ -66,10 +67,11 @@ require_once './equipamentos/script.php';
                     </form>
                 </div>
             </div>
-            <?php ELSE:
-                echo '<div class="col-sm-2 col-xs-2"></div>';
-                ENDIF;
-            ?>
+            <?php }else{ ?>
+            <div class="col-sm-2 col-xs-2">
+                <div></div>
+            </div>
+            <?php }?>
             <div class="col-sm-8">
             </div>
             <div class="col-sm-2 col-xs-2">
@@ -86,7 +88,6 @@ require_once './equipamentos/script.php';
 
             <?php
             $categoria = $_GET['categoria'] ?? null;
-            $data = $_GET['data'] ?? null;
             $sala = $_GET['sala'] ?? null;
             
             $listar = ListarEquipamentos($categoria, $data, $sala);
@@ -138,11 +139,16 @@ require_once './equipamentos/script.php';
             <?php
         }
     }else {
-        echo "<div class='col-12 text-center text-muted my-3' style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);><h5>Nenhum equipamento encontrado.</h5></div>";
+        echo "<div class='col-12 text-center text-muted my-3' style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'><h5>Nenhum equipamento encontrado.</h5></div>";
     }
+
     ?>
         </div>
+        <?php
+            include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php'; 
+        ?>
 </body>
+
 <?php
 if (!empty($_POST)) {
     if ($_POST['action'] == "Criar") {

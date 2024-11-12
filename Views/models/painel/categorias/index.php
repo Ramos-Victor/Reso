@@ -79,6 +79,9 @@ require_once './categoria/script.php';
         </div>
 
     </div>
+    <?php
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php';
+    ?>
 </body>
 <?php
 if(!empty($_POST)){

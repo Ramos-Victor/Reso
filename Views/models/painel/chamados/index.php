@@ -16,7 +16,7 @@ include_once './chamados/script.php';
     <?php
         include_once '../nav.php';
     ?>
-     <br><br><br><br>
+    <br><br><br><br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-2 col-xs-2">
@@ -35,7 +35,8 @@ include_once './chamados/script.php';
                 </form>
             </div>
             <div class="col-sm-8 text-left mt-2">
-                <h5><?php if(!empty($_GET['status']) && $_GET['status']!="")echo "<h9 class='text-muted'>Filtro selecionado: ".$_GET['status']."</h9>";?></h5>
+                <h5><?php if(!empty($_GET['status']) && $_GET['status']!="")echo "<h9 class='text-muted'>Filtro selecionado: ".$_GET['status']."</h9>";?>
+                </h5>
             </div>
             <div class="col-sm-2 col-xs-2">
                 <button class="btn btn-block d-flex flex-row"
@@ -83,7 +84,9 @@ include_once './chamados/script.php';
                                     <?php } ?>
 
                                     <p><strong>Aberto por:</strong> <?= $l['usuario_abertura'] ?></p>
+                                    <?php if ($l['st_chamado'] == 'Concluido') { ?>
                                     <p><strong>Finalizado por:</strong> <?= $l['usuario_fechamento'] ?></p>
+                                    <?php } ?>
                                 </div>
                             </div>
                             <div>
@@ -154,7 +157,9 @@ include_once './chamados/script.php';
         ?>
         </div>
     </div>
-
+    <?php
+            include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php';
+        ?>
 </body>
 <?php
 if (!empty($_POST)) {

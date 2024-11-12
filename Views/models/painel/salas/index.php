@@ -93,6 +93,9 @@ require_once './salas/script.php';
         </div>
 
     </div>
+    <?php 
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php';
+    ?>
 </body>
 <?php
 if(!empty($_POST)){

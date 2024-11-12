@@ -1,6 +1,6 @@
 <?php
  if (session_status() === PHP_SESSION_NONE) {
-    session_start();  // Inicie a sessão aqui
+    session_start();
 }
 error_reporting(E_ALL ^ E_WARNING);
 ini_set('display_errors', 1) ;
@@ -8,8 +8,8 @@ if(!empty($_SESSION['id'])){
     $_SESSION['id'];
     $_SESSION['usuario'];
     unset($_SESSION['conexao']);
-    include_once 'C:\xampp\htdocs\Reso\conect.php';
-    include_once 'C:\xampp\htdocs\Reso\dialog.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/conect.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/dialog.php';
 }
 else{
     header("Location: /Reso/logout.php");

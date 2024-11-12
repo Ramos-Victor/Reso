@@ -1,6 +1,6 @@
 <?php
-    include_once 'C:\xampp\htdocs\Reso\Views\models\comum\salas\function.php';
-    include_once 'C:\xampp\htdocs\Reso\Views\models\comum\categoria\function.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/models/comum/salas/function.php';
+    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/models/comum/categoria/function.php';
 ?>
 
 <!-- Modal Criar Equipamento -->
