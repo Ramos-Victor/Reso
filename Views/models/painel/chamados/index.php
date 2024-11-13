@@ -10,6 +10,12 @@ include_once './chamados/script.php';
 .botoes {
     font-size: 20px;
 }
+
+.feedback-text {
+    word-wrap: break-word;
+    max-width: 200px;
+    overflow: auto;
+}
 </style>
 
 <body>
@@ -60,7 +66,7 @@ include_once './chamados/script.php';
             <div class="col-md-4 col-sm-6">
                 <div class="card mt-2 mb-3" style="border-radius: 10px; 
                 background: linear-gradient(135deg, <?= $index % 2 == 0 ? '#0a4a8a' : '#03305c' ?>, <?= $index % 2 == 0 ? '#03305c' : '#0a4a8a' ?>);
-                height: 350px; overflow: hidden;">
+                height: 400px; overflow: hidden;">
 
                     <div class="card-body text-white d-flex justify-content-between">
                         <div class="d-flex flex-column justify-content-between" style="flex: 1;">
@@ -75,7 +81,7 @@ include_once './chamados/script.php';
                                     <p><strong>Finalizado em:</strong>
                                         <?= $l['dt_fechamento'] ?></p>
                                     <?php } elseif ($l['st_chamado'] == 'Andamento') { ?>
-                                    <p><strong>Aberto em:</strong> <?= $l['dt_fechamento'] ?>
+                                    <p><strong>Em andamento desde:</strong> <?= $l['dt_fechamento'] ?>
                                     </p>
                                     <?php } ?>
 
@@ -111,12 +117,9 @@ include_once './chamados/script.php';
                             </div>
                         </div>
 
-                        <div class="d-flex align-items-start  overflow-auto" style="flex-shrink: 0; text-align: right; overflow-y: scroll;
-  overflow-x: hidden;
-  scrollbar-width: none;
-  scroll-behavior: smooth;">
+                        <div>
                             <?php if (!empty($l['ds_recado'])) { ?>
-                            <p style="word-wrap: break-word; max-width: 200px; "><strong>Feedback:</strong><br>
+                            <p class="feedback-text"><strong>Feedback:</strong><br>
                                 <?= $l['ds_recado'] ?></p>
                             <?php } ?>
                         </div>
@@ -128,8 +131,20 @@ include_once './chamados/script.php';
                             title="Deletar" cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>">
                             <i class="botoes bi bi-trash3-fill"></i> Deletar
                         </button>
-                        <?php } ?>
-                        <?php if ($l['st_chamado'] == 'Aberto' && $_SESSION['cargo'] != 'comum') { ?>
+                        <?php } 
+                        if($l['st_chamado'] =='Aberto' && $l['id_abertura']== $_SESSION['id']){
+                        ?>
+                            <button class="btn btn-primary btn-sm editar" data-toggle="modal"
+                            data-target="#modalEditar" cd="<?= $l['cd_chamado']; ?>"
+                            titulo="<?= $l['nm_chamado']; ?>" descricao="<?= $l['ds_chamado'] ?>"
+                            equipamento="<?= $l['nm_equipamento'] ?? 'Não especificado' ?>"
+                            status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
+                            usuario="<?= $l['usuario_abertura']; ?>">
+                            <i class="botoes bi bi-hourglass-split"></i> Editar
+                        </button>
+                        <?php 
+                        }
+                        if ($l['st_chamado'] == 'Aberto' && $_SESSION['cargo'] != 'comum') { ?>
                         <button class="btn btn-warning btn-sm andamento" data-toggle="modal"
                             data-target="#modalAndamento" cd="<?= $l['cd_chamado']; ?>"
                             titulo="<?= $l['nm_chamado']; ?>" descricao="<?= $l['ds_chamado'] ?>"
@@ -144,7 +159,16 @@ include_once './chamados/script.php';
                             titulo="<?= $l['nm_chamado']; ?>">
                             <i class="botoes bi bi-check-circle-fill"></i> Concluir
                         </button>
-                        <?php } ?>
+                        <?php }
+
+                        if($l['st_chamado']=='Concluido'){
+                       ?>
+                        <button class="btn btn-success btn-sm avaliar" data-toggle="modal"
+                            data-target="#modalAvaliar" cd="<?= $l['cd_chamado']; ?>"
+                            titulo="<?= $l['nm_chamado']; ?>">
+                            <i class="botoes bi bi-star-fill"></i> Avaliar
+                        </button>
+                        <?php }?>
                     </div>
                 </div>
             </div>
@@ -189,6 +213,15 @@ if (!empty($_POST)) {
             $_POST['cd'],
             $_POST['recado'],
             $_SESSION['id'],
+            $_SESSION['conexao'],
+            "index.php"
+        );
+    }elseif ($_POST['action']== "Editar"){
+        EditarChamado(
+            $_POST['cd'],
+            $_POST['titulo'],
+            $_POST['descricao'],
+            $_POST['equipamento'],
             $_SESSION['conexao'],
             "index.php"
         );

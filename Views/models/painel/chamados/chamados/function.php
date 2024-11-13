@@ -22,6 +22,8 @@ function ListarChamados($status = null) {
                    DATE_FORMAT(dt_fechamento,"%d/%m/%Y") as dt_fechamento, 
                    c.st_chamado, 
                    c.ds_recado,
+                   c.id_usuario_abertura  as id_abertura,
+                   c.id_usuario_fechamento,
                    e.nm_equipamento, 
                    u.nm_usuario as usuario_abertura,
                    uf.nm_usuario as usuario_fechamento
@@ -90,6 +92,19 @@ function DeletarChamado($cd_chamado, $conexao, $pagina) {
         Confirma("Chamado deletado com sucesso!", $pagina);
     } else {
         Erro("Erro ao deletar o chamado.");
+    }
+}
+
+function EditarChamado($cd_chamado,$titulo, $descricao,$equipamento, $conexao,$pagina){
+    $sql = "UPDATE tb_chamado SET nm_chamado = ?, ds_chamado = ?, id_equipamento = ? WHERE cd_chamado = ? AND id_conexao = ?";
+    $stmt = $GLOBALS['con']->prepare($sql);
+    $stmt->bind_param('ssiii', $titulo, $descricao, $equipamento, $cd_chamado, $conexao);
+    $res = $stmt->execute();
+
+    if ($res) {
+        Confirma("Chamado editado com sucesso!", $pagina);
+    } else {
+        Erro("Erro ao editar o chamado.");
     }
 }
 

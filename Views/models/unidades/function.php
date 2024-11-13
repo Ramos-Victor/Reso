@@ -50,10 +50,10 @@ function CriarConexao($nome, $criador, $pagina) {
 
         $res = $GLOBALS['con']->query($sql);
 
-        if($res->num_rows>0){
-            return $res;
-        }else{
-            echo'<h2 class="text-white mx-auto mt-3"> Você não tem conexões. </h2>';
+        if ($res && $res->num_rows > 0) {
+            return $res->fetch_all(MYSQLI_ASSOC);
+        } else {
+            return []; 
         }
     }
 

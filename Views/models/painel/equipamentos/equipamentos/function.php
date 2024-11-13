@@ -16,7 +16,7 @@ function ListarEquipamentos($categoria = null, $sala = null) {
             LEFT JOIN tb_usuario u ON e.id_usuario = u.cd_usuario
             LEFT JOIN tb_equipamento_categoria c ON e.id_categoria = c.cd_categoria
             LEFT JOIN tb_sala s ON e.id_sala = s.cd_sala
-            WHERE e.id_conexao = ? ORDER BY dt_equipamento';
+            WHERE e.id_conexao = ?';
 
     $params = [$_SESSION['conexao']];
     $types = 'i';

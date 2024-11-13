@@ -48,7 +48,7 @@ nav {
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/Reso/Views/models/conexoes/">Voltar</a>
+                <a class="nav-link" href="/Reso/Views/models/unidades/">Voltar</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="/Reso/Views/models/painel/index.php">Dashboard </a>
@@ -72,7 +72,7 @@ nav {
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
                     data-placement="bottom">
-                    <?php echo $_SESSION['usuario'] ?>
+                    <?= $_SESSION['usuario'] ?>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item a" href="#">Configurações</a>

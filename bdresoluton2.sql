@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
 
 -- -----------------------------------------------------
--- Schema db_resoluton2
+-- Schema resol326_resolution
 -- -----------------------------------------------------
 -- -----------------------------------------------------
--- Schema db_resoluton2
+-- Schema resol326_resolution
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `db_resoluton2` DEFAULT CHARACTER SET utf8 ;
-USE `db_resoluton2` ;
--- drop database db_resoluton2;
+CREATE SCHEMA IF NOT EXISTS `resol326_resolution` DEFAULT CHARACTER SET utf8 ;
+USE `resol326_resolution` ;
+-- drop database resol326_resolution;
 
 -- -----------------------------------------------------
--- Table `db_resoluton2`.`tb_usuario`
+-- Table `resol326_resolution`.`tb_usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_usuario` (
+CREATE TABLE IF NOT EXISTS `resol326_resolution`.`tb_usuario` (
   `cd_usuario` INT NOT NULL AUTO_INCREMENT,
   `nm_usuario` VARCHAR(50) NOT NULL,
   `nm_email` VARCHAR(100) NOT NULL,
@@ -32,9 +32,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_resoluton2`.`tb_conexao`
+-- Table `resol326_resolution`.`tb_conexao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_conexao` (
+CREATE TABLE IF NOT EXISTS `resol326_resolution`.`tb_conexao` (
   `cd_conexao` INT NOT NULL AUTO_INCREMENT,
   `nm_conexao` VARCHAR(100) NOT NULL,
   `dt_conexao` DATETIME NOT NULL DEFAULT current_timestamp,
@@ -44,16 +44,16 @@ CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_conexao` (
   INDEX `fk_tb_unidade_tb_usuario1_idx` (`id_criador` ASC) ,
   CONSTRAINT `fk_tb_unidade_tb_usuario1`
     FOREIGN KEY (`id_criador`)
-    REFERENCES `db_resoluton2`.`tb_usuario` (`cd_usuario`)
+    REFERENCES `resol326_resolution`.`tb_usuario` (`cd_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_resoluton2`.`tb_usuario_conexao`
+-- Table `resol326_resolution`.`tb_usuario_conexao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_usuario_conexao` (
+CREATE TABLE IF NOT EXISTS `resol326_resolution`.`tb_usuario_conexao` (
   `id_usuario` INT NOT NULL,
   `id_conexao` INT NOT NULL,
   `cargo_usuario` ENUM('criador','admin', 'suporte', 'comum') NOT NULL,
@@ -63,21 +63,21 @@ CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_usuario_conexao` (
   INDEX `fk_tb_usuario_has_tb_unidade_tb_usuario1_idx` (`id_usuario` ASC) ,
   CONSTRAINT `fk_tb_usuario_has_tb_unidade_tb_usuario1`
     FOREIGN KEY (`id_usuario`)
-    REFERENCES `db_resoluton2`.`tb_usuario` (`cd_usuario`)
+    REFERENCES `resol326_resolution`.`tb_usuario` (`cd_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tb_usuario_has_tb_unidade_tb_unidade1`
     FOREIGN KEY (`id_conexao`)
-    REFERENCES `db_resoluton2`.`tb_conexao` (`cd_conexao`)
+    REFERENCES `resol326_resolution`.`tb_conexao` (`cd_conexao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_resoluton2`.`tb_sala`
+-- Table `resol326_resolution`.`tb_sala`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_sala` (
+CREATE TABLE IF NOT EXISTS `resol326_resolution`.`tb_sala` (
   `cd_sala` INT NOT NULL AUTO_INCREMENT,
   `nm_sala` VARCHAR(45) NOT NULL,
   `ds_sala` VARCHAR(255) NOT NULL,
@@ -88,16 +88,16 @@ CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_sala` (
   INDEX `fk_tb_sala_tb_usuario_unidade1_idx` (`id_usuario` ASC, `id_conexao` ASC) ,
   CONSTRAINT `fk_tb_sala_tb_usuario_unidade1`
     FOREIGN KEY (`id_usuario` , `id_conexao`)
-    REFERENCES `db_resoluton2`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
+    REFERENCES `resol326_resolution`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_resoluton2`.`tb_equipamento_categoria`
+-- Table `resol326_resolution`.`tb_equipamento_categoria`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_equipamento_categoria` (
+CREATE TABLE IF NOT EXISTS `resol326_resolution`.`tb_equipamento_categoria` (
   `cd_categoria` INT NOT NULL AUTO_INCREMENT,
   `categoria_nm` VARCHAR(100) NOT NULL,
   `dt_categoria` DATETIME NOT NULL DEFAULT current_timestamp,
@@ -107,21 +107,21 @@ CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_equipamento_categoria` (
   INDEX `fk_tb_equipamento_categoria_tb_usuario_unidade1_idx` (`id_usuario` ASC, `id_conexao` ASC) ,
   CONSTRAINT `fk_tb_equipamento_categoria_tb_usuario_unidade1`
     FOREIGN KEY (`id_usuario` , `id_conexao`)
-    REFERENCES `db_resoluton2`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
+    REFERENCES `resol326_resolution`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_resoluton2`.`tb_equipamento`
+-- Table `resol326_resolution`.`tb_equipamento`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_equipamento` (
+CREATE TABLE IF NOT EXISTS `resol326_resolution`.`tb_equipamento` (
   `cd_equipamento` INT NOT NULL AUTO_INCREMENT,
   `nm_equipamento` VARCHAR(45) NOT NULL,
   `ds_equipamento` LONGTEXT NOT NULL,
   `dt_equipamento` DATETIME NOT NULL DEFAULT current_timestamp,
-  `st_equipamento` ENUM('Ativo', 'Manuntencao', 'Desativado') NOT NULL DEFAULT 'Desativado',
+  `st_equipamento` ENUM('Ativo', 'Manuntenção', 'Desativado') NOT NULL DEFAULT 'Desativado',
   `id_sala` INT NOT NULL,
   `id_categoria` INT NULL,
   `id_usuario` INT NOT NULL,
@@ -132,26 +132,26 @@ CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_equipamento` (
   INDEX `fk_tb_equipamento_tb_usuario_unidade1_idx` (`id_usuario` ASC, `id_conexao` ASC) ,
   CONSTRAINT `fk_tb_equipamento_tb_sala1`
     FOREIGN KEY (`id_sala`)
-    REFERENCES `db_resoluton2`.`tb_sala` (`cd_sala`)
+    REFERENCES `resol326_resolution`.`tb_sala` (`cd_sala`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tb_equipamento_tb_equipamento_categoria1`
     FOREIGN KEY (`id_categoria`)
-    REFERENCES `db_resoluton2`.`tb_equipamento_categoria` (`cd_categoria`)
+    REFERENCES `resol326_resolution`.`tb_equipamento_categoria` (`cd_categoria`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tb_equipamento_tb_usuario_unidade1`
     FOREIGN KEY (`id_usuario` , `id_conexao`)
-    REFERENCES `db_resoluton2`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
+    REFERENCES `resol326_resolution`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_resoluton2`.`tb_chamado`
+-- Table `resol326_resolution`.`tb_chamado`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_chamado` (
+CREATE TABLE IF NOT EXISTS `resol326_resolution`.`tb_chamado` (
   `cd_chamado` INT NOT NULL AUTO_INCREMENT,
   `nm_chamado` VARCHAR(45) NOT NULL,
   `ds_chamado` LONGTEXT NOT NULL,
@@ -169,26 +169,26 @@ CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_chamado` (
   INDEX `fk_tb_chamado_tb_usuario_conexao1_idx` (`id_usuario_fechamento` ASC) ,
   CONSTRAINT `fk_tb_chamado_tb_equipamento1`
     FOREIGN KEY (`id_equipamento`)
-    REFERENCES `db_resoluton2`.`tb_equipamento` (`cd_equipamento`)
+    REFERENCES `resol326_resolution`.`tb_equipamento` (`cd_equipamento`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tb_chamado_tb_usuario_unidade1`
     FOREIGN KEY (`id_usuario_abertura` , `id_conexao`)
-    REFERENCES `db_resoluton2`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
+    REFERENCES `resol326_resolution`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tb_chamado_tb_usuario_conexao1`
     FOREIGN KEY (`id_usuario_fechamento`)
-    REFERENCES `db_resoluton2`.`tb_usuario_conexao` (`id_usuario`)
+    REFERENCES `resol326_resolution`.`tb_usuario_conexao` (`id_usuario`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_resoluton2`.`tb_categoria_faq`
+-- Table `resol326_resolution`.`tb_categoria_faq`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_categoria_faq` (
+CREATE TABLE IF NOT EXISTS `resol326_resolution`.`tb_categoria_faq` (
   `cd_categoria_faq` INT NOT NULL AUTO_INCREMENT,
   `nm_categoria_faq` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`cd_categoria_faq`))
@@ -196,9 +196,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `db_resoluton2`.`tb_faq`
+-- Table `resol326_resolution`.`tb_faq`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_faq` (
+CREATE TABLE IF NOT EXISTS `resol326_resolution`.`tb_faq` (
   `cd_faq` INT NOT NULL AUTO_INCREMENT,
   `nm_pergunta_faq` VARCHAR(45) NOT NULL,
   `ds_resposta_faq` LONGTEXT NOT NULL,
@@ -208,7 +208,29 @@ CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_faq` (
   INDEX `fk_tb_faq_tb_categoria_faq1_idx` (`id_categoria_faq` ASC) ,
   CONSTRAINT `fk_tb_faq_tb_categoria_faq1`
     FOREIGN KEY (`id_categoria_faq`)
-    REFERENCES `db_resoluton2`.`tb_categoria_faq` (`cd_categoria_faq`)
+    REFERENCES `resol326_resolution`.`tb_categoria_faq` (`cd_categoria_faq`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+
+CREATE TABLE IF NOT EXISTS `resol326_resolution`.`tb_chat_mensagem` (
+  `cd_mensagem` INT NOT NULL AUTO_INCREMENT,
+  `ds_mensagem` TEXT NOT NULL,
+  `dt_mensagem` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `id_usuario` INT NOT NULL,
+  `id_conexao` INT NOT NULL,
+  `id_chamado` INT NOT NULL,
+  PRIMARY KEY (`cd_mensagem`),
+  INDEX `fk_tb_chat_mensagem_tb_usuario_conexao1_idx` (`id_usuario` ASC, `id_conexao` ASC),
+  INDEX `fk_tb_chat_mensagem_tb_chamado1_idx` (`id_chamado` ASC),
+  CONSTRAINT `fk_tb_chat_mensagem_tb_usuario_conexao1`
+    FOREIGN KEY (`id_usuario` , `id_conexao`)
+    REFERENCES `resol326_resolution`.`tb_usuario_conexao` (`id_usuario` , `id_conexao`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_tb_chat_mensagem_tb_chamado1`
+    FOREIGN KEY (`id_chamado`)
+    REFERENCES `resol326_resolution`.`tb_chamado` (`cd_chamado`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -223,36 +245,36 @@ insert into tb_usuario (nm_usuario, nm_email, cd_senha) values
  ('lais','lais@gmail.com',sha2('123',256) ),
  ('marcio','marcio@gmail.com',sha2('123',256) );
  
- INSERT INTO `db_resoluton2`.`tb_conexao` (nm_conexao, codigo_conexao, id_criador) VALUES 
-('Conexão 1', 'Codigo_Conexao_1', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'));
+ INSERT INTO `resol326_resolution`.`tb_conexao` (nm_conexao, codigo_conexao, id_criador) VALUES 
+('Conexão 1', 'Codigo_Conexao_1', (SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='victor'));
 
-INSERT INTO `db_resoluton2`.`tb_usuario_conexao` (id_usuario, id_conexao, cargo_usuario) VALUES
-((SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1, 'criador'),
-((SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='lais'),1, 'suporte'),
-((SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='marcio'), 1, 'comum');
+INSERT INTO `resol326_resolution`.`tb_usuario_conexao` (id_usuario, id_conexao, cargo_usuario) VALUES
+((SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='victor'), 1, 'criador'),
+((SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='lais'),1, 'suporte'),
+((SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='marcio'), 1, 'comum');
 
-INSERT INTO `db_resoluton2`.`tb_sala` (nm_sala, ds_sala, id_usuario, id_conexao) VALUES 
-('ESTOQUE', 'Sala de Estoque', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+INSERT INTO `resol326_resolution`.`tb_sala` (nm_sala, ds_sala, id_usuario, id_conexao) VALUES 
+('ESTOQUE', 'Sala de Estoque', (SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='victor'), 1);
 
-INSERT INTO `db_resoluton2`.`tb_equipamento_categoria` (categoria_nm, id_usuario, id_conexao) VALUES 
-('NOTEBOOK', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
-('TECLADO', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
-('MOUSE', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+INSERT INTO `resol326_resolution`.`tb_equipamento_categoria` (categoria_nm, id_usuario, id_conexao) VALUES 
+('NOTEBOOK', (SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='victor'), 1),
+('TECLADO', (SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='victor'), 1),
+('MOUSE', (SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='victor'), 1);
 
-INSERT INTO `db_resoluton2`.`tb_sala` (nm_sala, ds_sala, id_usuario, id_conexao) VALUES 
-('lAB01', 'Laboratório 01', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
-('lAB02', 'Laboratório 02', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+INSERT INTO `resol326_resolution`.`tb_sala` (nm_sala, ds_sala, id_usuario, id_conexao) VALUES 
+('lAB01', 'Laboratório 01', (SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='victor'), 1),
+('lAB02', 'Laboratório 02', (SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='victor'), 1);
 
-INSERT INTO `db_resoluton2`.`tb_equipamento` (nm_equipamento, ds_equipamento, id_categoria, id_sala, id_usuario, id_conexao) VALUES 
-('NOTE01', 'Notebook da marca X', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Notebook'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'),1),
-('TECLADO01', 'Teclado mecânico', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Teclado'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
-('MOUSE01', 'Mouse óptico', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Mouse'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+INSERT INTO `resol326_resolution`.`tb_equipamento` (nm_equipamento, ds_equipamento, id_categoria, id_sala, id_usuario, id_conexao) VALUES 
+('NOTE01', 'Notebook da marca X', (SELECT cd_categoria FROM resol326_resolution.tb_equipamento_categoria WHERE categoria_nm='Notebook'), (SELECT cd_sala FROM resol326_resolution.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='victor'),1),
+('TECLADO01', 'Teclado mecânico', (SELECT cd_categoria FROM resol326_resolution.tb_equipamento_categoria WHERE categoria_nm='Teclado'), (SELECT cd_sala FROM resol326_resolution.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='victor'), 1),
+('MOUSE01', 'Mouse óptico', (SELECT cd_categoria FROM resol326_resolution.tb_equipamento_categoria WHERE categoria_nm='Mouse'), (SELECT cd_sala FROM resol326_resolution.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='victor'), 1);
 
-INSERT INTO `db_resoluton2`.`tb_chamado` (nm_chamado, ds_chamado, id_equipamento, id_usuario_abertura, id_conexao) VALUES 
-('Problema no notebook', 'Relato de que o notebook não liga', (SELECT cd_equipamento FROM db_resoluton2.tb_equipamento WHERE nm_equipamento='note01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='marcio'), 1);
+INSERT INTO `resol326_resolution`.`tb_chamado` (nm_chamado, ds_chamado, id_equipamento, id_usuario_abertura, id_conexao) VALUES 
+('Problema no notebook', 'Relato de que o notebook não liga', (SELECT cd_equipamento FROM resol326_resolution.tb_equipamento WHERE nm_equipamento='note01'), (SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='marcio'), 1);
 
-UPDATE `db_resoluton2`.`tb_chamado` 
-SET st_chamado='Concluido', dt_fechamento=CURRENT_TIMESTAMP, id_usuario_fechamento=(SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='lais')
+UPDATE `resol326_resolution`.`tb_chamado` 
+SET st_chamado='Concluido', dt_fechamento=CURRENT_TIMESTAMP, id_usuario_fechamento=(SELECT cd_usuario FROM resol326_resolution.tb_usuario WHERE nm_usuario='lais')
 WHERE cd_chamado = 1;
 
 select * from tb_equipamento;

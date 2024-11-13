@@ -90,7 +90,7 @@ require_once './equipamentos/script.php';
             $categoria = $_GET['categoria'] ?? null;
             $sala = $_GET['sala'] ?? null;
             
-            $listar = ListarEquipamentos($categoria, $data, $sala);
+            $listar = ListarEquipamentos($categoria, $sala);
 
     if ($listar && count($listar)>0) {
         foreach ($listar as $index => $l) {
