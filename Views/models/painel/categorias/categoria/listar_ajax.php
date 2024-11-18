@@ -1,0 +1,46 @@
+<?php
+session_start();
+require_once './function.php';
+
+$listar = ListarCategorias("<h2 class='mx-auto text-white'>Cadastre suas categorias, elas serão exibidas aqui!</h2>");
+
+if ($listar) {
+?>
+<div class="table-responsive">
+    <table class="table table-bordered table-striped table-hover">
+        <thead class="bg-primary text-white text-center">
+            <tr>
+                <th style="width: 30%;">Nome da Categoria</th>
+                <th style="width: 20%;">Data de Criação</th>
+                <th style="width: 25%;">Criado Por</th>
+                <th style="width: 25%;">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            <?php foreach ($listar as $l): ?>
+            <tr class="text-center">
+                <td><?= $l['categoria_nm'] ?></td>
+                <td><?= $l['dt_categoria'] ?></td>
+                <td><?= $l['nm_usuario'] ?></td>
+                <td>
+                    <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
+                        title="Deletar" cd="<?= $l['cd_categoria']; ?>" nome="<?= $l['categoria_nm']; ?>"
+                        criado="<?= $l['id_usuario']; ?>" data="<?= $l['dt_categoria']; ?>" style="font-size: 14px;">
+                        <i class="bi bi-trash3-fill" style="font-size: 16px;"></i> Deletar
+                    </button>
+                    <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
+                        title="Editar" cd="<?= $l['cd_categoria']; ?>" nome="<?= $l['categoria_nm']; ?>"
+                        criado="<?= $l['id_usuario']; ?>" data="<?= $l['dt_categoria']; ?>" style="font-size: 14px;">
+                        <i class="bi bi-pencil-fill" style="font-size: 16px;"></i> Editar
+                    </button>
+                </td>
+            </tr>
+            <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
+<?php
+} else {
+    echo "<div class='col-12 text-center text-muted'><h5>Nenhuma categoria encontrada.</h5></div>";
+}
+?>

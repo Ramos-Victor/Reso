@@ -1,4 +1,5 @@
 <?php
+require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
 
 function ListarEquipamentos($categoria = null, $sala = null) {
     $sql = 'SELECT 

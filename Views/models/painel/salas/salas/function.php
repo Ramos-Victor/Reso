@@ -1,4 +1,8 @@
 <?php
+
+require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
+
+
     function ListarSalas(){
         $sql = 'SELECT  cd_usuario, nm_usuario, cd_sala, nm_sala, ds_sala, DATE_FORMAT(dt_sala, "%d/%m/%Y") as dt_sala, id_usuario, id_conexao FROM tb_sala INNER JOIN tb_usuario on id_usuario = cd_usuario and id_conexao ='.$_SESSION['conexao'];
 

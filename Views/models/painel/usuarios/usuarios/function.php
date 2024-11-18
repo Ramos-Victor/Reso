@@ -1,4 +1,7 @@
 <?php
+
+require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
+
 function ListarUsuarios()
 {
     $sql = 'SELECT cd_usuario, nm_usuario, nm_email, DATE_FORMAT(dt_entrada, "%d/%m/%Y") as dt_entrada, cargo_usuario, id_usuario 
