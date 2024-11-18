@@ -103,7 +103,7 @@ require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
     }
 
     if (isset($_GET['msg']) && $_GET['msg'] === 'sala_excluida') {
-        Confirma("Sala removida com sucesso!", $pagina);
+        Confirma("Sala removida com sucesso!", $pagina."?");
     }
     
     function ConfirmaExclusaoSala($msg, $pagina, $cd_sala, $conexao)

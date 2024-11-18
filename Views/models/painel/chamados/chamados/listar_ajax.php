@@ -98,6 +98,6 @@ if ($listar && count($listar) > 0) {
 <?php
     }
 } else {
-    echo "<div class='col-12 text-center text-muted'><h5>Nenhum chamado encontrado.</h5></div>";
+    echo "<div class='col-12 text-center text-muted my-3' style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'><h5>Nenhuma chamado encontrado.</h5></div>";
 }
 ?>
