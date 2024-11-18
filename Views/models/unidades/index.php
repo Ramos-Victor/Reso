@@ -123,7 +123,7 @@
         }else{
             echo "<div class='col-12 text-center text-muted my-3' style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'><h5>Nenhuma conexão encontrada encontrado.</h5></div>";
         }
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php';
+        include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php';
 ?>
 </body>
 
