@@ -2,11 +2,7 @@
 session_start();
 include_once './function.php';
 
-$categoria = isset($_GET['categoria']) ? $_GET['categoria'] : null;
-$sala = isset($_GET['sala']) ? $_GET['sala'] : null;
-
-// Passar os dois filtros para a função ListarEquipamentos
-$listar = ListarEquipamentos($categoria, $sala);
+$listar = ListarEquipamentos(null,null);
 
 if ($listar && count($listar) > 0) {
     ?>
@@ -14,7 +10,6 @@ if ($listar && count($listar) > 0) {
     <table class="table table-bordered table-striped table-hover">
         <thead class="bg-primary text-white text-center">
             <tr>
-                <th style="width: 10%;">#</th>
                 <th style="width: 15%;">Nome</th>
                 <th style="width: 15%;">Categoria</th>
                 <th style="width: 15%;">Status</th>
@@ -25,11 +20,10 @@ if ($listar && count($listar) > 0) {
         <tbody>
             <?php foreach($listar as $l){ ?>
             <tr class="text-center">
-                <td><?= $l['cd_equipamento'] ?></td>
                 <td><?= $l['nm_equipamento'] ?></td>
-                <td><?= $l['categoria_nm'] ?></td>
+                <td><?= $l['categoria_nm'] ?? 'NÃO ESPECIFICADO' ?></td>
                 <td>
-                    <span class="badge <?= $l['st_equipamento'] == 'Ativo' ? 'bg-success' : 'bg-danger' ?>"
+                    <span class="text-white badge <?php if($l['st_equipamento'] == 'Ativo'){ echo'bg-success';}elseif($l['st_equipamento'] == 'Desativado'){echo'bg-danger';}else{echo'bg-warning';}  ?>"
                         style="font-size: 15px;">
                         <?= $l['st_equipamento'] ?>
                     </span>
@@ -40,11 +34,19 @@ if ($listar && count($listar) > 0) {
                         title="Deletar" cd="<?= $l['cd_equipamento']; ?>" nome="<?= $l['nm_equipamento']; ?>">
                         <i class="botoes bi bi-trash3-fill"></i> Deletar
                     </button>
-                    <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#modalEditar"
+                    <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
                         cd="<?= $l['cd_equipamento']; ?>" nome="<?= $l['nm_equipamento']; ?>"
+                        desc="<?= $l['ds_equipamento'] ?>"
                         categoria="<?= $l['id_categoria']; ?>" sala="<?= $l['id_sala']; ?>"
                         status="<?= $l['st_equipamento']; ?>" descricao="<?= $l['ds_equipamento']; ?>">
                         <i class="botoes bi bi-pencil-fill"></i> Editar
+                    </button>
+                    <button class="btn btn-success btn-sm ver" data-toggle="modal" data-target="#ver"
+                        cd="<?= $l['cd_equipamento']; ?>" nome="<?= $l['nm_equipamento']; ?>"
+                        desc="<?= $l['ds_equipamento']; ?>" usuario="<?= $l['nm_usuario'] ?>"
+                        categoria="<?= $l['categoria_nm']; ?>" sala="<?= $l['nm_sala']; ?>"
+                        status="<?= $l['st_equipamento']; ?>" descricao="<?= $l['ds_equipamento']; ?>">
+                        <i class="botoes bi bi-eye-fill"></i> Ver
                     </button>
                 </td>
             </tr>
@@ -54,6 +56,6 @@ if ($listar && count($listar) > 0) {
 </div>
 <?php
 } else {
-    echo "<tr><td colspan='6' class='text-center text-muted'>Nenhum equipamento encontrado.</td></tr>";
+    echo "<div class='col-12 text-center text-muted my-3' style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'><h5>Nenhuma equipamento encontrado.</h5></div>";
 }
 ?>

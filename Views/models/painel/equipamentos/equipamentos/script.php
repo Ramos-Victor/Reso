@@ -42,5 +42,11 @@ $(document).on('click', '.ver', function() {
     $('.modal #status').val(status);
     var data = $(this).attr('data');
     $('.modal #data').val(data);
+    var categoria = $(this).attr('categoria');
+    $('.modal #categoria').val(categoria); 
+    var sala = $(this).attr('sala');
+    $('.modal #sala').val(sala); 
+    var usuario = $(this).attr('usuario');
+    $('.modal #usuario').val(usuario); 
 });
 </script>

@@ -97,7 +97,7 @@
                     <br>
                     <select name="status" class="form-control">
                         <option value="Ativo">Ativo</option>
-                        <option value="Manuntencao">Manuntencao</option>
+                        <option value="Manuntenção">Manuntenção</option>
                         <option value="Desativado">Desativado</option>
                     </select>
                     <br>
@@ -105,6 +105,43 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                     <button type="submit" class="btn btn-primary" name="action" value="Editar">Editar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="ver" data-backdrop="static">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <form method="post" class="form-group">
+                <div class="modal-header">
+                    <h5 class="modal-title">Detalhes Equipamento</h5>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="cd" id="cd">
+                    <label for="nome">Nome do Equipamento:</label>
+                    <input type="text" name="nome" id="nome" class="form-control" placeholder="Nome do equipamento"
+                        readonly>
+                    <br>
+                    <label for="desc">Descrição do Equipamento:</label>
+                    <Textarea name="desc" id="desc" class="form-control" rows="3" placeholder="Descrição equipamento" readonly="readonly"></Textarea>
+                    <br>
+                    <label for="desc">Localização</label>
+                    <input type="text" name="sala" id="sala" class="form-control" placeholder="Sala equipamento" readonly>
+                    <br>
+                    <label for="desc">Categoria do equipamento</label>
+                    <input type="text" name="categoria" id="categoria" class="form-control" placeholder="Categoria equipamento" readonly>
+                    <br>
+                    <label for="desc">Status do equipamento</label>
+                    <input type="text" name="status" id="status" class="form-control" placeholder="Status equipamento" readonly>
+                    <br>
+                    <label for="desc">Criado por:</label>
+                    <input type="text" name="usuario" id="usuario" class="form-control" placeholder="Criado por" readonly>
+                    <br>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
                 </div>
             </form>
         </div>
