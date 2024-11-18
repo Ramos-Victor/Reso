@@ -17,7 +17,6 @@ require_once './categoria/script.php';
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-10">
-                <h4 class="text-muted">Gerenciamento de Categorias</h4>
             </div>
             <div class="col-sm-2">
                 <button class="btn btn-block d-flex flex-row" style="background-color:#03305c;" data-toggle="modal"
@@ -27,9 +26,11 @@ require_once './categoria/script.php';
                 </button>
             </div>
         </div>
+        <div class="container-fluid">
         <div id="categorias-container" class="row mt-3 overflow-auto"
             style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
             <!-- Categorias carregadas dinamicamente via AJAX -->
+        </div>
         </div>
     </div>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php'; ?>

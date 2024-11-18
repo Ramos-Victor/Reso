@@ -2,7 +2,7 @@
 session_start();
 require_once './function.php';
 
-$listar = ListarCategorias("<h2 class='mx-auto text-white'>Cadastre suas categorias, elas serão exibidas aqui!</h2>");
+$listar = ListarCategorias(null);
 
 if ($listar) {
 ?>
@@ -41,6 +41,6 @@ if ($listar) {
 </div>
 <?php
 } else {
-    echo "<div class='col-12 text-center text-muted'><h5>Nenhuma categoria encontrada.</h5></div>";
+    echo "<div class='col-12 text-center text-muted my-3' style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'><h5>Nenhuma categoria encontrada.</h5></div>";
 }
 ?>
