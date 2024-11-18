@@ -28,10 +28,11 @@ function ListarChamados($status = null) {
             FROM tb_chamado c
             LEFT JOIN tb_equipamento e ON c.id_equipamento = e.cd_equipamento
             LEFT JOIN tb_usuario u ON c.id_usuario_abertura = u.cd_usuario
-            LEFT JOIN tb_usuario uf ON c.id_usuario_fechamento = uf.cd_usuario';
+            LEFT JOIN tb_usuario uf ON c.id_usuario_fechamento = uf.cd_usuario WHERE 
+    c.id_conexao ="'.$_SESSION['conexao'].'"AND c.id_usuario_abertura="'.$_SESSION['id'].'"';
 
     if ($status) {
-        $sql .= ' WHERE c.st_chamado = ?';
+        $sql .= ' AND c.st_chamado = ?';
     }
 
     $stmt = $GLOBALS['con']->prepare($sql);

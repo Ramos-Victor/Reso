@@ -12,7 +12,7 @@ if(!empty($_SESSION['conexao']) & $_SESSION['cargo']!="comum"){
     include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/dialog.php';
 }
 else{
-    header("Location:/Reso/Views/models/conexoes/");
+    header("Location:/Reso/Views/models/unidades/");
 }
 ?>
 

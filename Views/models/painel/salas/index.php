@@ -44,9 +44,11 @@ require_once './salas/script.php';
                 </button>
             </div>
         </div>
-        <div id= "salas-container"class="row mt-3 overflow-auto"
-            style="max-height: 850px; overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
+        <div class="container-fluid">
+            <div id="salas-container" class="row mt-3 overflow-auto"
+                style="max-height: 850px; overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
                 <!-- Salas carregadas dinamicamente via AJAX -->
+            </div>
         </div>
 
     </div>
@@ -56,26 +58,26 @@ require_once './salas/script.php';
 </body>
 
 <script>
-    function carregarSalas() {
-        $.ajax({
-            url: './salas/listar_ajax.php',
-            method: 'GET',
-            success: function (data) {
-                $('#salas-container').html(data);
-            },
-            error: function () {
-                console.error('Erro ao carregar as salas.');
-            }
-        });
-    }
-
-    // Atualiza as salas a cada 10 segundos
-    setInterval(carregarSalas, 5000);
-
-    // Carrega as sala na inicialização
-    $(document).ready(function () {
-        carregarSalas();
+function carregarSalas() {
+    $.ajax({
+        url: './salas/listar_ajax.php',
+        method: 'GET',
+        success: function(data) {
+            $('#salas-container').html(data);
+        },
+        error: function() {
+            console.error('Erro ao carregar as salas.');
+        }
     });
+}
+
+// Atualiza as salas a cada 10 segundos
+setInterval(carregarSalas, 5000);
+
+// Carrega as sala na inicialização
+$(document).ready(function() {
+    carregarSalas();
+});
 </script>
 <?php
 if(!empty($_POST)){

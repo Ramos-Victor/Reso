@@ -19,23 +19,32 @@ function AbrirChamado($nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abe
 }
 
 function ListarChamados($status = null) {
-    $sql = 'SELECT c.cd_chamado, c.nm_chamado, c.ds_chamado, 
-                   DATE_FORMAT(dt_abertura, "%d/%m/%Y") as dt_abertura, 
-                   DATE_FORMAT(dt_fechamento,"%d/%m/%Y") as dt_fechamento, 
-                   c.st_chamado, 
-                   c.ds_recado,
-                   c.id_usuario_abertura  as id_abertura,
-                   c.id_usuario_fechamento,
-                   e.nm_equipamento, 
-                   u.nm_usuario as usuario_abertura,
-                   uf.nm_usuario as usuario_fechamento
-            FROM tb_chamado c
-            LEFT JOIN tb_equipamento e ON c.id_equipamento = e.cd_equipamento
-            LEFT JOIN tb_usuario u ON c.id_usuario_abertura = u.cd_usuario
-            LEFT JOIN tb_usuario uf ON c.id_usuario_fechamento = uf.cd_usuario';
+    $sql = 'SELECT 
+    c.cd_chamado, 
+    c.nm_chamado, 
+    c.ds_chamado, 
+    DATE_FORMAT(c.dt_abertura, "%d/%m/%Y") as dt_abertura, 
+    DATE_FORMAT(c.dt_fechamento, "%d/%m/%Y") as dt_fechamento, 
+    c.st_chamado, 
+    c.ds_recado,
+    c.id_usuario_abertura AS id_abertura,
+    c.id_usuario_fechamento,
+    e.nm_equipamento, 
+    u.nm_usuario AS usuario_abertura,
+    uf.nm_usuario AS usuario_fechamento
+FROM 
+    tb_chamado c
+LEFT JOIN 
+    tb_equipamento e ON c.id_equipamento = e.cd_equipamento
+LEFT JOIN 
+    tb_usuario u ON c.id_usuario_abertura = u.cd_usuario
+LEFT JOIN 
+    tb_usuario uf ON c.id_usuario_fechamento = uf.cd_usuario
+WHERE 
+    c.id_conexao ="'.$_SESSION['conexao'].'"';
 
     if ($status) {
-        $sql .= ' WHERE c.st_chamado = ?';
+        $sql .= 'AND c.st_chamado = ?';
     }
 
     $stmt = $GLOBALS['con']->prepare($sql);
@@ -109,5 +118,3 @@ function EditarChamado($cd_chamado,$titulo, $descricao,$equipamento, $conexao,$p
         Erro("Erro ao editar o chamado.");
     }
 }
-
-

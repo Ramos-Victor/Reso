@@ -2,14 +2,16 @@
 session_start(); 
 error_reporting(E_ALL ^ E_WARNING);
 ini_set('display_errors', 1) ;
-if(!empty($_SESSION['id'])){
+if(!empty($_SESSION['conexao']) & $_SESSION['cargo']=="comum"){
     $_SESSION['id'];
     $_SESSION['usuario'];
+    $_SESSION['nm_conexao'];
+    $_SESSION['cargo'];
     include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/conect.php';
     include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/dialog.php';
 }
 else{
-    header("Location:/Reso/Views/models/unidades/index.php");
+    header("Location:/Reso/Views/models/unidades/");
 }
 ?>
 
