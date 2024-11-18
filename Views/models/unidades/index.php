@@ -8,7 +8,6 @@
 .botoes {
     font-size: 1.5rem;
 }
-
 </style>
 
 <body>
@@ -35,11 +34,11 @@
             </div>
         </div>
 
-    <?php $listar = ListarConexao();
+        <?php $listar = ListarConexao();
         if(!empty($listar) && $listar > 0){
     ?>
         <div class="row mt-3">
-            <div class="col-md-12">
+            <div class="container-fluid">
                 <div class="table-responsive" style="overflow-y: auto;">
                     <table class="table text-white" style="border-collapse: separate; border-spacing: 0;">
                         <thead style="background-color:#03305c; position: sticky; top: 0; z-index: 10;">
@@ -121,10 +120,11 @@
 
         <?php
         }else{
-            echo "<div class='col-12 text-center text-muted my-3' style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'><h5>Nenhuma conexão encontrada encontrado.</h5></div>";
+            echo "<div class='col-12 text-center text-muted my-3' style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'><h5>Nenhuma conexão encontrada.</h5></div>";
         }
         include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php';
 ?>
+    </div>
 </body>
 
 <?php
