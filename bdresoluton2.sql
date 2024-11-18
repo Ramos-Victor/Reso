@@ -260,3 +260,5 @@ select * from tb_equipamento;
 select * from tb_chamado;
 
 select * from tb_usuario;
+
+select * from tb_chamado;
