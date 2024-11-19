@@ -17,8 +17,8 @@ if ($listar && count($listar) > 0) {
                 <th>Finalizado em</th>
                 <th>Status</th>
                 <th>Equipamento</th>
-                <th>Abertura por</th>
-                <th>Finalizado por</th>
+                <th>Aberto por</th>
+                <th>Acompanhado por</th>
                 <th>Ações</th>
             </tr>
         </thead>

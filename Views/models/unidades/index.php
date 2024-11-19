@@ -40,8 +40,8 @@
         <div class="row mt-3">
             <div class="container-fluid">
                 <div class="table-responsive" style="overflow-y: auto;">
-                    <table class="table text-white" style="border-collapse: separate; border-spacing: 0;">
-                        <thead style="background-color:#03305c; position: sticky; top: 0; z-index: 10;">
+                    <table class="table table-bordered table-striped table-hover" style="border-collapse: separate; border-spacing: 0;">
+                        <thead class="bg-primary text-white text-center">
                             <tr>
                                 <th scope="col" style="border-bottom:none;">Nome</th>
                                 <th scope="col" style="border-bottom:none;">Cargo</th>
@@ -56,7 +56,7 @@
                         foreach ($listar as $index => $l) {
                             ?>
                             <tr
-                                style="<?php echo ($index % 2 == 0) ? 'background-color:#03305c;' : 'background-color:#0a4a8a;'; ?>">
+                                class="text-center">
                                 <td><?php echo $l['nm_conexao']; ?></td>
                                 <td><?php echo strtoupper($l['cargo_usuario']); ?></td>
                                 <td><?php echo $l['dt_entrada']; ?></td>
@@ -165,7 +165,7 @@ location.href = "../painel/index.php";
         }else if($_POST['cargo']=="comum"){
             ?>
 <script>
-location.href = "../comum/index.php";
+location.href = "../comum/chamados/index.php";
 </script>
 <?php
         }

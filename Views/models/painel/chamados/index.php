@@ -51,9 +51,11 @@ include_once './chamados/script.php';
                 </button>
             </div>
         </div>
-        <div id="chamados-container" class="row overflow-auto"
-            style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
-            <!-- Aqui será listados os chamados com ajax -->
+        <div class="container-fluid">
+            <div id="chamados-container" class="row overflow-auto"
+                style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
+                <!-- Aqui será listados os chamados com ajax -->
+            </div>
         </div>
     </div>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php'; ?>
