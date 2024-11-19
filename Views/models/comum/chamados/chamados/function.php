@@ -1,5 +1,7 @@
 <?php
 
+require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
+
 function AbrirChamado($nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abertura, $id_conexao, $pagina) {
     $sql = 'INSERT INTO tb_chamado (nm_chamado, ds_chamado, st_chamado, id_equipamento, id_usuario_abertura, id_conexao)
             VALUES (?, ?, "Aberto", ?, ?, ?)';
@@ -22,6 +24,7 @@ function ListarChamados($status = null) {
                    DATE_FORMAT(dt_fechamento,"%d/%m/%Y") as dt_fechamento, 
                    c.st_chamado, 
                    c.ds_recado,
+                   c.id_usuario_abertura as id_abertura,
                    e.nm_equipamento, 
                    u.nm_usuario as usuario_abertura,
                    uf.nm_usuario as usuario_fechamento

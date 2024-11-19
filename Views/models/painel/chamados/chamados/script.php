@@ -59,5 +59,37 @@ $(document).on('click', '.deletar', function() {
     $('#deletar #titulo').val(titulo);
 });
 
+$(document).on('click', '.ver', function() {
+    var cd = $(this).attr('cd');
+    $('#ver #cd').val(cd);
+
+    var titulo = $(this).attr('titulo');
+    $('#ver #Titulo').val(titulo);
+
+    var descricao = $(this).attr('descricao');
+    $('#ver #Descricao').val(descricao);
+
+    var equipamento = $(this).attr('equipamento');
+    $('#ver #Equipamento').val(equipamento);
+
+    var status = $(this).attr('status');
+    $('#ver #Status').val(status);
+
+    var abertura = $(this).attr('abertura');
+    $('#ver #Abertura').val(abertura);
+
+    var usuario = $(this).attr('usuario');
+    $('#ver #Usuario').val(usuario);
+
+    var fechamento = $(this).attr('fechamento');
+    $('#ver #fechamento').val(fechamento);
+
+    var final = $(this).attr('final');
+    $('#ver #final').val(final);
+
+    var feedback = $(this).attr('feedback');
+    $('#ver #feedback').val(feedback);
+});
+
 </script>
 

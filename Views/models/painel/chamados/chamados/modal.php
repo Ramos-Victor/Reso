@@ -230,3 +230,57 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="ver" tabindex="-1" role="dialog" aria-labelledby="modalAndamentoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+            <form method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalAndamentoLabel">Ver Mais</h5>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label><strong>Título</strong></label>
+                        <input type="text" id="Titulo" class="form-control" name="titulo" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Descrição</strong></label>
+                        <textarea id="Descricao" class="form-control" name="descricao" rows="3" readonly></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Equipamento</strong></label>
+                        <input type="text" id="Equipamento" class="form-control" name="equipamento" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Status</strong></label>
+                        <input type="text" id="Status" class="form-control" name="status" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Data de Abertura</strong></label>
+                        <input type="text" id="Abertura" class="form-control" name="abertura" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Data de fechamento</strong></label>
+                        <input type="text" id="fechamento" class="form-control" name="abertura" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Aberto por:</strong></label>
+                        <input type="text" id="Usuario" class="form-control" name="usuario" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Acompanhado por:</strong></label>
+                        <input type="text" id="final" class="form-control" name="final" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Feedback:</strong></label>
+                        <textarea class="form-control" name="feedback" id="feedback" rows="3" readonly></textarea>
+                    </div>
+                    <input type="hidden" name="cd" id="cd">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Voltar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

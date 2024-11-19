@@ -13,28 +13,29 @@ include_once './chamados/script.php';
 </style>
 
 <body>
-    <?php
-        include_once '../nav.php';
-    ?>
+    <?php include_once '../nav.php'; ?>
     <br><br><br><br>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-2 col-xs-2">
-                <form method="GET" action="">
+                <form method="GET" action="" id="filter-form">
                     <button class="btn btn-block"
                         style="background-color:#03305c; position: sticky; top: 0; z-index: 100;" type="button"
                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <span class="text-white mx-auto">FILTROS</span>
                     </button>
                     <div class="dropdown-menu">
-                        <button class="dropdown-item" type="submit" name="status" value="Aberto">Aberto</button>
-                        <button class="dropdown-item" type="submit" name="status" value="Andamento">Andamento</button>
-                        <button class="dropdown-item" type="submit" name="status" value="Concluido">Concluído</button>
-                        <button class="dropdown-item" type="submit" name="status" value="">Todos</button>
+                        <button class="dropdown-item filter-btn" type="button" data-status="Aberto">Aberto</button>
+                        <button class="dropdown-item filter-btn" type="button"
+                            data-status="Andamento">Andamento</button>
+                        <button class="dropdown-item filter-btn" type="button"
+                            data-status="Concluido">Concluído</button>
+                        <button class="dropdown-item filter-btn" type="button" data-status="">Limpar</button>
                     </div>
                 </form>
             </div>
-            <div class="col-sm-8">
+            <div class="col-sm-8 text-left mt-2">
+                <h5 id="filter-text"></h5>
             </div>
             <div class="col-sm-2 col-xs-2">
                 <button class="btn btn-block d-flex flex-row"
@@ -45,120 +46,48 @@ include_once './chamados/script.php';
                 </button>
             </div>
         </div>
-        <div class="row overflow-auto"
-            style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
-            <?php
-        $status = isset($_GET['status']) ? $_GET['status'] : null;
-        $listar = ListarChamados($status);
-        
-
-        if ($listar && count($listar)> 0 ) {
-            foreach ($listar as $index => $l) {
-        ?>
-            <div class="col-md-4 col-sm-6 mb-4">
-                <div class="card mt-3" style="border-radius: 10px; 
-                background: linear-gradient(135deg, <?= $index % 2 == 0 ? '#0a4a8a' : '#03305c' ?>, <?= $index % 2 == 0 ? '#03305c' : '#0a4a8a' ?>);
-                height: 350px; overflow: hidden;">
-
-                    <div class="card-body text-white d-flex justify-content-between">
-                        <div class="d-flex flex-column justify-content-between" style="flex: 1;">
-                            <div>
-                                <h5 class="card-title"><?= $l['nm_chamado'] ?></h5>
-                                <h6 class="card-subtitle text-light mt-2"><?= $l['ds_chamado'] ?></h6>
-
-                                <div class="mt-2">
-                                    <p><strong>Aberto em:</strong> <?= $l['dt_abertura'] ?>
-                                    </p>
-                                    <?php if ($l['st_chamado'] == 'Concluido') { ?>
-                                    <p><strong>Finalizado em:</strong>
-                                        <?= $l['dt_fechamento'] ?></p>
-                                    <?php } elseif ($l['st_chamado'] == 'Andamento') { ?>
-                                    <p><strong>Aberto em:</strong> <?= $l['dt_fechamento'] ?>
-                                    </p>
-                                    <?php } ?>
-
-                                    <?php if ($l['nm_equipamento']) { ?>
-                                    <p><strong>Equipamento:</strong> <?= $l['nm_equipamento'] ?></p>
-                                    <?php } ?>
-
-                                    <p><strong>Aberto por:</strong> <?= $l['usuario_abertura'] ?></p>
-                                    <?php if ($l['st_chamado'] == 'Concluido') { ?>
-                                    <p><strong>Finalizado por:</strong> <?= $l['usuario_fechamento'] ?></p>
-                                    <?php } ?>
-                                </div>
-                            </div>
-                            <div>
-                                <?php
-            $badgeClass = '';
-            switch ($l['st_chamado']) {
-                case 'Aberto':
-                    $badgeClass = 'bg-primary';
-                    break;
-                case 'Andamento':
-                    $badgeClass = 'bg-warning';
-                    break;
-                case 'Concluido':
-                    $badgeClass = 'bg-success';
-                    break;
-                default:
-                    $badgeClass = 'bg-secondary';
-            }
-            ?>
-                                <span class="badge <?= $badgeClass ?>" style="font-size: 15px;">Status:
-                                    <?= $l['st_chamado'] ?></span>
-                            </div>
-                        </div>
-
-                        <div class="d-flex align-items-start  overflow-auto" style="flex-shrink: 0; text-align: right; overflow-y: scroll;
-  overflow-x: hidden;
-  scrollbar-width: none;
-  scroll-behavior: smooth;">
-                            <?php if (!empty($l['ds_recado'])) { ?>
-                            <p style="word-wrap: break-word; max-width: 200px; "><strong>Feedback:</strong><br>
-                                <?= $l['ds_recado'] ?></p>
-                            <?php } ?>
-                        </div>
-                    </div>
-
-                    <div class="card-footer bg-transparent text-center">
-                        <?php if ($_SESSION['cargo'] != 'comum' || $l['st_chamado'] == 'Aberto') { ?>
-                        <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
-                            title="Deletar" cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>">
-                            <i class="botoes bi bi-trash3-fill"></i> Deletar
-                        </button>
-                        <?php } ?>
-                        <?php if ($l['st_chamado'] == 'Aberto' && $_SESSION['cargo'] != 'comum') { ?>
-                        <button class="btn btn-warning btn-sm andamento" data-toggle="modal"
-                            data-target="#modalAndamento" cd="<?= $l['cd_chamado']; ?>"
-                            titulo="<?= $l['nm_chamado']; ?>" descricao="<?= $l['ds_chamado'] ?>"
-                            equipamento="<?= $l['nm_equipamento'] ?? 'Não especificado' ?>"
-                            status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
-                            usuario="<?= $l['usuario_abertura']; ?>">
-                            <i class="botoes bi bi-hourglass-split"></i> Andamento
-                        </button>
-                        <?php } elseif ($l['st_chamado'] == 'Andamento' && $_SESSION['cargo'] != 'comum') { ?>
-                        <button class="btn btn-success btn-sm concluir" data-toggle="modal"
-                            data-target="#modalConclusao" cd="<?= $l['cd_chamado']; ?>"
-                            titulo="<?= $l['nm_chamado']; ?>">
-                            <i class="botoes bi bi-check-circle-fill"></i> Concluir
-                        </button>
-                        <?php } ?>
-                    </div>
-                </div>
+        <div class="container-fluid">
+            <div id="chamados-container" class="row overflow-auto"
+                style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
+                <!-- Aqui será listados os chamados com ajax -->
             </div>
-
-            <?php
-            }
-        }else {
-            echo "<div class='col-12 text-center text-muted my-3'><h5>Nenhum chamado encontrado.</h5></div>";
-        }
-        ?>
         </div>
     </div>
-    <?php 
-            include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php';
-        ?>
+    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php'; ?>
 </body>
+
+<script>
+let statusFilter = '';
+
+function carregarChamados() {
+    $.ajax({
+        url: './chamados/listar_ajax.php',
+        method: 'GET',
+        data: {
+            status: statusFilter
+        },
+        success: function(data) {
+            $('#chamados-container').html(data);
+        },
+        error: function() {
+            console.error('Erro ao carregar os chamados.');
+        }
+    });
+}
+
+setInterval(carregarChamados, 5000);
+
+$(document).ready(function() {
+    carregarChamados();
+
+    // Filtra os chamados
+    $('.filter-btn').on('click', function() {
+        statusFilter = $(this).data('status');
+        $('#filter-text').html(statusFilter ? `Filtro selecionado: ${statusFilter}` : '');
+        carregarChamados();
+    });
+});
+</script>
 <?php
 if (!empty($_POST)) {
     if ($_POST['action'] == "Abrir") {
