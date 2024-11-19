@@ -18,7 +18,7 @@ require_once 'function.php';
                     ?>
 <div class="col-md-4 d-flex justify-content-center">
     <div class="card mb-3"
-        style="width: 400px; height: 400px; border: 5px solid <?= $cor ?>; background-color: transparent; border-radius: 15px;">
+        style="width: 300px; height: 300px; border: 2px solid <?= $cor ?>; background-color: transparent; border-radius: 15px;">
         <div class="card-header text-center"
             style="font-size: 2rem; color: <?= $cor ?>; background-color: transparent; border-bottom: none;">
             <?= $status ?>
