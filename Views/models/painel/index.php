@@ -9,6 +9,7 @@ require_once 'nav.php';
 ?>
     <br><br><br><br>
     <div class="container-fluid" style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'>
+        <h2 class="text-center text-muted mb-5" style="font-size: 2rem; font-weight: bold;">Resumo Geral Chamados</h2>
         <div class="row justify-content-center" id="card-container">
             <!--Listagem pelo ajax -->
         </div>
