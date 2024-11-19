@@ -243,13 +243,13 @@ INSERT INTO `db_resoluton2`.`tb_sala` (nm_sala, ds_sala, id_usuario, id_conexao)
 ('lAB01', 'Laboratório 01', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
 ('lAB02', 'Laboratório 02', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
 
-INSERT INTO `db_resoluton2`.`tb_equipamento` (nm_equipamento, ds_equipamento, id_categoria, id_sala, id_usuario, id_conexao) VALUES 
-('NOTE01', 'Notebook da marca X', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Notebook'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'),1),
-('TECLADO01', 'Teclado mecânico', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Teclado'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1),
-('MOUSE01', 'Mouse óptico', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Mouse'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);
+INSERT INTO `db_resoluton2`.`tb_equipamento` (nm_equipamento, ds_equipamento, id_categoria, id_sala, id_usuario, id_conexao,st_equipamento) VALUES 
+('NOTE01', 'Notebook da marca X', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Notebook'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'),1, 'Ativo'),
+('TECLADO01', 'Teclado mecânico', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Teclado'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1, 'Ativo'),
+('MOUSE01', 'Mouse óptico', (SELECT cd_categoria FROM db_resoluton2.tb_equipamento_categoria WHERE categoria_nm='Mouse'), (SELECT cd_sala FROM db_resoluton2.tb_sala WHERE nm_sala='lab01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1, 'Ativo');
 
-INSERT INTO `db_resoluton2`.`tb_chamado` (nm_chamado, ds_chamado, id_equipamento, id_usuario_abertura, id_conexao) VALUES 
-('Problema no notebook', 'Relato de que o notebook não liga', (SELECT cd_equipamento FROM db_resoluton2.tb_equipamento WHERE nm_equipamento='note01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='marcio'), 1);
+INSERT INTO `db_resoluton2`.`tb_chamado` (nm_chamado, ds_chamado, id_equipamento, id_usuario_abertura, id_conexao, ds_recado) VALUES 
+('Problema no notebook', 'Relato de que o notebook não liga', (SELECT cd_equipamento FROM db_resoluton2.tb_equipamento WHERE nm_equipamento='note01'), (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='marcio'), 1,'Está ligando novamente.');
 
 UPDATE `db_resoluton2`.`tb_chamado` 
 SET st_chamado='Concluido', dt_fechamento=CURRENT_TIMESTAMP, id_usuario_fechamento=(SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='lais')
@@ -261,4 +261,6 @@ select * from tb_chamado;
 
 select * from tb_usuario;
 
-select * from tb_chamado;
+SELECT st_chamado, COUNT(*) AS total 
+                  FROM tb_chamado WHERE id_conexao = 1
+                  GROUP BY st_chamado
