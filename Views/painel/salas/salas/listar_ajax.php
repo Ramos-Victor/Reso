@@ -11,18 +11,20 @@ if ($listar) {
             <tr>
                 <th style="width: 20%;">Nome</th>
                 <th style="width: 20%;">Criado em</th>
-                <th style="width: 40%;">Descrição</th>
+                <th style="width: 20%;">Descrição</th>
+                <th style="width: 20%;">Criado por</th>
                 <th style="width: 20%;">Ações</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach ($listar as $l) { ?>
-            <tr class="text-center">
+            <tr class="text-center" id="id<?= $l['cd_sala'] ?>">
                 <td><?= $l['nm_sala'] ?></td>
                 <td><?= $l['dt_sala'] ?></td>
                 <td>
                     <?= strlen($l['ds_sala']) > 30 ? substr($l['ds_sala'], 0, 30) . '...' : $l['ds_sala'] ?>
                 </td>
+                <td><a href="?route=/painelUsuarios#id<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
                 <td>
                     <button class="btn btn-success btn-sm ver" data-toggle="modal" data-target="#ver" title="Ver"
                         cd="<?= $l['cd_sala']; ?>" nome="<?= $l['nm_sala']; ?>" desc="<?= $l['ds_sala']; ?>"

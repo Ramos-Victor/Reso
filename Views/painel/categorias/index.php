@@ -9,6 +9,33 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/categorias/categori
 .botoes {
     font-size: 20px;
 }
+
+.table-responsive {
+    height: 83vh;
+    overflow-y: auto;
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #007bff;
+    color: white;
+    border-top: 1px solid #dee2e6;
+}
+
+tbody {
+    background-color: #f8f9fa;
+}
+
+tbody tr {
+    scroll-margin-top: 50px;
+}
 </style>
 
 <body>
@@ -16,12 +43,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/categorias/categori
     <br><br><br><br>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-sm-10">
+            <div class="col-sm-2">
+            </div>
+            <div class="col-sm-8">
+                <h4 class="text-muted text-center mt-2">LISTA DE USUARIOS</h4>
             </div>
             <div class="col-sm-2">
                 <button class="btn btn-block d-flex flex-row" style="background-color:#03305c;" data-toggle="modal"
                     data-target="#addcategoria">
-                    <i class="navicon bi bi-plus-circle"></i>
                     <span class="text-white mx-auto">CATEGORIA</span>
                 </button>
             </div>

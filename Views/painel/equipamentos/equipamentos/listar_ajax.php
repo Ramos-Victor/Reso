@@ -14,12 +14,13 @@ if ($listar && count($listar) > 0) {
                 <th style="width: 15%;">Categoria</th>
                 <th style="width: 15%;">Status</th>
                 <th style="width: 15%;">Local</th>
+                <th style="width: 15%;">Criado por</th>
                 <th style="width: 40%;">Ações</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach($listar as $l){ ?>
-            <tr class="text-center">
+            <tr class="text-center"  id="id<?= $l['cd_equipamento'] ?>">
                 <td><?= $l['nm_equipamento'] ?></td>
                 <td><?= $l['categoria_nm'] ?? 'NÃO ESPECIFICADO' ?></td>
                 <td>
@@ -28,7 +29,8 @@ if ($listar && count($listar) > 0) {
                         <?= $l['st_equipamento'] ?>
                     </span>
                 </td>
-                <td><?= $l['nm_sala'] ?></td>
+                <td><a href="?route=/painelSalas#<?= $l['id_sala'] ?>"><?= $l['nm_sala'] ?></a></td>
+                <td><a href="?route=/painelUsuarios#<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
                 <td>
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                         title="Deletar" cd="<?= $l['cd_equipamento']; ?>" nome="<?= $l['nm_equipamento']; ?>">

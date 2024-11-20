@@ -16,6 +16,33 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/salas/salas/script.
 .botoes {
     font-size: 20px;
 }
+
+.table-responsive {
+    height: 83vh;
+    overflow-y: auto;
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #007bff;
+    color: white;
+    border-top: 1px solid #dee2e6;
+}
+
+tbody {
+    background-color: #f8f9fa;
+}
+
+tbody tr {
+    scroll-margin-top: 50px;
+}
 </style>
 
 <body>
@@ -26,19 +53,14 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/salas/salas/script.
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-2 col-xs-2">
-                <button class="btn btn-block" style="background-color:#03305c;">
-                    <a class="text-white mx-auto">
-                        FILTROS
-                    </a>
-                </button>
             </div>
             <div class="col-sm-8">
+                <h4 class="text-muted text-center mt-2">LISTA DE SALAS</h4>
             </div>
             <div class="col-sm-2 col-xs-2">
                 <button class="btn btn-block d-flex flex-row" style="background-color:#03305c;" data-toggle="modal"
                     data-target="#addsala">
                     <a class="text-white mx-auto">
-                        <i class="navicon bi bi-plus-circle"></i>
                         SALAS
                     </a>
                 </button>

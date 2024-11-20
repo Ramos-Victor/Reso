@@ -40,7 +40,8 @@
         <div class="row mt-3">
             <div class="container-fluid">
                 <div class="table-responsive" style="overflow-y: auto;">
-                    <table class="table table-bordered table-striped table-hover" style="border-collapse: separate; border-spacing: 0;">
+                    <table class="table table-bordered table-striped table-hover"
+                        style="border-collapse: separate; border-spacing: 0;">
                         <thead class="bg-primary text-white text-center">
                             <tr>
                                 <th scope="col" style="border-bottom:none;">Nome</th>
@@ -55,8 +56,7 @@
                     if ($listar) {
                         foreach ($listar as $index => $l) {
                             ?>
-                            <tr
-                                class="text-center">
+                            <tr class="text-center">
                                 <td><?php echo $l['nm_conexao']; ?></td>
                                 <td><?php echo strtoupper($l['cargo_usuario']); ?></td>
                                 <td><?php echo $l['dt_entrada']; ?></td>
@@ -72,7 +72,16 @@
                                             data="<?php echo $l['dt_entrada']; ?>">
                                             <i class="botoes bi bi-eye-fill"></i>
                                         </button>
-
+                                        <?php if ($l['cargo_usuario'] == "criador") { ?>
+                                        <button class="btn btn-primary btn-sm editar" data-toggle="modal"
+                                            data-target="#editar" title="editar" cd="<?php echo $l['cd_conexao']; ?>"
+                                            nome="<?php echo $l['nm_conexao']; ?>"
+                                            cargo="<?php echo $l['cargo_usuario']; ?>"
+                                            codigo="<?php echo $l['codigo_conexao']; ?>"
+                                            data="<?php echo $l['dt_entrada']; ?>">
+                                            <i class="botoes bi bi-pencil-fill"></i>
+                                        </button>
+                                        <?php } ?>
                                         <?php if ($l['cargo_usuario'] == "criador") { ?>
                                         <button class="btn btn-danger btn-sm deletar" data-toggle="modal"
                                             data-target="#deletar" title="deletar" cd="<?php echo $l['cd_conexao']; ?>"
@@ -93,16 +102,7 @@
                                         </button>
                                         <?php } ?>
 
-                                        <?php if ($l['cargo_usuario'] == "criador") { ?>
-                                        <button class="btn btn-primary btn-sm editar" data-toggle="modal"
-                                            data-target="#editar" title="editar" cd="<?php echo $l['cd_conexao']; ?>"
-                                            nome="<?php echo $l['nm_conexao']; ?>"
-                                            cargo="<?php echo $l['cargo_usuario']; ?>"
-                                            codigo="<?php echo $l['codigo_conexao']; ?>"
-                                            data="<?php echo $l['dt_entrada']; ?>">
-                                            <i class="botoes bi bi-pencil-fill"></i>
-                                        </button>
-                                        <?php } ?>
+
                                     </div>
                                 </td>
                             </tr>

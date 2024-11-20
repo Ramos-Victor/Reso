@@ -9,6 +9,7 @@ function ListarEquipamentos($categoria = null, $sala = null) {
                 DATE_FORMAT(e.dt_equipamento, "%d/%m/%Y") as dt_equipamento, 
                 e.st_equipamento, 
                 e.id_sala, 
+                e.id_usuario,
                 e.id_categoria, 
                 u.nm_usuario, 
                 c.categoria_nm, 

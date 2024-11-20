@@ -11,7 +11,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/usuarios/usuarios/s
 }
 
 .table-responsive {
-    height: 85vh;
+    height: 83vh;
     overflow-y: auto;
     position: relative;
     overflow-y: scroll;
@@ -41,8 +41,13 @@ tbody tr {
 <body>
     <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/nav.php'; ?>
     <br><br><br><br>
-    <div class="container-fluid mt-2">
-        <div class="row mt-3 container-fluid">
+    <div class="container-fluid">
+        <div class="row text-center">
+            <div class="col-sm-12">
+                <h4 class="text-muted text-center mt-2">LISTA DE USUARIOS</h4>
+            </div>
+        </div>
+        <div class="row mt-1 container-fluid">
             <div class="table-responsive">
                 <table class="table table-bordered table-striped table-hover">
                     <thead class="text-center">

@@ -1,8 +1,8 @@
 <?php
 include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/chamados/modal.php';
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/chamados/function.php';
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/chamados/script.php';
+include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/chamados/chamados/modal.php';
+include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/chamados/chamados/function.php';
+include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/chamados/chamados/script.php';
 ?>
 
 <style>
@@ -14,6 +14,33 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/chamados/script.ph
     word-wrap: break-word;
     max-width: 200px;
     overflow: auto;
+}
+
+.table-responsive {
+    height: 83vh;
+    overflow-y: auto;
+    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+}
+
+.table thead {
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    background-color: #007bff;
+    color: white;
+    border-top: 1px solid #dee2e6;
+}
+
+tbody {
+    background-color: #f8f9fa;
+}
+
+tbody tr {
+    scroll-margin-top: 50px;
 }
 </style>
 
@@ -39,20 +66,20 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/chamados/script.ph
                     </div>
                 </form>
             </div>
-            <div class="col-sm-8 text-left mt-2">
-                <h5 id="filter-text"></h5>
+            <div class="col-sm-8 text-left">
+                <h4 class="text-muted text-center mt-2">LISTA DE CHAMADOS</h4>
             </div>
             <div class="col-sm-2 col-xs-2">
                 <button class="btn btn-block d-flex flex-row"
                     style="background-color:#03305c; position: sticky; top: 0; z-index: 100;" data-toggle="modal"
                     data-target="#abrirChamado">
-                    <i class="navicon bi bi-plus-circle"></i>
                     <span class="text-white mx-auto">CHAMADO</span>
                 </button>
             </div>
         </div>
         <div class="container-fluid">
-            <div id="chamados-container" class="row overflow-auto" style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
+            <div id="chamados-container" class="row overflow-auto"
+                style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
                 <!-- Aqui será listados os chamados com ajax -->
             </div>
         </div>
