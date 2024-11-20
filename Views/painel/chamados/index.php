@@ -103,26 +103,26 @@ if (!empty($_POST)) {
             $id_equipamento,
             $_SESSION['id'], 
             $_SESSION['conexao'], 
-            "index.php");
+            "?route=/painelChamados");
     } elseif($_POST['action'] == "EmAndamento") {
         ColocarEmAndamento(
             $_POST['cd'],
             $_SESSION['id'], 
             $_SESSION['conexao'], 
-            "index.php"
+            "?route=/painelChamados"
         );
     } elseif ($_POST['action'] == "DeletarChamado") {
         DeletarChamado(
             $_POST['cd'], 
             $_SESSION['conexao'], 
-            "index.php");
+            "?route=/painelChamados");
     }elseif ($_POST['action'] == "ConcluirChamado") {
         ConcluirChamado(
             $_POST['cd'],
             $_POST['recado'],
             $_SESSION['id'],
             $_SESSION['conexao'],
-            "index.php"
+            "?route=/painelChamados"
         );
     }elseif ($_POST['action']== "Editar"){
         EditarChamado(
@@ -131,7 +131,7 @@ if (!empty($_POST)) {
             $_POST['descricao'],
             $_POST['equipamento'],
             $_SESSION['conexao'],
-            "index.php"
+            "?route=/painelChamados"
         );
     }
 }

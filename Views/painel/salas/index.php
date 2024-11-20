@@ -87,7 +87,7 @@ if(!empty($_POST)){
             $_POST['desc'],
             $_SESSION['id'],
             $_SESSION['conexao'],
-            "index.php"
+            "?route=/painelSalas"
         );
     }elseif($_POST['action'] == "Editar"){
         EditarSala(
@@ -96,13 +96,13 @@ if(!empty($_POST)){
             $_POST['desc'],
             $_SESSION['id'],
             $_SESSION['conexao'],
-            "index.php"
+            "?route=/painelSalas"
         );
     }elseif($_POST['action'] == "Deletar"){
         ExcluirSala(
             $_POST['cd'],
             $_SESSION['conexao'],
-            "index.php"
+            "?route=/painelSalas"
             );
     }
 }

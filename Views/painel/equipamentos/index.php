@@ -84,7 +84,7 @@ if (!empty($_POST)) {
             $id_categoria,
             $_SESSION['id'], 
             $_SESSION['conexao'], 
-            "index.php");
+            "?route=/painelEquipamentos");
     } elseif ($_POST['action'] == "Editar") {
         EditarEquipamento(
             $_POST['cd'], 
@@ -95,11 +95,11 @@ if (!empty($_POST)) {
             $_POST['categoria'], 
             $_SESSION['id'], 
             $_SESSION['conexao'], 
-            "index.php");
+            "?route=/painelEquipamentos");
     } elseif ($_POST['action'] == "Deletar") {
         ExcluirEquipamento(
             $_POST['cd'], 
-            "index.php");
+            "?route=/painelEquipamentos");
     }
 }
 ?>

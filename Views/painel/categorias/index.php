@@ -65,20 +65,20 @@ if(!empty($_POST)){
             strtoupper($_POST['nome']),
             $_SESSION['id'],
             $_SESSION['conexao'],
-            "index.php"
+            "?route=/painelCategorias"
         );
     }elseif($_POST['action'] == "Editar"){
         EditarCategoria(
             $_POST['cd'],
            strtoupper($_POST['nome']),
             $_SESSION['conexao'],
-            "index.php"
+            "?route=/painelCategorias"
         );
     }elseif($_POST['action'] == "Deletar"){
         DeletarCategoria(
             $_POST['cd'],
             $_POST['conexao'],
-            "index.php"
+            "?route=/painelCategorias"
             );
     }
 }

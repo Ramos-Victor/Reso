@@ -108,13 +108,13 @@ if (!empty($_POST)) {
             $_POST['cd'],
             $_POST['cargo'],
             $_SESSION['conexao'],
-            "index.php"
+            "?route=/painelUsuarios"
         );
     } elseif ($_POST['action'] == "Deletar") {
         ExcluirUsuario(
             $_POST['cd'],
             $_SESSION['conexao'],
-            "index.php"
+            "?route=/painelUsuarios"
         );
     }
 }

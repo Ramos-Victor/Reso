@@ -173,7 +173,7 @@ location.href = "?route=/comum";
         EditarConexao(
             $_POST['cd'],
             $_POST['nome'],
-            "index.php"
+            "?route=/unidades"
         );
     }
  }
