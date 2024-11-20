@@ -221,7 +221,28 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 insert into tb_usuario (nm_usuario, nm_email, cd_senha) values
  ('victor','victor@gmail.com',sha2('123',256)),
  ('lais','lais@gmail.com',sha2('123',256) ),
- ('marcio','marcio@gmail.com',sha2('123',256) );
+ ('marcio','marcio@gmail.com',sha2('123',256) ),
+('ana', 'ana@gmail.com', SHA2('123', 256)),
+('joao', 'joao@gmail.com', SHA2('123', 256)),
+('carla', 'carla@gmail.com', SHA2('123', 256)),
+('pedro', 'pedro@gmail.com', SHA2('123', 256)),
+('juliana', 'juliana@gmail.com', SHA2('123', 256)),
+('bruno', 'bruno@gmail.com', SHA2('123', 256)),
+('maria', 'maria@gmail.com', SHA2('123', 256)),
+('henrique', 'henrique@gmail.com', SHA2('123', 256)),
+('lucas', 'lucas@gmail.com', SHA2('123', 256)),
+('camila', 'camila@gmail.com', SHA2('123', 256)),
+('fernanda', 'fernanda@gmail.com', SHA2('123', 256)),
+('rafael', 'rafael@gmail.com', SHA2('123', 256)),
+('leticia', 'leticia@gmail.com', SHA2('123', 256)),
+('renato', 'renato@gmail.com', SHA2('123', 256)),
+('aline', 'aline@gmail.com', SHA2('123', 256)),
+('gustavo', 'gustavo@gmail.com', SHA2('123', 256)),
+('bianca', 'bianca@gmail.com', SHA2('123', 256)),
+('andre', 'andre@gmail.com', SHA2('123', 256)),
+('sophia', 'sophia@gmail.com', SHA2('123', 256)),
+('diego', 'diego@gmail.com', SHA2('123', 256));
+
  
  INSERT INTO `db_resoluton2`.`tb_conexao` (nm_conexao, codigo_conexao, id_criador) VALUES 
 ('Conexão 1', 'Codigo_Conexao_1', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'));
@@ -230,6 +251,29 @@ INSERT INTO `db_resoluton2`.`tb_usuario_conexao` (id_usuario, id_conexao, cargo_
 ((SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1, 'criador'),
 ((SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='lais'),1, 'suporte'),
 ((SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='marcio'), 1, 'comum');
+
+INSERT INTO tb_usuario_conexao (id_usuario, id_conexao, cargo_usuario) VALUES
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='ana'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='joao'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='carla'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='pedro'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='juliana'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='bruno'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='maria'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='henrique'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='lucas'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='camila'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='fernanda'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='rafael'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='leticia'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='renato'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='aline'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='gustavo'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='bianca'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='andre'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='sophia'), 1, 'comum'),
+((SELECT cd_usuario FROM tb_usuario WHERE nm_usuario='diego'), 1, 'comum');
+
 
 INSERT INTO `db_resoluton2`.`tb_sala` (nm_sala, ds_sala, id_usuario, id_conexao) VALUES 
 ('ESTOQUE', 'Sala de Estoque', (SELECT cd_usuario FROM db_resoluton2.tb_usuario WHERE nm_usuario='victor'), 1);

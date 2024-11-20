@@ -1,4 +1,9 @@
-<?php  
+<?php
+if (!defined('ROUTING_ACCESS')) {
+    http_response_code(403);
+    die('<h1 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Acesso direto não permitido</h1>');
+}
+
 	if (session_status() === PHP_SESSION_NONE) {
 		session_start();
 	}
@@ -22,7 +27,7 @@
 			$r = $result->fetch_assoc();
 			$_SESSION['id'] = $r['cd_usuario'];
 			$_SESSION['usuario'] = $r['nm_usuario'];
-			Confirma("Bem vindo ao Resolut.on", "./Views/models/unidades/index.php");
+			Confirma("Bem vindo ao Resolut.on", "?route=/unidades");
 		} else {
 			Erro("Acesso recusado!");
 			session_destroy();

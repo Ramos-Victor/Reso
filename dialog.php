@@ -1,5 +1,4 @@
 <?php
-
 function Confirma($msg, $pagina)
 {
     print '

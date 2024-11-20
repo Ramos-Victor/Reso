@@ -1,4 +1,9 @@
 <?php
+if (!defined('ROUTING_ACCESS')) {
+    http_response_code(403);
+    die('<h1 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Acesso direto não permitido</h1>');
+}
+
     require_once 'header.php';
     require_once 'validar.php';
 
@@ -21,6 +26,25 @@ body {
     align-items: center;
     justify-content: center;
     font-family: Arial, sans-serif;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #03305c;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: #022a50;
 }
 
 .login-card {
@@ -55,6 +79,7 @@ body {
 </style>
 
 <body>
+    <a href="?route=/" class="back-button">Voltar</a>
     <div class="container-fluid">
         <div class="row justify-content-center h-100">
             <div class="login-card">
@@ -94,7 +119,7 @@ body {
                     </div>
                     <input type="submit" name="action" class="btn btn-custom btn-block mt-3" value="Cadastrar">
                 </form>
-				<p class="mt-3">Ja possui uma conta? <a href="login.php">Faça login aqui</a></p>
+                <p class="mt-3">Ja possui uma conta? <a href="?route=/login">Faça login aqui</a></p>
             </div>
         </div>
     </div>
@@ -170,5 +195,3 @@ body {
     }
     </script>
 </body>
-
-
