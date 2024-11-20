@@ -29,6 +29,7 @@ function ListarChamados($status = null) {
     c.ds_recado,
     c.id_usuario_abertura AS id_abertura,
     c.id_usuario_fechamento AS id_fechamento,
+    c.id_equipamento AS id_equipamento,
     e.nm_equipamento, 
     u.nm_usuario AS usuario_abertura,
     uf.nm_usuario AS usuario_fechamento

@@ -42,7 +42,7 @@ if ($listar && count($listar) > 0) {
                         style="font-size: 15px;"><?= $l['st_chamado'] ?>
                     </span>
                 </td>
-                <td><?= $l['nm_equipamento'] ?? 'Não especificado' ?></td>
+                <td><a href="?route=/painelEquipamentos#id<?=$l['id_equipamento'] ?>"><?= $l['nm_equipamento'] ?? 'Não especificado' ?></a></td>
                 <td><a href="?route=/painelUsuarios#id<?= $l['id_abertura'] ?>"><?= $l['usuario_abertura'] ?></a></td>
                 <td><a href="?route=/painelUsuarios#id<?= $l['id_fechamento'] ?>"><?= $l['usuario_fechamento'] ?? '—' ?></a></td>
                 <td>
