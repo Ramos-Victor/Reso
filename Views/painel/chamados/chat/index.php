@@ -53,6 +53,8 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
     border-radius: 15px 15px 0 15px;
     padding: 10px;
     margin-left: auto;
+    text-align: right;
+    /* Alinha o texto à direita */
 }
 
 .mensagem-recebida {
@@ -60,31 +62,35 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
     background-color: #e9ecef;
     border-radius: 15px 15px 15px 0;
     padding: 10px;
+    margin-right: auto;
+    /* Alinha à esquerda */
+    text-align: left;
+    /* Alinha o texto à esquerda */
 }
 
-#form-mensagem{
+#form-mensagem {
     display: flex;
     flex-direction: row;
-    column-gap:10px
+    column-gap: 10px
 }
 
 .back-button {
-position: absolute;
-top: 10px;
-left: 10px;
-background-color: #03305c;
-color: #fff;
-border: none;
-padding: 10px 15px;
-border-radius: 5px;
-text-decoration: none;
-font-size: 14px;
-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-transition: background-color 0.3s ease;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #03305c;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
 }
 
 .back-button:hover {
-background-color: #022a50;
+    background-color: #022a50;
 }
 
 /* Responsividade */
@@ -97,7 +103,7 @@ background-color: #022a50;
 </style>
 
 <body class="bg-light">
-<a href="?route=/painelChamados" class="back-button">Voltar</a>
+    <a href="?route=/painelChamados" class="back-button">Voltar</a>
     <div class="container-fluid d-flex align-items-center justify-content-center" style="min-height: 100vh;">
         <div class="chat-container card" style="width:400px;">
             <div class="chat-header">
@@ -114,7 +120,8 @@ background-color: #022a50;
                 <div class="input-group">
                     <form id="form-mensagem">
                         <input type="hidden" name="id_chamado" value="<?= $_GET['idChamado'] ?>">
-                        <input type="text" class="form-control" style="width:300px" name="mensagem" placeholder="Digite sua mensagem">
+                        <input type="text" class="form-control" style="width:300px" name="mensagem"
+                            placeholder="Digite sua mensagem">
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-paper-plane" style="font-size:25px"></i>
@@ -131,21 +138,21 @@ background-color: #022a50;
 
 <script>
 let ultimoIdMensagem = 0;
-const idUsuarioLogado =<?= $_SESSION['id'] ?>;
+const idUsuarioLogado = <?= $_SESSION['id'] ?>;
 
-document.getElementById('form-mensagem').addEventListener('submit', function (e) {
+document.getElementById('form-mensagem').addEventListener('submit', function(e) {
     e.preventDefault();
 
     const formData = new FormData(this);
     fetch('?route=/painelChatEnviar', {
-        method: 'POST',
-        body: formData
-    })
+            method: 'POST',
+            body: formData
+        })
         .then(response => response.json())
         .then(data => {
             if (data.status) {
                 this.querySelector('input[name="mensagem"]').value = '';
-                buscarMensagens(); 
+                buscarMensagens();
             } else {
                 alert('Erro ao enviar mensagem: ' + data.mensagem);
             }
@@ -163,21 +170,21 @@ function buscarMensagens() {
         .then(response => response.json())
         .then(data => {
             if (data.status && data.mensagens.length > 0) {
+
                 const containerMensagens = document.getElementById('mensagens');
                 data.mensagens.forEach(msg => {
                     const divMensagem = document.createElement('div');
                     divMensagem.classList.add('mensagem');
                     divMensagem.classList.add(
-                        msg.id_usuario_remetente != idUsuarioLogado
-                            ? 'mensagem-recebida'       
-                            : 'mensagem-enviada'
+                        msg.ID == idUsuarioLogado ?
+                        'mensagem-enviada' :
+                        'mensagem-recebida'
                     );
-
                     divMensagem.innerHTML = `
-                        ${msg.remetente}<br>
-                        ${msg.mensagem}<br>
-                        ${msg.data_envio}<br>
-                    `;
+        ${msg.remetente}<br>
+        ${msg.mensagem}<br>
+        ${msg.data_envio}<br>
+    `;
                     containerMensagens.appendChild(divMensagem);
 
                     ultimoIdMensagem = Math.max(ultimoIdMensagem, msg.id_mensagem);
