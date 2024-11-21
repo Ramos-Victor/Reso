@@ -46,7 +46,7 @@ tbody tr {
             <div class="col-sm-2">
             </div>
             <div class="col-sm-8">
-                <h4 class="text-muted text-center mt-2">LISTA DE USUARIOS</h4>
+                <h4 class="text-muted text-center mt-2">LISTA DE CATEGORIAS</h4>
             </div>
             <div class="col-sm-2">
                 <button class="btn btn-block d-flex flex-row" style="background-color:#03305c;" data-toggle="modal"
