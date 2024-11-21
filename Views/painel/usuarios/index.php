@@ -68,25 +68,22 @@ tbody tr {
                             <td><?php echo $l['nm_usuario']; ?></td>
                             <td><?php echo strtoupper($l['cargo_usuario']); ?></td>
                             <td><?php echo $l['dt_entrada']; ?></td>
-                            <td>
-                                <div class="btn-group">
-                                    <?php if ($l['cargo_usuario'] != "criador"): ?>
-                                    <button class="btn btn-primary btn-sm editar" data-toggle="modal"
-                                        data-target="#editar" title="Editar" cd="<?php echo $l['id_usuario']; ?>"
-                                        nome="<?php echo $l['nm_usuario']; ?>"
-                                        cargo="<?php echo $l['cargo_usuario']; ?>"
-                                        data="<?php echo $l['dt_entrada']; ?>">
-                                        <i class="botoes bi bi-pencil-fill"></i>
-                                    </button>
-                                    <button class="btn btn-danger btn-sm deletar" data-toggle="modal"
-                                        data-target="#deletar" title="Deletar" cd="<?php echo $l['id_usuario']; ?>"
-                                        nome="<?php echo $l['nm_usuario']; ?>"
-                                        cargo="<?php echo $l['cargo_usuario']; ?>"
-                                        data="<?php echo $l['dt_entrada']; ?>">
-                                        <i class="botoes bi bi-trash-fill"></i>
-                                    </button>
-                                    <?php endif; ?>
-                                </div>
+                            <td class="btn-group" style="border:none;column-gap:5px;">
+                                <?php if ($l['cargo_usuario'] != "criador"): ?>
+                                <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
+                                    title="Editar" cd="<?php echo $l['id_usuario']; ?>"
+                                    nome="<?php echo $l['nm_usuario']; ?>" cargo="<?php echo $l['cargo_usuario']; ?>"
+                                    data="<?php echo $l['dt_entrada']; ?>">
+                                    <i class="botoes bi bi-pencil-fill"></i> Editar
+                                </button>
+                                <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
+                                    title="Deletar" cd="<?php echo $l['id_usuario']; ?>"
+                                    nome="<?php echo $l['nm_usuario']; ?>" cargo="<?php echo $l['cargo_usuario']; ?>"
+                                    data="<?php echo $l['dt_entrada']; ?>">
+                                    <i class="botoes bi bi-trash-fill"></i> Remover
+                                </button>
+                                <?php endif; ?>
+
                             </td>
                         </tr>
                         <?php

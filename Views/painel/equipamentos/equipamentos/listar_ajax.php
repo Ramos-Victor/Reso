@@ -31,7 +31,7 @@ if ($listar && count($listar) > 0) {
                 </td>
                 <td><a href="?route=/painelSalas#<?= $l['id_sala'] ?>"><?= $l['nm_sala'] ?></a></td>
                 <td><a href="?route=/painelUsuarios#<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
-                <td>
+                <td class="btn-group" style="border:none;column-gap:5px;">
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                         title="Deletar" cd="<?= $l['cd_equipamento']; ?>" nome="<?= $l['nm_equipamento']; ?>">
                         <i class="botoes bi bi-trash3-fill"></i> Deletar
