@@ -67,6 +67,11 @@ if ($listar && count($listar) > 0) {
                         <i class="botoes bi bi-trash3-fill"></i> Deletar
                     </button>
                     <?php } 
+                    ?>
+                    <a href="?route=/painelChatChamado&idChamado=<?= $l['cd_chamado'] ?>" class="btn btn-secondary btn-sm">
+                        <i class="botoes bi bi-chat-fill"></i> Chat
+                    </a>
+                    <?php
                     if ($l['st_chamado'] == 'Aberto' && $l['id_abertura'] == $_SESSION['id']) { ?>
                     <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#modalEditar"
                         cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"

@@ -214,6 +214,17 @@ CREATE TABLE IF NOT EXISTS `db_resoluton2`.`tb_faq` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+CREATE TABLE IF NOT EXISTS tb_chat(
+	cd_mensagem INT PRIMARY KEY AUTO_INCREMENT,
+    id_chamado INT NOT NULL,
+    id_usuario_remetente INT NOT NULL,
+    mensagem TEXT NOT NULL,
+    dt_envio DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    
+    FOREIGN KEY (id_chamado) REFERENCES tb_chamado(cd_chamado),
+     FOREIGN KEY (id_usuario_remetente) REFERENCES tb_usuario_conexao(id_usuario)
+)ENGINE = InnoDB;
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
@@ -305,6 +316,4 @@ select * from tb_chamado;
 
 select * from tb_usuario;
 
-SELECT st_chamado, COUNT(*) AS total 
-                  FROM tb_chamado WHERE id_conexao = 1
-                  GROUP BY st_chamado
+select * from tb_chat;

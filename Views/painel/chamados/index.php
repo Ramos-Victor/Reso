@@ -42,11 +42,31 @@ tbody {
 tbody tr {
     scroll-margin-top: 50px;
 }
+
+.back-button {
+position: absolute;
+top: 10px;
+left: 10px;
+background-color: #03305c;
+color: #fff;
+border: none;
+padding: 10px 15px;
+border-radius: 5px;
+text-decoration: none;
+font-size: 14px;
+box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+background-color: #022a50;
+}
 </style>
 
 <body>
     <?php include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/nav.php'; ?>
     <br><br><br><br>
+    
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-2 col-xs-2">
@@ -111,7 +131,6 @@ setInterval(carregarChamados, 5000);
 $(document).ready(function() {
     carregarChamados();
 
-    // Filtra os chamados
     $('.filter-btn').on('click', function() {
         statusFilter = $(this).data('status');
         $('#filter-text').html(statusFilter ? `Filtro selecionado: ${statusFilter}` : '');
