@@ -22,7 +22,7 @@ if ($listar) {
                 <td><?= $l['categoria_nm'] ?></td>
                 <td><?= $l['dt_categoria'] ?></td>
                 <td><a href="?route=/painelUsuarios#id<?= $l['cd_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
-                <td>
+                <td class="btn-group" style="column-gap:5px">
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                         title="Deletar" cd="<?= $l['cd_categoria']; ?>" nome="<?= $l['categoria_nm']; ?>"
                         criado="<?= $l['id_usuario']; ?>" data="<?= $l['dt_categoria']; ?>" style="font-size: 14px;">

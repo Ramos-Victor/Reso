@@ -4,7 +4,8 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
 
 <style>
 .chat-container {
-    max-width: 500px;
+    max-width: 100vh;
+    max-height: 80vh;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     border-radius: 12px;
     overflow: hidden;
@@ -30,7 +31,7 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
 
 .chat-body {
     background-color: #f8f9fa;
-    height: 500px;
+    height: 75vh;
     overflow-y: auto;
     padding: 15px;
 }
@@ -44,6 +45,7 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
 .mensagem {
     margin-bottom: 15px;
     max-width: 80%;
+    min-width: 40%;
 }
 
 .mensagem-enviada {
@@ -54,7 +56,7 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
     padding: 10px;
     margin-left: auto;
     text-align: right;
-    /* Alinha o texto à direita */
+
 }
 
 .mensagem-recebida {
@@ -63,15 +65,17 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
     border-radius: 15px 15px 15px 0;
     padding: 10px;
     margin-right: auto;
-    /* Alinha à esquerda */
     text-align: left;
-    /* Alinha o texto à esquerda */
 }
 
 #form-mensagem {
     display: flex;
     flex-direction: row;
     column-gap: 10px
+}
+
+.data{
+    font-size:10px;
 }
 
 .back-button {
@@ -93,18 +97,17 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
     background-color: #022a50;
 }
 
-/* Responsividade */
 @media (max-width: 576px) {
     .chat-container {
-        width: 95%;
+        max-width: 60vh;
         margin: 0 auto;
     }
 }
 </style>
 
-<body class="bg-light">
+<body class="bg-light" style="height:100vh;">
     <a href="?route=/painelChamados" class="back-button">Voltar</a>
-    <div class="container-fluid d-flex align-items-center justify-content-center" style="min-height: 100vh;">
+    <div class="container-fluid d-flex align-items-center justify-content-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
         <div class="chat-container card" style="width:400px;">
             <div class="chat-header">
                 <div class="d-flex align-items-center">
@@ -180,10 +183,20 @@ function buscarMensagens() {
                         'mensagem-enviada' :
                         'mensagem-recebida'
                     );
+
+                    const dataFormatada = formatarData(msg.data_envio);
+
+
                     divMensagem.innerHTML = `
-        ${msg.remetente}<br>
-        ${msg.mensagem}<br>
-        ${msg.data_envio}<br>
+        <div class="remetente">
+         <strong> ${msg.remetente}</strong><br> 
+         </div> 
+         <div class="texto-mensagem">
+         ${msg.mensagem}<br> 
+         </div>
+         <div class="data">
+         <span>${dataFormatada}</span><br> 
+         </div>
     `;
                     containerMensagens.appendChild(divMensagem);
 
@@ -198,6 +211,46 @@ function buscarMensagens() {
         });
 }
 
+function formatarData(dataEnvio) {
+
+    const partes = dataEnvio.split(" ");
+    const dataParte = partes[0].split("/");  
+    const horaParte = partes[1].split(":");  
+
+    const dia = dataParte[0];
+    const mes = dataParte[1];
+    const hora = horaParte[0];
+    const minuto = horaParte[1];
+
+    const dataMensagem = new Date();
+    dataMensagem.setFullYear(new Date().getFullYear(), mes - 1, dia);
+    dataMensagem.setHours(hora);
+    dataMensagem.setMinutes(minuto);
+    dataMensagem.setSeconds(0);
+    dataMensagem.setMilliseconds(0);
+
+    const agora = new Date();
+    const diffMs = agora - dataMensagem;
+
+    const diffSegundos = Math.floor(diffMs / 1000);
+    const diffMinutos = Math.floor(diffSegundos / 60);
+    const diffHoras = Math.floor(diffMinutos / 60);
+    const diffDias = Math.floor(diffHoras / 24);
+
+    if (diffMinutos < 1) {
+        return "Agora";
+    } else if (diffMinutos < 30) {
+        return `${diffMinutos} minuto${diffMinutos === 1 ? '' : 's'} atrás`;
+    } else if (diffMinutos >= 30 && diffMinutos < 60) {
+        return `Hoje às ${hora}:${minuto}`;
+    } else if (diffHoras < 24) {
+        return `${diffHoras} hora${diffHoras === 1 ? '' : 's'} atrás`;
+    } else if (diffDias < 30) {
+        return `${diffDias} dia${diffDias === 1 ? '' : 's'} atrás`;
+    } else {
+        return `${dia}/${mes} ${hora}:${minuto}`;
+    }
+}
 setInterval(buscarMensagens, 3000);
 
 buscarMensagens();

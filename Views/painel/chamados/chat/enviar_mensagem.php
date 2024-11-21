@@ -24,7 +24,7 @@ if ($id_chamado && $mensagem && $id_usuario) {
                 'id_mensagem' => $GLOBALS['con']->insert_id
             ];
         }
-        $stmt->close(); // Feche o statement
+        $stmt->close();
     }
 }
 

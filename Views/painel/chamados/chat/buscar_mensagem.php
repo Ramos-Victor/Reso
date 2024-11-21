@@ -8,7 +8,7 @@ $ultimo_id = $_GET['ultimo_id'];
 $resposta = ['mensagens' => [], 'status' => false];
 
 if ($id_chamado) {
-    $sql = 'SELECT cd_mensagem AS id_mensagem, mensagem,id_usuario_remetente AS ID, nm_usuario AS remetente, dt_envio AS data_envio 
+    $sql = 'SELECT cd_mensagem AS id_mensagem, mensagem,id_usuario_remetente AS ID, nm_usuario AS remetente, DATE_FORMAT(dt_envio, "%d/%m %H:%i") AS data_envio 
             FROM tb_chat 
             INNER JOIN tb_usuario ON id_usuario_remetente = cd_usuario 
             WHERE id_chamado = ? AND cd_mensagem > ? 
@@ -25,7 +25,7 @@ if ($id_chamado) {
         }
 
         $resposta['status'] = true;
-        $stmt->close(); // Feche o statement
+        $stmt->close();
     }
 }
 
