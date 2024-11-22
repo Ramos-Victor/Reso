@@ -69,7 +69,7 @@ tbody tr {
         <div class="container-fluid">
             <div id="salas-container" class="row mt-3 overflow-auto"
                 style="max-height: 850px; overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
-                <!-- Salas carregadas dinamicamente via AJAX -->
+          
             </div>
         </div>
 
@@ -93,10 +93,10 @@ function carregarSalas() {
     });
 }
 
-// Atualiza as salas a cada 10 segundos
+
 setInterval(carregarSalas, 5000);
 
-// Carrega as sala na inicialização
+
 $(document).ready(function() {
     carregarSalas();
 });

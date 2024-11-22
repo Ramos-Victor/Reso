@@ -3,7 +3,7 @@
     include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/comum/categoria/function.php';
 ?>
 
-<!-- Modal Criar Equipamento -->
+
 <div class="modal fade" id="addequipamento" data-backdrop="static">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -47,7 +47,7 @@
 </div>
 
 
-<!-- Modal Editar Equipamento -->
+
 <div class="modal fade" id="editar" data-backdrop="static">
     <div class="modal-dialog modal-md">
         <div class="modal-content">

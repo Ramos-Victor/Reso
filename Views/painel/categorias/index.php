@@ -58,7 +58,7 @@ tbody tr {
         <div class="container-fluid">
             <div id="categorias-container" class="row mt-3 overflow-auto"
                 style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
-                <!-- Categorias carregadas dinamicamente via AJAX -->
+                
             </div>
         </div>
     </div>
@@ -79,10 +79,10 @@ function carregarCategorias() {
     });
 }
 
-// Atualiza as categorias a cada 10 segundos
+
 setInterval(carregarCategorias, 5000);
 
-// Carrega as categorias na inicialização
+
 $(document).ready(function() {
     carregarCategorias();
 });

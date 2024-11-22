@@ -35,9 +35,8 @@ if (!defined('ROUTING_ACCESS')) {
 	}
 
 	function ValidarCadastro($usuario, $email, $senha) {
-		global $con;  // Certifique-se de que a variável de conexão está acessível
+		global $con;
 	
-		// Verificar se o usuário já existe
 		$sql = 'SELECT COUNT(*) as total FROM tb_usuario WHERE nm_usuario = ?';
 		$sql2 = 'SELECT COUNT(*) as total FROM tb_usuario WHERE nm_email = ?';
 	
@@ -59,11 +58,9 @@ if (!defined('ROUTING_ACCESS')) {
 		$result2 = $stmt2->get_result();
 		$row2 = $result2->fetch_assoc();
 	
-		// Verifique se já existe um registro com o mesmo nome de usuário ou email
 		if ($row['total'] >= 1 || $row2['total'] >= 1) {
-			return false;  // Retorne falso caso já exista
+			return false;  
 		} else {
-			// Caso não exista, insira o novo usuário
 			$sql3 = 'INSERT INTO tb_usuario (nm_usuario, nm_email, cd_senha) VALUES (?, ?, sha2(?, 256))';
 			$stmt3 = $con->prepare($sql3);
 			if (!$stmt3) {
@@ -74,8 +71,8 @@ if (!defined('ROUTING_ACCESS')) {
 			$res = $stmt3->execute();
 	
 			if ($res) {
-				Confirma("Cadastrado com sucesso!!", "./login.php");
-				return true;  // Cadastro bem-sucedido
+				Confirma("Cadastrado com sucesso!!", "?route=/login");
+				return true; 
 			} else {
 				Erro("Não foi possível cadastrar o usuário :(");
 				return false;

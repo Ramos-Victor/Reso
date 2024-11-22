@@ -49,7 +49,6 @@ include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/comum/chamados/script.php'
         <div class="container-fluid">
             <div id="chamados-container" class="row overflow-auto"
                 style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
-                <!-- Aqui será listados os chamados com ajax -->
             </div>
         </div>
     </div>
@@ -80,7 +79,6 @@ setInterval(carregarChamados, 5000);
 $(document).ready(function() {
     carregarChamados();
 
-    // Filtra os chamados
     $('.filter-btn').on('click', function() {
         statusFilter = $(this).data('status');
         $('#filter-text').html(statusFilter ? `Filtro selecionado: ${statusFilter}` : '');

@@ -6,9 +6,9 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/function.php';
                 $chamadosPorStatus = contarChamadosPorStatus();
                 if (is_array($chamadosPorStatus)): 
                     $cores = [
-                        'Aberto' => '#17a2b8',  // Azul para "info"
-                        'Andamento' => '#ffc107',  // Amarelo para "warning"
-                        'Concluido' => '#28a745',  // Verde para "success"
+                        'Aberto' => '#17a2b8',  
+                        'Andamento' => '#ffc107',  
+                        'Concluido' => '#28a745', 
                     ];
                     foreach (['Aberto', 'Andamento', 'Concluido'] as $status):
                         $quantidade = $chamadosPorStatus[$status] ?? 0;

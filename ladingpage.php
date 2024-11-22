@@ -5,15 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Resolut.on</title>
     
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- AOS Animation CSS -->
     <link href="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.css" rel="stylesheet">
-    <!-- Estilização fonte-->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <style>
-        /* Gradiente e fundo escuro */
+     
 html,
 body {
     overflow-y: scroll;
@@ -23,7 +20,7 @@ body {
 }
 
 .background {
-    height: 100%; /* Altura total da tela */
+    height: 100%; 
     background: linear-gradient(
             111deg,
             #0000ffb4 0%, 
@@ -31,13 +28,13 @@ body {
             #000000 100% 
         ),
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23444444' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23525055'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E"),
-        #0e161e; /* Fundo escuro */
+        #0e161e; 
     background-size: cover;
     background-position: center;
 }
 
 .gradient-background {
-    height: 100vh; /* Altura total da tela */
+    height: 100vh; 
     background: linear-gradient(
             111deg,
             #0000ffb4 0%, 
@@ -45,74 +42,74 @@ body {
             #000000 100% 
         ),
         url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23444444' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23525055'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E"),
-        #0e161e; /* Fundo escuro */
+        #0e161e;
     background-size: cover;
     background-position: center;
     align-items: center;
     font-size: 3rem;
 }
 
-/* Container do cabeçalho */
+
 .header-container {
     display: flex;
-    flex-direction: column; /* Para melhor disposição em telas menores */
-    height: auto; /* Altura automática */
+    flex-direction: column; 
+    height: auto; 
     width: 100%;
-    justify-content: center; /* Centraliza o conteúdo verticalmente */
-    padding: 20px; /* Adiciona um pouco de preenchimento */
+    justify-content: center; 
+    padding: 20px; 
 }
 
-/* Adicionando uma nova classe para permitir a disposição lado a lado */
+
 .header-content {
     display: flex;
-    flex-direction: row; /* Lado a lado em telas maiores */
-    align-items: center; /* Centraliza verticalmente */
-    justify-content: center; /* Espaçamento entre logo e informações */
+    flex-direction: row; 
+    align-items: center; 
+    justify-content: center; 
 }
 
 @media (max-width: 1180px) {
     .header-content {
-        flex-direction: column; /* Empilha em telas menores */
-        align-items: center; /* Centraliza os itens */
+        flex-direction: column; 
+        align-items: center; 
     }
 }
 
 .text-title, .text-title2 {
     font-family: 'Poppins', sans-serif;
     position: relative;
-    text-align: center; /* Centraliza o texto */
+    text-align: center; 
 }
 
 .text-title::after {
     content: '';
     position: absolute;
-    bottom: -3px; /* Ajuste a posição da borda */
+    bottom: -3px; 
     left: 50%;
-    transform: translateX(-50%); /* Centraliza a borda */
-    width: 50%; /* Limita a largura da borda */
-    height: 2px; /* Espessura da borda */
-    background-color: #F8CF40; /* Cor da borda */
-    border-radius: 2px; /* Arredonda as extremidades da borda */
+    transform: translateX(-50%); 
+    width: 50%; 
+    height: 2px;
+    background-color: #F8CF40; 
+    border-radius: 2px; 
 }
 
-/* Logo */
+
 .logo {
-    width: 100%; /* Ajusta a largura da imagem */
-    max-width: 300px; /* Limita a largura máxima da logo */
-    height: auto; /* Mantém a proporção */
-    margin: 20px auto; /* Centraliza a logo */
+    width: 100%;
+    max-width: 300px; 
+    height: auto; 
+    margin: 20px auto; 
 }
 
-/* Estilo das informações do projeto */
+
 .project-info {
     display: flex;
     flex-direction: column;
-    align-items: center; /* Centraliza o texto */
+    align-items: center;
     margin-top: 60px;
 }
 
 .project-name {
-    font-size: clamp(2.5rem, 6vw, 9rem); /* Tamanho responsivo */
+    font-size: clamp(2.5rem, 6vw, 9rem); 
     color: #ffffff;
     font-weight: bold;
     margin-top: 20px;
@@ -121,15 +118,15 @@ body {
 .project-description {
     color: #ffffff;
     margin-bottom: 20px;
-    text-align: center; /* Centraliza a descrição */
-    font-size: 1.25rem; /* Tamanho ajustável */
+    text-align: center; 
+    font-size: 1.25rem; 
 }
 
-/* Estilos de Botões */
+
 .button-container {
     display: flex;
     gap: 10px;
-    justify-content: center; /* Centraliza os botões */
+    justify-content: center; 
     padding: 10px;
 }
 
@@ -151,7 +148,7 @@ body {
     border-color: #F8CF40;
 }
 
-/* Seção com fundo escuro */
+
 .dark-section {
     background-color: #1c1c1e;
     color: #fff;
@@ -160,7 +157,7 @@ body {
     text-align: center;
 }
 
-/* Estilos dos Cards */
+
 .card-container {
     display: flex;
     justify-content: center;
@@ -211,13 +208,13 @@ body {
 }
 
 .logo {
-    width: 100%; /* Ajusta a largura da imagem */
-    max-width: 660px; /* Limita a largura máxima */
-    height: auto; /* Mantém a proporção */
-    margin: 20px auto; /* Centraliza a logo */
+    width: 100%; 
+    max-width: 660px; 
+    height: auto; 
+    margin: 20px auto;
 }
 
-/* Estilos da Nova Seção */
+
 .white-section {
     background-color: #f8f9fc;
     padding: 60px 20px;
@@ -244,14 +241,14 @@ body {
 
 .card-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Define duas colunas fixas */
+    grid-template-columns: repeat(2, 1fr);
     gap: 20px;
     margin-top: 40px;
 }
 
 @media (max-width: 768px) {
     .card-grid {
-        grid-template-columns: 1fr; /* Para telas menores, empilha os cards */
+        grid-template-columns: 1fr; 
     }
 }
 
@@ -274,18 +271,17 @@ body {
 }
 
 .text-creator {
-    border-bottom: 3px solid #0000ff; /* Borda inferior azul */
-    width: 20%;                       /* Limita a largura da borda */
-    margin: 0 auto;                   /* Centraliza o título */
+    border-bottom: 3px solid #0000ff;
+    width: 20%;                       
+    margin: 0 auto;                   
     border-radius: 2px;
     margin-bottom: 4%;
     font-family: 'Poppins', sans-serif;
     color: white;
-    /* Arredonda as extremidades da borda */
+
 }
 </style>
 <body>    
-    <!-- Header -->
     <header class="header-container gradient-background d-flex align-items-center">
         <div class="container text-center">
             <div class="header-content">
@@ -302,7 +298,6 @@ body {
         </div>
     </header>
     
-    <!-- Seção escura -->
     <div class="dark-section" id="dark-section">
         <h2 class="text-title display-6 fw-bold mb-4">Implemente um help desk de nível empresarial</h2>
         <div class="text-center">
@@ -327,7 +322,6 @@ body {
         </div>
     </div>
     
-    <!-- Seção branca -->
     <section class="white-section">
         <div class="content-container">
             <h2 class="section-subtitle text-uppercase">Funcionalidades</h2>
@@ -357,12 +351,12 @@ body {
             </div>
         </div>
     </section>
-<!-- Seção Criadores -->
+
 <div class="background">
     <div class="container py-5">
         <h2 class="text-center display-6 fw-bold mt-3 mb-10 text-creator">Criadores</h2>
         <div class="row row-cols-1 row-cols-md-3 g-7 mt-3">
-            <!-- Card 1 -->
+            
             <div class="col">
                 <div class="card h-70">
                     <img src="./assets/img/Lais.jpg" class="card-img-top" alt="Foto do Criador 1">
@@ -376,7 +370,7 @@ body {
                     </div>
                 </div>
             </div>
-            <!-- Card 2 -->
+ 
             <div class="col">
                 <div class="card h-70">
                     <img src="./assets/img/Marcio.jpg" class="card-img-top" alt="Foto do Criador 2">
@@ -390,7 +384,7 @@ body {
                     </div>
                 </div>
             </div>
-            <!-- Card 3 -->
+
             <div class="col">
                 <div class="card h-70">
                     <img src="./assets/img/Victor.jpg" class="card-img-top" alt="Foto do Criador 3">
@@ -408,7 +402,6 @@ body {
     </div>
 </div>
 
-    <!-- AOS Script -->
     <script src="https://cdn.jsdelivr.net/npm/aos@2.3.4/dist/aos.js"></script>
     <script>
         AOS.init();

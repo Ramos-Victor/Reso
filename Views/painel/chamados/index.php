@@ -100,7 +100,6 @@ background-color: #022a50;
         <div class="container-fluid">
             <div id="chamados-container" class="row overflow-auto"
                 style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
-                <!-- Aqui será listados os chamados com ajax -->
             </div>
         </div>
     </div>

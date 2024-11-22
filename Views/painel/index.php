@@ -11,7 +11,7 @@ require_once 'nav.php';
     <div class="container-fluid" style='position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);'>
         <h2 class="text-center text-muted mb-5" style="font-size: 2rem; font-weight: bold;">Resumo Geral Chamados</h2>
         <div class="row justify-content-center" id="card-container">
-            <!--Listagem pelo ajax -->
+           
         </div>
     </div>
     <?php
@@ -33,10 +33,10 @@ function carregarCards() {
     });
 }
 
-// Atualiza as salas a cada 10 segundos
+
 setInterval(carregarCards, 5000);
 
-// Carrega as sala na inicialização
+
 $(document).ready(function() {
     carregarCards();
 });
