@@ -74,8 +74,8 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
     column-gap: 10px
 }
 
-.data{
-    font-size:10px;
+.data {
+    font-size: 10px;
 }
 
 .back-button {
@@ -107,7 +107,8 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
 
 <body class="bg-light" style="height:100vh;">
     <a href="?route=/painelChamados" class="back-button">Voltar</a>
-    <div class="container-fluid d-flex align-items-center justify-content-center" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
+    <div class="container-fluid d-flex align-items-center justify-content-center"
+        style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
         <div class="chat-container card" style="width:400px;">
             <div class="chat-header">
                 <div class="d-flex align-items-center">
@@ -194,7 +195,7 @@ function buscarMensagens() {
          <div class="texto-mensagem">
          ${msg.mensagem}<br> 
          </div>
-         <div class="data">
+         <div class="data" data-data-envio="${msg.data_envio}">
          <span>${dataFormatada}</span><br> 
          </div>
     `;
@@ -211,11 +212,22 @@ function buscarMensagens() {
         });
 }
 
+
+function atualizarDatas() {
+    const mensagens = document.querySelectorAll('.mensagem .data');
+    mensagens.forEach(dataElemento => {
+        const dataEnvio = dataElemento.getAttribute('data-data-envio');
+        const novaData = formatarData(dataEnvio);
+        dataElemento.querySelector('span').innerText = novaData;
+    });
+}
+
+
 function formatarData(dataEnvio) {
 
     const partes = dataEnvio.split(" ");
-    const dataParte = partes[0].split("/");  
-    const horaParte = partes[1].split(":");  
+    const dataParte = partes[0].split("/");
+    const horaParte = partes[1].split(":");
 
     const dia = dataParte[0];
     const mes = dataParte[1];
@@ -251,7 +263,10 @@ function formatarData(dataEnvio) {
         return `${dia}/${mes} ${hora}:${minuto}`;
     }
 }
-setInterval(buscarMensagens, 3000);
+
+
+setInterval(buscarMensagens, 1000);
+setInterval(atualizarDatas, 1000);
 
 buscarMensagens();
 </script>
