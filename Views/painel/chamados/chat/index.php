@@ -116,10 +116,11 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
                     <h5 class="mb-0 text-white">Chat do Chamado</h5>
                 </div>
             </div>
-
             <div class="chat-body d-flex flex-column" id="mensagens">
+                <?php 
+                
+                ?>
             </div>
-
             <div class="chat-footer">
                 <div class="input-group">
                     <form id="form-mensagem">
