@@ -17,6 +17,9 @@ $routes = [
     '/logout' => function () {
         require __DIR__ . '/logout.php';
     },
+    '/config' => function () {
+        require __DIR__ . '/Views/perfil.php';
+    },
     '/unidades' => function () {
         require __DIR__ . '/Views/unidades/index.php';
     },

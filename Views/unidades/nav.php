@@ -48,7 +48,7 @@ nav {
         </div>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="#">Configurações</a>
+            <a class="nav-link" href="?route=/config">Configurações</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">

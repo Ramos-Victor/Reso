@@ -75,7 +75,7 @@ nav {
                     <?= $_SESSION['usuario'] ?>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item a" href="#">Configurações</a>
+                    <a class="dropdown-item a" href="?route=/config">Configurações</a>
                     <a class="dropdown-item a" href="?route=/logout">Encerrar Sessão</a>
                 </div>
             </li>
