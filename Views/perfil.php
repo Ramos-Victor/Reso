@@ -75,11 +75,16 @@ else{
                 </div>
             </div>
 
-            <!-- Coluna das Informações -->
             <div class="col-md-9">
                 <div class="card">
                     <div class="card-body">
                         <form>
+                            <div class="form-group row">
+                                <label class="col-sm-3 col-form-label">Nome de Usuario</label>
+                                <div class="col-sm-9">
+                                    <input type="text" class="form-control" placeholder="Seu nome de usuario">
+                                </div>
+                            </div>
                             <div class="form-group row">
                                 <label class="col-sm-3 col-form-label">Nome Completo</label>
                                 <div class="col-sm-9">
@@ -141,13 +146,11 @@ function previewFile() {
     const file = document.getElementById('fileInput').files[0];
 
     if (file) {
-        // Verifica se é uma imagem
         if (!file.type.startsWith('image/')) {
             alert('Por favor, selecione apenas arquivos de imagem.');
             return;
         }
 
-        // Verifica o tamanho do arquivo (5MB máximo)
         if (file.size > 5 * 1024 * 1024) {
             alert('A imagem deve ter no máximo 5MB.');
             return;
