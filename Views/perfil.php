@@ -60,14 +60,16 @@ else{
             <div class="col-md-3 text-center">
                 <div class="card">
                     <div class="card-body">
-                        <img src="/api/placeholder/200/200" alt="Foto do Perfil" class="rounded-circle mb-3"
-                            style="max-width: 200px;">
+                        <img id="previewImage" src="/Reso/assets/img/PerfilImgs/iconpadraoperfil.png"
+                            alt="Foto do Perfil" class="rounded-circle mb-3"
+                            style="max-width: 10rem; height: 10rem; object-fit: cover;">
                         <div class="mb-3">
-                            <button class="btn btn-primary btn-sm">Alterar Foto</button>
-                        </div>
-                        <div class="text-muted small">
-                            Tamanho máximo: 5MB<br>
-                            Formatos: JPG, PNG
+                            <input type="file" id="fileInput" accept="image/*" style="display: none;"
+                                onchange="previewFile()">
+                            <button class="btn btn-primary btn-sm"
+                                onclick="document.getElementById('fileInput').click()">
+                                Alterar Foto
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -131,4 +133,37 @@ else{
 
 
 </body>
+
 <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php';?>
+<script>
+function previewFile() {
+    const preview = document.getElementById('previewImage');
+    const file = document.getElementById('fileInput').files[0];
+
+    if (file) {
+        // Verifica se é uma imagem
+        if (!file.type.startsWith('image/')) {
+            alert('Por favor, selecione apenas arquivos de imagem.');
+            return;
+        }
+
+        // Verifica o tamanho do arquivo (5MB máximo)
+        if (file.size > 5 * 1024 * 1024) {
+            alert('A imagem deve ter no máximo 5MB.');
+            return;
+        }
+
+        const reader = new FileReader();
+
+        reader.onloadend = function() {
+            preview.src = reader.result;
+        }
+
+        if (file) {
+            reader.readAsDataURL(file);
+        } else {
+            preview.src = "/Reso/assets/img/PerfilImgs/iconpadraoperfil.png";
+        }
+    }
+}
+</script>
