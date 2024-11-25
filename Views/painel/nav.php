@@ -54,7 +54,7 @@ nav {
                 <a class="nav-link" href="?route=/painel">Dashboard </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="?route=/painelUsuarios">Usuarios</a>
+                <a class="nav-link" href="?route=/painelUsuarios">Usuários</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="?route=/painelChamados">Chamados</a>

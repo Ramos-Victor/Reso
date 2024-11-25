@@ -34,11 +34,11 @@ require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
         }
     }
 
-    function EditarCategoria($id, $nome,$conexao, $pagina){
-        $sql = 'UPDATE tb_equipamento_categoria set categoria_nm = ? where cd_categoria = ? and id_conexao = ?';
+    function EditarCategoria($id, $nome,$unidade, $pagina){
+        $sql = 'UPDATE tb_equipamento_categoria set categoria_nm = ? where cd_categoria = ? and id_unidade = ?';
 
         $stmt = $GLOBALS['con']->prepare($sql);
-        $stmt->bind_param('sii', $nome, $id, $conexao);
+        $stmt->bind_param('sii', $nome, $id, $unidade);
 
         $res = $stmt->execute();
 

@@ -8,7 +8,7 @@ if(!empty($_SESSION['id'])){
     include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/dialog.php';
 }
 else{
-    header("Location: /Reso/logout.php");
+    header("Location: ?route=/logout");
 }
 ?>
 

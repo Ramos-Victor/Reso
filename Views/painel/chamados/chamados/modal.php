@@ -18,24 +18,10 @@
                 LEFT JOIN tb_usuario u ON e.id_usuario = u.cd_usuario
                 LEFT JOIN tb_equipamento_categoria c ON e.id_categoria = c.cd_categoria
                 LEFT JOIN tb_sala s ON e.id_sala = s.cd_sala
-                WHERE e.st_ativo = 1 AND  e.id_unidade = ? ';
-    
-        $params = [$_SESSION['unidade']];
-        $types = 'i';
-    
-        if ($categoria) {
-            $sql .= ' AND e.id_categoria = ?';
-            $params[] = $categoria;
-            $types .= 'i';
-        }
-        if ($sala) {
-            $sql .= ' AND e.id_sala = ?';
-            $params[] = $sala;
-            $types .= 'i';
-        }
+                WHERE e.st_equipamento = 1 AND e.st_ativo = 1 AND  e.id_unidade = ? ';
     
         $stmt = $GLOBALS['con']->prepare($sql);
-        $stmt->bind_param($types, ...$params);
+        $stmt->bind_param('i', $_SESSION['unidade']);
         $stmt->execute();
         $res = $stmt->get_result();
     

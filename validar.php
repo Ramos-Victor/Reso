@@ -3,10 +3,8 @@ if (!defined('ROUTING_ACCESS')) {
     http_response_code(403);
     die('<h1 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Acesso direto não permitido</h1>');
 }
-
-	if (session_status() === PHP_SESSION_NONE) {
-		session_start();
-	}
+	session_start();
+	
 	require_once 'conect.php';
 
 	function ValidarLogin($email, $senha){
@@ -128,15 +126,21 @@ if (!defined('ROUTING_ACCESS')) {
 	require_once 'footer.php';
 ?>
 <style>
-	.myModal .modal-body{height: 370px;}
-	i, .bi{font-size: 55px;}
+.myModal .modal-body {
+    height: 370px;
+}
+
+i,
+.bi {
+    font-size: 55px;
+}
 </style>
 <script>
-    $(document).ready(function(){
-       $('#myModal').modal('show');
-    });
+$(document).ready(function() {
+    $('#myModal').modal('show');
+});
 
-    $('#myModal').on('shown.bs.modal', function(){
-      $('#myInput').trigger('focus');
-    });
+$('#myModal').on('shown.bs.modal', function() {
+    $('#myInput').trigger('focus');
+});
 </script>

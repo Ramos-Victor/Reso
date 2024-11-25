@@ -63,7 +63,7 @@ function CriarEquipamento($nome, $desc, $categoria, $usuario, $unidade, $pagina)
     $idSalaEstoque = $salaEstoque['cd_sala'];
 
     $sql = 'INSERT INTO tb_equipamento (nm_equipamento, ds_equipamento, id_sala, id_categoria, id_usuario, id_unidade, st_equipamento)
-            VALUES (?, ?, ?, ?, ?, ?, 1)';
+            VALUES (?, ?, ?, ?, ?, ?, 3)';
     
     $stmt = $GLOBALS['con']->prepare($sql);
     $stmt->bind_param('ssiiii', $nome, $desc, $idSalaEstoque, $categoria, $usuario, $unidade);
