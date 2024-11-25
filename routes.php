@@ -1,9 +1,4 @@
 <?php
-if (!defined('ROUTING_ACCESS')) {
-    http_response_code(403);
-    die('<h1 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Acesso direto não permitido</h1>');
-}
-
 $routes = [
     '/' => function () {
         require __DIR__ . '/ladingpage.php';
@@ -18,7 +13,7 @@ $routes = [
         require __DIR__ . '/logout.php';
     },
     '/config' => function () {
-        require __DIR__ . '/Views/perfil.php';
+        require __DIR__ . '/Views/perfil/index.php';
     },
     '/unidades' => function () {
         require __DIR__ . '/Views/unidades/index.php';
