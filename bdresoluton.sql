@@ -68,6 +68,8 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_usuario_unidade` (
   `id_unidade` INT NOT NULL,
   `dt_entrada` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_cargo` INT NOT NULL,
+  `st_ativo` TINYINT NOT NULL DEFAULT 1,
+  `dt_exclusao` DATETIME NULL,
   PRIMARY KEY (`id_usuario`, `id_unidade`),
   INDEX `fk_tb_usuario_has_tb_unidade_tb_unidade1_idx` (`id_unidade` ASC) ,
   INDEX `fk_tb_usuario_has_tb_unidade_tb_usuario_idx` (`id_usuario` ASC) ,
@@ -229,6 +231,8 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_chamado` (
   `id_unidade` INT NOT NULL,
   `id_usuario_fechamento` INT NULL,
   `id_equipamento` INT,
+  `st_ativo` TINYINT NOT NULL DEFAULT 1,
+  `dt_exclusao` DATETIME NULL,
   PRIMARY KEY (`cd_chamado`),
   INDEX `fk_tb_chamado_tb_st_chamado1_idx` (`st_chamado` ASC) ,
   INDEX `fk_tb_chamado_tb_usuario_unidade1_idx` (`id_usuario_abertura` ASC, `id_unidade` ASC) ,
@@ -277,7 +281,7 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_faq` (
   `dt_cadastro_faq` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `id_categoria` INT NOT NULL,
   `id_usuario` INT NOT NULL,
-  `st_ativo` TINYINT NOT NULL,
+  `st_ativo` TINYINT NOT NULL DEFAULT 1,
   `dt_exclusao` DATETIME NULL,
   PRIMARY KEY (`cd_faq`),
   INDEX `fk_tb_faq_tb_categoria_faq1_idx` (`id_categoria` ASC) ,
@@ -330,18 +334,25 @@ insert into tb_cargo_unidade (nm_cargo) VALUES
 ('suporte'),
 ('comum');
 
+insert into tb_st_equipamento (nm_status) VALUES 
+("Ativo"),
+("Manuntenção"),
+("Desativado");
+
 insert into tb_st_sala (nm_status) values 
 ("Ativo"),
 ("Desativado");
-
-select * from tb_st_sala;
 
 insert into tb_st_chamado (nm_status) values
 ("Aberto"),
 ("Andamento"),
 ("Concluido");
 
+select * from tb_usuario_unidade;
+select * from tb_st_sala;
 select * from tb_equipamento_categoria;
+select * from tb_st_equipamento;
+select * from tb_equipamento;
 select * from tb_sala;
 select * from tb_st_chamado;
 select * from tb_chamado;
