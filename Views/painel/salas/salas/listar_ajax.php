@@ -9,11 +9,11 @@ if ($listar) {
     <table class="table table-bordered table-striped table-hover">
         <thead class="bg-primary text-white text-center">
             <tr>
-                <th style="width: 20%;">Nome</th>
-                <th style="width: 20%;">Criado em</th>
-                <th style="width: 20%;">Descrição</th>
-                <th style="width: 20%;">Criado por</th>
-                <th style="width: 20%;">Ações</th>
+                <th>Nome</th>
+                <th>Criado em</th>
+                <th>Descrição</th>
+                <th>Criado por</th>
+                <th>Ações</th>
             </tr>
         </thead>
         <tbody>
@@ -25,7 +25,7 @@ if ($listar) {
                     <?= strlen($l['ds_sala']) > 30 ? substr($l['ds_sala'], 0, 30) . '...' : $l['ds_sala'] ?>
                 </td>
                 <td><a href="?route=/painelUsuarios#id<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
-                <td class="btn-group justify-content-center" style="border:none;column-gap:5px;">
+                <td class="btn-group" style="border:none;column-gap:5px;">
                     <button class="btn btn-success btn-sm ver" data-toggle="modal" data-target="#ver" title="Ver"
                         cd="<?= $l['cd_sala']; ?>" nome="<?= $l['nm_sala']; ?>" desc="<?= $l['ds_sala']; ?>"
                         criado="<?= $l['nm_usuario']; ?>" data="<?= $l['dt_sala']; ?>">

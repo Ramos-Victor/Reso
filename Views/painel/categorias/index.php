@@ -7,7 +7,7 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/categorias/categori
 
 <style>
 .botoes {
-    font-size: 20px;
+    font-size: 1.5rem;
 }
 
 .table-responsive {
@@ -93,20 +93,20 @@ if(!empty($_POST)){
         CriarCategoria(
             strtoupper($_POST['nome']),
             $_SESSION['id'],
-            $_SESSION['conexao'],
+            $_SESSION['unidade'],
             "?route=/painelCategorias"
         );
     }elseif($_POST['action'] == "Editar"){
         EditarCategoria(
             $_POST['cd'],
            strtoupper($_POST['nome']),
-            $_SESSION['conexao'],
+            $_SESSION['unidade'],
             "?route=/painelCategorias"
         );
     }elseif($_POST['action'] == "Deletar"){
         DeletarCategoria(
             $_POST['cd'],
-            $_POST['conexao'],
+            $_POST['unidade'],
             "?route=/painelCategorias"
             );
     }

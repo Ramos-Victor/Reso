@@ -2,12 +2,12 @@
 
 require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
 
-function AbrirChamado($nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abertura, $id_conexao, $pagina) {
-    $sql = 'INSERT INTO tb_chamado (nm_chamado, ds_chamado, st_chamado, id_equipamento, id_usuario_abertura, id_conexao)
-            VALUES (?, ?, "Aberto", ?, ?, ?)';
+function AbrirChamado($nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abertura, $id_unidade, $pagina) {
+    $sql = 'INSERT INTO tb_chamado (nm_chamado, ds_chamado, st_chamado, id_equipamento, id_usuario_abertura, id_unidade)
+            VALUES (?, ?, 1, ?, ?, ?)';
 
     $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('ssiii', $nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abertura, $id_conexao);
+    $stmt->bind_param('ssiii', $nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abertura, $id_unidade);
 
     $res = $stmt->execute();
 
@@ -19,23 +19,36 @@ function AbrirChamado($nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abe
 }
 
 function ListarChamados($status = null) {
-    $sql = 'SELECT c.cd_chamado, c.nm_chamado, c.ds_chamado, 
-                   DATE_FORMAT(dt_abertura, "%d/%m/%Y") as dt_abertura, 
-                   DATE_FORMAT(dt_fechamento,"%d/%m/%Y") as dt_fechamento, 
-                   c.st_chamado, 
-                   c.ds_recado,
-                   c.id_usuario_abertura as id_abertura,
-                   e.nm_equipamento, 
-                   u.nm_usuario as usuario_abertura,
-                   uf.nm_usuario as usuario_fechamento
-            FROM tb_chamado c
-            LEFT JOIN tb_equipamento e ON c.id_equipamento = e.cd_equipamento
-            LEFT JOIN tb_usuario u ON c.id_usuario_abertura = u.cd_usuario
-            LEFT JOIN tb_usuario uf ON c.id_usuario_fechamento = uf.cd_usuario WHERE 
-    c.id_conexao ="'.$_SESSION['conexao'].'"AND c.id_usuario_abertura="'.$_SESSION['id'].'"';
+    $sql = 'SELECT 
+    c.cd_chamado, 
+    c.nm_chamado, 
+    c.ds_chamado, 
+    DATE_FORMAT(c.dt_abertura, "%d/%m/%Y") as dt_abertura, 
+    DATE_FORMAT(c.dt_fechamento, "%d/%m/%Y") as dt_fechamento, 
+    s.nm_status as st_chamado, 
+    c.ds_recado,
+    c.id_usuario_abertura AS id_abertura,
+    c.id_usuario_fechamento AS id_fechamento,
+    c.id_equipamento AS id_equipamento,
+    e.nm_equipamento, 
+    u.nm_usuario AS usuario_abertura,
+    uf.nm_usuario AS usuario_fechamento
+FROM 
+    tb_chamado c
+INNER JOIN tb_st_chamado s ON c.st_chamado = s.cd_st_chamado
+LEFT JOIN 
+    tb_equipamento e ON c.id_equipamento = e.cd_equipamento
+LEFT JOIN 
+    tb_usuario u ON c.id_usuario_abertura = u.cd_usuario
+LEFT JOIN 
+    tb_usuario uf ON c.id_usuario_fechamento = uf.cd_usuario
+WHERE
+c.st_ativo = 1 AND
+c.id_usuario_abertura = "'.$_SESSION['id'].'" 
+AND c.id_unidade ="'.$_SESSION['unidade'].'"';
 
     if ($status) {
-        $sql .= ' AND c.st_chamado = ?';
+        $sql .= 'AND c.st_chamado = ?';
     }
 
     $stmt = $GLOBALS['con']->prepare($sql);
@@ -57,10 +70,10 @@ function ListarChamados($status = null) {
 
 
 
-function ColocarEmAndamento($cd_chamado, $id_fechamento, $conexao, $pagina) {
-    $sql = "UPDATE tb_chamado SET st_chamado = 'Andamento', dt_fechamento = current_timestamp(), id_usuario_fechamento = ? WHERE cd_chamado = ? AND id_conexao = ?";
+function ColocarEmAndamento($cd_chamado, $id_fechamento, $unidade, $pagina) {
+    $sql = "UPDATE tb_chamado SET st_chamado = '2', dt_fechamento = current_timestamp(), id_usuario_fechamento = ? WHERE cd_chamado = ? AND id_unidade = ?";
     $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('iii', $id_fechamento, $cd_chamado, $conexao);
+    $stmt->bind_param('iii', $id_fechamento, $cd_chamado, $unidade);
     $res = $stmt->execute();
 
     if ($res) {
@@ -70,10 +83,10 @@ function ColocarEmAndamento($cd_chamado, $id_fechamento, $conexao, $pagina) {
     }
 }
 
-function ConcluirChamado($cd_chamado, $recado, $id_fechamento, $conexao, $pagina) {
-    $sql = "UPDATE tb_chamado SET st_chamado = 'Concluido', ds_recado = ?, dt_fechamento = current_timestamp(), id_usuario_fechamento = ? WHERE cd_chamado = ? AND id_conexao = ?";
+function ConcluirChamado($cd_chamado, $recado, $id_fechamento, $unidade, $pagina) {
+    $sql = "UPDATE tb_chamado SET st_chamado = '3', ds_recado = ?, dt_fechamento = current_timestamp(), id_usuario_fechamento = ? WHERE cd_chamado = ? AND id_unidade = ?";
     $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('siii', $recado, $id_fechamento, $cd_chamado, $conexao);
+    $stmt->bind_param('siii', $recado, $id_fechamento, $cd_chamado, $unidade);
     $res = $stmt->execute();
 
     if ($res) {
@@ -83,11 +96,11 @@ function ConcluirChamado($cd_chamado, $recado, $id_fechamento, $conexao, $pagina
     }
 }
 
-function DeletarChamado($cd_chamado, $conexao, $pagina) {
-    $sql = "DELETE FROM tb_chamado WHERE cd_chamado = ? AND id_conexao = ?";
+function DeletarChamado($cd_chamado, $unidade, $pagina) {
+    $sql = "UPDATE tb_chamado SET st_ativo=0 ,dt_exclusao = current_timestamp() WHERE cd_chamado = ? AND id_unidade = ?";
     $stmt = $GLOBALS['con']->prepare($sql);
     
-    $stmt->bind_param('ii', $cd_chamado, $conexao);
+    $stmt->bind_param('ii', $cd_chamado, $unidade);
     $res = $stmt->execute();
 
     if ($res) {
@@ -97,4 +110,15 @@ function DeletarChamado($cd_chamado, $conexao, $pagina) {
     }
 }
 
+function EditarChamado($cd_chamado,$titulo, $descricao,$equipamento, $unidade,$pagina){
+    $sql = "UPDATE tb_chamado SET nm_chamado = ?, ds_chamado = ?, id_equipamento = ? WHERE cd_chamado = ? AND id_unidade = ?";
+    $stmt = $GLOBALS['con']->prepare($sql);
+    $stmt->bind_param('ssiii', $titulo, $descricao, $equipamento, $cd_chamado, $unidade);
+    $res = $stmt->execute();
 
+    if ($res) {
+        Confirma("Chamado editado com sucesso!", $pagina);
+    } else {
+        Erro("Erro ao editar o chamado.");
+    }
+}

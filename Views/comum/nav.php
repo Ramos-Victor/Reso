@@ -48,10 +48,10 @@ nav {
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
-                <a class="nav-link" href="/Reso/Views/models/unidades/index.php">Voltar </a>
+                <a class="nav-link" href="?route=/unidades">Voltar</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/Reso/Views/models/comum/chamados/index.php">Chamados</a>
+                <a class="nav-link" href="?route=/comum">Chamados</a>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
@@ -60,7 +60,7 @@ nav {
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item a" href="#">Configurações</a>
-                    <a class="dropdown-item a" href="/Reso/logout.php">Encerrar Sessão</a>
+                    <a class="dropdown-item a" href="?route=/logout">Encerrar Sessão</a>
                 </div>
             </li>
         </ul>

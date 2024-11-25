@@ -1,6 +1,6 @@
 <?php
 session_start();
-include_once './function.php';
+include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/comum/chamados/chamados/function.php';
 
 $status = isset($_GET['status']) ? $_GET['status'] : null;
 $listar = ListarChamados($status);
@@ -26,7 +26,8 @@ if ($listar && count($listar) > 0) {
             <?php foreach ($listar as $l) { ?>
             <tr class="text-center">
                 <td><?= $l['nm_chamado'] ?></td>
-                <td><?= strlen($l['ds_chamado']) > 30 ? substr($l['ds_chamado'], 0, 30) . '...' : $l['ds_chamado'] ?></td>
+                <td><?= strlen($l['ds_chamado']) > 30 ? substr($l['ds_chamado'], 0, 30) . '...' : $l['ds_chamado'] ?>
+                </td>
                 <td><?= $l['dt_abertura'] ?></td>
                 <td><?php if($l['st_chamado'] == 'Concluido') echo $l['dt_fechamento']; else echo "—"; ?></td>
                 <td>
@@ -38,48 +39,86 @@ if ($listar && count($listar) > 0) {
                                 'Concluido' => 'bg-success',
                                 default => 'bg-secondary',
                             };
-                        ?>"
-                        style="font-size: 15px;"><?= $l['st_chamado'] ?>
+                        ?> text-white" style="font-size: 15px;"><?= $l['st_chamado'] ?>
                     </span>
                 </td>
-                <td><?= $l['nm_equipamento'] ?? 'Não especificado' ?></td>
-                <td><?= $l['usuario_abertura'] ?></td>
-                <td><?= $l['usuario_fechamento'] ?? '—' ?></td>
+                <?php if($l['id_equipamento']){ ?>
+                <td><a href="?route=/painelEquipamentos#id<?=$l['id_equipamento'] ?>"><?= $l['nm_equipamento']?></a>
+                </td>
+                <?php }else{ ?>
                 <td>
-                    <?php if ($l['st_chamado'] == 'Aberto') { ?>
+                —
+                </td>
+                <?php } ?>
+                <td><a href="?route=/painelUsuarios#id<?= $l['id_abertura'] ?>"><?= $l['usuario_abertura'] ?></a></td>
+                <?php
+                    if($l['id_fechamento']){
+                ?>
+                <td><a
+                        href="?route=/painelUsuarios#id<?= $l['id_fechamento'] ?>"><?= $l['usuario_fechamento'] ?? '—' ?></a>
+                </td>
+                <?php
+                    }else{
+                ?>
+                <td><?= $l['usuario_fechamento'] ?? '—' ?>
+                </td>
+                <?php
+                    }
+                ?>
+                <td class="btn-group" style="border:none;column-gap:5px;">
+                    <?php if ($_SESSION['cargo'] != 'comum' || $l['st_chamado'] == 'Aberto') { ?>
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                         title="Deletar" cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>">
                         <i class="botoes bi bi-trash3-fill"></i> Deletar
                     </button>
                     <?php } 
+                    if($l['st_chamado']!='Aberto'){
+                    ?>
+                    <a href="?route=/painelChatChamado&idChamado=<?= $l['cd_chamado'] ?>"
+                        class="btn btn-secondary btn-sm">
+                        <i class="botoes bi bi-chat-fill"></i> Chat
+                    </a>
+                    <?php
+                    }
                     if ($l['st_chamado'] == 'Aberto' && $l['id_abertura'] == $_SESSION['id']) { ?>
                     <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#modalEditar"
                         cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
-                        descricao="<?= $l['ds_chamado'] ?>" equipamento="<?= $l['nm_equipamento'] ?? 'Não especificado' ?>"
+                        descricao="<?= $l['ds_chamado'] ?>"
+                        equipamento="<?= $l['id_equipamento'] ?? 'Não especificado' ?>"
                         status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
                         usuario="<?= $l['usuario_abertura']; ?>">
                         <i class="botoes bi bi-pencil-fill"></i> Editar
                     </button>
                     <?php }
-                   
+                    if ($l['st_chamado'] == 'Aberto' && $_SESSION['cargo'] != 'comum') { ?>
+                    <button class="btn btn-warning btn-sm andamento text-white" data-toggle="modal" data-target="#modalAndamento"
+                        cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
+                        descricao="<?= $l['ds_chamado'] ?>"
+                        equipamento="<?= $l['nm_equipamento'] ?? 'Não especificado' ?>"
+                        status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
+                        usuario="<?= $l['usuario_abertura']; ?>">
+                        <i class="botoes bi bi-hourglass-split"></i> Andamento
+                    </button>
+                    <?php } elseif ($l['st_chamado'] == 'Andamento' && $_SESSION['cargo'] != 'comum') { ?>
+                    <button class="btn btn-success btn-sm concluir" data-toggle="modal" data-target="#modalConclusao"
+                        cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>">
+                        <i class="botoes bi bi-check-circle-fill"></i> Concluir
+                    </button>
+                    <?php } 
                     if ($l['st_chamado'] == 'Concluido') { ?>
                     <button class="btn btn-success btn-sm avaliar" data-toggle="modal" data-target="#modalAvaliar"
                         cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>">
                         <i class="botoes bi bi-star-fill"></i> Avaliar
                     </button>
-                    <?php }
-                        if($l['st_chamado'] == 'Andamento'){                    
-                    ?>
-                    <button class="btn btn-success btn-sm chat" data-toggle="modal" data-target="#modalChat"
-                        cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>">
-                        <i class="botoes bi bi-chat-fill"></i> Chat
-                    </button>
-                    <?php }?>
+                    <?php } ?>
                     <button class="btn btn-primary btn-sm ver" data-toggle="modal" data-target="#ver"
                         cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
-                        descricao="<?= $l['ds_chamado'] ?>" equipamento="<?= $l['nm_equipamento'] ?? 'Não especificado' ?>"
-                        status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>" fechamento="<?= $l['dt_fechamento'] ?? 'Não finalizado' ?>" final="<?= $l['usuario_fechamento'] ?? '----' ?>"
-                        usuario="<?= $l['usuario_abertura']; ?>" feedback="<?= $l['ds_recado'] ?? '----' ?>">
+                        descricao="<?= $l['ds_chamado'] ?>"
+                        equipamento="<?= $l['nm_equipamento'] ?? 'Não especificado' ?>"
+                        status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
+                        fechamento="<?= $l['dt_fechamento'] ?? 'Não finalizado' ?>"
+                        final="<?= $l['usuario_fechamento'] ?? '----' ?>" usuario="<?= $l['usuario_abertura']; ?>"
+                        feedback="<?= $l['ds_recado'] ?? '----' ?>">
                         <i class="botoes bi bi-eye-fill"></i> Ver
                     </button>
                 </td>

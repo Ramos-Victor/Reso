@@ -1,5 +1,5 @@
 <?php
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
+include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/comum/header.php';
 ?>
 
 <style>
@@ -113,7 +113,7 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
             <div class="chat-header">
                 <div class="d-flex align-items-center">
                     <span class="chat-status"></span>
-                    <h5 class="mb-0 text-white">Chat do Chamado</h5>
+                    <h5 class="mb-0 text-white"> Chat do Chamado</h5>
                 </div>
             </div>
             <div class="chat-body d-flex flex-column" id="mensagens">

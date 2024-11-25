@@ -1,4 +1,4 @@
-<div class="modal fade" id="addconexao" data-backdrop="static">
+<div class="modal fade" id="addunidade" data-backdrop="static">
     <div class="modal-dialog modal-md div modal-content">
         <form method="post" enctype="multipart/form-data" class="form-group">
             <div class="modal-header">
@@ -18,7 +18,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="entrarconexao" data-backdrop="static">
+<div class="modal fade" id="entrarunidade" data-backdrop="static">
     <div class="modal-dialog modal-md div modal-content">
         <form method="post" enctype="multipart/form-data" class="form-group">
             <div class="modal-header">

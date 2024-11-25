@@ -6,7 +6,7 @@
     
         $sql = 'SELECT st_chamado, COUNT(*) AS total 
                 FROM tb_chamado 
-                WHERE id_conexao = "' . $_SESSION['conexao'] . '" 
+                WHERE id_unidade = "' . $_SESSION['unidade'] . '" 
                 GROUP BY st_chamado';
     
         $res = $con->query($sql);

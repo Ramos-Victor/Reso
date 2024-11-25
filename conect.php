@@ -6,7 +6,7 @@ if (!defined('ROUTING_ACCESS')) {
     $host = "localhost";
     $user = "root";
     $pass = "";
-    $base = "db_resoluton2";
+    $base = "db_resoluton";
 
     try {
         $con = new mysqli($host, $user, $pass, $base);

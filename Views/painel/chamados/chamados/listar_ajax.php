@@ -42,9 +42,14 @@ if ($listar && count($listar) > 0) {
                         ?> text-white" style="font-size: 15px;"><?= $l['st_chamado'] ?>
                     </span>
                 </td>
-                <td><a
-                        href="?route=/painelEquipamentos#id<?=$l['id_equipamento'] ?>"><?= $l['nm_equipamento'] ?? 'Não especificado' ?></a>
+                <?php if($l['id_equipamento']){ ?>
+                <td><a href="?route=/painelEquipamentos#id<?=$l['id_equipamento'] ?>"><?= $l['nm_equipamento']?></a>
                 </td>
+                <?php }else{ ?>
+                <td>
+                —
+                </td>
+                <?php } ?>
                 <td><a href="?route=/painelUsuarios#id<?= $l['id_abertura'] ?>"><?= $l['usuario_abertura'] ?></a></td>
                 <?php
                     if($l['id_fechamento']){
@@ -69,7 +74,8 @@ if ($listar && count($listar) > 0) {
                     <?php } 
                     if($l['st_chamado']!='Aberto'){
                     ?>
-                    <a href="?route=/painelChatChamado&idChamado=<?= $l['cd_chamado'] ?>" class="btn btn-secondary btn-sm">
+                    <a href="?route=/painelChatChamado&idChamado=<?= $l['cd_chamado'] ?>"
+                        class="btn btn-secondary btn-sm">
                         <i class="botoes bi bi-chat-fill"></i> Chat
                     </a>
                     <?php
@@ -78,14 +84,14 @@ if ($listar && count($listar) > 0) {
                     <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#modalEditar"
                         cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
                         descricao="<?= $l['ds_chamado'] ?>"
-                        equipamento="<?= $l['nm_equipamento'] ?? 'Não especificado' ?>"
+                        equipamento="<?= $l['id_equipamento'] ?? 'Não especificado' ?>"
                         status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
                         usuario="<?= $l['usuario_abertura']; ?>">
                         <i class="botoes bi bi-pencil-fill"></i> Editar
                     </button>
                     <?php }
                     if ($l['st_chamado'] == 'Aberto' && $_SESSION['cargo'] != 'comum') { ?>
-                    <button class="btn btn-warning btn-sm andamento" data-toggle="modal" data-target="#modalAndamento"
+                    <button class="btn btn-warning btn-sm andamento text-white" data-toggle="modal" data-target="#modalAndamento"
                         cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
                         descricao="<?= $l['ds_chamado'] ?>"
                         equipamento="<?= $l['nm_equipamento'] ?? 'Não especificado' ?>"

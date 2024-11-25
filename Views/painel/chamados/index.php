@@ -7,7 +7,7 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/chamados/chamados/
 
 <style>
 .botoes {
-    font-size: 20px;
+    font-size: 1.5rem;
 }
 
 .feedback-text {
@@ -44,29 +44,29 @@ tbody tr {
 }
 
 .back-button {
-position: absolute;
-top: 10px;
-left: 10px;
-background-color: #03305c;
-color: #fff;
-border: none;
-padding: 10px 15px;
-border-radius: 5px;
-text-decoration: none;
-font-size: 14px;
-box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-transition: background-color 0.3s ease;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: #03305c;
+    color: #fff;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s ease;
 }
 
 .back-button:hover {
-background-color: #022a50;
+    background-color: #022a50;
 }
 </style>
 
 <body>
     <?php include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/nav.php'; ?>
     <br><br><br><br>
-    
+
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-2 col-xs-2">
@@ -77,11 +77,11 @@ background-color: #022a50;
                         <span class="text-white mx-auto">FILTROS</span>
                     </button>
                     <div class="dropdown-menu">
-                        <button class="dropdown-item filter-btn" type="button" data-status="Aberto">Aberto</button>
+                        <button class="dropdown-item filter-btn" type="button" data-status="1">Aberto</button>
                         <button class="dropdown-item filter-btn" type="button"
-                            data-status="Andamento">Andamento</button>
+                            data-status="2">Andamento</button>
                         <button class="dropdown-item filter-btn" type="button"
-                            data-status="Concluido">Concluído</button>
+                            data-status="3">Concluído</button>
                         <button class="dropdown-item filter-btn" type="button" data-status="">Limpar</button>
                     </div>
                 </form>
@@ -97,11 +97,9 @@ background-color: #022a50;
                 </button>
             </div>
         </div>
-        <div class="container-fluid">
-            <div id="chamados-container" class="row overflow-auto"
+            <div id="chamados-container" class="row overflow-auto container-fluid"
                 style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
             </div>
-        </div>
     </div>
     <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php'; ?>
 </body>
@@ -125,17 +123,16 @@ function carregarChamados() {
     });
 }
 
-setInterval(carregarChamados, 5000);
-
 $(document).ready(function() {
     carregarChamados();
 
     $('.filter-btn').on('click', function() {
         statusFilter = $(this).data('status');
-        $('#filter-text').html(statusFilter ? `Filtro selecionado: ${statusFilter}` : '');
         carregarChamados();
     });
 });
+
+setInterval(carregarChamados, 5000);
 </script>
 
 <?php
@@ -147,26 +144,26 @@ if (!empty($_POST)) {
             $_POST['descricao'], 
             $id_equipamento,
             $_SESSION['id'], 
-            $_SESSION['conexao'], 
+            $_SESSION['unidade'], 
             "?route=/painelChamados");
     } elseif($_POST['action'] == "EmAndamento") {
         ColocarEmAndamento(
             $_POST['cd'],
             $_SESSION['id'], 
-            $_SESSION['conexao'], 
+            $_SESSION['unidade'], 
             "?route=/painelChamados"
         );
     } elseif ($_POST['action'] == "DeletarChamado") {
         DeletarChamado(
             $_POST['cd'], 
-            $_SESSION['conexao'], 
+            $_SESSION['unidade'], 
             "?route=/painelChamados");
     }elseif ($_POST['action'] == "ConcluirChamado") {
         ConcluirChamado(
             $_POST['cd'],
             $_POST['recado'],
             $_SESSION['id'],
-            $_SESSION['conexao'],
+            $_SESSION['unidade'],
             "?route=/painelChamados"
         );
     }elseif ($_POST['action']== "Editar"){
@@ -174,8 +171,8 @@ if (!empty($_POST)) {
             $_POST['cd'],
             $_POST['titulo'],
             $_POST['descricao'],
-            $_POST['equipamento'],
-            $_SESSION['conexao'],
+            $_POST['Equipamento'],
+            $_SESSION['unidade'],
             "?route=/painelChamados"
         );
     }

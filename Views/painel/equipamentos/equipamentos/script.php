@@ -1,13 +1,13 @@
 <script>
 $(document).on('click', '.editar', function() {
     var cd = $(this).attr('cd');
-    $('#cd').val(cd);
+    $('.modal#editar #cd').val(cd);
     
     var nome = $(this).attr('nome');
-    $('#nome').val(nome);
+    $('.modal#editar #nome').val(nome);
     
     var desc = $(this).attr('desc');
-    $('#desc').val(desc);
+    $('.modal#editar #desc').val(desc);
     
     var sala = $(this).attr('sala');
     $('.modal#editar select#sala').val(sala); 
@@ -16,12 +16,7 @@ $(document).on('click', '.editar', function() {
     $('.modal#editar select#categoria').val(categoria); 
     
     var status = $(this).attr('status');
-    $('.modal #status').val(status);
-    $('.modal option').each(function() {
-        if ($(this).val() == status) {
-            $(this).prop('selected', true);
-        }
-    });
+    $('.modal#editar select#status').val(status);
 });
 
 $(document).on('click', '.deletar', function() {

@@ -1,34 +1,32 @@
 <?php
-    function ListarEquipamentos($categoria = null, $data = null, $sala = null) {
+    function ListarEquipamentos($categoria = null, $sala = null) {
         $sql = 'SELECT 
                     e.cd_equipamento, 
                     e.nm_equipamento, 
                     e.ds_equipamento, 
                     DATE_FORMAT(e.dt_equipamento, "%d/%m/%Y") as dt_equipamento, 
                     e.st_equipamento, 
+                    t.nm_status,
                     e.id_sala, 
+                    e.id_usuario,
                     e.id_categoria, 
                     u.nm_usuario, 
                     c.categoria_nm, 
                     s.nm_sala
                 FROM tb_equipamento e
+                INNER JOIN tb_st_equipamento t ON e.st_equipamento = t.cd_st_equipamento
                 LEFT JOIN tb_usuario u ON e.id_usuario = u.cd_usuario
                 LEFT JOIN tb_equipamento_categoria c ON e.id_categoria = c.cd_categoria
                 LEFT JOIN tb_sala s ON e.id_sala = s.cd_sala
-                WHERE e.id_conexao = ? AND e.st_equipamento = "Ativo"';
+                WHERE e.st_ativo = 1 AND  e.id_unidade = ? ';
     
-        $params = [$_SESSION['conexao']];
+        $params = [$_SESSION['unidade']];
         $types = 'i';
     
         if ($categoria) {
             $sql .= ' AND e.id_categoria = ?';
             $params[] = $categoria;
             $types .= 'i';
-        }
-        if ($data) {
-            $sql .= ' AND DATE(e.dt_equipamento) = ?';
-            $params[] = $data;
-            $types .= 's';
         }
         if ($sala) {
             $sql .= ' AND e.id_sala = ?';
@@ -106,7 +104,7 @@
                     ?>
                     <div class="form-group">
                         <label><strong>Equipamentos</strong></label>
-                        <select name="equipamento" class="form-control mb-2">
+                        <select name="Equipamento" id="Equipamento" class="form-control mb-2">
                             <option value="" selected>Selecione um Equipamento (opcional)</option>
                             <?php
                             

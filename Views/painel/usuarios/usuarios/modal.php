@@ -15,9 +15,9 @@
                 <br>
                 <label for="cargo" class="">Cargo na conexao</label>
                 <select name="cargo" id="cargo" class="form-control" aria-label="Default select example">
-                    <option value="comum">comum</option>
-                    <option value="suporte">suporte</option>
-                    <option value="admin">admin</option>
+                    <option value="4">comum</option>
+                    <option value="3">suporte</option>
+                    <option value="2">admin</option>
                 </select>
             </div>
             <div class="modal-footer">

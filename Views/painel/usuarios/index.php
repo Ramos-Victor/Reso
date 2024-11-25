@@ -55,7 +55,7 @@ tbody tr {
                             <th scope="col">Nome</th>
                             <th scope="col">Cargo</th>
                             <th scope="col">Data</th>
-                            <th scope="col" style="width: 200px;">Ações</th>
+                            <th scope="col">Ações</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -69,20 +69,20 @@ tbody tr {
                             <td><?php echo strtoupper($l['cargo_usuario']); ?></td>
                             <td><?php echo $l['dt_entrada']; ?></td>
                             <td class="btn-group" style="border:none;column-gap:5px;">
-                                <?php if ($l['cargo_usuario'] != "criador"): ?>
+                                <?php if ($l['cargo_usuario'] != "criador"){ ?>
                                 <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
                                     title="Editar" cd="<?php echo $l['id_usuario']; ?>"
-                                    nome="<?php echo $l['nm_usuario']; ?>" cargo="<?php echo $l['cargo_usuario']; ?>"
+                                    nome="<?php echo $l['nm_usuario']; ?>" cargo="<?php echo $l['id_cargo']; ?>"
                                     data="<?php echo $l['dt_entrada']; ?>">
                                     <i class="botoes bi bi-pencil-fill"></i> Editar
                                 </button>
                                 <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                                     title="Deletar" cd="<?php echo $l['id_usuario']; ?>"
-                                    nome="<?php echo $l['nm_usuario']; ?>" cargo="<?php echo $l['cargo_usuario']; ?>"
+                                    nome="<?php echo $l['nm_usuario']; ?>" cargo="<?php echo $l['id_cargo']; ?>"
                                     data="<?php echo $l['dt_entrada']; ?>">
                                     <i class="botoes bi bi-trash-fill"></i> Remover
                                 </button>
-                                <?php endif; ?>
+                                <?php }else{ echo "-----------------------";} ?>
 
                             </td>
                         </tr>
@@ -109,13 +109,13 @@ if (!empty($_POST)) {
         EditarUsuario(
             $_POST['cd'],
             $_POST['cargo'],
-            $_SESSION['conexao'],
+            $_SESSION['unidade'],
             "?route=/painelUsuarios"
         );
     } elseif ($_POST['action'] == "Deletar") {
         ExcluirUsuario(
             $_POST['cd'],
-            $_SESSION['conexao'],
+            $_SESSION['unidade'],
             "?route=/painelUsuarios"
         );
     }

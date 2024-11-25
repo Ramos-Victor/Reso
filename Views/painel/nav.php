@@ -76,7 +76,7 @@ nav {
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item a" href="#">Configurações</a>
-                    <a class="dropdown-item a" href="/Reso/logout.php">Encerrar Sessão</a>
+                    <a class="dropdown-item a" href="?route=/logout">Encerrar Sessão</a>
                 </div>
             </li>
         </ul>

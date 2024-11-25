@@ -7,14 +7,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/salas/salas/script.
 ?>
 
 <style>
-.btn-group {
-    display: flex;
-    justify-content: space-around;
-    width: 200px;
-}
-
 .botoes {
-    font-size: 20px;
+    font-size: 1.5rem;
 }
 
 .table-responsive {
@@ -108,7 +102,7 @@ if(!empty($_POST)){
            strtoupper($_POST['nome']),
             $_POST['desc'],
             $_SESSION['id'],
-            $_SESSION['conexao'],
+            $_SESSION['unidade'],
             "?route=/painelSalas"
         );
     }elseif($_POST['action'] == "Editar"){
@@ -117,13 +111,13 @@ if(!empty($_POST)){
             strtoupper($_POST['nome']),
             $_POST['desc'],
             $_SESSION['id'],
-            $_SESSION['conexao'],
+            $_SESSION['unidade'],
             "?route=/painelSalas"
         );
     }elseif($_POST['action'] == "Deletar"){
         ExcluirSala(
             $_POST['cd'],
-            $_SESSION['conexao'],
+            $_SESSION['unidade'],
             "?route=/painelSalas"
             );
     }

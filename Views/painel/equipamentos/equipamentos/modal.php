@@ -62,7 +62,7 @@
                         required>
                     <br>
                     <select name="sala" id="sala" class="form-control">
-                        <option value="" disabled>Selecione uma Sala</option>
+                        <option value="" selected>Selecione uma Sala</option>
                         <?php
                             $salas = ListarSalas();
 
@@ -81,13 +81,12 @@
                             if($categorias->num_rows>0){
                     ?>
                     <select name="categoria" id="categoria" class="form-control">
-                        <option value="" disabled>Selecione uma categoria</option>
+                        <option value="" selected>Selecione uma categoria</option>
                         <?php 
                             if($categorias){
                                 foreach($categorias as $index => $l){
-                                    $selected = ($l['cd_categoria'] == $categoriaSelecionada) ? 'selected' : '';
                         ?>
-                        <option value="<?= $l['cd_categoria']?>" <?= $selected ?>><?=$l['categoria_nm']?></option>
+                        <option value="<?= $l['cd_categoria']?>"><?=$l['categoria_nm']?></option>
                         <?php
                                 }
                             }
@@ -95,10 +94,10 @@
                     </select>
                     <?php }?>
                     <br>
-                    <select name="status" class="form-control">
-                        <option value="Ativo">Ativo</option>
-                        <option value="Manuntenção">Manuntenção</option>
-                        <option value="Desativado">Desativado</option>
+                    <select name="status" id="status" class="form-control">
+                        <option value="1">Ativo</option>
+                        <option value="2">Manuntenção</option>
+                        <option value="3">Desativado</option>
                     </select>
                     <br>
                 </div>

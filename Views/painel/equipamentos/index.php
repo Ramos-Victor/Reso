@@ -110,7 +110,7 @@ if (!empty($_POST)) {
             $_POST['desc'], 
             $id_categoria,
             $_SESSION['id'], 
-            $_SESSION['conexao'], 
+            $_SESSION['unidade'], 
             "?route=/painelEquipamentos");
     } elseif ($_POST['action'] == "Editar") {
         EditarEquipamento(
@@ -121,7 +121,7 @@ if (!empty($_POST)) {
             $_POST['sala'], 
             $_POST['categoria'], 
             $_SESSION['id'], 
-            $_SESSION['conexao'], 
+            $_SESSION['unidade'], 
             "?route=/painelEquipamentos");
     } elseif ($_POST['action'] == "Deletar") {
         ExcluirEquipamento(

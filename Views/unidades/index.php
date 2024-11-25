@@ -1,8 +1,8 @@
 <?php
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/unidades/header.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/unidades/function.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/unidades/modal.php';
-    require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/unidades/script.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/Unidades/header.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/Unidades/function.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/Unidades/modal.php';
+    require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/Unidades/script.php';
 ?>
 <style>
 .botoes {
@@ -19,7 +19,7 @@
         <div class="row mb-3">
             <div class="col-12 col-sm-6 col-md-2">
                 <button class="btn btn-block d-flex flex-row align-items-center justify-content-center"
-                    style="background-color:#03305c;" data-toggle="modal" data-target="#addconexao">
+                    style="background-color:#03305c;" data-toggle="modal" data-target="#addunidade">
                     <span class="text-white">Criar</span>
                 </button>
             </div>
@@ -28,13 +28,13 @@
             </div>
             <div class="col-12 col-sm-6 col-md-2">
                 <button class="btn btn-block d-flex flex-row justify-content-center" style="background-color:#03305c;"
-                    data-toggle="modal" data-target="#entrarconexao">
+                    data-toggle="modal" data-target="#entrarunidade">
                     <span class="text-white">Conectar</span>
                 </button>
             </div>
         </div>
 
-        <?php $listar = ListarConexao();
+        <?php $listar = ListarUnidade();
         if(!empty($listar) && $listar > 0){
     ?>
         <div class="row mt-3">
@@ -57,53 +57,52 @@
                         foreach ($listar as $index => $l) {
                             ?>
                             <tr class="text-center">
-                                <td><?php echo $l['nm_conexao']; ?></td>
+                                <td><?php echo $l['nm_unidade']; ?></td>
                                 <td><?php echo strtoupper($l['cargo_usuario']); ?></td>
                                 <td><?php echo $l['dt_entrada']; ?></td>
-                                <td>
-                                    <div class="btn-group">
+                                <td class="btn-group" style="border:none;column-gap:5px;">
+                                    
                                         <button class="btn btn-success btn-sm ver" data-toggle="modal"
-                                            data-target="#ver" title="ver" cd="<?php echo $l['cd_conexao']; ?>"
-                                            nome="<?php echo $l['nm_conexao']; ?>"
+                                            data-target="#ver" title="ver" cd="<?php echo $l['cd_unidade']; ?>"
+                                            nome="<?php echo $l['nm_unidade']; ?>"
                                             cargo="<?php echo $l['cargo_usuario']; ?>"
                                             <?php if ($l['cargo_usuario'] == "comum" || $l['cargo_usuario'] == "suporte") { ?>
                                             codigo="Sem permissão para ver o código da conexão" <?php } else { ?>
-                                            codigo="<?php echo $l['codigo_conexao']; ?>" <?php } ?>
+                                            codigo="<?php echo $l['codigo_unidade']; ?>" <?php } ?>
                                             data="<?php echo $l['dt_entrada']; ?>">
                                             <i class="botoes bi bi-eye-fill"></i>
                                         </button>
                                         <?php if ($l['cargo_usuario'] == "criador") { ?>
                                         <button class="btn btn-primary btn-sm editar" data-toggle="modal"
-                                            data-target="#editar" title="editar" cd="<?php echo $l['cd_conexao']; ?>"
-                                            nome="<?php echo $l['nm_conexao']; ?>"
+                                            data-target="#editar" title="editar" cd="<?php echo $l['cd_unidade']; ?>"
+                                            nome="<?php echo $l['nm_unidade']; ?>"
                                             cargo="<?php echo $l['cargo_usuario']; ?>"
-                                            codigo="<?php echo $l['codigo_conexao']; ?>"
+                                            codigo="<?php echo $l['codigo_unidade']; ?>"
                                             data="<?php echo $l['dt_entrada']; ?>">
                                             <i class="botoes bi bi-pencil-fill"></i>
                                         </button>
                                         <?php } ?>
                                         <?php if ($l['cargo_usuario'] == "criador") { ?>
                                         <button class="btn btn-danger btn-sm deletar" data-toggle="modal"
-                                            data-target="#deletar" title="deletar" cd="<?php echo $l['cd_conexao']; ?>"
-                                            nome="<?php echo $l['nm_conexao']; ?>"
+                                            data-target="#deletar" title="deletar" cd="<?php echo $l['cd_unidade']; ?>"
+                                            nome="<?php echo $l['nm_unidade']; ?>"
                                             cargo="<?php echo $l['cargo_usuario']; ?>"
-                                            codigo="<?php echo $l['codigo_conexao']; ?>"
+                                            codigo="<?php echo $l['codigo_unidade']; ?>"
                                             data="<?php echo $l['dt_entrada']; ?>">
                                             <i class="botoes bi bi-trash3-fill"></i>
                                         </button>
                                         <?php } else { ?>
                                         <button class="btn btn-danger btn-sm sair" data-toggle="modal"
-                                            data-target="#sair" title="sair" cd="<?php echo $l['cd_conexao']; ?>"
-                                            nome="<?php echo $l['nm_conexao']; ?>"
+                                            data-target="#sair" title="sair" cd="<?php echo $l['cd_unidade']; ?>"
+                                            nome="<?php echo $l['nm_unidade']; ?>"
                                             cargo="<?php echo $l['cargo_usuario']; ?>"
-                                            codigo="<?php echo $l['codigo_conexao']; ?>"
+                                            codigo="<?php echo $l['codigo_unidade']; ?>"
                                             data="<?php echo $l['dt_entrada']; ?>">
                                             <i class="botoes bi bi-box-arrow-right"></i>
                                         </button>
                                         <?php } ?>
 
 
-                                    </div>
                                 </td>
                             </tr>
                             <?php
@@ -130,31 +129,31 @@
 <?php
  if(!empty($_POST)){
     if($_POST['action'] == "Criar"){
-        CriarConexao(
+        CriarUnidade(
             $_POST['nome'],
             $_SESSION['id'],
             "?route=/unidades"
         );
     }else if($_POST['action']== "Deletar"){
-        DeletarConexao(
+        DeletarUnidade(
             $_POST['cd'],
             "?route=/unidades"
         );
     }else if($_POST['action']=="Sair"){
-        SairConexao(
+        SairUnidade(
             $_SESSION['id'],
             $_POST['cd'],
             "?route=/unidades"
         );
     }else if($_POST['action']== "Entrar"){
-        EntrarConexao(
+        EntrarUnidade(
             $_SESSION['id'],
             $_POST['code'],
             "?route=/unidades"
         );
     }else if($_POST['action']=="Acessar"){
-        $_SESSION['conexao']=$_POST['cd'];
-        $_SESSION['nm_conexao']=$_POST['nome'];
+        $_SESSION['unidade']=$_POST['cd'];
+        $_SESSION['nm_unidade']=$_POST['nome'];
         $_SESSION['cargo']=$_POST['cargo'];
         if($_POST['cargo']!="comum"){
             ?>
@@ -170,7 +169,7 @@ location.href = "?route=/comum";
 <?php
         }
     }else if($_POST['action']=="Editar"){
-        EditarConexao(
+        EditarUnidade(
             $_POST['cd'],
             $_POST['nome'],
             "?route=/unidades"
