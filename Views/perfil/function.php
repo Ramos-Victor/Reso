@@ -1,7 +1,7 @@
 <?php
     function BuscarporId(){
         global $con;
-        $sql = 'SELECT cd_usuario, nm_usuario, nm_email, nr_telefone, dt_nascimento,nm_real FROM tb_usuario WHERE cd_usuario = ?';
+        $sql = 'SELECT cd_usuario, nm_usuario, url_imagem_perfil, nm_email, nr_telefone, dt_nascimento, nm_real FROM tb_usuario WHERE cd_usuario = ?';
         
         $stmt = $con->prepare($sql);
         $stmt->bind_param('i',$_SESSION['id']);
@@ -17,30 +17,53 @@
         return $resultado;
     }
 
-    function Editar($nome,$id,$pagina){
+    function Editar($nmReal,$dtNascimento,$nrTelefone,$id,$pagina){
         global $con;
-        $sql = 'SELECT * FROM tb_usuario where nm_usuario = ?';
-        $stmt = $con->prepare($sql);
-        $stmt->bind_param('s',$nome);
-        $res1 = $stmt->execute();
-
-        if($res1){
-            Erro("Nome de Usuario ja em uso!!");
-        }else{
-            $stmt->close();
-
-            $sql = 'UPDATE tb_usuario SET nm_usuario = ?, nr_telefone = ?, dt_nascimento = current_timestamp(), nm_real = ? WHERE cd_usuario = ?';
+            $sql = 'UPDATE tb_usuario SET nr_telefone = ?, dt_nascimento = ?, nm_real = ? WHERE cd_usuario = ?';
 
             $stmt = $con->prepare($sql);
-            $stmt->bind_param('i',$id);
-            $res2 = $stmt->execute();
+            $stmt->bind_param('sssi',$nrTelefone,$dtNascimento,$nmReal,$id);
+            $res = $stmt->execute();
 
-            if($res2){
+            if($res){
                 Confirma("Usuario editado com sucesso!!",$pagina);
             }else{
                 Erro("Não foi possivel editar suas informações!");
             }
 
+
+    }
+
+    function EditarImagem($url,$id,$pagina){
+        global $con;
+
+        $sql = 'SELECT url_imagem_perfil FROM tb_usuario WHERE cd_usuario = ?';
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param('i', $id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $r = $result->fetch_assoc();
+        $stmt->close();
+    
+        if ($r && !empty($r['url_imagem_perfil'])) {
+            $dir = "./assets/img/PerfilImgs/" . $r['url_imagem_perfil'];
+            
+            if (file_exists($dir)) {
+                if (!unlink($dir)) {
+                    error_log("Could not delete file: " . $dir);
+                }
+            }
+        }
+        $sql = 'UPDATE tb_usuario SET url_imagem_perfil = ? WHERE cd_usuario = ?';
+
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param('si',$url,$id);
+        $res = $stmt->execute();
+
+        if($res){
+            Confirma("Foto de perfil editada com sucesso!!",$pagina);
+        }else{
+            Erro("Não foi possivel editar sua foto!");
         }
 
     }
