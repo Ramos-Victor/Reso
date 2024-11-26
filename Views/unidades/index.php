@@ -53,7 +53,7 @@
     require_once 'nav.php';
 ?>
     <br><br><br>
-    <div class="container-fluid">
+    <div class="container-fluid mt-5">
         <div class="row mb-3">
             <div class="col-12 col-sm-6 col-md-2">
                 <button class="btn btn-block d-flex flex-row align-items-center justify-content-center"
