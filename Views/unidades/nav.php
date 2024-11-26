@@ -44,19 +44,19 @@ nav {
         <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse justify-content-between" id="navbarNavDropdown">
-        <div>
-        </div>
-        <ul class="navbar-nav">
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
-                    data-placement="bottom">
-                    <?= $_SESSION['usuario'] ?>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item a" href="?route=/config">Configurações</a>
-                    <a class="dropdown-item a" href="?route=/logout">Encerrar Sessão</a>
-                </div>
-            </li>
-        </ul>
+
+    </div>
+    <ul class="navbar-nav">
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
+                data-placement="bottom">
+                <?= $_SESSION['usuario'] ?>
+            </a>
+            <div class="dropdown-menu dropdown-menu-end">
+                <a class="dropdown-item a" href="?route=/config">Configurações</a>
+                <a class="dropdown-item a" href="?route=/logout">Encerrar Sessão</a>
+            </div>
+        </li>
+    </ul>
     </div>
 </nav>
