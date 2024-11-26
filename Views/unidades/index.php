@@ -52,19 +52,19 @@
     <?php
     require_once 'nav.php';
 ?>
-    <br><br><br>
-    <div class="container-fluid mt-5">
+    <br><br><br><br>
+    <div class="container-fluid">
         <div class="row mb-3">
-            <div class="col-12 col-sm-6 col-md-2">
+            <div class="mt-1 col-12 col-sm-6 col-md-2">
                 <button class="btn btn-block d-flex flex-row align-items-center justify-content-center"
                     style="background-color:#03305c;" data-toggle="modal" data-target="#addunidade">
                     <span class="text-white">Criar</span>
                 </button>
             </div>
-            <div class="col-12 col-sm-6 col-md-8">
+            <div class="mt-3 col-12 col-sm-6 col-md-8">
                 <h4 class="text-muted text-center">LISTA DE UNIDADES</h4>
             </div>
-            <div class="col-12 col-sm-6 col-md-2">
+            <div class="mt-1 col-12 col-sm-6 col-md-2">
                 <button class="btn btn-block d-flex flex-row justify-content-center" style="background-color:#03305c;"
                     data-toggle="modal" data-target="#entrarunidade">
                     <span class="text-white">Conectar</span>

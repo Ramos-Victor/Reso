@@ -122,10 +122,10 @@ tbody tr {
                     </div>
                 </form>
             </div>
-            <div class="col-sm-8 text-left">
-                <h4 class="text-muted text-center mt-2">LISTA DE CHAMADOS</h4>
+            <div class="col-sm-8 text-left mt-2">
+                <h4 class="text-muted text-center">LISTA DE CHAMADOS</h4>
             </div>
-            <div class="col-sm-2 col-xs-2">
+            <div class="col-sm-2 col-xs-2 mt-2">
                 <button class="btn btn-block d-flex flex-row"
                     style="background-color:#03305c; position: sticky; top: 0; z-index: 100;" data-toggle="modal"
                     data-target="#abrirChamado">

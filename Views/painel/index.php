@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
+require_once './Views/painel/header.php';
 
 ?>
 
@@ -15,7 +15,7 @@ require_once 'nav.php';
         </div>
     </div>
     <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php';
+include_once 'footer.php';
 ?>
 </body>
 
