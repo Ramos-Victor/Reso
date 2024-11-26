@@ -126,7 +126,7 @@ else{
     <div class="container-fluid py-3">
         <div class="row align-items-center mb-3">
             <div class="col-12 d-flex justify-content-between align-items-center">
-                <a href="javascript:history.back()" class="back-button">Voltar</a>
+                <a href="javascript:history.go(-1)" class="back-button">Voltar</a>
                 <h2 class="text-center flex-grow-1 mb-0">Configurações do Usuario</h2>
             </div>
         </div>
@@ -153,7 +153,7 @@ else{
                                     <div class="mb-3 d-flex flex-column align-items-center">
                                         <input type="file" name="imagem" id="fileInput" accept="image/*"
                                             style="display: none;" onchange="previewFile()">
-                                        <div class="btn-group">
+                                        <div class="btn-group" style="column-gap:5px">
                                             <button type="button" class="btn btn-primary btn-sm"
                                                 onclick="document.getElementById('fileInput').click()">
                                                 Alterar Foto
