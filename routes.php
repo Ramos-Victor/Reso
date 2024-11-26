@@ -63,4 +63,7 @@ $routes = [
     '/comum' => function () {
         require __DIR__ . '/Views/comum/chamados/index.php';
     },
+    '/comumChamadosAjax' => function () {
+        require __DIR__ . '/Views/comum/chamados/chamados/listar_ajax.php';
+    },
 ];

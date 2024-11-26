@@ -1,8 +1,8 @@
 <?php
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/comum/header.php';
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/comum/chamados/chamados/modal.php';
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/comum/chamados/chamados/function.php';
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/comum/chamados/chamados/script.php';
+include_once  './Views/comum/header.php';
+include_once  './Views/comum/chamados/chamados/modal.php';
+include_once  './Views/comum/chamados/chamados/function.php';
+include_once  './Views/comum/chamados/chamados/script.php';
 ?>
 
 <style>
@@ -61,10 +61,48 @@ tbody tr {
 .back-button:hover {
     background-color: #022a50;
 }
+
+@media screen and (max-width: 768px) {
+
+    .table thead {
+        display: none;
+    }
+
+    .table tbody tr {
+        display: block;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    .table tbody td {
+        display: block;
+        text-align: right;
+        padding: 5px;
+        position: relative;
+    }
+
+    .table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .table tbody td.btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+}
 </style>
 
 <body>
-    <?php include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/comum/nav.php'; ?>
+    <?php include_once  './Views/comum/nav.php'; ?>
     <br><br><br><br>
 
     <div class="container-fluid">
@@ -78,10 +116,8 @@ tbody tr {
                     </button>
                     <div class="dropdown-menu">
                         <button class="dropdown-item filter-btn" type="button" data-status="1">Aberto</button>
-                        <button class="dropdown-item filter-btn" type="button"
-                            data-status="2">Andamento</button>
-                        <button class="dropdown-item filter-btn" type="button"
-                            data-status="3">Concluído</button>
+                        <button class="dropdown-item filter-btn" type="button" data-status="2">Andamento</button>
+                        <button class="dropdown-item filter-btn" type="button" data-status="3">Concluído</button>
                         <button class="dropdown-item filter-btn" type="button" data-status="">Limpar</button>
                     </div>
                 </form>
@@ -97,11 +133,13 @@ tbody tr {
                 </button>
             </div>
         </div>
-            <div id="chamados-container" class="row overflow-auto container-fluid"
+        <div class="container-fluid">
+            <div id="chamados-container" class="row mt-3 overflow-auto "
                 style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
             </div>
+        </div>
     </div>
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php'; ?>
+    <?php include_once 'footer.php'; ?>
 </body>
 
 <script>
@@ -109,7 +147,7 @@ let statusFilter = '';
 
 function carregarChamados() {
     $.ajax({
-        url: '?route=/painelChamadosAjax',
+        url: '?route=/comumChamadosAjax',
         method: 'GET',
         data: {
             status: statusFilter

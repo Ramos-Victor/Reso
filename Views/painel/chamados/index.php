@@ -17,7 +17,7 @@ include_once  './Views/painel/chamados/chamados/script.php';
 }
 
 .table-responsive {
-    height: 83vh;
+    height: 80vh;
     overflow-y: auto;
     position: relative;
     overflow-y: scroll;
@@ -64,40 +64,40 @@ tbody tr {
 
 @media screen and (max-width: 768px) {
 
-.table thead {
-    display: none;
-}
+    .table thead {
+        display: none;
+    }
 
-.table tbody tr {
-    display: block;
-    margin-bottom: 10px;
-    border: 1px solid #ddd;
-    padding: 10px;
-}
+    .table tbody tr {
+        display: block;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
 
-.table tbody td {
-    display: block;
-    text-align: right;
-    padding: 5px;
-    position: relative;
-}
+    .table tbody td {
+        display: block;
+        text-align: right;
+        padding: 5px;
+        position: relative;
+    }
 
-.table tbody td::before {
-    content: attr(data-label);
-    position: absolute;
-    left: 6px;
-    width: 45%;
-    padding-right: 10px;
-    white-space: nowrap;
-    text-align: left;
-    font-weight: bold;
-}
+    .table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
 
-.table tbody td.btn-group {
-    display: flex;
-    justify-content: center;
-    gap: 5px;
-}
+    .table tbody td.btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
 }
 </style>
 
@@ -116,10 +116,8 @@ tbody tr {
                     </button>
                     <div class="dropdown-menu">
                         <button class="dropdown-item filter-btn" type="button" data-status="1">Aberto</button>
-                        <button class="dropdown-item filter-btn" type="button"
-                            data-status="2">Andamento</button>
-                        <button class="dropdown-item filter-btn" type="button"
-                            data-status="3">Concluído</button>
+                        <button class="dropdown-item filter-btn" type="button" data-status="2">Andamento</button>
+                        <button class="dropdown-item filter-btn" type="button" data-status="3">Concluído</button>
                         <button class="dropdown-item filter-btn" type="button" data-status="">Limpar</button>
                     </div>
                 </form>
@@ -135,9 +133,11 @@ tbody tr {
                 </button>
             </div>
         </div>
-            <div id="chamados-container" class="row overflow-auto container-fluid"
+        <div class="container-fluid">
+            <div id="chamados-container" class="row mt-3 overflow-auto"
                 style="overflow-y: scroll; overflow-x: hidden; scrollbar-width: none; scroll-behavior: smooth;">
             </div>
+        </div>
     </div>
     <?php include_once 'footer.php'; ?>
 </body>

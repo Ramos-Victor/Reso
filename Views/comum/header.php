@@ -7,8 +7,8 @@ if(!empty($_SESSION['unidade']) && $_SESSION['cargo']=="comum"){
     $_SESSION['usuario'];
     $_SESSION['nm_conexao'];
     $_SESSION['cargo'];
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/conect.php';
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/dialog.php';
+    include_once 'conect.php';
+    include_once 'dialog.php';
 }
 else{
     header("Location:?route=/unidades");
