@@ -143,11 +143,17 @@ include_once  './Views/painel/header.php';
 .mensagem-recebida-container .mensagem {
     text-align: left;
 }
+.a{
+    width: 19rem;
+}
 
-@media (max-width: 576px) {
+@media (max-width: 700px) {
     .chat-container {
         max-width: 60vh;
         margin: 0 auto;
+    }
+    .a{
+        width: 15rem;
     }
 }
 </style>
@@ -169,7 +175,7 @@ include_once  './Views/painel/header.php';
                 <div class="input-group">
                     <form id="form-mensagem">
                         <input type="hidden" name="id_chamado" value="<?= $_GET['idChamado'] ?>">
-                        <input type="text" class="form-control" style="width:19rem" name="mensagem"
+                        <input type="text" class="form-control a" name="mensagem"
                             placeholder="Digite sua mensagem" required>
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-primary">
