@@ -1,5 +1,4 @@
-<?php
-session_start();
+<?php   
 include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/equipamentos/equipamentos/function.php';
 
 $listar = ListarEquipamentos(null,null);

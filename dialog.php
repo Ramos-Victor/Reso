@@ -45,7 +45,7 @@ function Erro($msg)
     ';
 }
 
-include_once 'C:\xampp\htdocs\Reso\footer.php';
+include_once 'footer.php';
 ?>
 <style>
     .myModal .modal-body {

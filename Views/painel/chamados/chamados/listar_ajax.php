@@ -1,6 +1,5 @@
 <?php
-session_start();
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/chamados/chamados/function.php';
+include_once './Views/painel/chamados/chamados/function.php';
 
 $status = isset($_GET['status']) ? $_GET['status'] : null;
 $listar = ListarChamados($status);

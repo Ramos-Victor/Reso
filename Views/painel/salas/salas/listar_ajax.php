@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/salas/salas/function.php';
 
 $listar = ListarSalas();

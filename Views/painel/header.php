@@ -1,9 +1,4 @@
-<?php
-if (!defined('ROUTING_ACCESS')) {
-    http_response_code(403);
-    die('<h1 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Acesso direto não permitido</h1>');
-}
-session_start(); 
+<?php 
 error_reporting(E_ALL ^ E_WARNING);
 ini_set('display_errors', 1) ;
 if(!empty($_SESSION['unidade']) & $_SESSION['cargo']!="comum"){
@@ -12,8 +7,8 @@ if(!empty($_SESSION['unidade']) & $_SESSION['cargo']!="comum"){
     $_SESSION['unidade'];
     $_SESSION['nm_unidade'];
     $_SESSION['cargo'];
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/conect.php';
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/dialog.php';
+    include_once 'conect.php';
+    include_once 'dialog.php';
 }
 else{
     header("?route=/unidades");

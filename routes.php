@@ -22,7 +22,7 @@ $routes = [
         require __DIR__ . '/Views/painel/index.php';
     },
     '/painelAjax' => function () {
-        require __DIR__ . '/Views/painel/listar_Ajax.php';
+        require __DIR__ . '/Views/painel/listar_ajax.php';
     },
     '/painelUsuarios' => function () {
         require __DIR__ . '/Views/painel/usuarios/index.php';

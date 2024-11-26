@@ -1,4 +1,5 @@
 <?php
+include_once 'dialog.php';
 
 function CriarUnidade($nome, $criador, $pagina) {
     $GLOBALS['con']->begin_transaction();
@@ -197,4 +198,3 @@ function DeletarUnidade($cd, $pagina) {
             Erro("Não foi possivel editar");
         }
     }
-?>

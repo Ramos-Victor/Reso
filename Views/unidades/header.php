@@ -7,11 +7,11 @@ if(!empty($_SESSION['id'])){
     $_SESSION['usuario'];
     unset($_SESSION['conexao']);
     unset($_SESSION['cargo']);
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/conect.php';
-    include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/dialog.php';
+    include_once 'conect.php';
+    include_once 'dialog.php';
 }
 else{
-    header("Location: /Reso/logout.php");
+    header("Location: ?route=/logout");
 }
 ?>
 

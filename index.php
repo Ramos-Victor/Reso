@@ -1,5 +1,7 @@
 <?php
 define('ROUTING_ACCESS', true);
+session_start();
+require_once './vendor/autoload.php';
 require_once 'routes.php';
 require_once 'conect.php';
 
