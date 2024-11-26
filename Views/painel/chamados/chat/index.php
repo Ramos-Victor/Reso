@@ -325,8 +325,8 @@ function formatarData(dataEnvio) {
 }
 
 
-setInterval(buscarMensagens, 1000);
-setInterval(atualizarDatas, 1000);
+setInterval(buscarMensagens, 500);
+setInterval(atualizarDatas, 500);
 
 buscarMensagens();
 </script>

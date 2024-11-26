@@ -9,11 +9,11 @@ button {
 }
 
 .navbar-light .navbar-nav .nav-link {
-  color:#fff;
+    color: #fff;
 }
 
 .show>.nav-link {
-  color: #fff;
+    color: #fff;
 }
 
 .reso {
@@ -47,17 +47,16 @@ nav {
         <div>
         </div>
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="?route=/config">Configurações</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              <?php echo strtoupper($_SESSION['usuario']) ?>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="?route=/logout">Encerrar Sessão</a>
-          </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
+                    data-placement="bottom">
+                    <?= $_SESSION['usuario'] ?>
+                </a>
+                <div class="dropdown-menu dropdown-menu-end">
+                    <a class="dropdown-item a" href="?route=/config">Configurações</a>
+                    <a class="dropdown-item a" href="?route=/logout">Encerrar Sessão</a>
+                </div>
+            </li>
         </ul>
     </div>
 </nav>
