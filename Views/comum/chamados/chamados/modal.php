@@ -18,7 +18,7 @@
                 LEFT JOIN tb_usuario u ON e.id_usuario = u.cd_usuario
                 LEFT JOIN tb_equipamento_categoria c ON e.id_categoria = c.cd_categoria
                 LEFT JOIN tb_sala s ON e.id_sala = s.cd_sala
-                WHERE e.st_ativo = 1 AND  e.id_unidade = ? ';
+                WHERE e.st_equipamento = 1 AND e.st_ativo = 1 AND  e.id_unidade = ? ';
     
         $params = [$_SESSION['unidade']];
         $types = 'i';
