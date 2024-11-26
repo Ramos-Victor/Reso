@@ -25,8 +25,12 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_usuario` (
   `cd_usuario` INT NOT NULL AUTO_INCREMENT,
   `nm_usuario` VARCHAR(50) NOT NULL,
   `nm_email` VARCHAR(50) NOT NULL,
+  `nm_real` VARCHAR(50) NULL,
+  `nr_telefone` VARCHAR(15) NULL,
+  `dt_nascimento` DATE NULL,
   `cd_senha` VARCHAR(255) NOT NULL,
   `dt_cadastro` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `url_imagem_perfil` VARCHAR(150) NULL,
   `st_ativo` TINYINT NOT NULL DEFAULT 1,
   `dt_exclusao` DATETIME NULL,
   PRIMARY KEY (`cd_usuario`),
@@ -348,6 +352,7 @@ insert into tb_st_chamado (nm_status) values
 ("Andamento"),
 ("Concluido");
 
+select * from tb_usuario;
 select * from tb_usuario_unidade;
 select * from tb_st_sala;
 select * from tb_equipamento_categoria;
