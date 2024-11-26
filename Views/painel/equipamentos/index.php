@@ -1,8 +1,8 @@
 <?php
-include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
-include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/equipamentos/equipamentos/modal.php';
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/equipamentos/equipamentos/function.php';
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/equipamentos/equipamentos/script.php';
+include_once './Views/painel/header.php';
+include_once './Views/painel/equipamentos/equipamentos/modal.php';
+include_once  './Views/painel/equipamentos/equipamentos/function.php';
+include_once  './Views/painel/equipamentos/equipamentos/script.php';
 ?>
 
 <style>
@@ -43,10 +43,48 @@ tbody {
 tbody tr {
     scroll-margin-top: 50px;
 }
+
+@media screen and (max-width: 768px) {
+
+.table thead {
+    display: none;
+}
+
+.table tbody tr {
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.table tbody td {
+    display: block;
+    text-align: right;
+    padding: 5px;
+    position: relative;
+}
+
+.table tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+}
+
+.table tbody td.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+}
 </style>
 
 <body>
-    <?php include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/nav.php'; ?>
+    <?php include_once  './Views/painel/nav.php'; ?>
     <br><br><br><br>
     <div class="container-fluid">
         <div class="row">
@@ -71,7 +109,7 @@ tbody tr {
             </div>
         </div>
     </div>
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php'; ?>
+    <?php include_once 'footer.php'; ?>
 </body>
 <script>
 let categoriaFilter = '';

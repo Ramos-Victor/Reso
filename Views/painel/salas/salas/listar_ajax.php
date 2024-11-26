@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/salas/salas/function.php';
+require_once './Views/painel/salas/salas/function.php';
 
 $listar = ListarSalas();
 if ($listar) {
@@ -18,13 +18,13 @@ if ($listar) {
         <tbody>
             <?php foreach ($listar as $l) { ?>
             <tr class="text-center" id="id<?= $l['cd_sala'] ?>">
-                <td><?= $l['nm_sala'] ?></td>
-                <td><?= $l['dt_sala'] ?></td>
-                <td>
+                <td data-label="Nome"><?= $l['nm_sala'] ?></td>
+                <td data-label="Data"><?= $l['dt_sala'] ?></td>
+                <td data-label="Descrição">
                     <?= strlen($l['ds_sala']) > 30 ? substr($l['ds_sala'], 0, 30) . '...' : $l['ds_sala'] ?>
                 </td>
-                <td><a href="?route=/painelUsuarios#id<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
-                <td class="btn-group" style="border:none;column-gap:5px;">
+                <td data-label="Criado por"><a href="?route=/painelUsuarios#id<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
+                <td data-label="Ações" class="btn-group" style="border:none;column-gap:5px;">
                     <button class="btn btn-success btn-sm ver" data-toggle="modal" data-target="#ver" title="Ver"
                         cd="<?= $l['cd_sala']; ?>" nome="<?= $l['nm_sala']; ?>" desc="<?= $l['ds_sala']; ?>"
                         criado="<?= $l['nm_usuario']; ?>" data="<?= $l['dt_sala']; ?>">

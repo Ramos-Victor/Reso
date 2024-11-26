@@ -1,5 +1,5 @@
 <?php
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
+include_once  './Views/painel/header.php';
 ?>
 
 <style>
@@ -135,7 +135,7 @@ include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
         </div>
     </div>
 
-    <?php include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php'; ?>
+    <?php include_once 'footer.php'; ?>
 </body>
 
 <script>

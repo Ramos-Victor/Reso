@@ -1,8 +1,8 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/header.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/salas/salas/function.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/salas/salas/modal.php';
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/salas/salas/script.php';
+require_once './Views/painel/header.php';
+require_once './Views/painel/salas/salas/function.php';
+require_once './Views/painel/salas/salas/modal.php';
+require_once './Views/painel/salas/salas/script.php';
 
 ?>
 
@@ -37,11 +37,49 @@ tbody {
 tbody tr {
     scroll-margin-top: 50px;
 }
+
+@media screen and (max-width: 768px) {
+
+.table thead {
+    display: none;
+}
+
+.table tbody tr {
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.table tbody td {
+    display: block;
+    text-align: right;
+    padding: 5px;
+    position: relative;
+}
+
+.table tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+}
+
+.table tbody td.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+}
 </style>
 
 <body>
     <?php
-        require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/nav.php';
+        require_once './Views/painel/nav.php';
     ?>
     <br><br><br><br>
     <div class="container-fluid">
@@ -69,7 +107,7 @@ tbody tr {
 
     </div>
     <?php 
-        include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/footer.php';
+        include_once 'footer.php';
     ?>
 </body>
 

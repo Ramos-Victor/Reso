@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/categorias/categoria/function.php';
+require_once './Views/painel/categorias/categoria/function.php';
 
 $listar = ListarCategorias(null);
 
@@ -19,10 +19,10 @@ if ($listar) {
         <tbody>
             <?php foreach ($listar as $l): ?>
             <tr class="text-center">
-                <td><?= $l['categoria_nm'] ?></td>
-                <td><?= $l['dt_categoria'] ?></td>
-                <td><a href="?route=/painelUsuarios#id<?= $l['cd_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
-                <td class="btn-group" style="border:none;column-gap:5px;">
+                <td data-label="Nome"><?= $l['categoria_nm'] ?></td>
+                <td data-label="Data"><?= $l['dt_categoria'] ?></td>
+                <td data-label="Criado"><a href="?route=/painelUsuarios#id<?= $l['cd_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
+                <td data-label="Ações" class="btn-group" style="border:none;column-gap:5px;">
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                         title="Deletar" cd="<?= $l['cd_categoria']; ?>" nome="<?= $l['categoria_nm']; ?>"
                         criado="<?= $l['id_usuario']; ?>" data="<?= $l['dt_categoria']; ?>" style="font-size: 14px;">

@@ -24,12 +24,12 @@ if ($listar && count($listar) > 0) {
         <tbody>
             <?php foreach ($listar as $l) { ?>
             <tr class="text-center">
-                <td><?= $l['nm_chamado'] ?></td>
-                <td><?= strlen($l['ds_chamado']) > 30 ? substr($l['ds_chamado'], 0, 30) . '...' : $l['ds_chamado'] ?>
+                <td data-label="Titulo"><?= $l['nm_chamado'] ?></td>
+                <td data-label="Descricao"><?= strlen($l['ds_chamado']) > 30 ? substr($l['ds_chamado'], 0, 30) . '...' : $l['ds_chamado'] ?>
                 </td>
-                <td><?= $l['dt_abertura'] ?></td>
-                <td><?php if($l['st_chamado'] == 'Concluido') echo $l['dt_fechamento']; else echo "—"; ?></td>
-                <td>
+                <td data-label="Abertura"><?= $l['dt_abertura'] ?></td>
+                <td data-label="Fechamento"><?php if($l['st_chamado'] == 'Concluido') echo $l['dt_fechamento']; else echo "—"; ?></td>
+                <td data-label="Status">
                     <span class="badge 
                         <?php 
                             echo match ($l['st_chamado']) {
@@ -42,29 +42,29 @@ if ($listar && count($listar) > 0) {
                     </span>
                 </td>
                 <?php if($l['id_equipamento']){ ?>
-                <td><a href="?route=/painelEquipamentos#id<?=$l['id_equipamento'] ?>"><?= $l['nm_equipamento']?></a>
+                <td data-label="Equipamento"><a href="?route=/painelEquipamentos#id<?=$l['id_equipamento'] ?>"><?= $l['nm_equipamento']?></a>
                 </td>
                 <?php }else{ ?>
-                <td>
+                <td data-label="Equipamento">
                 —
                 </td>
                 <?php } ?>
-                <td><a href="?route=/painelUsuarios#id<?= $l['id_abertura'] ?>"><?= $l['usuario_abertura'] ?></a></td>
+                <td data-label="Aberto por"><a href="?route=/painelUsuarios#id<?= $l['id_abertura'] ?>"><?= $l['usuario_abertura'] ?></a></td>
                 <?php
                     if($l['id_fechamento']){
                 ?>
-                <td><a
+                <td data-label="Acompanhado por"><a
                         href="?route=/painelUsuarios#id<?= $l['id_fechamento'] ?>"><?= $l['usuario_fechamento'] ?? '—' ?></a>
                 </td>
                 <?php
                     }else{
                 ?>
-                <td><?= $l['usuario_fechamento'] ?? '—' ?>
+                <td data-label="Acompanhado por"><?= $l['usuario_fechamento'] ?? '—' ?>
                 </td>
                 <?php
                     }
                 ?>
-                <td class="btn-group" style="border:none;column-gap:5px;">
+                <td data-label="Ações" class="btn-group" style="border:none;column-gap:5px;">
                     <?php if ($_SESSION['cargo'] != 'comum' || $l['st_chamado'] == 'Aberto') { ?>
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                         title="Deletar" cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>">

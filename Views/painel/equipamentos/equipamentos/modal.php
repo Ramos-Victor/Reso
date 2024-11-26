@@ -1,6 +1,6 @@
 <?php
-     include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/salas/salas/function.php';
-     include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/categorias/categoria/function.php';
+     include_once './Views/painel/salas/salas/function.php';
+     include_once './Views/painel/categorias/categoria/function.php';
 ?>
 
 <div class="modal fade" id="addequipamento" data-backdrop="static">

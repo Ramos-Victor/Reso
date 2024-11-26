@@ -1,6 +1,6 @@
 <?php
 header('Content-Type: application/json');
-include_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/conect.php';
+include_once 'conect.php';
 
 session_start();
 

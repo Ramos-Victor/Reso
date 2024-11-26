@@ -36,10 +36,48 @@ tbody {
 tbody tr {
     scroll-margin-top: 50px;
 }
+
+@media screen and (max-width: 768px) {
+
+.table thead {
+    display: none;
+}
+
+.table tbody tr {
+    display: block;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+}
+
+.table tbody td {
+    display: block;
+    text-align: right;
+    padding: 5px;
+    position: relative;
+}
+
+.table tbody td::before {
+    content: attr(data-label);
+    position: absolute;
+    left: 6px;
+    width: 45%;
+    padding-right: 10px;
+    white-space: nowrap;
+    text-align: left;
+    font-weight: bold;
+}
+
+.table tbody td.btn-group {
+    display: flex;
+    justify-content: center;
+    gap: 5px;
+}
+}
 </style>
 
 <body>
-    <?php require_once $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/nav.php'; ?>
+    <?php require_once './Views/painel/nav.php'; ?>
     <br><br><br><br>
     <div class="container-fluid">
         <div class="row text-center">
@@ -65,10 +103,10 @@ tbody tr {
                             foreach ($listar as $index => $l) {
                     ?>
                         <tr class="text-center" id="id<?= $l['cd_usuario'] ?>">
-                            <td><?php echo $l['nm_usuario']; ?></td>
-                            <td><?php echo strtoupper($l['cargo_usuario']); ?></td>
-                            <td><?php echo $l['dt_entrada']; ?></td>
-                            <td class="btn-group" style="border:none;column-gap:5px;">
+                            <td data-label="Nome"><?php echo $l['nm_usuario']; ?></td>
+                            <td data-label="Cargo"><?php echo strtoupper($l['cargo_usuario']); ?></td>
+                            <td data-label="Data"><?php echo $l['dt_entrada']; ?></td>
+                            <td data-label="Ações" class="btn-group" style="border:none;column-gap:5px;">
                                 <?php if ($l['cargo_usuario'] != "criador"){ ?>
                                 <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
                                     title="Editar" cd="<?php echo $l['id_usuario']; ?>"

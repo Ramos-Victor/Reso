@@ -8,6 +8,44 @@
 .botoes {
     font-size: 1.5rem;
 }
+
+@media screen and (max-width: 768px) {
+
+    .table thead {
+        display: none;
+    }
+
+    .table tbody tr {
+        display: block;
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        padding: 10px;
+    }
+
+    .table tbody td {
+        display: block;
+        text-align: right;
+        padding: 5px;
+        position: relative;
+    }
+
+    .table tbody td::before {
+        content: attr(data-label);
+        position: absolute;
+        left: 6px;
+        width: 45%;
+        padding-right: 10px;
+        white-space: nowrap;
+        text-align: left;
+        font-weight: bold;
+    }
+
+    .table tbody td.btn-group {
+        display: flex;
+        justify-content: center;
+        gap: 5px;
+    }
+}
 </style>
 
 <body>
@@ -39,68 +77,66 @@
     ?>
         <div class="row mt-3">
             <div class="container-fluid">
-                <div class="table-responsive" style="overflow-y: auto;">
-                    <table class="table table-bordered table-striped table-hover"
-                        style="border-collapse: separate; border-spacing: 0;">
+                <div class="table-responsive">
+                    <table class="table table-bordered table-striped table-hover">
                         <thead class="bg-primary text-white text-center">
                             <tr>
-                                <th scope="col" style="border-bottom:none;">Nome</th>
-                                <th scope="col" style="border-bottom:none;">Cargo</th>
-                                <th scope="col" style="border-bottom:none;">Data</th>
-                                <th scope="col" style="border-bottom:none; width: 200px;">Ações</th>
+                                <th scope="col">Nome</th>
+                                <th scope="col">Cargo</th>
+                                <th scope="col">Data</th>
+                                <th scope="col" style="width: 200px;">Ações</th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php
-                    
                     if ($listar) {
                         foreach ($listar as $index => $l) {
                             ?>
                             <tr class="text-center">
-                                <td><?php echo $l['nm_unidade']; ?></td>
-                                <td><?php echo strtoupper($l['cargo_usuario']); ?></td>
-                                <td><?php echo $l['dt_entrada']; ?></td>
-                                <td class="btn-group" style="border:none;column-gap:5px;">
-                                    
-                                        <button class="btn btn-success btn-sm ver" data-toggle="modal"
-                                            data-target="#ver" title="ver" cd="<?php echo $l['cd_unidade']; ?>"
-                                            nome="<?php echo $l['nm_unidade']; ?>"
-                                            cargo="<?php echo $l['cargo_usuario']; ?>"
-                                            <?php if ($l['cargo_usuario'] == "comum" || $l['cargo_usuario'] == "suporte") { ?>
-                                            codigo="Sem permissão para ver o código da conexão" <?php } else { ?>
-                                            codigo="<?php echo $l['codigo_unidade']; ?>" <?php } ?>
-                                            data="<?php echo $l['dt_entrada']; ?>">
-                                            <i class="botoes bi bi-eye-fill"></i>
-                                        </button>
-                                        <?php if ($l['cargo_usuario'] == "criador") { ?>
-                                        <button class="btn btn-primary btn-sm editar" data-toggle="modal"
-                                            data-target="#editar" title="editar" cd="<?php echo $l['cd_unidade']; ?>"
-                                            nome="<?php echo $l['nm_unidade']; ?>"
-                                            cargo="<?php echo $l['cargo_usuario']; ?>"
-                                            codigo="<?php echo $l['codigo_unidade']; ?>"
-                                            data="<?php echo $l['dt_entrada']; ?>">
-                                            <i class="botoes bi bi-pencil-fill"></i>
-                                        </button>
-                                        <?php } ?>
-                                        <?php if ($l['cargo_usuario'] == "criador") { ?>
-                                        <button class="btn btn-danger btn-sm deletar" data-toggle="modal"
-                                            data-target="#deletar" title="deletar" cd="<?php echo $l['cd_unidade']; ?>"
-                                            nome="<?php echo $l['nm_unidade']; ?>"
-                                            cargo="<?php echo $l['cargo_usuario']; ?>"
-                                            codigo="<?php echo $l['codigo_unidade']; ?>"
-                                            data="<?php echo $l['dt_entrada']; ?>">
-                                            <i class="botoes bi bi-trash3-fill"></i>
-                                        </button>
-                                        <?php } else { ?>
-                                        <button class="btn btn-danger btn-sm sair" data-toggle="modal"
-                                            data-target="#sair" title="sair" cd="<?php echo $l['cd_unidade']; ?>"
-                                            nome="<?php echo $l['nm_unidade']; ?>"
-                                            cargo="<?php echo $l['cargo_usuario']; ?>"
-                                            codigo="<?php echo $l['codigo_unidade']; ?>"
-                                            data="<?php echo $l['dt_entrada']; ?>">
-                                            <i class="botoes bi bi-box-arrow-right"></i>
-                                        </button>
-                                        <?php } ?>
+                                <td data-label="Nome"><?php echo $l['nm_unidade']; ?></td>
+                                <td data-label="Cargo"><?php echo strtoupper($l['cargo_usuario']); ?></td>
+                                <td data-label="Data"><?php echo $l['dt_entrada']; ?></td>
+                                <td class="btn-group" data-label="Ações" style="border:none;column-gap:5px;">
+
+                                    <button class="btn btn-success btn-sm ver" data-toggle="modal" data-target="#ver"
+                                        title="ver" cd="<?php echo $l['cd_unidade']; ?>"
+                                        nome="<?php echo $l['nm_unidade']; ?>"
+                                        cargo="<?php echo $l['cargo_usuario']; ?>"
+                                        <?php if ($l['cargo_usuario'] == "comum" || $l['cargo_usuario'] == "suporte") { ?>
+                                        codigo="Sem permissão para ver o código da conexão" <?php } else { ?>
+                                        codigo="<?php echo $l['codigo_unidade']; ?>" <?php } ?>
+                                        data="<?php echo $l['dt_entrada']; ?>">
+                                        <i class="botoes bi bi-eye-fill"></i>
+                                    </button>
+                                    <?php if ($l['cargo_usuario'] == "criador") { ?>
+                                    <button class="btn btn-primary btn-sm editar" data-toggle="modal"
+                                        data-target="#editar" title="editar" cd="<?php echo $l['cd_unidade']; ?>"
+                                        nome="<?php echo $l['nm_unidade']; ?>"
+                                        cargo="<?php echo $l['cargo_usuario']; ?>"
+                                        codigo="<?php echo $l['codigo_unidade']; ?>"
+                                        data="<?php echo $l['dt_entrada']; ?>">
+                                        <i class="botoes bi bi-pencil-fill"></i>
+                                    </button>
+                                    <?php } ?>
+                                    <?php if ($l['cargo_usuario'] == "criador") { ?>
+                                    <button class="btn btn-danger btn-sm deletar" data-toggle="modal"
+                                        data-target="#deletar" title="deletar" cd="<?php echo $l['cd_unidade']; ?>"
+                                        nome="<?php echo $l['nm_unidade']; ?>"
+                                        cargo="<?php echo $l['cargo_usuario']; ?>"
+                                        codigo="<?php echo $l['codigo_unidade']; ?>"
+                                        data="<?php echo $l['dt_entrada']; ?>">
+                                        <i class="botoes bi bi-trash3-fill"></i>
+                                    </button>
+                                    <?php } else { ?>
+                                    <button class="btn btn-danger btn-sm sair" data-toggle="modal" data-target="#sair"
+                                        title="sair" cd="<?php echo $l['cd_unidade']; ?>"
+                                        nome="<?php echo $l['nm_unidade']; ?>"
+                                        cargo="<?php echo $l['cargo_usuario']; ?>"
+                                        codigo="<?php echo $l['codigo_unidade']; ?>"
+                                        data="<?php echo $l['dt_entrada']; ?>">
+                                        <i class="botoes bi bi-box-arrow-right"></i>
+                                    </button>
+                                    <?php } ?>
 
 
                                 </td>

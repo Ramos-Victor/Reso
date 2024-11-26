@@ -1,5 +1,5 @@
 <?php   
-include_once  $_SERVER['DOCUMENT_ROOT'] . '/Reso/Views/painel/equipamentos/equipamentos/function.php';
+include_once  './Views/painel/equipamentos/equipamentos/function.php';
 
 $listar = ListarEquipamentos(null,null);
 
@@ -20,17 +20,17 @@ if ($listar && count($listar) > 0) {
         <tbody>
             <?php foreach($listar as $l){ ?>
             <tr class="text-center"  id="id<?= $l['cd_equipamento'] ?>">
-                <td><?= $l['nm_equipamento'] ?></td>
-                <td><?= $l['categoria_nm'] ?? 'NÃO ESPECIFICADO' ?></td>
-                <td>
+                <td data-label="Nome"><?= $l['nm_equipamento'] ?></td>
+                <td data-label="Categoria"><?= $l['categoria_nm'] ?? 'NÃO ESPECIFICADO' ?></td>
+                <td data-label="Status">
                     <span class="text-white badge <?php if($l['nm_status'] == 'Ativo'){ echo'bg-success';}elseif($l['nm_status'] == 'Desativado'){echo'bg-danger';}else{echo'bg-warning';}  ?>"
                         style="font-size: 15px;">
                         <?= $l['nm_status'] ?>
                     </span>
                 </td>
-                <td><a href="?route=/painelSalas#<?= $l['id_sala'] ?>"><?= $l['nm_sala'] ?></a></td>
-                <td><a href="?route=/painelUsuarios#<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
-                <td class="btn-group" style="border:none;column-gap:5px;">
+                <td data-label="Sala"><a href="?route=/painelSalas#<?= $l['id_sala'] ?>"><?= $l['nm_sala'] ?></a></td>
+                <td data-label="Criado por"><a href="?route=/painelUsuarios#<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
+                <td data-label="Ações" class="btn-group" style="border:none;column-gap:5px;">
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                         title="Deletar" cd="<?= $l['cd_equipamento']; ?>" nome="<?= $l['nm_equipamento']; ?>">
                         <i class="botoes bi bi-trash3-fill"></i> Deletar
