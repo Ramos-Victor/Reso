@@ -2,8 +2,6 @@
 header('Content-Type: application/json');
 include_once 'conect.php';
 
-session_start();
-
 $id_usuario = $_SESSION['id'];
 $id_chamado = $_POST['id_chamado'];
 $mensagem = $_POST['mensagem'];

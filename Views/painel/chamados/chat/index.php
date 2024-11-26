@@ -97,6 +97,53 @@ include_once  './Views/painel/header.php';
     background-color: #022a50;
 }
 
+.mensagem img {
+    border: 2px solid rgba(0, 0, 0, 0.1);
+}
+
+.mensagem-enviada img {
+    margin-left: 10px;
+}
+
+.mensagem-recebida img {
+    margin-right: 10px;
+}
+
+.mensagem-container {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    max-width: 100%;
+}
+
+.mensagem-recebida-container {
+    flex-direction: row;
+}
+
+.mensagem-enviada-container {
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.foto-perfil {
+    width: 40px;
+    height: 40px;
+    object-fit: cover;
+    margin: 0 10px;
+}
+
+.mensagem-container .mensagem {
+    max-width: 80%;
+}
+
+.mensagem-enviada-container .mensagem {
+    text-align: right;
+}
+
+.mensagem-recebida-container .mensagem {
+    text-align: left;
+}
+
 @media (max-width: 576px) {
     .chat-container {
         max-width: 60vh;
@@ -123,7 +170,7 @@ include_once  './Views/painel/header.php';
                     <form id="form-mensagem">
                         <input type="hidden" name="id_chamado" value="<?= $_GET['idChamado'] ?>">
                         <input type="text" class="form-control" style="width:19rem" name="mensagem"
-                            placeholder="Digite sua mensagem"required>
+                            placeholder="Digite sua mensagem" required>
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-paper-plane" style="font-size:25px"></i>
@@ -172,31 +219,40 @@ function buscarMensagens() {
         .then(response => response.json())
         .then(data => {
             if (data.status && data.mensagens.length > 0) {
-
                 const containerMensagens = document.getElementById('mensagens');
                 data.mensagens.forEach(msg => {
                     const divMensagem = document.createElement('div');
-                    divMensagem.classList.add('mensagem');
+                    divMensagem.classList.add('mensagem-container');
                     divMensagem.classList.add(
                         msg.ID == idUsuarioLogado ?
-                        'mensagem-enviada' :
-                        'mensagem-recebida'
+                        'mensagem-enviada-container' :
+                        'mensagem-recebida-container'
                     );
 
                     const dataFormatada = formatarData(msg.data_envio);
 
+                    const imagemPerfil = msg.url_imagem_perfil ?
+                        `assets/img/PerfilImgs/${msg.url_imagem_perfil}` :
+                        'assets/img/PerfilImgs/iconpadraoperfil.png';
 
                     divMensagem.innerHTML = `
-        <div class="remetente">
-         <strong> ${msg.remetente}</strong><br> 
-         </div> 
-         <div class="texto-mensagem">
-         ${msg.mensagem}<br> 
-         </div>
-         <div class="data" data-data-envio="${msg.data_envio}">
-         <span>${dataFormatada}</span><br> 
-         </div>
-    `;
+                        <img 
+                            src="${imagemPerfil}" 
+                            alt="Foto de perfil" 
+                            class="foto-perfil rounded-circle" 
+                        >
+                        <div class="mensagem ${msg.ID == idUsuarioLogado ? 'mensagem-enviada' : 'mensagem-recebida'}">
+                            <div class="remetente">
+                                <strong>${msg.remetente}</strong><br> 
+                            </div> 
+                            <div class="texto-mensagem">
+                                ${msg.mensagem}<br> 
+                            </div>
+                            <div class="data" data-data-envio="${msg.data_envio}">
+                                <span>${dataFormatada}</span><br> 
+                            </div>
+                        </div>
+                    `;
                     containerMensagens.appendChild(divMensagem);
 
                     ultimoIdMensagem = Math.max(ultimoIdMensagem, msg.id_mensagem);
