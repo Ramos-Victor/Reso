@@ -1,5 +1,4 @@
 <?php
-session_start();
 if(!empty($_SESSION['id'])){
     $_SESSION['id'];
     $_SESSION['usuario'];
@@ -26,7 +25,6 @@ else{
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <style>
-/* Estilos responsivos */
 .back-button {
     position: static;
     display: inline-block;
@@ -46,7 +44,6 @@ else{
     background-color: #022a50;
 }
 
-/* Ajustes responsivos para dispositivos menores */
 @media (max-width: 768px) {
     .container-fluid {
         padding: 10px;
@@ -82,7 +79,6 @@ else{
         margin-bottom: 5px;
     }
 
-    /* Empilhar elementos em telas menores */
     .row.align-items-center {
         display: flex;
         flex-direction: column;
@@ -98,7 +94,6 @@ else{
         width: 100%;
     }
 
-    /* Botões responsivos */
     .form-group.row .btn-group {
         display: flex;
         flex-direction: column;
@@ -111,7 +106,6 @@ else{
     }
 }
 
-/* Ajustes para melhorar a visualização em telas médias e pequenas */
 @media (max-width: 992px) {
     .card-body .row {
         flex-direction: column;

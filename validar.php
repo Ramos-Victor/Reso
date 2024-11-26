@@ -1,6 +1,4 @@
 <?php
-	session_start();
-	
 	require_once 'conect.php';
 
 	function ValidarLogin($email, $senha){

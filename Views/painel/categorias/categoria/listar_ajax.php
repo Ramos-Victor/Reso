@@ -1,5 +1,4 @@
 <?php
-session_start();
 require_once './Views/painel/categorias/categoria/function.php';
 
 $listar = ListarCategorias(null);

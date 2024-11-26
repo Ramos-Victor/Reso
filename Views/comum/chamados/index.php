@@ -103,7 +103,7 @@ tbody tr {
 
 <body>
     <?php include_once  './Views/comum/nav.php'; ?>
-    <br><br><br><br>
+    <br><br><br>
 
     <div class="container-fluid">
         <div class="row">

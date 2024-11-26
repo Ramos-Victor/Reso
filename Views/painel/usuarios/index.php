@@ -1,6 +1,6 @@
 <?php
 require_once './Views/painel/header.php';
-require_once '.Views/painel/usuarios/usuarios/function.php';
+require_once './Views/painel/usuarios/usuarios/function.php';
 require_once './Views/painel/usuarios/usuarios/modal.php';
 require_once './Views/painel/usuarios/usuarios/script.php';
 ?>

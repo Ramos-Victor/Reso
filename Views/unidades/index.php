@@ -52,8 +52,8 @@
     <?php
     require_once 'nav.php';
 ?>
-    <br><br><br><br>
-    <div class="container-fluid mt-2">
+    <br><br><br>
+    <div class="container-fluid">
         <div class="row mb-3">
             <div class="col-12 col-sm-6 col-md-2">
                 <button class="btn btn-block d-flex flex-row align-items-center justify-content-center"
@@ -75,7 +75,7 @@
         <?php $listar = ListarUnidade();
         if(!empty($listar) && $listar > 0){
     ?>
-        <div class="row mt-3">
+        <div class="row">
             <div class="container-fluid">
                 <div class="table-responsive">
                     <table class="table table-bordered table-striped table-hover">
