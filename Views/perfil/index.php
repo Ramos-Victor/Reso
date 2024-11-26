@@ -26,10 +26,11 @@ else{
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <style>
+/* Estilos responsivos */
 .back-button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
+    position: static;
+    display: inline-block;
+    margin-bottom: 15px;
     background-color: #03305c;
     color: #fff;
     border: none;
@@ -44,18 +45,98 @@ else{
 .back-button:hover {
     background-color: #022a50;
 }
+
+/* Ajustes responsivos para dispositivos menores */
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 10px;
+    }
+
+    .card-body {
+        padding: 15px;
+    }
+
+    .form-group {
+        margin-bottom: 15px;
+    }
+
+    .form-group label {
+        margin-bottom: 5px;
+    }
+
+    #previewImage {
+        max-width: 8rem !important;
+        height: 8rem !important;
+    }
+
+    .btn-sm {
+        padding: 0.25rem 0.5rem;
+        font-size: 0.75rem;
+    }
+
+    .form-group.row {
+        margin-bottom: 10px;
+    }
+
+    .form-group.row>div {
+        margin-bottom: 5px;
+    }
+
+    /* Empilhar elementos em telas menores */
+    .row.align-items-center {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col-sm-3.col-form-label {
+        text-align: center;
+        margin-bottom: 5px;
+    }
+
+    .col-sm-9 {
+        width: 100%;
+    }
+
+    /* Botões responsivos */
+    .form-group.row .btn-group {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .form-group.row .btn-group .btn {
+        width: 100%;
+    }
+}
+
+/* Ajustes para melhorar a visualização em telas médias e pequenas */
+@media (max-width: 992px) {
+    .card-body .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .col-md-3 {
+        margin-bottom: 20px;
+    }
+
+    .col-md-9 {
+        width: 100%;
+    }
+}
 </style>
 
 <body>
     <div class="container-fluid py-3">
-        <div class="row">
-            <div class="col-sm-4">
+        <div class="row align-items-center mb-3">
+            <div class="col-12 d-flex justify-content-between align-items-center">
                 <a href="javascript:history.back()" class="back-button">Voltar</a>
-            </div>
-            <div class="col-8 text-center">
-                <h2 class="ml-5 mb-4">Configurações do Usuario</h2>
+                <h2 class="text-center flex-grow-1 mb-0">Configurações do Usuario</h2>
             </div>
         </div>
+
         <?php 
             $listar = BuscarporId();
             if($listar && count($listar)>0){
@@ -66,7 +147,7 @@ else{
                     : '/Reso/assets/img/PerfilImgs/iconpadraoperfil.png';
         ?>
         <div class="row">
-            <div class="col-md-12">
+            <div class="col-12">
                 <div class="card">
                     <div class="card-body">
                         <form method="post" enctype="multipart/form-data">
@@ -75,20 +156,21 @@ else{
                                     <img id="previewImage" src="<?= $imagemPerfil ?>" alt="Foto do Perfil"
                                         class="rounded-circle mb-3"
                                         style="max-width: 10rem; height: 10rem; object-fit: cover;">
-                                    <div class="mb-3">
+                                    <div class="mb-3 d-flex flex-column align-items-center">
                                         <input type="file" name="imagem" id="fileInput" accept="image/*"
                                             style="display: none;" onchange="previewFile()">
-                                        <button type="button" class="btn btn-primary btn-sm"
-                                            onclick="document.getElementById('fileInput').click()">
-                                            Alterar Foto
-                                        </button>
-                                        <input type="hidden" name="id" value="<?= $_SESSION['id']?>">
-                                        <input type="submit" class="btn btn-success btn-sm" name="action"
-                                            value="Confirma" style="display: inline-block;">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-primary btn-sm"
+                                                onclick="document.getElementById('fileInput').click()">
+                                                Alterar Foto
+                                            </button>
+                                            <input type="hidden" name="id" value="<?= $_SESSION['id']?>">
+                                            <input type="submit" class="btn btn-success btn-sm" name="action"
+                                                value="Confirma">
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-md-9">
-
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Nome de Usuario</label>
                                         <div class="col-sm-9">
@@ -96,7 +178,6 @@ else{
                                                 value="<?= $l['nm_usuario'] ?>" readonly>
                                         </div>
                                     </div>
-
 
                                     <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">Nome Completo</label>
@@ -131,11 +212,12 @@ else{
                                     </div>
 
                                     <div class="form-group row mb-0">
-                                        <div class="col-sm-9 offset-sm-3">
-                                            <button type="submit" name="action" value="Editar" class="btn btn-primary">
+                                        <div class="col-sm-9 offset-sm-3 d-flex">
+                                            <button type="submit" name="action" value="Editar"
+                                                class="btn btn-primary mr-2">
                                                 Salvar Alterações
                                             </button>
-                                            <button type="reset" class="btn btn-secondary ml-2">Cancelar</button>
+                                            <button type="reset" class="btn btn-secondary">Cancelar</button>
                                         </div>
                                     </div>
                                 </div>
