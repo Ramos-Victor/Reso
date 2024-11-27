@@ -35,7 +35,7 @@ nav {
 </style>
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-light">
-    <a class="navbar-brand text-white ml-3" href="index.php" style="background-color:none;">
+    <a class="navbar-brand text-white ml-3" href="?route=/painel" style="background-color:none;">
         <img src="/Reso/assets/img/logoresoluton.png" class="img-fluid reso" alt="Responsive image">
         Resolut.on
     </a>
