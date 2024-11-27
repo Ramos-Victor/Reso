@@ -61,7 +61,7 @@ nav {
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
-                    ECS
+                    ESC
                 </a>
                 <div class="dropdown-menu">
                     <a class="dropdown-item a" href="?route=/painelEquipamentos">Equipamentos</a>
