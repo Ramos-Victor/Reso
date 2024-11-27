@@ -44,11 +44,13 @@ LEFT JOIN
     tb_usuario uf ON c.id_usuario_fechamento = uf.cd_usuario
 WHERE
 c.st_ativo = 1
-AND c.id_unidade ="'.$_SESSION['unidade'].'"';
+AND c.id_unidade ="'.$_SESSION['unidade'].'" ';
 
     if ($status) {
         $sql .= 'AND c.st_chamado = ?';
     }
+
+    $sql .= ' ORDER BY dt_abertura DESC';
 
     $stmt = $GLOBALS['con']->prepare($sql);
 

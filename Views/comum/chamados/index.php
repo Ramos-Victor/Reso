@@ -170,7 +170,7 @@ $(document).ready(function() {
     });
 });
 
-setInterval(carregarChamados, 100000);
+setInterval(carregarChamados, 5000);
 </script>
 
 <?php

@@ -51,6 +51,8 @@ AND c.id_unidade ="'.$_SESSION['unidade'].'"';
         $sql .= 'AND c.st_chamado = ?';
     }
 
+    $sql .= ' ORDER BY dt_abertura DESC';
+
     $stmt = $GLOBALS['con']->prepare($sql);
 
     if ($status) {
