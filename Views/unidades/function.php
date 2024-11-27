@@ -123,9 +123,9 @@ function DeletarUnidade($cd, $pagina) {
         $res = $stmt->execute();
 
         if($res){
-            Confirma("Unidade deletada", $pagina);
+            Confirma("Unidade deletada!", $pagina);
         }else{
-            Erro("Não foi possivel deletar unidade");
+            Erro("Não foi possivel deletar unidade!");
         }
     
 }
@@ -138,9 +138,9 @@ function DeletarUnidade($cd, $pagina) {
         $res = $GLOBALS['con']->query($sql);
 
         if($res){
-            Confirma("Você saiu desta Unidade", $pagina);
+            Confirma("Você saiu desta Unidade!", $pagina);
         }else{
-            Erro("Não foi possivel sair da unidade");
+            Erro("Não foi possivel sair da unidade!");
         }
     }
 
@@ -194,6 +194,6 @@ function DeletarUnidade($cd, $pagina) {
         if($res){
             Confirma("Editado com sucesso!", $pagina);
         }else{
-            Erro("Não foi possivel editar");
+            Erro("Não foi possivel editar!");
         }
     }

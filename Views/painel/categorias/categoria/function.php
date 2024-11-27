@@ -1,6 +1,6 @@
 <?php  
 
-require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
+require_once 'conect.php';
 
     function CriarCategoria($nomecat,$id,$conexao,$pagina){
         $sql = 'INSERT INTO tb_equipamento_categoria (categoria_nm, id_usuario, id_unidade) VALUES 
@@ -14,7 +14,7 @@ require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
         if($res){
             Confirma("Categoria criada com sucesso!",$pagina);
         }else{
-            Erro("Não foi possivel criar a categoria");
+            Erro("Não foi possivel criar a categoria!");
         }
     }
 
@@ -46,7 +46,7 @@ require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
         if($res){
             Confirma("Categoria editada com sucesso!",$pagina);
         }else{
-            Erro("Não foi possivel editar a categoria");
+            Erro("Não foi possivel editar a categoria!");
         }
     }
 
@@ -62,7 +62,7 @@ require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
         if($res){
             Confirma("Categoria deletada com sucesso!",$pagina);
         }else{
-            Erro("Não foi possivel editar a categoria");
+            Erro("Não foi possivel deletar a categoria!");
         }
     }
 ?>

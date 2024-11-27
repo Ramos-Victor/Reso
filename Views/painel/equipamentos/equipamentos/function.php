@@ -73,7 +73,7 @@ function CriarEquipamento($nome, $desc, $categoria, $usuario, $unidade, $pagina)
     if ($res) {
         Confirma("Equipamento criado com sucesso na sala 'ESTOQUE'!", $pagina);
     } else {
-        Erro("Não foi possível criar o Equipamento");
+        Erro("Não foi possível criar o Equipamento!");
     }
 }
 
@@ -90,7 +90,7 @@ function EditarEquipamento($cd_equipamento, $nome, $desc, $status, $sala, $categ
     if ($res) {
         Confirma("Equipamento editado com sucesso!", $pagina);
     } else {
-        Erro("Não foi possível editar o Equipamento");
+        Erro("Não foi possível editar o Equipamento!");
     }
 }
 
@@ -106,7 +106,7 @@ $res = $stmt->execute();
 if ($res) {
 Confirma("Equipamento deletado com sucesso!", $pagina);
 } else {
-Erro("Não foi possível editar o Equipamento");
+Erro("Não foi possível editar o Equipamento!");
 }
 
 }

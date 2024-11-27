@@ -26,7 +26,7 @@
             $res = $stmt->execute();
 
             if($res){
-                Confirma("Usuario editado com sucesso!!",$pagina);
+                Confirma("Usuario editado com sucesso!",$pagina);
             }else{
                 Erro("Não foi possivel editar suas informações!");
             }
@@ -61,7 +61,7 @@
         $res = $stmt->execute();
 
         if($res){
-            Confirma("Foto de perfil editada com sucesso!!",$pagina);
+            Confirma("Foto de perfil editada com sucesso!",$pagina);
         }else{
             Erro("Não foi possivel editar sua foto!");
         }

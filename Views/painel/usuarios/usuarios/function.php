@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
+require_once 'conect.php';
 
 function ListarUsuarios()
 {
@@ -33,7 +33,7 @@ function EditarUsuario($id, $cargo, $unidade, $pagina)
     if ($res) {
         Confirma("Editado com sucesso!", $pagina);
     } else {
-        Erro("Não foi possível editar");
+        Erro("Não foi possível editar!");
     }
 }
 
@@ -47,6 +47,6 @@ function ExcluirUsuario($id, $unidade, $pagina){
     if ($res) {
     Confirma("Usuario deletado com sucesso!", $pagina);
     } else {
-        Erro("Não foi possível editar");
+        Erro("Não foi possível deletar!");
     }
 }

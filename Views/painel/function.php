@@ -1,5 +1,5 @@
 <?php 
-    require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
+    require_once 'conect.php';
 
     function contarChamadosPorStatus() {
         global $con;

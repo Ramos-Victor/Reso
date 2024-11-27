@@ -14,7 +14,7 @@ function AbrirChamado($nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abe
     if ($res) {
         Confirma("Chamado aberto com sucesso!", $pagina);
     } else {
-        Erro("Erro ao abrir o chamado");
+        Erro("Erro ao abrir o chamado!");
     }
 }
 
@@ -92,7 +92,7 @@ function ConcluirChamado($cd_chamado, $recado, $id_fechamento, $unidade, $pagina
     if ($res) {
         Confirma("Chamado concluído com sucesso!", $pagina);
     } else {
-        Erro("Erro ao concluir o chamado.");
+        Erro("Erro ao concluir o chamado!");
     }
 }
 
@@ -106,7 +106,7 @@ function DeletarChamado($cd_chamado, $unidade, $pagina) {
     if ($res) {
         Confirma("Chamado deletado com sucesso!", $pagina);
     } else {
-        Erro("Erro ao deletar o chamado.");
+        Erro("Erro ao deletar o chamado!");
     }
 }
 
@@ -119,6 +119,6 @@ function EditarChamado($cd_chamado,$titulo, $descricao,$equipamento, $unidade,$p
     if ($res) {
         Confirma("Chamado editado com sucesso!", $pagina);
     } else {
-        Erro("Erro ao editar o chamado.");
+        Erro("Erro ao editar o chamado!");
     }
 }

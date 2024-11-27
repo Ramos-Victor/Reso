@@ -2,6 +2,11 @@
 define('ROUTING_ACCESS', true);
 session_start();
 require_once './vendor/autoload.php';
+
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(dirname(__FILE__, 1));
+$dotenv->load();
+
 require_once 'routes.php';
 require_once 'conect.php';
 

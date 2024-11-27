@@ -28,7 +28,7 @@ require_once 'conect.php';
         if($res){
             Confirma("Sala criada com sucesso!",$pagina);
         }else{
-            Erro("Não foi possivel criar a Sala");
+            Erro("Não foi possivel criar a Sala!");
         }
     }
 
@@ -44,7 +44,7 @@ require_once 'conect.php';
         if($res){
             Confirma("Sala editada com sucesso!",$pagina);
         }else{
-            Erro("Não foi possivel editar a Sala");
+            Erro("Não foi possivel editar a Sala!");
         }
     }
 
@@ -59,7 +59,7 @@ require_once 'conect.php';
         if($res){
             Confirma("Sala deletada com sucesso!",$pagina);
         }else{
-            Erro("Não foi possivel editar a Sala");
+            Erro("Não foi possivel editar a Sala!");
         }
     }
     

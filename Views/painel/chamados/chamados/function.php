@@ -1,6 +1,6 @@
 <?php
 
-require_once $_SERVER['DOCUMENT_ROOT']. '/Reso/conect.php';
+require_once 'conect.php';
 
 function AbrirChamado($nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abertura, $id_unidade, $pagina) {
     $sql = 'INSERT INTO tb_chamado (nm_chamado, ds_chamado, st_chamado, id_equipamento, id_usuario_abertura, id_unidade)
@@ -14,7 +14,7 @@ function AbrirChamado($nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abe
     if ($res) {
         Confirma("Chamado aberto com sucesso!", $pagina);
     } else {
-        Erro("Erro ao abrir o chamado");
+        Erro("Erro ao abrir o chamado!");
     }
 }
 
@@ -76,7 +76,7 @@ function ColocarEmAndamento($cd_chamado, $id_fechamento, $unidade, $pagina) {
     $res = $stmt->execute();
 
     if ($res) {
-        Confirma("Chamado colocado em andamento com sucesso!", $pagina);
+        Confirma("Chamado em andamento!", $pagina);
     } else {
         Erro("Erro ao atualizar o status do chamado.");
     }

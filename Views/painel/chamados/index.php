@@ -7,7 +7,7 @@ include_once  './Views/painel/chamados/chamados/script.php';
 
 <style>
 .botoes {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .feedback-text {

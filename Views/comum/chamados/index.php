@@ -7,7 +7,7 @@ include_once  './Views/comum/chamados/chamados/script.php';
 
 <style>
 .botoes {
-    font-size: 1.5rem;
+    font-size: 1rem;
 }
 
 .feedback-text {
@@ -103,7 +103,7 @@ tbody tr {
 
 <body>
     <?php include_once  './Views/comum/nav.php'; ?>
-    <br><br><br>
+    <br><br><br><br>
 
     <div class="container-fluid">
         <div class="row">
@@ -170,7 +170,7 @@ $(document).ready(function() {
     });
 });
 
-setInterval(carregarChamados, 5000);
+setInterval(carregarChamados, 100000);
 </script>
 
 <?php
