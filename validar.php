@@ -3,7 +3,7 @@
 
 	function ValidarLogin($email, $senha){
 		$sql = 'SELECT 
-				cd_usuario, nm_usuario
+				cd_usuario, nm_usuario, verificado
 				FROM tb_usuario 
 				WHERE
 				nm_email = ? AND
@@ -19,7 +19,8 @@
 			$r = $result->fetch_assoc();
 			$_SESSION['id'] = $r['cd_usuario'];
 			$_SESSION['usuario'] = $r['nm_usuario'];
-			Confirma("Bem vindo ao Resolut.on", "?route=/unidades");
+			$_SESSION['verificado'] = $r['verificado'];
+			Confirma("Bem vindo ao Resolut.on!", "?route=/unidades");
 		} else {
 			Erro("Acesso recusado!");
 			session_destroy();
@@ -63,10 +64,10 @@
 			$res = $stmt3->execute();
 	
 			if ($res) {
-				Confirma("Cadastrado com sucesso!!", "?route=/login");
+				Confirma("Cadastrado com sucesso!<br> Um link de verificação foi enviado para o seu email.", "?route=/login");
 				return true; 
 			} else {
-				Erro("Não foi possível cadastrar o usuário :(");
+				Erro("Não foi possível cadastrar o usuário!");
 				return false;
 			}
 		}

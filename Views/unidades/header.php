@@ -2,12 +2,16 @@
 error_reporting(E_ALL ^ E_WARNING);
 ini_set('display_errors', 1) ;
 if(!empty($_SESSION['id'])){
+    if($_SESSION['verificado']=="0"){
+    header("Location: ?route=/verificado&id".$_SESSION['id']);
+    }else{
     $_SESSION['id'];
     $_SESSION['usuario'];
     unset($_SESSION['conexao']);
     unset($_SESSION['cargo']);
     include_once 'conect.php';
     include_once 'dialog.php';
+    }
 }
 else{
     header("Location: ?route=/logout");

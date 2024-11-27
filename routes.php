@@ -6,6 +6,9 @@ $routes = [
     '/login' => function () {
         require __DIR__ . '/login.php';
     },
+    '/verificado' => function () {
+        require __DIR__ . '/verificado.php';
+    },
     '/registro' => function () {
         require __DIR__ . '/registro.php';
     },

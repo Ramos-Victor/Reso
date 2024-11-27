@@ -23,6 +23,7 @@ USE `db_resoluton` ;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_usuario` (
   `cd_usuario` INT NOT NULL AUTO_INCREMENT,
+  `verificado` CHAR(1) NOT NULL DEFAULT '0',
   `nm_usuario` VARCHAR(50) NOT NULL,
   `nm_email` VARCHAR(50) NOT NULL,
   `nm_real` VARCHAR(50) NULL,
