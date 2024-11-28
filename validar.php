@@ -1,7 +1,10 @@
 <?php
 	require_once 'conect.php';
+	require_once 'email.php';
 
 	function ValidarLogin($email, $senha){
+		global $con;
+
 		$sql = 'SELECT 
 				cd_usuario, nm_usuario, verificado
 				FROM tb_usuario 
@@ -9,7 +12,7 @@
 				nm_email = ? AND
 				cd_senha = sha2(?, 256)';
 		
-		$stmt = $GLOBALS['con']->prepare($sql);
+		$stmt = $con->prepare($sql);
 		$stmt->bind_param('ss', $email, $senha);  
 		$stmt->execute();
 		$result = $stmt->get_result();
@@ -29,48 +32,100 @@
 
 	function ValidarCadastro($usuario, $email, $senha) {
 		global $con;
-	
+		
+		if (empty($usuario) || empty($email) || empty($senha)) {
+			Erro("Todos os campos são obrigatórios!");
+			return false;
+		}
+		
+		if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+			Erro("Email inválido!");
+			return false;
+		}
+		
 		$sql = 'SELECT COUNT(*) as total FROM tb_usuario WHERE nm_usuario = ?';
 		$sql2 = 'SELECT COUNT(*) as total FROM tb_usuario WHERE nm_email = ?';
-	
+		
 		$stmt = $con->prepare($sql);
 		if (!$stmt) {
-			die("Erro na preparação da query SQL para nome de usuário: " . $con->error);
+			Erro("Erro na preparação da query: " . $con->error);
+			return false;
 		}
+		
 		$stmt->bind_param('s', $usuario);
 		$stmt->execute();
 		$result = $stmt->get_result();
 		$row = $result->fetch_assoc();
-	
+		
 		$stmt2 = $con->prepare($sql2);
 		if (!$stmt2) {
-			die("Erro na preparação da query SQL para email: " . $con->error);
+			Erro("Erro na preparação da query: " . $con->error);
+			return false;
 		}
+		
 		$stmt2->bind_param('s', $email);
 		$stmt2->execute();
 		$result2 = $stmt2->get_result();
 		$row2 = $result2->fetch_assoc();
-	
-		if ($row['total'] >= 1 || $row2['total'] >= 1) {
-			return false;  
-		} else {
-			$sql3 = 'INSERT INTO tb_usuario (nm_usuario, nm_email, cd_senha) VALUES (?, ?, sha2(?, 256))';
-			$stmt3 = $con->prepare($sql3);
-			if (!$stmt3) {
-				die("Erro na preparação da query SQL de inserção: " . $con->error);
-			}
-			$stmt3->bind_param('sss', $usuario, $email, $senha);
-	
-			$res = $stmt3->execute();
-	
-			if ($res) {
-				Confirma("Cadastrado com sucesso!<br> Um link de verificação foi enviado para o seu email.", "?route=/login");
-				return true; 
-			} else {
-				Erro("Não foi possível cadastrar o usuário!");
-				return false;
-			}
+		
+		if ($row['total'] >= 1) {
+			Erro("Usuário já cadastrado!");
+			return false;
 		}
+		
+		if ($row2['total'] >= 1) {
+			Erro("Email já cadastrado!");
+			return false;
+		}
+		
+		$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
+		
+		return InserirUsuario($usuario, $email, $senha_hash);
+	}
+	
+	function InserirUsuario($usuario, $email, $senha_hash) {
+		global $con;
+		
+		$sql3 = 'INSERT INTO tb_usuario (nm_usuario, nm_email, cd_senha) VALUES (?, ?, ?)';
+		$stmt3 = $con->prepare($sql3);
+		
+		if (!$stmt3) {
+			Erro("Erro na preparação da query de inserção: " . $con->error);
+			return false;
+		}
+		
+		$stmt3->bind_param('sss', $usuario, $email, $senha_hash);
+		$res = $stmt3->execute();
+		
+		if ($res) {
+			if (Autenticar($email)) {
+				Confirma("Cadastrado com sucesso!<br> Um link de verificação foi enviado para o seu email.", "?route=/login");
+				return true;
+			}
+			
+			Confirma("Cadastrado com sucesso!", "?route=/login");
+			return true;
+		} else {
+			Erro("Não foi possível cadastrar o usuário!");
+			return false;
+		}
+	}
+
+	function Autenticar($email){
+		global $con;
+			$sql4 = 'SELECT cd_usuario as ID FROM tb_usuario WHERE nm_email = ?';
+
+			$stmt = $con->prepare($sql4);
+
+			$stmt->bind_param('s',$email);
+			$stmt->execute();
+
+			$result = $stmt->get_result();
+			$row3 = $result->fetch_assoc();
+
+			$id = $row3['ID'];
+
+			AutenticarEmail($email, $id);
 	}
 	
 	
