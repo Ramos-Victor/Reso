@@ -159,11 +159,13 @@ function DeletarUnidade($cd, $pagina) {
         if ($res) {
             $cd_unidade = $res['cd_unidade'];
     
-            $sqlCheck = 'SELECT * FROM tb_usuario_unidade WHERE id_usuario = ? AND id_unidade = ?';
+            $sqlCheck = 'SELECT st_ativo FROM tb_usuario_unidade WHERE id_usuario = ? AND id_unidade = ?';
             $stmtCheck = $conn->prepare($sqlCheck);
             $stmtCheck->bind_param('ss', $usuario, $cd_unidade);
             $stmtCheck->execute();
             $resCheck = $stmtCheck->get_result();
+
+            $resu = $resCheck->fetch_assoc();
     
             if ($resCheck->num_rows == 0) { 
 
@@ -178,7 +180,20 @@ function DeletarUnidade($cd, $pagina) {
                     Erro("Não foi possível adicionar unidade :(");
                 }
             } else {
-                Erro("Unidade já existe.");
+                if($resu['st_ativo']==0){
+                    $sqlInsert = 'INSERT INTO tb_usuario_unidade (id_usuario, id_unidade, id_cargo) VALUES (?, ?, ?)';
+                $stmtInsert = $conn->prepare($sqlInsert);
+                $cargo_usuario = '4';
+                $stmtInsert->bind_param('sss', $usuario, $cd_unidade, $cargo_usuario);
+    
+                if ($stmtInsert->execute()) {
+                    Confirma("Unidade adicionada", $pagina);
+                } else {
+                    Erro("Não foi possível adicionar unidade :(");
+                }
+                }else{
+                    Erro("Unidade ja existe!");
+                }
             }
         } else {
             Erro("Código da unidade inválido.");
