@@ -80,7 +80,7 @@ background-color: #e3b530;
         <div class="login-card">
             <img src="assets/img/logoresoluton.png" alt="Logo" class="logo img-fluid"> 
             <h3>Login</h3>
-            <form method="post">
+            <form method="post"> 
                 <div class="form-group">
                     <label for="email">Email</label>
                     <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email">
