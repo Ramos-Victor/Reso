@@ -17,7 +17,7 @@ function sendVerificationEmail($id) {
         $mail->Password = $_ENV['emailpassword'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port = 587;
-        
+
         $mail->setFrom($_ENV['emailaddress'], 'Suporte');
         $mail->addAddress('vm02oliveiraramos@gmail.com', 'Cliente');
         $mail->isHTML(true);
@@ -28,6 +28,7 @@ function sendVerificationEmail($id) {
         Se não foi você, apenas ignore essa mensagem.";
 
         if ($mail->send()) {
+            echo "Email enviado!";
             return true;
         } else {
             throw new Exception('Email não pode ser enviado');
