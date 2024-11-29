@@ -181,15 +181,15 @@ function DeletarUnidade($cd, $pagina) {
                 }
             } else {
                 if($resu['st_ativo']==0){
-                    $sqlInsert = 'INSERT INTO tb_usuario_unidade (id_usuario, id_unidade, id_cargo) VALUES (?, ?, ?)';
+                    $sqlInsert = 'UPDATE tb_usuario_unidade SET st_ativo = ? WHERE id_usuario = ? AND id_unidade = ?';
                 $stmtInsert = $conn->prepare($sqlInsert);
-                $cargo_usuario = '4';
-                $stmtInsert->bind_param('sss', $usuario, $cd_unidade, $cargo_usuario);
+                $st_ativo = '1';
+                $stmtInsert->bind_param('ssi', $st_ativo,$usuario,$cd_unidade);
     
                 if ($stmtInsert->execute()) {
                     Confirma("Unidade adicionada", $pagina);
                 } else {
-                    Erro("Não foi possível adicionar unidade :(");
+                    Erro("Não foi possível adicionar unidade!");
                 }
                 }else{
                     Erro("Unidade ja existe!");
