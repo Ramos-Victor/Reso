@@ -44,6 +44,6 @@ if(!empty($_GET['id'])){
         header("location:?route=/registro");
     }
 }else{
-    header("location:?route=/registro");
+    Confirma("Link invalido!","?route=/registro");
 }
 ?>
