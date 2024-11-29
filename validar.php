@@ -99,24 +99,27 @@
 		$res = $stmt3->execute();
 		
 		if ($res) {
-
 			$sql4 = 'SELECT cd_usuario as ID FROM tb_usuario WHERE nm_email = ?';
-
 			$stmt = $con->prepare($sql4);
-
-			$stmt->bind_param('s',$email);
+			$stmt->bind_param('s', $email);
 			$stmt->execute();
-
 			$result = $stmt->get_result();
-			if($result){
-			$row3 = $result->fetch_assoc();
-
-			$id = $row3['ID'];
-				AutenticarEmail($email,$id);
+			
+			if ($result->num_rows > 0) {
+				$row3 = $result->fetch_assoc();
+				$id = $row3['ID'];
+				
+				if (empty($id)) {
+					Erro("ID do usuário não encontrado!");
+					return false;
+				}
+				
+				AutenticarEmail($email, $id);
 				Confirma("Cadastrado com sucesso!<br> Um link de verificação foi enviado para o seu email.", "?route=/login");
 				return true;
-			}else{
-				Erro("Não foi possivel enviar o email de verificação!");
+			} else {
+				Erro("Não foi possivel encontrar o usuário cadastrado!");
+				return false;
 			}
 		} else {
 			Erro("Não foi possível cadastrar o usuário!");
