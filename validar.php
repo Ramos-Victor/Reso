@@ -56,6 +56,8 @@
 		$stmt->execute();
 		$result = $stmt->get_result();
 		$row = $result->fetch_assoc();
+
+		$stmt->close();
 		
 		$stmt2 = $con->prepare($sql2);
 		if (!$stmt2) {
@@ -97,17 +99,7 @@
 		$res = $stmt3->execute();
 		
 		if ($res) {
-				Autenticar($email);
-				Confirma("Cadastrado com sucesso!<br> Um link de verificação foi enviado para o seu email.", "?route=/login");
-				return true;
-		} else {
-			Erro("Não foi possível cadastrar o usuário!");
-			return false;
-		}
-	}
 
-	function Autenticar($email){
-		global $con;
 			$sql4 = 'SELECT cd_usuario as ID FROM tb_usuario WHERE nm_email = ?';
 
 			$stmt = $con->prepare($sql4);
@@ -116,14 +108,22 @@
 			$stmt->execute();
 
 			$result = $stmt->get_result();
+			if($result){
 			$row3 = $result->fetch_assoc();
 
 			$id = $row3['ID'];
-
-			AutenticarEmail($email, $id);
+				AutenticarEmail($email,$id);
+				Confirma("Cadastrado com sucesso!<br> Um link de verificação foi enviado para o seu email.", "?route=/login");
+				return true;
+			}else{
+				Erro("Não foi possivel enviar o email de verificação!");
+			}
+		} else {
+			Erro("Não foi possível cadastrar o usuário!");
+			return false;
+		}
 	}
-	
-	
+		
 	function Confirma($msg, $pagina){
 		print'
 			<div class="modal fade" id="myModal" data-backdrop="static">
