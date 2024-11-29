@@ -78,7 +78,6 @@
 			return false;
 		}
 		
-		$senha_hash = password_hash($senha, PASSWORD_DEFAULT);
 		
 		return InserirUsuario($usuario, $email, $senha_hash);
 	}
@@ -86,7 +85,7 @@
 	function InserirUsuario($usuario, $email, $senha_hash) {
 		global $con;
 		
-		$sql3 = 'INSERT INTO tb_usuario (nm_usuario, nm_email, cd_senha) VALUES (?, ?, ?)';
+		$sql3 = 'INSERT INTO tb_usuario (nm_usuario, nm_email, cd_senha) VALUES (?,sha2(?,256), ?)';
 		$stmt3 = $con->prepare($sql3);
 		
 		if (!$stmt3) {
@@ -102,9 +101,6 @@
 				Confirma("Cadastrado com sucesso!<br> Um link de verificação foi enviado para o seu email.", "?route=/login");
 				return true;
 			}
-			
-			Confirma("Cadastrado com sucesso!", "?route=/login");
-			return true;
 		} else {
 			Erro("Não foi possível cadastrar o usuário!");
 			return false;

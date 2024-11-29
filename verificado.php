@@ -1,40 +1,48 @@
 <?php
+session_destroy();
+require_once 'conect.php';
+require_once 'dialog.php';
+global $con;
 
-require_once './vendor/autoload.php';
+if(!empty($_GET['id'])){
+    $id = $_GET['id'];
+    $sql = 'SELECT verificado, DATEDIFF(NOW(),dt_cadastro) as dt_diferenca FROM tb_usuario WHERE cd_usuario = ?';
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param('s',$id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if($result){
+        $row = $result->fetch_assoc();
+        $verificado = $row['verificado'];
+        $diff = $row['dt_diferenca'];
+        $stmt->close();
 
-use Dotenv\Dotenv;
-$dotenv = Dotenv::createImmutable(dirname(__FILE__, 1));
-$dotenv->load();
-
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
-use PHPMailer\PHPMailer\Exception;
-
-    $mail = new PHPMailer(True);
-
-        try{
-
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
-        $mail->isSMTP();
-        $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
-        $mail->Username = $_ENV['emailaddress'];
-        $mail->Password = $_ENV['emailpassword'];
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-        $mail->Port=465;
-
-        $mail->setFrom($_ENV['emailaddress'], 'Suporte');
-        $mail->addAddress('vm02oliveiraramos@gmail.com', 'Usuario');
-
-        $mail->isHTML(true);
-        $mail->Subject = 'Verificar Email';
-        $mail->Body = "Verefique seu email no Resolut.on acessando o link:
-        <br> <b> https://www.resolutiontcc.com.br/Reso/?route=/verificado&1 </b> <br>
-        Você tem até uma semana para verificar sua conta.<br>
-        Se não foi você apenas ignore essa mensagem.";
-
-        $mail->send();
-        echo 'Mensagem enviada!';
-    }catch(Exception $e){
-        echo 'Mensagem não pode ser enviada!';
+        if($verificado == '1'){
+            header("location:?route=/login");
+        }
+        
+        if($diff >= 7){
+            $sql = 'DELETE FROM tb_usuario WHERE cd_usuario = ?';
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param('s', $id);
+            $stmt->execute();
+            $stmt->close();
+            Confirma("Link expirado, realize o cadastro novamente!","?route=/registro");
+        }
+        
+        if($verificado == '0' && $diff < 7){
+            $sql = 'UPDATE tb_usuario SET verificado = 1 WHERE cd_usuario = ?';
+            $stmt = $con->prepare($sql);
+            $stmt->bind_param('s', $id);
+            $stmt->execute();
+            $stmt->close();
+            Confirma("Verificado com sucesso!","?route=/login");
+        }
+    }else{
+        header("location:?route=/registro");
     }
+}else{
+    header("location: ?route=/logout");
+}
+?>

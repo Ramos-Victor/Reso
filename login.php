@@ -79,7 +79,7 @@ background-color: #e3b530;
     <div class="row justify-content-center h-100">
         <div class="login-card">
             <img src="assets/img/logoresoluton.png" alt="Logo" class="logo img-fluid">
-            <h3>Logins</h3>   
+            <h3>Login</h3>   
             <form method="post">
                 <div class="form-group">
                     <label for="email">Email</label>
