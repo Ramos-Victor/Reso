@@ -18,8 +18,8 @@ use PHPMailer\PHPMailer\Exception;
         $mail->SMTPAuth = true;
         $mail->Username = $_ENV['emailaddress'];
         $mail->Password = $_ENV['emailpassword'];
-        $mail->SMTPSecure = 'ssl';
-        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->Port = 465;
 
         $mail->setFrom($_ENV['emailaddress'], 'Suporte');
         $mail->addAddress('vm02oliveiraramos@gmail.com', 'Cliente');
