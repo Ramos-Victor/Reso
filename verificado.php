@@ -18,7 +18,7 @@ use PHPMailer\PHPMailer\Exception;
         $mail->SMTPAuth = true;
         $mail->Username = $_ENV['emailaddress'];
         $mail->Password = $_ENV['emailpassword'];
-        $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+        $mail->SMTPSecure = 'ssl';
         $mail->Port = 587;
 
         $mail->setFrom($_ENV['emailaddress'], 'Suporte');
@@ -37,7 +37,6 @@ use PHPMailer\PHPMailer\Exception;
             throw new Exception('Email não pode ser enviado');
         }
     } catch (Exception $e) {
-        // Log the error or handle it appropriately
         error_log('Mailer Error: ' . $mail->ErrorInfo);
         return false;
     }
