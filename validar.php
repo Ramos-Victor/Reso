@@ -97,10 +97,9 @@
 		$res = $stmt3->execute();
 		
 		if ($res) {
-			if (Autenticar($email)) {
+				Autenticar($email);
 				Confirma("Cadastrado com sucesso!<br> Um link de verificação foi enviado para o seu email.", "?route=/login");
 				return true;
-			}
 		} else {
 			Erro("Não foi possível cadastrar o usuário!");
 			return false;
