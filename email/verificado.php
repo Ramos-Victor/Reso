@@ -13,7 +13,7 @@ if(!empty($_GET['id'])){
     $stmt->execute();
     $result = $stmt->get_result();
     
-    if($result && count($result)>0){
+    if($result && $result->num_rows>0){
         $row = $result->fetch_assoc();
         $verificado = $row['verificado'];
         $diff = $row['dt_diferenca'];
