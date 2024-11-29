@@ -41,9 +41,9 @@ if(!empty($_GET['id'])){
             Confirma("Verificado com sucesso!","?route=/login");
         }
     }else{
-        header("location:?route=/registro");
+        Confirma("Id inválido!","?route=/login");
     }
 }else{
-    Confirma("Link invalido!","?route=/registro");
+    Confirma("Link inválido!","?route=/registro");
 }
 ?>
