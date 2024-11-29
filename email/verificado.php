@@ -13,14 +13,14 @@ if(!empty($_GET['id'])){
     $stmt->execute();
     $result = $stmt->get_result();
     
-    if($result){
+    if($result && count($result)>0){
         $row = $result->fetch_assoc();
         $verificado = $row['verificado'];
         $diff = $row['dt_diferenca'];
         $stmt->close();
 
         if($verificado == '1'){
-            header("location:?route=/login");
+            Confirma("Email ja verificado!","?route=/login");
         }
         
         if($diff >= 7){
@@ -43,5 +43,7 @@ if(!empty($_GET['id'])){
     }else{
         header("location:?route=/registro");
     }
+}else{
+    header("location:?route=/registro");
 }
 ?>
