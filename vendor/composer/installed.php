@@ -3,7 +3,7 @@
         'name' => 'victor/reso',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '5748386e7d87114bbed0ff781e5f14a46d0263d0',
+        'reference' => 'e555d9e45df6480333d8d9f4db82f491f299c19b',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -67,7 +67,7 @@
         'victor/reso' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '5748386e7d87114bbed0ff781e5f14a46d0263d0',
+            'reference' => 'e555d9e45df6480333d8d9f4db82f491f299c19b',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
