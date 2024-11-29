@@ -79,10 +79,10 @@
 		}
 		
 		
-		return InserirUsuario($usuario, $email, $senha_hash);
+		return InserirUsuario($usuario, $email, $senha);
 	}
 	
-	function InserirUsuario($usuario, $email, $senha_hash) {
+	function InserirUsuario($usuario, $email, $senha) {
 		global $con;
 		
 		$sql3 = 'INSERT INTO tb_usuario (nm_usuario, nm_email, cd_senha) VALUES (?,sha2(?,256), ?)';
@@ -93,7 +93,7 @@
 			return false;
 		}
 		
-		$stmt3->bind_param('sss', $usuario, $email, $senha_hash);
+		$stmt3->bind_param('sss', $usuario, $email, $senha);
 		$res = $stmt3->execute();
 		
 		if ($res) {
