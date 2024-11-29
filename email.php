@@ -15,7 +15,7 @@ function AutenticarEmail($email,$id){
         $mail->SMTPAuth = true;
         $mail->Username = $_ENV['emailaddress'];
         $mail->Password = $_ENV['emailpassword'];
-        $mail->SMTPSecure = 'ssl';
+        $mail->SMTPSecure = 'tls';
         $mail->Port=465;
 
         $mail->setFrom($_ENV['emailaddress']);
