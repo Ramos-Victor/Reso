@@ -9,8 +9,10 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
+$mail = new PHPMailer(true);
+
     try {
-        $mail = new PHPMailer(true);
+        
 
         $mail->CharSet = 'UTF-8';
         $mail->isSMTP();
@@ -19,7 +21,7 @@ use PHPMailer\PHPMailer\Exception;
         $mail->Username = $_ENV['emailaddress'];
         $mail->Password = $_ENV['emailpassword'];
         $mail->SMTPSecure = 'tls';
-        $mail->Port = 465;
+        $mail->Port = 587;
 
         $mail->setFrom($_ENV['emailaddress'], 'Suporte');
         $mail->addAddress('vm02oliveiraramos@gmail.com', 'Cliente');
