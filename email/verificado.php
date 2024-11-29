@@ -43,7 +43,5 @@ if(!empty($_GET['id'])){
     }else{
         header("location:?route=/registro");
     }
-}else{
-    header("location: ?route=/logout");
 }
 ?>
