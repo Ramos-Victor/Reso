@@ -5,7 +5,6 @@ use PHPMailer\PHPMailer\Exception;
 
 require 'vendor/autoload.php';
 
-function sendVerificationEmail($id) {
     try {
         $mail = new PHPMailer(true);
 
@@ -23,7 +22,7 @@ function sendVerificationEmail($id) {
         $mail->isHTML(true);
         $mail->Subject = 'Verificar Email';
         $mail->Body = "Verifique seu email no Resolut.on acessando o link:
-        <br> <b> https://www.resolutiontcc.com.br/Reso/?route=/verificado&id={$id} </b> <br>
+        <br> <b> https://www.resolutiontcc.com.br/Reso/?route=/verificado&id=2 </b> <br>
         Você tem até uma semana para verificar sua conta.<br>
         Se não foi você, apenas ignore essa mensagem.";
 
@@ -38,4 +37,3 @@ function sendVerificationEmail($id) {
         error_log('Mailer Error: ' . $mail->ErrorInfo);
         return false;
     }
-}
