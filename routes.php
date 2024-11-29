@@ -1,16 +1,19 @@
 <?php
 $routes = [
     '/' => function () {
-        require __DIR__ . '/ladingpage.php';
+        require __DIR__ . '/start/ladingpage.php';
+    },
+    '/atencao' => function () {
+        require __DIR__ . '/email/atencao.php';
     },
     '/login' => function () {
-        require __DIR__ . '/login.php';
-    },
-    '/verificado' => function () {
-        require __DIR__ . '/verificado.php';
+        require __DIR__ . '/start/login.php';
     },
     '/registro' => function () {
-        require __DIR__ . '/registro.php';
+        require __DIR__ . '/start/registro.php';
+    },
+    '/verificado' => function () {
+        require __DIR__ . '/email/verificado.php';
     },
     '/logout' => function () {
         require __DIR__ . '/logout.php';

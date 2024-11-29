@@ -26,7 +26,7 @@ function EditarUsuario($id, $cargo, $unidade, $pagina)
     $sql = 'UPDATE tb_usuario_unidade SET id_cargo = ? where id_usuario = ? and id_unidade = ?';
 
     $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('sii', $cargo, $id, $unidade); 
+    $stmt->bind_param('ssi', $cargo, $id, $unidade); 
 
     $res = $stmt->execute();
 
@@ -41,7 +41,7 @@ function ExcluirUsuario($id, $unidade, $pagina){
    $sql = 'UPDATE tb_usuario_unidade SET st_ativo = 0, dt_exclusao = current_timestamp() WHERE id_unidade = ? AND id_usuario = ?';
 
    $stmt= $GLOBALS['con']->prepare($sql);
-   $stmt->bind_param('ii',$unidade,$id);
+   $stmt->bind_param('is',$unidade,$id);
    $res = $stmt->execute();
 
     if ($res) {

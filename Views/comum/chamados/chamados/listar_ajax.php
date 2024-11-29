@@ -62,7 +62,7 @@ if ($listar && count($listar) > 0) {
                     <?php } 
                     if($l['st_chamado']!='Aberto'){
                     ?>
-                    <a href="?route=/painelChatChamado&idChamado=<?= $l['cd_chamado'] ?>"
+                    <a href="?route=/painelChatChamado&idUser=<?= $_SESSION['id'] ?>&idChamado=<?= $l['cd_chamado'] ?>"
                         class="btn btn-secondary btn-sm">
                         <i class="botoes bi bi-chat-fill"></i> Chat
                     </a>

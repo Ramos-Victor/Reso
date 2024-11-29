@@ -4,7 +4,7 @@
         $sql = 'SELECT cd_usuario, nm_usuario, url_imagem_perfil, nm_email, nr_telefone, dt_nascimento, nm_real FROM tb_usuario WHERE cd_usuario = ?';
         
         $stmt = $con->prepare($sql);
-        $stmt->bind_param('i',$_SESSION['id']);
+        $stmt->bind_param('s',$_SESSION['id']);
         $stmt->execute();
 
         $result = $stmt->get_result();
@@ -22,7 +22,7 @@
             $sql = 'UPDATE tb_usuario SET nr_telefone = ?, dt_nascimento = ?, nm_real = ? WHERE cd_usuario = ?';
 
             $stmt = $con->prepare($sql);
-            $stmt->bind_param('sssi',$nrTelefone,$dtNascimento,$nmReal,$id);
+            $stmt->bind_param('ssss',$nrTelefone,$dtNascimento,$nmReal,$id);
             $res = $stmt->execute();
 
             if($res){
@@ -39,7 +39,7 @@
 
         $sql = 'SELECT url_imagem_perfil FROM tb_usuario WHERE cd_usuario = ?';
         $stmt = $con->prepare($sql);
-        $stmt->bind_param('i', $id);
+        $stmt->bind_param('s', $id);
         $stmt->execute();
         $result = $stmt->get_result();
         $r = $result->fetch_assoc();
@@ -57,7 +57,7 @@
         $sql = 'UPDATE tb_usuario SET url_imagem_perfil = ? WHERE cd_usuario = ?';
 
         $stmt = $con->prepare($sql);
-        $stmt->bind_param('si',$url,$id);
+        $stmt->bind_param('ss',$url,$id);
         $res = $stmt->execute();
 
         if($res){

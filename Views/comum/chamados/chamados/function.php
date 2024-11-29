@@ -7,7 +7,7 @@ function AbrirChamado($nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abe
             VALUES (?, ?, 1, ?, ?, ?)';
 
     $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('ssiii', $nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abertura, $id_unidade);
+    $stmt->bind_param('ssisi', $nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abertura, $id_unidade);
 
     $res = $stmt->execute();
 
@@ -70,33 +70,6 @@ AND c.id_unidade ="'.$_SESSION['unidade'].'"';
     return $chamados;
 }
 
-
-
-function ColocarEmAndamento($cd_chamado, $id_fechamento, $unidade, $pagina) {
-    $sql = "UPDATE tb_chamado SET st_chamado = '2', dt_fechamento = current_timestamp(), id_usuario_fechamento = ? WHERE cd_chamado = ? AND id_unidade = ?";
-    $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('iii', $id_fechamento, $cd_chamado, $unidade);
-    $res = $stmt->execute();
-
-    if ($res) {
-        Confirma("Chamado colocado em andamento com sucesso!", $pagina);
-    } else {
-        Erro("Erro ao atualizar o status do chamado.");
-    }
-}
-
-function ConcluirChamado($cd_chamado, $recado, $id_fechamento, $unidade, $pagina) {
-    $sql = "UPDATE tb_chamado SET st_chamado = '3', ds_recado = ?, dt_fechamento = current_timestamp(), id_usuario_fechamento = ? WHERE cd_chamado = ? AND id_unidade = ?";
-    $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('siii', $recado, $id_fechamento, $cd_chamado, $unidade);
-    $res = $stmt->execute();
-
-    if ($res) {
-        Confirma("Chamado concluído com sucesso!", $pagina);
-    } else {
-        Erro("Erro ao concluir o chamado!");
-    }
-}
 
 function DeletarChamado($cd_chamado, $unidade, $pagina) {
     $sql = "UPDATE tb_chamado SET st_ativo=0 ,dt_exclusao = current_timestamp() WHERE cd_chamado = ? AND id_unidade = ?";

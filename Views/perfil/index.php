@@ -4,7 +4,7 @@ if(!empty($_SESSION['id'])){
     $_SESSION['usuario'];
     include_once 'conect.php';
     include_once 'dialog.php';
-    include_once 'function.php';
+    include_once './Views/perfil/function.php';
 }
 else{
     header("Location: ?route=/logout");

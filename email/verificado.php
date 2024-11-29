@@ -2,6 +2,7 @@
 session_destroy();
 require_once 'conect.php';
 require_once 'dialog.php';
+require_once 'header.php';
 global $con;
 
 if(!empty($_GET['id'])){

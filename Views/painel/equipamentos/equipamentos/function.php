@@ -66,7 +66,7 @@ function CriarEquipamento($nome, $desc, $categoria, $usuario, $unidade, $pagina)
             VALUES (?, ?, ?, ?, ?, ?, 3)';
     
     $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('ssiiii', $nome, $desc, $idSalaEstoque, $categoria, $usuario, $unidade);
+    $stmt->bind_param('ssiisi', $nome, $desc, $idSalaEstoque, $categoria, $usuario, $unidade);
 
     $res = $stmt->execute();
 
@@ -83,7 +83,7 @@ function EditarEquipamento($cd_equipamento, $nome, $desc, $status, $sala, $categ
             WHERE id_unidade = ? AND cd_equipamento = ?';
 
     $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('sssiiiii', $nome, $desc, $status, $sala, $categoria, $usuario, $unidade, $cd_equipamento);
+    $stmt->bind_param('sssiisii', $nome, $desc, $status, $sala, $categoria, $usuario, $unidade, $cd_equipamento);
 
     $res = $stmt->execute();
 

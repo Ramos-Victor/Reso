@@ -12,7 +12,6 @@ function AutenticarEmail($email,$id){
 
         try{
 
-        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
@@ -32,8 +31,8 @@ function AutenticarEmail($email,$id){
         Se não foi você apenas ignore essa mensagem.";
 
         $mail->send();
-        echo 'Mensagem enviada!';
+        return true;
     }catch(Exception $e){
-        echo 'Mensagem não pode ser enviada!';
+        return false;
     }
 }

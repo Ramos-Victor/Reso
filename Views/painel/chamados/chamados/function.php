@@ -7,7 +7,7 @@ function AbrirChamado($nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abe
             VALUES (?, ?, 1, ?, ?, ?)';
 
     $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('ssiii', $nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abertura, $id_unidade);
+    $stmt->bind_param('ssisi', $nm_chamado, $ds_chamado, $id_equipamento, $id_usuario_abertura, $id_unidade);
 
     $res = $stmt->execute();
 
@@ -74,7 +74,7 @@ AND c.id_unidade ="'.$_SESSION['unidade'].'" ';
 function ColocarEmAndamento($cd_chamado, $id_fechamento, $unidade, $pagina) {
     $sql = "UPDATE tb_chamado SET st_chamado = '2', dt_fechamento = current_timestamp(), id_usuario_fechamento = ? WHERE cd_chamado = ? AND id_unidade = ?";
     $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('iii', $id_fechamento, $cd_chamado, $unidade);
+    $stmt->bind_param('sii', $id_fechamento, $cd_chamado, $unidade);
     $res = $stmt->execute();
 
     if ($res) {
@@ -87,7 +87,7 @@ function ColocarEmAndamento($cd_chamado, $id_fechamento, $unidade, $pagina) {
 function ConcluirChamado($cd_chamado, $recado, $id_fechamento, $unidade, $pagina) {
     $sql = "UPDATE tb_chamado SET st_chamado = '3', ds_recado = ?, dt_fechamento = current_timestamp(), id_usuario_fechamento = ? WHERE cd_chamado = ? AND id_unidade = ?";
     $stmt = $GLOBALS['con']->prepare($sql);
-    $stmt->bind_param('siii', $recado, $id_fechamento, $cd_chamado, $unidade);
+    $stmt->bind_param('ssii', $recado, $id_fechamento, $cd_chamado, $unidade);
     $res = $stmt->execute();
 
     if ($res) {

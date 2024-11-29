@@ -1,8 +1,8 @@
 <?php
-    require_once 'header.php';
-    require_once 'function.php';
-    require_once 'modal.php';
-    require_once 'script.php';
+    require_once './Views/unidades/header.php';
+    require_once './Views/unidades/function.php';
+    require_once './Views/unidades/modal.php';
+    require_once './Views/unidades/script.php';
 ?>
 <style>
 .botoes {
@@ -50,7 +50,7 @@
 
 <body>
     <?php
-    require_once 'nav.php';
+    require_once './Views/unidades/nav.php';
 ?>
     <br><br><br><br>
     <div class="container-fluid">
@@ -67,7 +67,7 @@
             <div class="mt-1 col-12 col-sm-6 col-md-2">
                 <button class="btn btn-block d-flex flex-row justify-content-center" style="background-color:#03305c;"
                     data-toggle="modal" data-target="#entrarunidade">
-                    <span class="text-white">Conectar <?= $_SESSION['verificado']?></span>
+                    <span class="text-white">Conectar</span>
                 </button>
             </div>
         </div>

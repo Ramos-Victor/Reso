@@ -13,7 +13,7 @@ if ($id_chamado && $mensagem && $id_usuario) {
     
     $stmt = $GLOBALS['con']->prepare($sql);
     if ($stmt) {
-        $stmt->bind_param('iis', $id_chamado, $id_usuario, $mensagem);
+        $stmt->bind_param('iss', $id_chamado, $id_usuario, $mensagem);
         $res = $stmt->execute();
         if ($res) {
             $resposta = [

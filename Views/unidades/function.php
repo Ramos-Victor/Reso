@@ -57,7 +57,7 @@ function vincularUsuarioUnidade($idUsuario, $idUnidade) {
         throw new Exception("Erro ao preparar a query de vinculação do usuário.");
     }
     
-    $stmt->bind_param('iii', $idUsuario, $idUnidade, $cargo);
+    $stmt->bind_param('sii', $idUsuario, $idUnidade, $cargo);
     
     if (!$stmt->execute()) {
         throw new Exception("Erro ao vincular usuário à unidade: " . $stmt->error);
@@ -78,7 +78,7 @@ function criarSalaEstoque($idUsuario, $idUnidade) {
         throw new Exception("Erro ao preparar a query de criação da sala.");
     }
     
-    $stmt->bind_param('ssiii', $nomeSala, $descSala, $idUsuario, $idUnidade, $status);
+    $stmt->bind_param('sssii', $nomeSala, $descSala, $idUsuario, $idUnidade, $status);
     
     if (!$stmt->execute()) {
         throw new Exception("Erro ao criar a sala de estoque: " . $stmt->error);

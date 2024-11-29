@@ -143,7 +143,8 @@ include_once  './Views/painel/header.php';
 .mensagem-recebida-container .mensagem {
     text-align: left;
 }
-.a{
+
+.a {
     width: 19rem;
 }
 
@@ -152,7 +153,8 @@ include_once  './Views/painel/header.php';
         max-width: 60vh;
         margin: 0 auto;
     }
-    .a{
+
+    .a {
         width: 15rem;
     }
 }
@@ -175,8 +177,8 @@ include_once  './Views/painel/header.php';
                 <div class="input-group">
                     <form id="form-mensagem">
                         <input type="hidden" name="id_chamado" value="<?= $_GET['idChamado'] ?>">
-                        <input type="text" class="form-control a" name="mensagem"
-                            placeholder="Digite sua mensagem" required>
+                        <input type="text" class="form-control a" name="mensagem" placeholder="Digite sua mensagem"
+                            required>
                         <div class="input-group-append">
                             <button type="submit" class="btn btn-primary">
                                 <i class="fa fa-paper-plane" style="font-size:25px"></i>
@@ -193,7 +195,7 @@ include_once  './Views/painel/header.php';
 
 <script>
 let ultimoIdMensagem = 0;
-const idUsuarioLogado = <?= $_SESSION['id'] ?>;
+const idUsuarioLogado = <?= json_encode($_GET['idUser']) ?>;
 
 document.getElementById('form-mensagem').addEventListener('submit', function(e) {
     e.preventDefault();
@@ -214,7 +216,7 @@ document.getElementById('form-mensagem').addEventListener('submit', function(e) 
         })
         .catch(error => {
             console.error('Erro:', error);
-            alert('Erro ao enviar mensagem');
+            alert('Erro ao enviar mensagem: ' + error.message);
         });
 });
 
@@ -226,42 +228,56 @@ function buscarMensagens() {
         .then(data => {
             if (data.status && data.mensagens.length > 0) {
                 const containerMensagens = document.getElementById('mensagens');
+
+                // Cria um Set para rastrear IDs de mensagens já existentes
+                const mensagensExistentes = new Set(
+                    Array.from(containerMensagens.children)
+                    .map(el => parseInt(el.dataset.idMensagem || 0))
+                );
+
                 data.mensagens.forEach(msg => {
-                    const divMensagem = document.createElement('div');
-                    divMensagem.classList.add('mensagem-container');
-                    divMensagem.classList.add(
-                        msg.ID == idUsuarioLogado ?
-                        'mensagem-enviada-container' :
-                        'mensagem-recebida-container'
-                    );
+                    // Verifica se a mensagem já não foi adicionada
+                    if (!mensagensExistentes.has(msg.id_mensagem)) {
+                        const divMensagem = document.createElement('div');
+                        divMensagem.classList.add('mensagem-container');
+                        divMensagem.classList.add(
+                            msg.ID == idUsuarioLogado ?
+                            'mensagem-enviada-container' :
+                            'mensagem-recebida-container'
+                        );
 
-                    const dataFormatada = formatarData(msg.data_envio);
+                        // Adiciona um atributo de dataset com o ID da mensagem
+                        divMensagem.dataset.idMensagem = msg.id_mensagem;
 
-                    const imagemPerfil = msg.url_imagem_perfil ?
-                        `assets/img/PerfilImgs/${msg.url_imagem_perfil}` :
-                        'assets/img/PerfilImgs/iconpadraoperfil.png';
+                        const dataFormatada = formatarData(msg.data_envio);
 
-                    divMensagem.innerHTML = `
-                        <img 
-                            src="${imagemPerfil}" 
-                            alt="Foto de perfil" 
-                            class="foto-perfil rounded-circle" 
-                        >
-                        <div class="mensagem ${msg.ID == idUsuarioLogado ? 'mensagem-enviada' : 'mensagem-recebida'}">
-                            <div class="remetente">
-                                <strong>${msg.remetente}</strong><br> 
-                            </div> 
-                            <div class="texto-mensagem">
-                                ${msg.mensagem}<br> 
+                        const imagemPerfil = msg.url_imagem_perfil ?
+                            `assets/img/PerfilImgs/${msg.url_imagem_perfil}` :
+                            'assets/img/PerfilImgs/iconpadraoperfil.png';
+
+                        divMensagem.innerHTML = `
+                            <img 
+                                src="${imagemPerfil}" 
+                                alt="Foto de perfil" 
+                                class="foto-perfil rounded-circle" 
+                            >
+                            <div class="mensagem ${msg.ID == idUsuarioLogado ? 'mensagem-enviada' : 'mensagem-recebida'}">
+                                <div class="remetente">
+                                    <strong>${msg.remetente}</strong><br> 
+                                </div> 
+                                <div class="texto-mensagem">
+                                    ${msg.mensagem}<br> 
+                                </div>
+                                <div class="data" data-data-envio="${msg.data_envio}">
+                                    <span>${dataFormatada}</span><br> 
+                                </div>
                             </div>
-                            <div class="data" data-data-envio="${msg.data_envio}">
-                                <span>${dataFormatada}</span><br> 
-                            </div>
-                        </div>
-                    `;
-                    containerMensagens.appendChild(divMensagem);
+                        `;
+                        containerMensagens.appendChild(divMensagem);
 
-                    ultimoIdMensagem = Math.max(ultimoIdMensagem, msg.id_mensagem);
+                        // Atualiza o último ID de mensagem
+                        ultimoIdMensagem = Math.max(ultimoIdMensagem, msg.id_mensagem);
+                    }
                 });
 
                 containerMensagens.scrollTop = containerMensagens.scrollHeight;
@@ -269,9 +285,9 @@ function buscarMensagens() {
         })
         .catch(error => {
             console.error('Erro ao buscar mensagens:', error);
+            alert('Erro ao buscar mensagens: ' + error.message);
         });
 }
-
 
 function atualizarDatas() {
     const mensagens = document.querySelectorAll('.mensagem .data');
@@ -282,9 +298,7 @@ function atualizarDatas() {
     });
 }
 
-
 function formatarData(dataEnvio) {
-
     const partes = dataEnvio.split(" ");
     const dataParte = partes[0].split("/");
     const horaParte = partes[1].split(":");
@@ -324,9 +338,15 @@ function formatarData(dataEnvio) {
     }
 }
 
-
+// Busca mensagens a cada 500ms
 setInterval(buscarMensagens, 500);
+// Atualiza datas a cada 500ms
 setInterval(atualizarDatas, 500);
 
+// Busca mensagens iniciais
 buscarMensagens();
 </script>
+
+<?php
+include_once 'footer.php';
+?>

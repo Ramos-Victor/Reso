@@ -21,7 +21,7 @@ require_once 'conect.php';
         $sql = 'INSERT INTO tb_sala (nm_sala, ds_sala, id_usuario, id_unidade, st_sala) VALUES (?, ?, ?, ?, 2)';
 
         $stmt = $GLOBALS['con']->prepare($sql);
-        $stmt->bind_param('ssii',$nome,$desc,$usuario,$unidade);
+        $stmt->bind_param('sssi',$nome,$desc,$usuario,$unidade);
 
         $res = $stmt->execute();
         
@@ -37,7 +37,7 @@ require_once 'conect.php';
         $sql = 'UPDATE tb_sala set nm_sala = ?, ds_sala = ?, id_usuario = ? where id_unidade = ? and cd_sala = ?';
 
         $stmt = $GLOBALS['con']->prepare($sql);
-        $stmt->bind_param('ssiii',$nome,$desc,$usuario,$unidade,$cd_sala);
+        $stmt->bind_param('sssii',$nome,$desc,$usuario,$unidade,$cd_sala);
 
         $res = $stmt->execute();
 

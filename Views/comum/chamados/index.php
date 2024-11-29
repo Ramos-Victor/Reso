@@ -184,26 +184,11 @@ if (!empty($_POST)) {
             $_SESSION['id'], 
             $_SESSION['unidade'], 
             "?route=/comum");
-    } elseif($_POST['action'] == "EmAndamento") {
-        ColocarEmAndamento(
-            $_POST['cd'],
-            $_SESSION['id'], 
-            $_SESSION['unidade'], 
-            "?route=/comum"
-        );
     } elseif ($_POST['action'] == "DeletarChamado") {
         DeletarChamado(
             $_POST['cd'], 
             $_SESSION['unidade'], 
             "?route=/comum");
-    }elseif ($_POST['action'] == "ConcluirChamado") {
-        ConcluirChamado(
-            $_POST['cd'],
-            $_POST['recado'],
-            $_SESSION['id'],
-            $_SESSION['unidade'],
-            "?route=/comum"
-        );
     }elseif ($_POST['action']== "Editar"){
         EditarChamado(
             $_POST['cd'],

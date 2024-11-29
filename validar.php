@@ -1,12 +1,12 @@
 <?php
 	require_once 'conect.php';
-	require_once 'email.php';
+	require_once './email/email.php';
 
 	function ValidarLogin($email, $senha){
 		global $con;
 
 		$sql = 'SELECT 
-				cd_usuario, nm_usuario, verificado
+				cd_usuario, nm_usuario, nm_email, verificado
 				FROM tb_usuario 
 				WHERE
 				nm_email = ? AND
@@ -23,6 +23,7 @@
 			$_SESSION['id'] = $r['cd_usuario'];
 			$_SESSION['usuario'] = $r['nm_usuario'];
 			$_SESSION['verificado'] = $r['verificado'] * 1;
+			$_SESSION['email'] = $r['nm_email'];
 			Confirma("Bem vindo ao Resolut.on!", "?route=/unidades");
 		} else {
 			Erro("Acesso recusado!");
@@ -85,9 +86,11 @@
 	}
 	
 	function InserirUsuario($usuario, $email, $senha) {
+		$idAleatorio = gerarIdAleatorio(10); 
+
 		global $con;
 		
-		$sql3 = 'INSERT INTO tb_usuario (nm_usuario, nm_email, cd_senha) VALUES (?, ?, sha2(?,256))';
+		$sql3 = 'INSERT INTO tb_usuario (cd_usuario, nm_usuario, nm_email, cd_senha) VALUES (?, ?, ?, sha2(?,256))';
 		$stmt3 = $con->prepare($sql3);
 		
 		if (!$stmt3) {
@@ -95,7 +98,7 @@
 			return false;
 		}
 		
-		$stmt3->bind_param('sss', $usuario, $email, $senha);
+		$stmt3->bind_param('ssss', $idAleatorio, $usuario, $email, $senha);
 		$res = $stmt3->execute();
 		
 		if ($res) {
@@ -126,6 +129,17 @@
 			return false;
 		}
 	}
+
+	function gerarIdAleatorio($tamanho = 8) {
+		$caracteres = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+		$id = '';
+		for ($i = 0; $i < $tamanho; $i++) {
+			$id .= $caracteres[rand(0, strlen($caracteres) - 1)];
+		}
+		return $id;
+	}
+	
+	
 		
 	function Confirma($msg, $pagina){
 		print'
