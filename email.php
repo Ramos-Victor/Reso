@@ -10,16 +10,19 @@ function AutenticarEmail($email,$id){
 
     $mail = new PHPMailer(True);
 
+        try{
+
+        $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
-        $mail->Host = 'smtp.titan.email';
+        $mail->Host = 'smtp.gmail.com';
         $mail->SMTPAuth = true;
         $mail->Username = $_ENV['emailaddress'];
         $mail->Password = $_ENV['emailpassword'];
-        $mail->SMTPSecure = 'tls';
+        $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
         $mail->Port=465;
 
-        $mail->setFrom($_ENV['emailaddress']);
-        $mail->addAddress($email);
+        $mail->setFrom($_ENV['emailaddress'], 'Suporte');
+        $mail->addAddress($email, 'Usuario');
 
         $mail->isHTML(true);
         $mail->Subject = 'Verificar Email';
@@ -28,9 +31,9 @@ function AutenticarEmail($email,$id){
         Você tem até uma semana para verificar sua conta.<br>
         Se não foi você apenas ignore essa mensagem.";
 
-        if($mail->send()){
-            return true;
-        }else{
-            return false;
-        }
+        $mail->send();
+        echo 'Mensagem enviada!';
+    }catch(Exception $e){
+        echo 'Mensagem não pode ser enviada!';
+    }
 }
