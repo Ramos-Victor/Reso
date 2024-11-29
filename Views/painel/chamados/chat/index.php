@@ -229,14 +229,12 @@ function buscarMensagens() {
             if (data.status && data.mensagens.length > 0) {
                 const containerMensagens = document.getElementById('mensagens');
 
-                // Cria um Set para rastrear IDs de mensagens já existentes
                 const mensagensExistentes = new Set(
                     Array.from(containerMensagens.children)
                     .map(el => parseInt(el.dataset.idMensagem || 0))
                 );
 
                 data.mensagens.forEach(msg => {
-                    // Verifica se a mensagem já não foi adicionada
                     if (!mensagensExistentes.has(msg.id_mensagem)) {
                         const divMensagem = document.createElement('div');
                         divMensagem.classList.add('mensagem-container');
@@ -246,7 +244,6 @@ function buscarMensagens() {
                             'mensagem-recebida-container'
                         );
 
-                        // Adiciona um atributo de dataset com o ID da mensagem
                         divMensagem.dataset.idMensagem = msg.id_mensagem;
 
                         const dataFormatada = formatarData(msg.data_envio);
@@ -275,7 +272,6 @@ function buscarMensagens() {
                         `;
                         containerMensagens.appendChild(divMensagem);
 
-                        // Atualiza o último ID de mensagem
                         ultimoIdMensagem = Math.max(ultimoIdMensagem, msg.id_mensagem);
                     }
                 });

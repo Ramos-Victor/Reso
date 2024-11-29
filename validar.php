@@ -22,7 +22,7 @@
 			$r = $result->fetch_assoc();
 			$_SESSION['id'] = $r['cd_usuario'];
 			$_SESSION['usuario'] = $r['nm_usuario'];
-			$_SESSION['verificado'] = $r['verificado'] * 1;
+			$_SESSION['verificado'] = $r['verificado'];
 			$_SESSION['email'] = $r['nm_email'];
 			Confirma("Bem vindo ao Resolut.on!", "?route=/unidades");
 		} else {
