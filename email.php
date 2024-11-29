@@ -15,7 +15,7 @@ function AutenticarEmail($email,$id){
         $mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
-        $mail->SMTPAuth = true;
+        $mail->SMTPAuth = false;
         $mail->Username = $_ENV['emailaddress'];
         $mail->Password = $_ENV['emailpassword'];
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
