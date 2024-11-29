@@ -257,6 +257,30 @@ function previewFile() {
         }
     }
 }
+
+document.addEventListener('DOMContentLoaded', function() {
+    const originalValues = {
+        nome: document.querySelector('input[name="nome"]').value,
+        nomereal: document.querySelector('input[name="nomereal"]').value,
+        email: document.querySelector('input[name="email"]').value,
+        telefone: document.querySelector('input[name="telefone"]').value,
+        nascimento: document.querySelector('input[name="nascimento"]').value,
+        imagem: document.getElementById('previewImage').src
+    };
+
+    document.querySelector('button[type="reset"]').addEventListener('click', function() {
+        document.querySelector('input[name="nome"]').value = originalValues.nome;
+        document.querySelector('input[name="nomereal"]').value = originalValues.nomereal;
+        document.querySelector('input[name="email"]').value = originalValues.email;
+        document.querySelector('input[name="telefone"]').value = originalValues.telefone;
+        document.querySelector('input[name="nascimento"]').value = originalValues.nascimento;
+        
+        document.getElementById('previewImage').src = originalValues.imagem;
+        
+        document.getElementById('fileInput').value = '';
+    });
+});
+</script>
 </script>
 
 <?php
