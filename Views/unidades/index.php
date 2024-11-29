@@ -67,7 +67,7 @@
             <div class="mt-1 col-12 col-sm-6 col-md-2">
                 <button class="btn btn-block d-flex flex-row justify-content-center" style="background-color:#03305c;"
                     data-toggle="modal" data-target="#entrarunidade">
-                    <span class="text-white">Conectar</span>
+                    <span class="text-white">Conectar <?= $_SESSION['verificado']?></span>
                 </button>
             </div>
         </div>
