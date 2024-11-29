@@ -191,13 +191,13 @@
         $_SESSION['unidade']=$_POST['cd'];
         $_SESSION['nm_unidade']=$_POST['nome'];
         $_SESSION['cargo']=$_POST['cargo'];
-        if($_POST['cargo']!="comum"){
+        if($_SESSION['cargo']!="comum"){
             ?>
 <script>
 location.href = "?route=/painel";
 </script>
 <?php
-        }else if($_POST['cargo']=="comum"){
+        }else if($_SESSION['cargo']=="comum"){
             ?>
 <script>
 location.href = "?route=/comum";

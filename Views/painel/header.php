@@ -1,7 +1,7 @@
 <?php 
 error_reporting(E_ALL ^ E_WARNING);
-ini_set('display_errors', 1) ;
-if(!empty($_SESSION['unidade']) & $_SESSION['cargo']!="comum"){
+ini_set('display_errors', 1);
+if(!empty($_SESSION['unidade']) && $_SESSION['cargo']!="comum"){
     $_SESSION['id'];
     $_SESSION['usuario'];
     $_SESSION['unidade'];
@@ -10,8 +10,8 @@ if(!empty($_SESSION['unidade']) & $_SESSION['cargo']!="comum"){
     include_once 'conect.php';
     include_once 'dialog.php';
 }
-else{
-    header("?route=/unidades");
+else{ 
+    header("location:?route=/unidades");
 }
 ?>
 
@@ -28,3 +28,7 @@ else{
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
 </head>
+
+<body>
+    
+</body>

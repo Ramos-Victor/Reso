@@ -5,7 +5,7 @@ require_once './Views/painel/header.php';
 
 <body>
     <?php
-require_once 'nav.php';
+    require_once './Views/painel/nav.php';
 ?>
     <br><br><br><br>
     <div class="container-fluid">
