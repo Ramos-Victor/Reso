@@ -1,9 +1,13 @@
 <?php
+require 'vendor/autoload.php';
+
+use Dotenv\Dotenv;
+$dotenv = Dotenv::createImmutable(dirname(__FILE__, 1));
+$dotenv->load();
+
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
-
-require 'vendor/autoload.php';
 
     try {
         $mail = new PHPMailer(true);
