@@ -127,7 +127,7 @@ else{
         <div class="row align-items-center mb-3">
             <div class="col-12 d-flex justify-content-between align-items-center">
                 <a href="<?= $_SESSION['PaginaAnterior'] ?>" class="back-button">Voltar</a>
-                <h2 class="text-center flex-grow-1 mb-0">Configurações do Usuario</h2>
+                <h2 class="text-center flex-grow-1 mb-0">Perfil do Usuario</h2>
             </div>
         </div>
 
