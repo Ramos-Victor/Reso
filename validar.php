@@ -87,7 +87,7 @@
 	function InserirUsuario($usuario, $email, $senha) {
 		global $con;
 		
-		$sql3 = 'INSERT INTO tb_usuario (nm_usuario, nm_email, cd_senha) VALUES (?,sha2(?,256), ?)';
+		$sql3 = 'INSERT INTO tb_usuario (nm_usuario, nm_email, cd_senha) VALUES (?, ?, sha2(?,256))';
 		$stmt3 = $con->prepare($sql3);
 		
 		if (!$stmt3) {
