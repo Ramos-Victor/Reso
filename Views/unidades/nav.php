@@ -45,6 +45,15 @@ nav {
     </button>
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
+            <?php
+               if($_SESSION['cargoReso']==2){
+            ?>
+            <li class="nav-item">
+                <a class="nav-link" href="?route=/faq">FAQ</a>
+            </li>
+            <?php
+            }
+            ?>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
                     data-placement="bottom">

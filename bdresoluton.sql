@@ -19,24 +19,40 @@ USE `db_resoluton` ;
 -- drop database db_resoluton;
 
 -- -----------------------------------------------------
+-- Table `db_resoluton`.`tb_cargo_reso`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_cargo_reso` (
+  `cd_cargo_reso` INT NOT NULL AUTO_INCREMENT,
+  `nm_cargo_reso` VARCHAR(45) NOT NULL,
+  PRIMARY KEY (`cd_cargo_reso`))
+ENGINE = InnoDB;
+
+-- -----------------------------------------------------
 -- Table `db_resoluton`.`tb_usuario`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_usuario` (
   `cd_usuario` VARCHAR(10) NOT NULL,
-  `verificado` CHAR(1) NOT NULL DEFAULT '0',
   `nm_usuario` VARCHAR(50) NOT NULL,
   `nm_email` VARCHAR(50) NOT NULL,
-  `nm_real` VARCHAR(50) NULL,
-  `nr_telefone` VARCHAR(15) NULL,
-  `dt_nascimento` DATE NULL,
   `cd_senha` VARCHAR(255) NOT NULL,
   `dt_cadastro` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `url_imagem_perfil` VARCHAR(150) NULL,
   `st_ativo` TINYINT NOT NULL DEFAULT 1,
+  `verificado` CHAR(1) NOT NULL DEFAULT '0',
   `dt_exclusao` DATETIME NULL,
+  `nm_real` VARCHAR(45) NULL,
+  `nr_telefone` VARCHAR(45) NULL,
+  `dt_nascimento` DATE NULL,
+  `id_cargo_reso` INT NOT NULL DEFAULT 1,
+  `url_imagem_perfil` VARCHAR(150) NULL,
   PRIMARY KEY (`cd_usuario`),
   UNIQUE INDEX `nm_usuario_UNIQUE` (`nm_usuario` ASC) ,
-  UNIQUE INDEX `nm_email_UNIQUE` (`nm_email` ASC) )
+  UNIQUE INDEX `nm_email_UNIQUE` (`nm_email` ASC) ,
+  INDEX `fk_tb_usuario_tb_cargo_reso1_idx` (`id_cargo_reso` ASC) ,
+  CONSTRAINT `fk_tb_usuario_tb_cargo_reso1`
+    FOREIGN KEY (`id_cargo_reso`)
+    REFERENCES `db_resoluton`.`tb_cargo_reso` (`cd_cargo_reso`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
@@ -333,6 +349,10 @@ SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
+insert into tb_cargo_reso (nm_cargo_reso) values 
+('comum'),
+('admin');
+
 insert into tb_cargo_unidade (nm_cargo) VALUES
 ('criador'),
 ('admin'),
@@ -354,6 +374,12 @@ insert into tb_st_chamado (nm_status) values
 ("Concluido");
 
 select * from tb_usuario;
+select * from tb_cargo_reso;
+select * from tb_faq;
+select * from tb_categoria_faq;
+insert into tb_categoria_faq (nm_categoria) values 
+("LOGIN");
+select * from tb_unidade;
 select * from tb_usuario_unidade;
 select * from tb_st_sala;
 select * from tb_equipamento_categoria;

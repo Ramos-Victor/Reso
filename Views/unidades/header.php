@@ -4,6 +4,9 @@ error_reporting(E_ALL ^ E_WARNING);
 ini_set('display_errors', 1) ;
 if(!empty($_SESSION['id'])){
     if($_SESSION['verificado']!='0'){
+    $_SESSION['id'];
+    $_SESSION['usuario'];
+    $_SESSION['cargoReso'];
     unset($_SESSION['conexao']);
     unset($_SESSION['cargo']);
     include_once 'conect.php';

@@ -1,10 +1,14 @@
 <?php
 if(!empty($_SESSION['id'])){
+    if($_SESSION['verificado']!='0'){
     $_SESSION['id'];
     $_SESSION['usuario'];
     include_once 'conect.php';
     include_once 'dialog.php';
     include_once './Views/perfil/function.php';
+}else{
+    header("Location: ?route=/atencao");
+}
 }
 else{
     header("Location: ?route=/logout");
@@ -274,9 +278,9 @@ document.addEventListener('DOMContentLoaded', function() {
         document.querySelector('input[name="email"]').value = originalValues.email;
         document.querySelector('input[name="telefone"]').value = originalValues.telefone;
         document.querySelector('input[name="nascimento"]').value = originalValues.nascimento;
-        
+
         document.getElementById('previewImage').src = originalValues.imagem;
-        
+
         document.getElementById('fileInput').value = '';
     });
 });

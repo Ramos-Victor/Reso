@@ -22,10 +22,10 @@ function CriarUnidade($nome, $criador, $pagina) {
 }
 
 function inserirUnidade($nome) {
-    $codigo = time() . $nome;
-    
-    $sql = 'INSERT INTO tb_unidade (nm_unidade, codigo_unidade) VALUES (?, SHA2(?, 256))';
-    $stmt = $GLOBALS['con']->prepare($sql);
+    global $con;
+    $codigo =  hash('sha256',$nome);
+    $sql = 'INSERT INTO tb_unidade (nm_unidade, codigo_unidade) VALUES (?, ?)';
+    $stmt = $con->prepare($sql);
     
     if (!$stmt) {
         throw new Exception("Erro ao preparar a query de criação da unidade.");
@@ -37,8 +37,17 @@ function inserirUnidade($nome) {
         throw new Exception("Erro ao criar a unidade: " . $stmt->error);
     }
     
-    $idUnidade = $GLOBALS['con']->insert_id;
+    $sql5 = 'SELECT cd_unidade as cdUnidade from tb_unidade WHERE codigo_unidade = ?';
+    $stmt5 = $con->prepare($sql5);
+    $stmt5->bind_param('s', $codigo);
+    $stmt5->execute();
+    $res5 = $stmt5->get_result();
+    $row5 = $res5->fetch_assoc();
+    
     $stmt->close();
+    $stmt5->close();
+    
+    $idUnidade = $row5['cdUnidade'];
     
     if (!$idUnidade) {
         throw new Exception("Erro ao obter o ID da unidade criada.");
