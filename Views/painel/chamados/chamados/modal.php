@@ -41,7 +41,8 @@
                     <h5 class="modal-title">Abrir Chamado</h5>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="titulo" class="form-control mb-2" maxlength="25" placeholder="Título do Chamado" required>
+                    <input type="text" name="titulo" class="form-control mb-2" maxlength="25"
+                        placeholder="Título do Chamado" required>
                     <textarea name="descricao" class="form-control mb-2" placeholder="Descrição do Problema" required
                         rows="3"></textarea>
                     <?php $equipamentos = ListarEquipamentos();
@@ -170,6 +171,95 @@
     </div>
 </div>
 
+<div class="modal fade" id="modalAvaliar" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <form method="post">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Avaliar Chamado</h5>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label>Selecione a quantidade de estrelas</label>
+                            <div class="star-rating text-center mb-3">
+                                <span class="star" data-value="1">★</span>
+                                <span class="star" data-value="2">★</span>
+                                <span class="star" data-value="3">★</span>
+                                <span class="star" data-value="4">★</span>
+                                <span class="star" data-value="5">★</span>
+                            </div>
+                            <input type="text" id="titulo" class="form-control" name="titulo" readonly>
+                        </div>
+                        <input type="hidden" name="estrelas" id="estrelas">
+                        <input type="hidden" name="cd" id="cd">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                        <button type="submit" class="btn btn-success" name="action" value="Avaliar">Confirmar Avaliação</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <style>
+        .star {
+            font-size: 2rem;
+            color: #ddd;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .star.active {
+            color: #ffc107;
+        }
+    </style>
+<script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.star');
+            const hiddenInput = document.getElementById('estrelas');
+            const titleInput = document.getElementById('titulo');
+
+            stars.forEach(star => {
+                star.addEventListener('mouseover', function() {
+                    const value = this.dataset.value;
+                    highlightStars(value);
+                });
+
+                star.addEventListener('mouseout', function() {
+                    
+                    const currentValue = hiddenInput.value;
+                    if (currentValue) {
+                        highlightStars(currentValue);
+                    } else {
+                        resetStars();
+                    }
+                });
+
+                star.addEventListener('click', function() {
+                    const value = this.dataset.value;
+                    hiddenInput.value = value;
+                    titleInput.value = `Nota de avaliação: ${value}`;
+                    highlightStars(value);
+                });
+            });
+
+            function highlightStars(value) {
+                stars.forEach(star => {
+                    const starValue = star.dataset.value;
+                    if (starValue <= value) {
+                        star.classList.add('active');
+                    } else {
+                        star.classList.remove('active');
+                    }
+                });
+            }
+            function resetStars() {
+                stars.forEach(star => {
+                    star.classList.remove('active');
+                });
+            }
+        });
+    </script>
+
 <div class="modal fade" id="modalConclusao" tabindex="-1" role="dialog" aria-labelledby="modalConclusaoLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-md">
@@ -215,6 +305,8 @@
     </div>
 </div>
 
+
+
 <div class="modal fade" id="ver" tabindex="-1" role="dialog" aria-labelledby="modalAndamentoLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
@@ -258,6 +350,10 @@
                     <div class="form-group">
                         <label><strong>Feedback:</strong></label>
                         <textarea class="form-control" name="feedback" id="feedback" rows="3" readonly></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label><strong>Nota de Avalalição de atendimento:</strong></label>
+                        <input class="form-control" name="nota" id="nota" readonly>
                     </div>
                     <input type="hidden" name="cd" id="cd">
                 </div>

@@ -4,7 +4,13 @@ require_once 'conect.php';
 
 function ListarUsuarios()
 {
-    $sql = 'SELECT u.cd_usuario, u.nm_usuario, u.nm_email, DATE_FORMAT(un.dt_entrada, "%d/%m/%Y") as dt_entrada, un.id_cargo, c.nm_cargo as cargo_usuario, un.id_usuario 
+    $sql = 'SELECT u.cd_usuario,
+            u.nm_usuario,
+            u.nm_email,
+            DATE_FORMAT(un.dt_entrada, "%d/%m/%Y") as dt_entrada,
+            un.id_cargo,
+            c.nm_cargo as cargo_usuario,
+            un.id_usuario 
             FROM tb_usuario u
             INNER JOIN tb_usuario_unidade un
             ON un.id_usuario = u.cd_usuario

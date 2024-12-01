@@ -213,6 +213,12 @@ if (!empty($_POST)) {
             $_SESSION['unidade'],
             "?route=/painelChamados"
         );
+    }elseif($_POST['action']=="Avaliar"){
+        Avaliar(
+            $_POST['cd'],
+            $_POST['estrelas'],
+            "?route=/painelChamados"
+        );
     }
 }
 ?>

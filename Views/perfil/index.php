@@ -201,14 +201,6 @@ else{
                                         </div>
                                     </div>
 
-                                    <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Data de Nascimento</label>
-                                        <div class="col-sm-9">
-                                            <input type="date" name="nascimento" value="<?= $l['dt_nascimento'] ?>"
-                                                class="form-control">
-                                        </div>
-                                    </div>
-
                                     <div class="form-group row mb-0">
                                         <div class="col-sm-9 offset-sm-3 d-flex">
                                             <button type="submit" name="action" value="Editar"
@@ -291,9 +283,9 @@ document.addEventListener('DOMContentLoaded', function() {
     if(!empty($_POST)){
         if ($_POST['action'] == "Editar") {
            Editar(
-                $_POST['nomereal'],
-                $_POST['nascimento'],
-                $_POST['telefone'],
+                $_POST['nomereal'] ?: null,
+                $_POST['nascimento'] ?: null,
+                $_POST['telefone']?: null,
                 $_POST['id'],
                 "?route=/config"
            );

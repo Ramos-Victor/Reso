@@ -115,9 +115,9 @@ if ($listar && count($listar) > 0) {
                         <i class="botoes bi bi-check-circle-fill"></i> Concluir
                     </button>
                     <?php } 
-                    if ($l['st_chamado'] == 'Concluido') { ?>
+                    if($l['st_chamado'] == 'Concluido' && $l['id_abertura']==$_SESSION['id'] && empty($l['nr_avaliacao'])) { ?>
                     <button class="btn btn-success btn-sm avaliar" data-toggle="modal" data-target="#modalAvaliar"
-                        cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>">
+                        cd="<?= $l['cd_chamado']; ?>">
                         <i class="botoes bi bi-star-fill"></i> Avaliar
                     </button>
                     <?php } ?>
@@ -128,7 +128,7 @@ if ($listar && count($listar) > 0) {
                         status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
                         fechamento="<?= $l['dt_fechamento'] ?? 'Não finalizado' ?>"
                         final="<?= $l['usuario_fechamento'] ?? '----' ?>" usuario="<?= $l['usuario_abertura']; ?>"
-                        feedback="<?= $l['ds_recado'] ?? '----' ?>">
+                        feedback="<?= $l['ds_recado'] ?? '----' ?>" nota="<?= $l['nr_avaliacao'] ?? 'Não avaliado'?>">
                         <i class="botoes bi bi-eye-fill"></i> Ver
                     </button>
                 </td>

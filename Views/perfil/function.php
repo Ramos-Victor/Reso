@@ -1,7 +1,7 @@
 <?php
     function BuscarporId(){
         global $con;
-        $sql = 'SELECT cd_usuario, nm_usuario, url_imagem_perfil, nm_email, nr_telefone, dt_nascimento, nm_real FROM tb_usuario WHERE cd_usuario = ?';
+        $sql = 'SELECT cd_usuario, nm_usuario, url_imagem_perfil, nm_email, nr_telefone, nm_real FROM tb_usuario WHERE cd_usuario = ?';
         
         $stmt = $con->prepare($sql);
         $stmt->bind_param('s',$_SESSION['id']);
@@ -17,12 +17,12 @@
         return $resultado;
     }
 
-    function Editar($nmReal,$dtNascimento,$nrTelefone,$id,$pagina){
+    function Editar($nmReal,$nrTelefone,$id,$pagina){
         global $con;
-            $sql = 'UPDATE tb_usuario SET nr_telefone = ?, dt_nascimento = ?, nm_real = ? WHERE cd_usuario = ?';
+            $sql = 'UPDATE tb_usuario SET nr_telefone = ?, nm_real = ? WHERE cd_usuario = ?';
 
             $stmt = $con->prepare($sql);
-            $stmt->bind_param('ssss',$nrTelefone,$dtNascimento,$nmReal,$id);
+            $stmt->bind_param('sss',$nrTelefone,$nmReal,$id);
             $res = $stmt->execute();
 
             if($res){
@@ -50,7 +50,7 @@
             
             if (file_exists($dir)) {
                 if (!unlink($dir)) {
-                    error_log("Could not delete file: " . $dir);
+                    error_log("Não foi possivel deletar o arquivo: " . $dir);
                 }
             }
         }

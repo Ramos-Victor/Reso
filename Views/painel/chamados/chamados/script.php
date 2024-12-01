@@ -45,6 +45,12 @@ $(document).on('click', '.editar', function() {
     $('#modalEditar #Usuario').val(usuario);
 });
 
+$(document).on('click', '.avaliar', function() {
+    var cd = $(this).attr('cd');
+    $('#modalAvaliar #cd').val(cd);
+    var titulo = $(this).attr('titulo');
+});
+
 $(document).on('click', '.concluir', function() {
     var cd = $(this).attr('cd');
     $('#modalConclusao #cd').val(cd);
@@ -89,6 +95,9 @@ $(document).on('click', '.ver', function() {
 
     var feedback = $(this).attr('feedback');
     $('#ver #feedback').val(feedback);
+
+    var nota = $(this).attr('nota');
+    $('#ver #nota').val(nota);
 });
 
 </script>
