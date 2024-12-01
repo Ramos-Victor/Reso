@@ -41,7 +41,7 @@
                     <h5 class="modal-title">Abrir Chamado</h5>
                 </div>
                 <div class="modal-body">
-                    <input type="text" name="titulo" class="form-control mb-2" maxlength="25"
+                    <input type="text" name="titulo" class="form-control mb-2" maxlength="20"
                         placeholder="Título do Chamado" required>
                     <textarea name="descricao" class="form-control mb-2" placeholder="Descrição do Problema" required
                         rows="3"></textarea>
