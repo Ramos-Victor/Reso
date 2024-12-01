@@ -32,21 +32,21 @@ if ($listar && count($listar) > 0) {
                 <td data-label="Criado por"><a href="?route=/painelUsuarios#<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
                 <td data-label="Ações" class="btn-group" style="border:none;column-gap:5px;">
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
-                        title="Deletar" cd="<?= $l['cd_equipamento']; ?>" nome="<?= $l['nm_equipamento']; ?>">
+                        title="Deletar" cd="<?= $l['cd_equipamento'] ?>" nome="<?= $l['nm_equipamento']; ?>">
                         <i class="botoes bi bi-trash3-fill"></i> Deletar
                     </button>
                     <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
-                        cd="<?= $l['cd_equipamento']; ?>" nome="<?= $l['nm_equipamento']; ?>"
+                        cd="<?= $l['cd_equipamento'] ?>" nome="<?= $l['nm_equipamento'] ?>"
                         desc="<?= $l['ds_equipamento'] ?>"
-                        categoria="<?= $l['id_categoria']; ?>" sala="<?= $l['id_sala']; ?>"
-                        status="<?= $l['st_equipamento']; ?>" descricao="<?= $l['ds_equipamento']; ?>">
+                        categoria="<?= $l['id_categoria'] ?>" sala="<?= $l['id_sala']; ?>"
+                        status="<?= $l['st_equipamento'] ?>" descricao="<?= $l['ds_equipamento']; ?>">
                         <i class="botoes bi bi-pencil-fill"></i> Editar
                     </button>
                     <button class="btn btn-success btn-sm ver" data-toggle="modal" data-target="#ver"
-                        cd="<?= $l['cd_equipamento']; ?>" nome="<?= $l['nm_equipamento']; ?>"
-                        desc="<?= $l['ds_equipamento']; ?>" usuario="<?= $l['nm_usuario'] ?>"
-                        categoria="<?= $l['categoria_nm']; ?>" sala="<?= $l['nm_sala']; ?>"
-                        status="<?= $l['nm_status']; ?>" descricao="<?= $l['ds_equipamento']; ?>">
+                        cd="<?= $l['cd_equipamento'] ?>" nome="<?= $l['nm_equipamento'] ?>"
+                        desc="<?= $l['ds_equipamento'] ?>" usuario="<?= $l['nm_usuario'] ?>"
+                        categoria="<?= $l['categoria_nm'] ?? 'Não especificado'?>" sala="<?= $l['nm_sala'] ?>"
+                        status="<?= $l['nm_status'] ?>" descricao="<?= $l['ds_equipamento'] ?>">
                         <i class="botoes bi bi-eye-fill"></i> Ver
                     </button>
                 </td>

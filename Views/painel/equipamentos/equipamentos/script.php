@@ -1,22 +1,22 @@
 <script>
 $(document).on('click', '.editar', function() {
     var cd = $(this).attr('cd');
-    $('.modal#editar #cd').val(cd);
+    $('#editar #cd').val(cd);
     
     var nome = $(this).attr('nome');
-    $('.modal#editar #nome').val(nome);
+    $('#editar #nome').val(nome);
     
     var desc = $(this).attr('desc');
-    $('.modal#editar #desc').val(desc);
+    $('#editar #desc').val(desc);
     
     var sala = $(this).attr('sala');
-    $('.modal#editar select#sala').val(sala); 
+    $('#editar select#sala').val(sala); 
 
     var categoria = $(this).attr('categoria');
-    $('.modal#editar select#categoria').val(categoria); 
+    $('#editar select#categoria').val(categoria); 
     
     var status = $(this).attr('status');
-    $('.modal#editar select#status').val(status);
+    $('#editar select#status').val(status);
 });
 
 $(document).on('click', '.deletar', function() {

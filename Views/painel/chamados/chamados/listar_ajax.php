@@ -83,7 +83,7 @@ if ($listar && count($listar) > 0) {
                     <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#modalEditar"
                         cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
                         descricao="<?= $l['ds_chamado'] ?>"
-                        equipamento="<?= $l['id_equipamento'] ?? 'Não especificado' ?>"
+                        equipamento="<?= $l['id_equipamento']?>"
                         status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
                         usuario="<?= $l['usuario_abertura']; ?>">
                         <i class="botoes bi bi-pencil-fill"></i> Editar

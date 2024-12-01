@@ -33,7 +33,7 @@ $(document).on('click', '.editar', function() {
     $('#modalEditar #Descricao').val(descricao);
 
     var equipamento = $(this).attr('equipamento');
-    $('#modalEditar select#Equipamento').val(equipamento);
+    $('#modalEditar select#Equipamento').val(equipamento || '');
 
     var status = $(this).attr('status');
     $('#modalEditar #Status').val(status);
