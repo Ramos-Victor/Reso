@@ -49,7 +49,7 @@ function ListarEquipamentos($categoria = null, $sala = null) {
 }
 
 function CriarEquipamento($nome, $desc, $categoria, $usuario, $unidade, $pagina) {
-    $sqlSala = 'SELECT cd_sala FROM tb_sala WHERE nm_sala = "ESTOQUE" LIMIT 1';
+    $sqlSala = 'SELECT cd_sala FROM tb_sala WHERE nm_sala = "ESTOQUE" AND id_unidade = "'.$_SESSION['unidade'].'" LIMIT 1';
     $stmtSala = $GLOBALS['con']->prepare($sqlSala);
     $stmtSala->execute();
     $resultado = $stmtSala->get_result();
