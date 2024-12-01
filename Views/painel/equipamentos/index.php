@@ -157,7 +157,7 @@ if (!empty($_POST)) {
             $_POST['desc'], 
             $_POST['status'], 
             $_POST['sala'], 
-            $_POST['categoria'], 
+            $_POST['categoria'] ?: null, 
             $_SESSION['id'], 
             $_SESSION['unidade'], 
             "?route=/painelEquipamentos");

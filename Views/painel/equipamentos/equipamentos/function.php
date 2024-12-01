@@ -12,10 +12,13 @@ function ListarEquipamentos($categoria = null, $sala = null) {
                 e.id_sala, 
                 e.id_usuario,
                 e.id_categoria, 
+                uu.st_ativo as UsuAtivo,
+                s.st_ativo as SalAtivo,
                 u.nm_usuario, 
                 c.categoria_nm, 
                 s.nm_sala
             FROM tb_equipamento e
+            INNER JOIN tb_usuario_unidade uu ON e.id_unidade = uu.id_unidade AND e.id_usuario = uu.id_usuario
             INNER JOIN tb_st_equipamento t ON e.st_equipamento = t.cd_st_equipamento
             LEFT JOIN tb_usuario u ON e.id_usuario = u.cd_usuario
             LEFT JOIN tb_equipamento_categoria c ON e.id_categoria = c.cd_categoria

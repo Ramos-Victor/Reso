@@ -4,9 +4,17 @@ require_once 'conect.php';
 
 
     function ListarSalas(){
-        $sql = 'SELECT  u.cd_usuario, u.nm_usuario, s.cd_sala, s.nm_sala, s.ds_sala, DATE_FORMAT(s.dt_sala, "%d/%m/%Y") as dt_sala, s.id_usuario, s.id_unidade FROM tb_sala s 
-        INNER JOIN tb_usuario u on s.id_usuario = u.cd_usuario 
-        WHERE s.st_ativo=1 AND s.id_unidade ='.$_SESSION['unidade'];
+        $sql = 'SELECT  u.cd_usuario,
+                u.nm_usuario,
+                s.cd_sala,
+                s.nm_sala,
+                s.ds_sala,
+                uu.st_ativo as UsuAtivo,
+                DATE_FORMAT(s.dt_sala, "%d/%m/%Y") as dt_sala,
+                s.id_usuario, s.id_unidade FROM tb_sala s 
+                INNER JOIN tb_usuario_unidade uu ON s.id_unidade = uu.id_unidade AND s.id_usuario = uu.id_usuario 
+                INNER JOIN tb_usuario u on s.id_usuario = u.cd_usuario 
+                WHERE s.st_ativo=1 AND s.id_unidade ='.$_SESSION['unidade'];
 
         $res = $GLOBALS['con']->query($sql);
         

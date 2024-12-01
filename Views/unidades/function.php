@@ -144,7 +144,7 @@ function DeletarUnidade($cd, $pagina) {
     
 
     function SairUnidade($usuario,$unidade,$pagina){
-        $sql='UPDATE tb_usuario_unidade SET st_ativo = 0, dt_exclusao = current_timestamp() where id_usuario="'.$usuario.'" and id_unidade="'.$unidade.'"';
+        $sql='UPDATE tb_usuario_unidade SET st_ativo = 0, dt_exclusao = current_timestamp(), id_cargo = 4 where id_usuario="'.$usuario.'" and id_unidade="'.$unidade.'"';
 
         $res = $GLOBALS['con']->query($sql);
 

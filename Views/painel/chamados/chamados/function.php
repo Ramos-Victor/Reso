@@ -23,7 +23,7 @@ function ListarChamados($status = null) {
     c.cd_chamado, 
     c.nm_chamado, 
     c.ds_chamado, 
-    DATE_FORMAT(c.dt_abertura, "%d/%m/%Y") as dt_abertura, 
+    c.dt_abertura as dt_abertura, 
     DATE_FORMAT(c.dt_fechamento, "%d/%m/%Y") as dt_fechamento, 
     s.nm_status as st_chamado, 
     c.ds_recado,
@@ -31,11 +31,14 @@ function ListarChamados($status = null) {
     c.id_usuario_fechamento AS id_fechamento,
     c.id_equipamento AS id_equipamento,
     e.nm_equipamento, 
+    e.st_ativo as EquiAtivo,
+    uu.st_ativo as UsuAtivo,
     u.nm_usuario AS usuario_abertura,
     uf.nm_usuario AS usuario_fechamento
 FROM 
     tb_chamado c
 INNER JOIN tb_st_chamado s ON c.st_chamado = s.cd_st_chamado
+INNER JOIN tb_usuario_unidade uu ON c.id_unidade = uu.id_unidade AND c.id_usuario_abertura = uu.id_usuario
 LEFT JOIN 
     tb_equipamento e ON c.id_equipamento = e.cd_equipamento
 LEFT JOIN 

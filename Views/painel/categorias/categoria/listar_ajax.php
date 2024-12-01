@@ -11,7 +11,7 @@ if ($listar) {
             <tr>
                 <th style="width: 30%;">Nome da Categoria</th>
                 <th style="width: 20%;">Data de Criação</th>
-                <th style="width: 25%;">Criado Por</th>
+                <th style="width: 25%;">Por</th>
                 <th style="width: 25%;">Ações</th>
             </tr>
         </thead>
@@ -20,7 +20,12 @@ if ($listar) {
             <tr class="text-center">
                 <td data-label="Nome"><?= $l['categoria_nm'] ?></td>
                 <td data-label="Data"><?= $l['dt_categoria'] ?></td>
-                <td data-label="Criado"><a href="?route=/painelUsuarios#id<?= $l['cd_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
+                <?php if($l['UsuAtivo']==1){ ?>
+                <td data-label="Por"><a
+                        href="?route=/painelUsuarios#id<?= $l['cd_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
+                <?php }else{ ?>
+                <td data-label="Por"><?= $l['nm_usuario'] ?></td>
+                <?php } ?>
                 <td data-label="Ações" class="btn-group" style="border:none;column-gap:5px;">
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                         title="Deletar" cd="<?= $l['cd_categoria']; ?>" nome="<?= $l['categoria_nm']; ?>"

@@ -11,7 +11,7 @@ if ($listar) {
                 <th>Nome</th>
                 <th>Criado em</th>
                 <th>Descrição</th>
-                <th>Criado por</th>
+                <th>Por</th>
                 <th>Ações</th>
             </tr>
         </thead>
@@ -23,7 +23,11 @@ if ($listar) {
                 <td data-label="Descrição">
                     <?= strlen($l['ds_sala']) > 30 ? substr($l['ds_sala'], 0, 30) . '...' : $l['ds_sala'] ?>
                 </td>
-                <td data-label="Criado por"><a href="?route=/painelUsuarios#id<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
+                <?php if($l['UsuAtivo'] ==1){ ?>
+                <td data-label="Por"><a href="?route=/painelUsuarios#id<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
+                <?php }else{ ?>
+                    <td data-label="Por"><?= $l['nm_usuario'] ?></td>
+                <?php } ?>
                 <td data-label="Ações" class="btn-group" style="border:none;column-gap:5px;">
                     <button class="btn btn-success btn-sm ver" data-toggle="modal" data-target="#ver" title="Ver"
                         cd="<?= $l['cd_sala']; ?>" nome="<?= $l['nm_sala']; ?>" desc="<?= $l['ds_sala']; ?>"

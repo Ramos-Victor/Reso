@@ -19,8 +19,15 @@ require_once 'conect.php';
     }
 
     function ListarCategorias($msg) {
-        $sql = 'SELECT u.cd_usuario, u.nm_usuario, e.cd_categoria, e.categoria_nm, DATE_FORMAT(e.dt_categoria, "%d/%m/%Y") as dt_categoria, e.id_usuario, e.id_unidade 
+        $sql = 'SELECT u.cd_usuario,
+                u.nm_usuario,
+                e.cd_categoria,
+                e.categoria_nm,
+                uu.st_ativo as UsuAtivo,
+                DATE_FORMAT(e.dt_categoria, "%d/%m/%Y") as dt_categoria,
+                e.id_usuario, e.id_unidade 
                 FROM tb_equipamento_categoria e
+                INNER JOIN tb_usuario_unidade uu ON e.id_unidade = uu.id_unidade AND e.id_usuario = uu.id_usuario
                 INNER JOIN tb_usuario u 
                 ON e.id_usuario = cd_usuario
                 WHERE e.st_ativo = 1 AND e.id_unidade ='.$_SESSION['unidade'];
@@ -34,11 +41,11 @@ require_once 'conect.php';
         }
     }
 
-    function EditarCategoria($id, $nome,$unidade, $pagina){
-        $sql = 'UPDATE tb_equipamento_categoria set categoria_nm = ? where cd_categoria = ? and id_unidade = ?';
+    function EditarCategoria($id, $nome,$unidade,$usuario, $pagina){
+        $sql = 'UPDATE tb_equipamento_categoria set categoria_nm = ?, id_usuario = ? where cd_categoria = ? and id_unidade = ?';
 
         $stmt = $GLOBALS['con']->prepare($sql);
-        $stmt->bind_param('sii', $nome, $id, $unidade);
+        $stmt->bind_param('ssii', $nome,$usuario, $id, $unidade);
 
         $res = $stmt->execute();
 

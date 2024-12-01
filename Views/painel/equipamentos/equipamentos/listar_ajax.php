@@ -13,23 +13,36 @@ if ($listar && count($listar) > 0) {
                 <th style="width: 15%;">Categoria</th>
                 <th style="width: 15%;">Status</th>
                 <th style="width: 15%;">Local</th>
-                <th style="width: 15%;">Criado por</th>
+                <th style="width: 15%;">Por</th>
                 <th style="width: 40%;">Ações</th>
             </tr>
         </thead>
         <tbody>
             <?php foreach($listar as $l){ ?>
-            <tr class="text-center"  id="id<?= $l['cd_equipamento'] ?>">
+            <tr class="text-center" id="id<?= $l['cd_equipamento'] ?>">
                 <td data-label="Nome"><?= $l['nm_equipamento'] ?></td>
                 <td data-label="Categoria"><?= $l['categoria_nm'] ?? 'NÃO ESPECIFICADO' ?></td>
                 <td data-label="Status">
-                    <span class="text-white badge <?php if($l['nm_status'] == 'Ativo'){ echo'bg-success';}elseif($l['nm_status'] == 'Desativado'){echo'bg-danger';}else{echo'bg-warning';}  ?>"
+                    <span
+                        class="text-white badge <?php if($l['nm_status'] == 'Ativo'){ echo'bg-success';}elseif($l['nm_status'] == 'Desativado'){echo'bg-danger';}else{echo'bg-warning';}  ?>"
                         style="font-size: 15px;">
                         <?= $l['nm_status'] ?>
                     </span>
                 </td>
+                <?php if($l['SalAtivo']!=0){?>
                 <td data-label="Sala"><a href="?route=/painelSalas#<?= $l['id_sala'] ?>"><?= $l['nm_sala'] ?></a></td>
-                <td data-label="Criado por"><a href="?route=/painelUsuarios#<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
+                <?php }else{ ?>
+                    <td data-label="Sala"><?= $l['nm_sala'] ?></td>
+                <?php }
+                      if($l['UsuAtivo']==1){                  
+                ?>
+                <td data-label="Por"><a
+                        href="?route=/painelUsuarios#<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
+                <?php }else{             
+                ?>
+                  <td data-label="Por"><?= $l['nm_usuario'] ?></td>
+                <?php }       
+                ?>
                 <td data-label="Ações" class="btn-group" style="border:none;column-gap:5px;">
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                         title="Deletar" cd="<?= $l['cd_equipamento'] ?>" nome="<?= $l['nm_equipamento']; ?>">
@@ -37,9 +50,9 @@ if ($listar && count($listar) > 0) {
                     </button>
                     <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
                         cd="<?= $l['cd_equipamento'] ?>" nome="<?= $l['nm_equipamento'] ?>"
-                        desc="<?= $l['ds_equipamento'] ?>"
-                        categoria="<?= $l['id_categoria'] ?>" sala="<?= $l['id_sala']; ?>"
-                        status="<?= $l['st_equipamento'] ?>" descricao="<?= $l['ds_equipamento']; ?>">
+                        desc="<?= $l['ds_equipamento'] ?>" categoria="<?= $l['id_categoria'] ?>"
+                        sala="<?= $l['id_sala']; ?>" status="<?= $l['st_equipamento'] ?>"
+                        descricao="<?= $l['ds_equipamento']; ?>">
                         <i class="botoes bi bi-pencil-fill"></i> Editar
                     </button>
                     <button class="btn btn-success btn-sm ver" data-toggle="modal" data-target="#ver"

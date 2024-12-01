@@ -25,10 +25,12 @@ if ($listar && count($listar) > 0) {
             <?php foreach ($listar as $l) { ?>
             <tr class="text-center">
                 <td data-label="Titulo"><?= $l['nm_chamado'] ?></td>
-                <td data-label="Descricao"><?= strlen($l['ds_chamado']) > 30 ? substr($l['ds_chamado'], 0, 30) . '...' : $l['ds_chamado'] ?>
+                <td data-label="Descricao">
+                    <?= strlen($l['ds_chamado']) > 30 ? substr($l['ds_chamado'], 0, 30) . '...' : $l['ds_chamado'] ?>
                 </td>
-                <td data-label="Abertura"><?= $l['dt_abertura'] ?></td>
-                <td data-label="Fechamento"><?php if($l['st_chamado'] == 'Concluido') echo $l['dt_fechamento']; else echo "—"; ?></td>
+                <td data-label="Abertura"><?=strlen($l['dt_abertura']) > 10 ? substr($l['dt_abertura'], 0, 10) . '' : $$l['dt_abertura']  ?></td>
+                <td data-label="Fechamento">
+                    <?php if($l['st_chamado'] == 'Concluido') echo $l['dt_fechamento']; else echo "—"; ?></td>
                 <td data-label="Status">
                     <span class="badge 
                         <?php 
@@ -41,16 +43,26 @@ if ($listar && count($listar) > 0) {
                         ?> text-white" style="font-size: 15px;"><?= $l['st_chamado'] ?>
                     </span>
                 </td>
-                <?php if($l['id_equipamento']){ ?>
-                <td data-label="Equipamento"><a href="?route=/painelEquipamentos#id<?=$l['id_equipamento'] ?>"><?= $l['nm_equipamento']?></a>
+                <?php if($l['id_equipamento'] && $l['EquiAtivo']==0){ ?>
+                <td data-label="Equipamento"><?= $l['nm_equipamento']?>
+                </td>
+                <?php }elseif($l['id_equipamento']){ ?>
+                <td data-label="Equipamento"><a
+                        href="?route=/painelEquipamentos#id<?=$l['id_equipamento'] ?>"><?= $l['nm_equipamento']?></a>
                 </td>
                 <?php }else{ ?>
                 <td data-label="Equipamento">
-                —
+                    —
                 </td>
-                <?php } ?>
-                <td data-label="Aberto por"><a href="?route=/painelUsuarios#id<?= $l['id_abertura'] ?>"><?= $l['usuario_abertura'] ?></a></td>
+                <?php } 
+                    if($l['id_abertura'] && $l['UsuAtivo']==0){
+                ?>
+                <td data-label="Aberto por"><?= $l['usuario_abertura']?></td>
+                <?php }elseif($l['id_abertura']){ ?>
+                    <td data-label="Aberto por"><a
+                    href="?route=/painelUsuarios#id<?=$l['id_abertura']?>"><?=$l['usuario_abertura']?></a></td>
                 <?php
+            }
                     if($l['id_fechamento']){
                 ?>
                 <td data-label="Acompanhado por"><a
@@ -82,16 +94,15 @@ if ($listar && count($listar) > 0) {
                     if ($l['st_chamado'] == 'Aberto' && $l['id_abertura'] == $_SESSION['id']) { ?>
                     <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#modalEditar"
                         cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
-                        descricao="<?= $l['ds_chamado'] ?>"
-                        equipamento="<?= $l['id_equipamento']?>"
+                        descricao="<?= $l['ds_chamado'] ?>" equipamento="<?= $l['id_equipamento']?>"
                         status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
                         usuario="<?= $l['usuario_abertura']; ?>">
                         <i class="botoes bi bi-pencil-fill"></i> Editar
                     </button>
                     <?php }
                     if ($l['st_chamado'] == 'Aberto' && $_SESSION['cargo'] != 'comum') { ?>
-                    <button class="btn btn-warning btn-sm andamento text-white" data-toggle="modal" data-target="#modalAndamento"
-                        cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
+                    <button class="btn btn-warning btn-sm andamento text-white" data-toggle="modal"
+                        data-target="#modalAndamento" cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
                         descricao="<?= $l['ds_chamado'] ?>"
                         equipamento="<?= $l['nm_equipamento'] ?? 'Não especificado' ?>"
                         status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"

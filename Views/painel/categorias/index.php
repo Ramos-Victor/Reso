@@ -139,6 +139,7 @@ if(!empty($_POST)){
             $_POST['cd'],
            strtoupper($_POST['nome']),
             $_SESSION['unidade'],
+            $_SESSION['id'],
             "?route=/painelCategorias"
         );
     }elseif($_POST['action'] == "Deletar"){

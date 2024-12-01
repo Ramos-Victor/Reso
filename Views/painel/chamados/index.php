@@ -170,7 +170,7 @@ $(document).ready(function() {
     });
 });
 
-setInterval(carregarChamados, 5000);
+setInterval(carregarChamados, 1000);
 </script>
 
 <?php
@@ -209,7 +209,7 @@ if (!empty($_POST)) {
             $_POST['cd'],
             $_POST['titulo'],
             $_POST['descricao'],
-            $_POST['Equipamento'],
+            $_POST['Equipamento'] ?: null,
             $_SESSION['unidade'],
             "?route=/painelChamados"
         );
