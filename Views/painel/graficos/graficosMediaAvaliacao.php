@@ -2,9 +2,7 @@
 require_once 'conect.php';
 global $con;
 header('Content-Type: application/json');
-$sql = 'SELECT 
-    u.nm_usuario AS usuario,
-    AVG(CAST(c.nr_avaliacao AS DECIMAL(5,2))) AS mediaAVA
+$sql = 'SELECT u.nm_usuario AS usuario, AVG(CAST(c.nr_avaliacao AS DECIMAL(5,2))) AS mediaAVA
 FROM 
     db_resoluton.tb_chamado c
 JOIN 
