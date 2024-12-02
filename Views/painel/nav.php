@@ -32,10 +32,14 @@ nav {
     max-width: 400px;
     overflow-x: hidden;
 }
+
+.a{
+font-family: "bene";
+}
 </style>
 
 <nav class="navbar navbar-expand-lg fixed-top navbar-light">
-    <a class="navbar-brand text-white ml-3" href="?route=/painel" style="background-color:none;">
+    <a class="navbar-brand a text-white ml-3" href="?route=/painel" style="background-color:none;">
         <img src="/Reso/assets/img/logoresoluton.png" class="img-fluid reso" alt="Responsive image">
         Resolut.on
     </a>
@@ -64,9 +68,9 @@ nav {
                     ESC
                 </a>
                 <div class="dropdown-menu">
-                    <a class="dropdown-item a" href="?route=/painelEquipamentos">Equipamentos</a>
-                    <a class="dropdown-item a" href="?route=/painelSalas">Salas</a>
-                    <a class="dropdown-item a" href="?route=/painelCategorias">Categorias</a>
+                    <a class="dropdown-item" href="?route=/painelEquipamentos">Equipamentos</a>
+                    <a class="dropdown-item" href="?route=/painelSalas">Salas</a>
+                    <a class="dropdown-item" href="?route=/painelCategorias">Categorias</a>
                 </div>
             </li>
             <li class="nav-item dropdown">
@@ -75,8 +79,8 @@ nav {
                     <?= $_SESSION['usuario'] ?>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item a" href="?route=/config">Perfil</a>
-                    <a class="dropdown-item a" href="?route=/logout">Encerrar Sessão</a>
+                    <a class="dropdown-item" href="?route=/config">Perfil</a>
+                    <a class="dropdown-item" href="?route=/logout">Encerrar Sessão</a>
                 </div>
             </li>
         </ul>

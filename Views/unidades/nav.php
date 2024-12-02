@@ -32,10 +32,14 @@ nav {
     max-width: 400px;
     overflow-x: hidden;
 }
+
+.a{
+font-family: "bene";
+}
 </style>
 
 <nav class="navbar navbar-expand-lg navbar-light fixed-top" style="background-color: #03305c">
-    <a class="navbar-brand text-white ml-3" href="?route=/unidades">
+    <a class="navbar-brand a text-white ml-3" href="?route=/unidades">
         <img src="/Reso/assets/img/logoresoluton.png" class="img-fluid reso" alt="Responsive image">
         Resolut.on
     </a>
@@ -60,8 +64,8 @@ nav {
                     <?= $_SESSION['usuario'] ?>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item a" href="?route=/config">Perfil</a>
-                    <a class="dropdown-item a" href="?route=/logout">Encerrar Sessão</a>
+                    <a class="dropdown-item" href="?route=/config">Perfil</a>
+                    <a class="dropdown-item" href="?route=/logout">Encerrar Sessão</a>
                 </div>
             </li>
         </ul>

@@ -9,13 +9,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>Verificação de E-mail</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <style>
 * {
     margin: 0;
-    padding: 0;
+    padding: 0; 
     box-sizing: border-box;
 }
 
@@ -105,16 +107,16 @@ body {
     }
 }
 
-.logoetitulo{
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    justify-content:center;
+.logoetitulo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-.logo{
-    height:6rem;
-    width:6rem;
+.logo {
+    height: 6rem;
+    width: 6rem;
 }
 </style>
 
@@ -126,11 +128,10 @@ body {
             <h2>Resolut.On</h2>
         </div>
         <div class="message-box">
-            <h1>Verifique seu email para ter acesso ao painel!</h1>
-            <p>Não recebeu o email de verificação?</p>
-
             <form method="POST">
-                <input type="submit" name="action" value="Clique aqui para reenviar" class="btn">
+                <h1>Para redefinar sua senha precisamos do seu email.</h1>
+                <input type="text" class="form-control mb-3" name="email" id="email" placeholder="Digite seu email">
+                <input type="submit" name="action" value="Continuar" class="btn">
             </form>
         </div>
     </div>
@@ -140,16 +141,21 @@ body {
 
 <?php
     if(!empty($_POST)){
-        if($_POST['action']){
-          $res =  AutenticarEmail(
-                $_SESSION['email'],
-                $_SESSION['id']
-            );
-            if($res){
-                session_destroy();
-                Confirma("Email de verificação foi reenviado!", "?route=/login");
+        if($_POST['action']=="Continuar"){
+            $email = $_POST['email'];
+            if($email){
+                $token = gerarToken($email);
+                if($token){
+                    if(EnviarEmailRec($email,$token)){
+                        Confirma("Email de recuperacao enviado","?route=/login");
+                    }else{
+                        Confirma("Não foi possivel enviar o email de recuperação","?route=/esquecisenha");
+                    }
+                }else{
+                    Confirma("Usuario não encontrado!","?route=/esquecisenha");
+                }
             }else{
-                Erro("Não foi possivel reenviar o email de verificação!");
+                Erro("Email inválido!");
             }
         }
     }

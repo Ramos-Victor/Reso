@@ -21,6 +21,12 @@ $routes = [
     '/verificado' => function () {
         require __DIR__ . '/email/verificado.php';
     },
+    '/redefinirsenha' => function () {
+        require __DIR__ . '/start/redefinir_senha.php';
+    },
+    '/esquecisenha' => function () {
+        require __DIR__ . '/email/esquecisenha.php';
+    },
     '/logout' => function () {
         require __DIR__ . '/logout.php';
     },

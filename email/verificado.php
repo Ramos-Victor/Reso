@@ -23,7 +23,7 @@ if(!empty($_GET['id'])){
             Confirma("Email ja verificado!","?route=/login");
         }
         
-        if($diff >= 7){
+        if($diff >= 3){
             $sql = 'DELETE FROM tb_usuario WHERE cd_usuario = ?';
             $stmt = $con->prepare($sql);
             $stmt->bind_param('s', $id);
@@ -41,7 +41,7 @@ if(!empty($_GET['id'])){
             Confirma("Verificado com sucesso!","?route=/login");
         }
     }else{
-        Confirma("Id inválido!","?route=/login");
+        Confirma("Link inválido!","?route=/login");
     }
 }else{
     Confirma("Link inválido!","?route=/registro");

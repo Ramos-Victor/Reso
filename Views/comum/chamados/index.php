@@ -180,7 +180,7 @@ if (!empty($_POST)) {
         AbrirChamado(
             strtoupper($_POST['titulo']), 
             $_POST['descricao'], 
-            $id_equipamento,
+            $id_equipamento ?: null,
             $_SESSION['id'], 
             $_SESSION['unidade'], 
             "?route=/comum");
@@ -194,8 +194,14 @@ if (!empty($_POST)) {
             $_POST['cd'],
             $_POST['titulo'],
             $_POST['descricao'],
-            $_POST['Equipamento'],
+            $_POST['Equipamento'] ?: null,
             $_SESSION['unidade'],
+            "?route=/comum"
+        );
+    }elseif($_POST['action']=="Avaliar"){
+        Avaliar(
+            $_POST['cd'],
+            $_POST['estrelas'],
             "?route=/comum"
         );
     }

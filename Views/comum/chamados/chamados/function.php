@@ -27,6 +27,7 @@ function ListarChamados($status = null) {
     DATE_FORMAT(c.dt_fechamento, "%d/%m/%Y") as dt_fechamento, 
     s.nm_status as st_chamado, 
     c.ds_recado,
+    c.nr_avaliacao,
     c.id_usuario_abertura AS id_abertura,
     c.id_usuario_fechamento AS id_fechamento,
     c.id_equipamento AS id_equipamento,
@@ -95,5 +96,20 @@ function EditarChamado($cd_chamado,$titulo, $descricao,$equipamento, $unidade,$p
         Confirma("Chamado editado com sucesso!", $pagina);
     } else {
         Erro("Erro ao editar o chamado!");
+    }
+}
+
+function Avaliar($cd_chamado,$nrAvaliacao,$pagina){
+    global $con;
+    $sql = 'UPDATE tb_chamado SET nr_avaliacao = ? where cd_chamado = ? AND id_unidade = ?';
+
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param('sii',$nrAvaliacao,$cd_chamado, $_SESSION['unidade']);
+    $res = $stmt->execute();
+
+    if($res){
+        Confirma("Chamado avaliado!",$pagina);
+    }else{
+        Erro("Não foi possivel avaliar o chamado!");
     }
 }

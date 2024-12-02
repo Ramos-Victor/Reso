@@ -25,10 +25,12 @@ if ($listar && count($listar) > 0) {
             <?php foreach ($listar as $l) { ?>
             <tr class="text-center">
                 <td data-label="Nome"><?= $l['nm_chamado'] ?></td>
-                <td data-label="Descrição"><?= strlen($l['ds_chamado']) > 30 ? substr($l['ds_chamado'], 0, 30) . '...' : $l['ds_chamado'] ?>
+                <td data-label="Descrição">
+                    <?= strlen($l['ds_chamado']) > 30 ? substr($l['ds_chamado'], 0, 30) . '...' : $l['ds_chamado'] ?>
                 </td>
                 <td data-label="Abertura"><?= $l['dt_abertura'] ?></td>
-                <td data-label="Fechamento"><?php if($l['st_chamado'] == 'Concluido') echo $l['dt_fechamento']; else echo "—"; ?></td>
+                <td data-label="Fechamento">
+                    <?php if($l['st_chamado'] == 'Concluido') echo $l['dt_fechamento']; else echo "—"; ?></td>
                 <td data-label="Status">
                     <span class="badge 
                         <?php 
@@ -46,11 +48,11 @@ if ($listar && count($listar) > 0) {
                 </td>
                 <?php }else{ ?>
                 <td>
-                —
+                    —
                 </td>
                 <?php } ?>
                 <td data-label="Aberto por"><?= $l['usuario_abertura'] ?></td>
-               
+
                 <td data-label="Acompanhado por"><?= $l['usuario_fechamento'] ?? '—' ?>
                 </td>
                 <td data-label="Ações" class="btn-group" style="border:none;column-gap:5px;">
@@ -72,15 +74,15 @@ if ($listar && count($listar) > 0) {
                     <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#modalEditar"
                         cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
                         descricao="<?= $l['ds_chamado'] ?>"
-                        equipamento="<?= $l['id_equipamento'] ?? 'Não especificado' ?>"
+                        equipamento="<?= $l['id_equipamento']?>"
                         status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
                         usuario="<?= $l['usuario_abertura']; ?>">
                         <i class="botoes bi bi-pencil-fill"></i> Editar
                     </button>
                     <?php }
                     if ($l['st_chamado'] == 'Aberto' && $_SESSION['cargo'] != 'comum') { ?>
-                    <button class="btn btn-warning btn-sm andamento text-white" data-toggle="modal" data-target="#modalAndamento"
-                        cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
+                    <button class="btn btn-warning btn-sm andamento text-white" data-toggle="modal"
+                        data-target="#modalAndamento" cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
                         descricao="<?= $l['ds_chamado'] ?>"
                         equipamento="<?= $l['nm_equipamento'] ?? 'Não especificado' ?>"
                         status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
@@ -93,20 +95,20 @@ if ($listar && count($listar) > 0) {
                         <i class="botoes bi bi-check-circle-fill"></i> Concluir
                     </button>
                     <?php } 
-                    if ($l['st_chamado'] == 'Concluido') { ?>
+                    if($l['st_chamado'] == 'Concluido' && $l['id_abertura']==$_SESSION['id'] && empty($l['nr_avaliacao'])) { ?>
                     <button class="btn btn-success btn-sm avaliar" data-toggle="modal" data-target="#modalAvaliar"
-                        cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>">
+                        cd="<?= $l['cd_chamado'] ?>">
                         <i class="botoes bi bi-star-fill"></i> Avaliar
                     </button>
                     <?php } ?>
                     <button class="btn btn-primary btn-sm ver" data-toggle="modal" data-target="#ver"
-                        cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>"
+                        cd="<?= $l['cd_chamado'] ?>" titulo="<?= $l['nm_chamado']; ?>"
                         descricao="<?= $l['ds_chamado'] ?>"
                         equipamento="<?= $l['nm_equipamento'] ?? 'Não especificado' ?>"
                         status="<?= $l['st_chamado']; ?>" abertura="<?= $l['dt_abertura']; ?>"
                         fechamento="<?= $l['dt_fechamento'] ?? 'Não finalizado' ?>"
                         final="<?= $l['usuario_fechamento'] ?? '----' ?>" usuario="<?= $l['usuario_abertura']; ?>"
-                        feedback="<?= $l['ds_recado'] ?? '----' ?>">
+                        feedback="<?= $l['ds_recado'] ?? '----' ?>" nota="<?= $l['nr_avaliacao'] ?? 'Não avaliado'?>">
                         <i class="botoes bi bi-eye-fill"></i> Ver
                     </button>
                 </td>

@@ -5,6 +5,7 @@ if(!empty($_SESSION['unidade']) && $_SESSION['cargo']=="comum"){
     $_SESSION['id'];
     $_SESSION['usuario'];
     $_SESSION['nm_conexao'];
+    $_SESSION['unidade'];
     $_SESSION['cargo'];
     include_once 'conect.php';
     include_once 'dialog.php';

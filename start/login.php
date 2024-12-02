@@ -92,6 +92,7 @@ background-color: #e3b530;
                 <input type="submit" name="action" class="btn btn-custom btn-block mt-3" value="Entrar"></input>
             </form>
             <p class="mt-3">Ainda não possui uma conta? <a href="?route=/registro">Registre-se aqui</a></p>
+            <p class="mt-3"><a href="?route=/esquecisenha">Esqueci minha senha</a></p>
         </div>
     </div>
 </div>

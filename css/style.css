@@ -28,6 +28,6 @@ body {
 }
 
 @font-face {
-  font-family: Mont;
-  src: url('../assets/fontes/Montserrat/Montserrat-Italic-VariableFont_wght.ttf');
+  font-family: "bene";
+  src: url('../assets/fontes/wedges/Wedges.ttf');
 }

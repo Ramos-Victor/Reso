@@ -41,7 +41,6 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_usuario` (
   `dt_exclusao` DATETIME NULL,
   `nm_real` VARCHAR(45) NULL,
   `nr_telefone` VARCHAR(45) NULL,
-  `dt_nascimento` DATE NULL,
   `id_cargo_reso` INT NOT NULL DEFAULT 1,
   `url_imagem_perfil` VARCHAR(150) NULL,
   PRIMARY KEY (`cd_usuario`),
@@ -55,6 +54,13 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_usuario` (
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
+create table tb_recuperacao_senha(
+	email varchar(50) NOT NULL,
+    token varchar(64) NOT NULL,
+    dt_expiracao DATETIME NOT NULL,
+    primary key (email),
+    unique key token_unique (token)
+)ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `db_resoluton`.`tb_unidade`
@@ -372,50 +378,3 @@ insert into tb_st_chamado (nm_status) values
 ("Aberto"),
 ("Andamento"),
 ("Concluido");
-
-select * from tb_usuario;
-select * from tb_cargo_reso;
-select * from tb_faq;
-select * from tb_categoria_faq;
-insert into tb_categoria_faq (nm_categoria) values 
-("LOGIN");
-select * from tb_unidade;
-select * from tb_usuario_unidade;	
-select * from tb_st_sala;
-select * from tb_equipamento_categoria;
-select * from tb_st_equipamento;
-select * from tb_equipamento;
-select * from tb_sala;
-select * from tb_st_chamado;
-select * from tb_chamado;
-select * from tb_chat;
-
-SELECT 
-    c.cd_chamado, 
-    c.nm_chamado, 
-    c.ds_chamado, 
-    dt_abertura as dt_abertura, 
-    DATE_FORMAT(c.dt_fechamento, "%d/%m/%Y") as dt_fechamento, 
-    s.nm_status as st_chamado, 
-    c.ds_recado,
-    c.id_usuario_abertura AS id_abertura,
-    c.id_usuario_fechamento AS id_fechamento,
-    c.id_equipamento AS id_equipamento,
-    e.nm_equipamento, 
-    e.st_ativo as EquiAtivo,
-    uu.st_ativo as UsuAtivo,
-    u.nm_usuario AS usuario_abertura,
-    uf.nm_usuario AS usuario_fechamento
-FROM 
-    tb_chamado c
-INNER JOIN tb_st_chamado s ON c.st_chamado = s.cd_st_chamado
-INNER JOIN tb_usuario_unidade uu ON c.id_unidade = uu.id_unidade AND c.id_usuario_abertura = uu.id_usuario
-LEFT JOIN 
-    tb_equipamento e ON c.id_equipamento = e.cd_equipamento
-LEFT JOIN 
-    tb_usuario u ON c.id_usuario_abertura = u.cd_usuario
-LEFT JOIN 
-    tb_usuario uf ON c.id_usuario_fechamento = uf.cd_usuario
-WHERE
-c.st_ativo = 1
-AND c.id_unidade =1 ORDER BY dt_abertura DESC ;

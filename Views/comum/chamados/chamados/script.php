@@ -88,7 +88,16 @@ $(document).on('click', '.ver', function() {
     $('#ver #final').val(final);
 
     var feedback = $(this).attr('feedback');
-    $('#ver #feedback').val(feedback);
+    $('#ver #feedback').val(feedback)
+
+    var nota = $(this).attr('nota');
+    $('#ver #nota').val(nota);
+});
+
+$(document).on('click', '.avaliar', function() {
+    var cd = $(this).attr('cd');
+    $('#modalAvaliar #cd').val(cd);
+    var titulo = $(this).attr('titulo');
 });
 
 </script>

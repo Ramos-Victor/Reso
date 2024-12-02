@@ -1,5 +1,6 @@
 <?php
     require_once 'header.php';
+    require_once 'conect.php';
     require_once './email/email.php';
     require_once 'dialog.php';
 ?>
@@ -9,6 +10,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
+        integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <title>Verificação de E-mail</title>
     <link rel="stylesheet" href="styles.css">
 </head>
@@ -105,16 +108,16 @@ body {
     }
 }
 
-.logoetitulo{
-    display:flex;
-    flex-direction:row;
-    align-items:center;
-    justify-content:center;
+.logoetitulo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-.logo{
-    height:6rem;
-    width:6rem;
+.logo {
+    height: 6rem;
+    width: 6rem;
 }
 </style>
 
@@ -126,11 +129,11 @@ body {
             <h2>Resolut.On</h2>
         </div>
         <div class="message-box">
-            <h1>Verifique seu email para ter acesso ao painel!</h1>
-            <p>Não recebeu o email de verificação?</p>
-
             <form method="POST">
-                <input type="submit" name="action" value="Clique aqui para reenviar" class="btn">
+                <h1>Digite sua nova senha</h1>
+                <input type="password" class="form-control mb-3" name="senha" id="senha" placeholder="Digite sua nova senha">
+                <input type="password" class="form-control mb-3" name="confirmarSenha" id="confirmarSenha" placeholder="Confirme a senha">
+                <input type="submit" name="action" value="Continuar" class="btn">
             </form>
         </div>
     </div>
@@ -139,18 +142,71 @@ body {
 </html>
 
 <?php
+
     if(!empty($_POST)){
         if($_POST['action']){
-          $res =  AutenticarEmail(
-                $_SESSION['email'],
-                $_SESSION['id']
-            );
-            if($res){
-                session_destroy();
-                Confirma("Email de verificação foi reenviado!", "?route=/login");
+            $token = $_GET['token'];
+            $novaSenha = $_POST['senha'];
+            $confirmarSenha = $_POST['confirmarSenha'];
+
+            if($token && $novaSenha == $confirmarSenha){
+                $dadosToken = ValidarToken($token);
+
+                if($dadosToken){
+                    if(redefinirSenha($dadosToken['email'],$novaSenha)){
+                        Confirma("Senha redefinida com sucesso!","?route=/login");
+                    }else{
+                        Confirma("Erro ao redefinir a senha!","?route=/redefinirsenha&token=$token");
+                    }
+                }else{
+                    Confirma("Token inválido ou expirado!","?route=/esquecisenha");
+                }
             }else{
-                Erro("Não foi possivel reenviar o email de verificação!");
+                Confirma("Dados inválidos!","?route=/redefinirsenha&token=$token");
             }
+        }
+    }
+
+    function ValidarToken($token){
+        global $con;
+       
+        $sql = 'SELECT email FROM tb_recuperacao_senha WHERE token = ?';
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param('s', $token);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        
+        if ($result->num_rows > 0) {
+            
+            $row = $result->fetch_assoc();
+            return $row; 
+        } else {
+            return false;
+        }
+    }
+
+    function redefinirSenha($email,$novaSenha){
+        global $con;
+
+        $sql = 'UPDATE tb_usuario SET cd_senha = sha2(?,256) WHERE nm_email = ?';
+
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param('ss',$novaSenha,$email);
+
+        $stmt->execute();
+
+        $stmt->close();
+
+        $stmt = $con->prepare('DELETE FROM tb_recuperacao_senha WHERE email = ?');
+
+        $stmt->bind_param ('s',$email);
+
+        $res = $stmt->execute();
+
+        if($res){
+            return true;
+        }else{
+            return false;
         }
     }
 ?>
