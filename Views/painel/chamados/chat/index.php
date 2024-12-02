@@ -166,7 +166,7 @@ body{
     body{
     margin:0;
     padding:0;
-    height: 80vh;
+    height: 70vh;
 }
 }
 </style>
