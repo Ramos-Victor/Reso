@@ -146,14 +146,23 @@ tbody tr {
 let statusFilter = '';
 
 function carregarChamados() {
+
+    var containerAltura = $('#chamados-container').height();
+
+
     $.ajax({
         url: '?route=/painelChamadosAjax',
         method: 'GET',
         data: {
             status: statusFilter
         },
+        beforeSend: function() {
+            $('#chamados-container').css('height', containerAltura + 'px');
+        },
         success: function(data) {
             $('#chamados-container').html(data);
+
+            $('#chamados-container').css('height', 'auto');
         },
         error: function() {
             console.error('Erro ao carregar os chamados.');
@@ -170,7 +179,7 @@ $(document).ready(function() {
     });
 });
 
-setInterval(carregarChamados, 1000);
+setInterval(carregarChamados, 30000);
 </script>
 
 <?php
