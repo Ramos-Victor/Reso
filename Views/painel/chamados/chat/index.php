@@ -212,8 +212,6 @@ document.getElementById('form-mensagem').addEventListener('submit', function(e) 
             if (data.status) {
                 this.querySelector('input[name="mensagem"]').value = '';
                 buscarMensagens();
-            } else {
-                alert('Erro ao enviar mensagem: ' + data.mensagem);
             }
         })
         .catch(error => {

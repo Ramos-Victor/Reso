@@ -25,5 +25,4 @@ GROUP BY
         $dados['mediaAVA'][] = $row['mediaAVA'];
     }
     
-    
 echo json_encode($dados);
