@@ -4,9 +4,9 @@ global $con;
 header('Content-Type: application/json');
 $sql = 'SELECT u.nm_usuario AS usuario, AVG(CAST(c.nr_avaliacao AS DECIMAL(5,2))) AS mediaAVA
 FROM 
-    db_resoluton.tb_chamado c
+    tb_chamado c
 JOIN 
-    db_resoluton.tb_usuario u ON c.id_usuario_fechamento = u.cd_usuario
+    tb_usuario u ON c.id_usuario_fechamento = u.cd_usuario
 WHERE 
     c.nr_avaliacao IS NOT NULL AND c.id_unidade = "'.$_SESSION['unidade'].'"
 GROUP BY 
