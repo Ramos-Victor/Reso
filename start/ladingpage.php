@@ -243,7 +243,7 @@ body {
     
     <!-- Seção preta -->
     <section class="dark-section" id="dark-section">
-        <h2 class="display-6 border-bottom border-warning border-2 mb-4">Implemente um help desk de simples e prático.</h2>
+        <h2 class="display-6 border-bottom border-warning border-2 mb-4">Implemente um help desk simples e prático.</h2>
         <div class="text-center">
             <a href="?route=/login" class="btn custom-btn2 mt-4">Testar</a>
         </div>    
