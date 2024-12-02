@@ -56,6 +56,9 @@ $routes = [
     '/dadosGraficoMediaAVA' => function () {  
         require __DIR__ . '/Views/painel/graficos/graficosMediaAvaliacao.php';
     },
+    '/dadosGraficoSala' => function () {  
+        require __DIR__ . '/Views/painel/graficos/graficosChamadosSala.php';
+    },
     '/painelUsuarios' => function () {
         $_SESSION['PaginaAnterior']= "?route=/painelUsuarios";
         require __DIR__ . '/Views/painel/usuarios/index.php';

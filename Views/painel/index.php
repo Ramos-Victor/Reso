@@ -26,6 +26,9 @@ require_once './Views/painel/header.php';
             <div class="col-sm-4 chart-container" style="position: relative;">
                 <canvas id="ticketMediaChart"></canvas>
             </div>
+            <div class="col-sm-4 chart-container" style="position: relative;">
+                <canvas id="ticketSalaChart"></canvas>
+            </div>
         </div>
     </div>
     <?php
@@ -46,6 +49,74 @@ function carregarCards() {
     });
 }
 
+function carregarGraficoSala() {
+    $.ajax({
+        url: '?route=/dadosGraficoSala',
+        method: 'GET',
+        dataType: 'json',
+        success: function(dados) {
+            var ctx = document.getElementById('ticketSalaChart').getContext('2d');
+            
+            if (window.ticketSalaChart instanceof Chart) {
+                window.ticketSalaChart.destroy();
+            }
+            
+            window.ticketSalaChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: dados.sala,
+                    datasets: [{
+                        label: 'Qtd chamados por sala',
+                        data: dados.quantidade_chamados,
+                        backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                        borderColor: 'rgba(54, 162, 235, 1)',
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    layout: {
+                        padding: {
+                            left: 10,
+                            right: 10,
+                            top: 10,
+                            bottom: 10
+                        }
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            title: {
+                                display: false,
+                                text: 'Número de Chamados'
+                            }
+                        }
+                    },
+                    plugins: {
+                        title: {
+                            display: true,
+                            text: 'Chamados por salas',
+                            padding: {
+                                top: 10,
+                                bottom: 10
+                            }
+                        },
+                        legend: {
+                            display: true,
+                            position: 'top'
+                        }
+                    }
+                }
+            });
+        },
+        error: function() {
+            console.error('Erro ao carregar dados do gráfico');
+        }
+    });
+}
+
+
 function carregarMediaAVA() {
     $.ajax({
         url: '?route=/dadosGraficoMediaAVA',
@@ -58,7 +129,7 @@ function carregarMediaAVA() {
                 window.ticketMediaChart.destroy();
             }
             
-            window.ticketMediaChartt = new Chart(ctx, {
+            window.ticketMediaChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: dados.usuario,
@@ -321,6 +392,7 @@ $(document).ready(function() {
     carregarGraficoAbertura();
     carregarGraficoCategoria();
     carregarMediaAVA();
+    carregarGraficoSala();
     
     $('.chart-container').css({
         'position': 'relative',
@@ -333,5 +405,6 @@ $(document).ready(function() {
     setInterval(carregarGraficoCategoria, 50000);
     setInterval(carregarGraficoAbertura, 50000);
     setInterval(carregarMediaAVA, 50000);
+    setInterval(carregarGraficoSala,50000)
 });
 </script>
