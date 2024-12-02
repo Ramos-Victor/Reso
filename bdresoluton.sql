@@ -377,5 +377,3 @@ insert into tb_st_chamado (nm_status) values
 ("Aberto"),
 ("Andamento"),
 ("Concluido");
-
-select * from tb_usuario;
