@@ -116,6 +116,7 @@ let categoriaFilter = '';
 let salaFilter = '';
 
 function carregarEquipamentos() {
+    var containerAltura = $('#equipamentos-container').height();
     $.ajax({
         url: '?route=/painelEquipamentosAjax',
         method: 'GET',

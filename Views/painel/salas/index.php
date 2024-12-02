@@ -113,6 +113,7 @@ tbody tr {
 
 <script>
 function carregarSalas() {
+    var containerAltura = $('#salas-container').height();
     $.ajax({
         url: '?route=/painelSalasAJax',
         method: 'GET',

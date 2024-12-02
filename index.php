@@ -14,6 +14,7 @@ use PHPMailer\PHPMailer\Exception;
 require_once 'routes.php';
 require_once 'conect.php';
 
+
 $route = $_GET['route'] ?? '/';
 
 if (isset($routes[$route])) {

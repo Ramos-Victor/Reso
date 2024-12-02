@@ -147,7 +147,7 @@ body {
                 $token = gerarToken($email);
                 if($token){
                     if(EnviarEmailRec($email,$token)){
-                        Confirma("Email de recuperacao enviado","?route=/login");
+                        Confirma("Email de redefinição enviado","?route=/login");
                     }else{
                         Confirma("Não foi possivel enviar o email de recuperação","?route=/esquecisenha");
                     }

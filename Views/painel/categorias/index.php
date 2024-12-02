@@ -105,6 +105,7 @@ tbody tr {
 
 <script>
 function carregarCategorias() {
+    var containerAltura = $('#categorias-container').height();
     $.ajax({
         url: '?route=/painelCategoriasAjax',
         method: 'GET',

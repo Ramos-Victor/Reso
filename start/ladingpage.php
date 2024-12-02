@@ -364,7 +364,7 @@ body {
                     <ul class="list-unstyled">
                         <li><a href="#" class="text-white">Home</a></li>
                         <li><a href="#white-section" class="text-white">Funcionalidades</a></li>
-                        <li><a href="#" class="text-white">Faq</a></li>
+                        <li><a href="?route=/comousar" class="text-white">Como usar?</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">

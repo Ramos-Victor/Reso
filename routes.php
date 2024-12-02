@@ -3,8 +3,8 @@ $routes = [
     '/' => function () {
         require __DIR__ . '/start/ladingpage.php';
     },
-    '/faq' => function () {
-        require __DIR__ . '/Views/faq/index.php';
+    '/comousar' => function () {
+        require __DIR__ . '/Views/comousar/index.php';
     },
     '/faqCadastrar' => function () {
         require __DIR__ . '/Views/faq/cadastrar_faq.php';

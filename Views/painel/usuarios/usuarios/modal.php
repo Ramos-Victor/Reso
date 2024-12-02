@@ -59,7 +59,6 @@
                     <button class="btn btn-secondary" data-dismiss="modal">
                         Fechar
                     </button>
-                    <input type="submit" class="btn btn-primary text-white" name="action" value="Editar">
                 </div>
             </form>
         </div>

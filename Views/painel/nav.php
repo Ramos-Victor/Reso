@@ -52,6 +52,9 @@ nav {
     <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
         <ul class="navbar-nav">
             <li class="nav-item">
+                <a class="nav-link" href="?route=/comousar">Como usar?</a>
+            </li>
+            <li class="nav-item">
                 <a class="nav-link" href="?route=/unidades">Voltar</a>
             </li>
             <li class="nav-item">
@@ -76,8 +79,8 @@ nav {
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false"
                     data-placement="bottom">
-                    <img src="<?php if($_SESSION['imgPerfil']){ echo "assets/img/PerfilImgs/".$_SESSION['imgPerfil'];}else{ echo "assets/img/PerfilImgs/iconpadraoperfil.png";} ?>" alt="Profile" class="rounded-circle mr-2"
-                        style="width: 30px; height: 30px; object-fit: cover;">
+                    <img src="<?php if($_SESSION['imgPerfil']){ echo "assets/img/PerfilImgs/".$_SESSION['imgPerfil'];}else{ echo "assets/img/PerfilImgs/iconpadraoperfil.png";} ?>"
+                        alt="Profile" class="rounded-circle mr-2" style="width: 30px; height: 30px; object-fit: cover;">
                     <?= $_SESSION['usuario'] ?>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
