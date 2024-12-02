@@ -3,6 +3,11 @@ include_once  './Views/painel/header.php';
 ?>
 
 <style>
+body{
+    margin:0;
+    padding:0;
+    height: 100vh;
+}
 .chat-container {
     max-width: 100vh;
     max-height: 80vh;
