@@ -8,7 +8,7 @@ FROM
 JOIN 
     tb_usuario u ON c.id_usuario_fechamento = u.cd_usuario
 WHERE 
-    c.nr_avaliacao IS NOT NULL AND c.id_unidade = "'.$_SESSION['unidade'].'"
+    c.nr_avaliacao IS NOT NULL AND c.st_chamado = 3 AND c.id_unidade = "'.$_SESSION['unidade'].'"
 GROUP BY 
     u.nm_usuario;';
 

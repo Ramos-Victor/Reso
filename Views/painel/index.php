@@ -93,7 +93,7 @@ function carregarMediaAVA() {
                     plugins: {
                         title: {
                             display: true,
-                            text: 'Categorias listadas nos chamados',
+                            text: 'Média notas avaliações dos chamados',
                             padding: {
                                 top: 10,
                                 bottom: 10
