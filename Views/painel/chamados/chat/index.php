@@ -162,7 +162,7 @@ include_once  './Views/painel/header.php';
 
 <body class="bg-light" style="height:100vh;">
     <a href="javascript:history.back()" class="back-button">Voltar</a>
-    <div class="container-fluid d-flex align-items-center justify-content-center"
+    <div class="container-fluid d-flex align-items-center justify-content-center mt-3"
         style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%)">
         <div class="chat-container card" style="width:400px;">
             <div class="chat-header">
@@ -280,8 +280,7 @@ function buscarMensagens() {
             }
         })
         .catch(error => {
-            console.error('Erro ao buscar mensagens:', error);
-            alert('Erro ao buscar mensagens: ' + error.message);
+            history.back()
         });
 }
 
