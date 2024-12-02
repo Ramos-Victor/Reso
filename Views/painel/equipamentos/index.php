@@ -123,8 +123,13 @@ function carregarEquipamentos() {
             categoria: categoriaFilter,
             sala: salaFilter
         },
+        beforeSend: function() {
+            $('#equipamentos-container').css('height', containerAltura + 'px');
+        },
         success: function(data) {
             $('#equipamentos-container').html(data);
+
+            $('#equipamentos-container').css('height', 'auto');
         },
         error: function() {
             console.error('Erro ao carregar os equipamentos.');

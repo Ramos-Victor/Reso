@@ -116,8 +116,13 @@ function carregarSalas() {
     $.ajax({
         url: '?route=/painelSalasAJax',
         method: 'GET',
+        beforeSend: function() {
+            $('#salas-container').css('height', containerAltura + 'px');
+        },
         success: function(data) {
             $('#salas-container').html(data);
+
+            $('#salas-container').css('height', 'auto');
         },
         error: function() {
             console.error('Erro ao carregar as salas.');

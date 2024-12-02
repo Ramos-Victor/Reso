@@ -108,8 +108,13 @@ function carregarCategorias() {
     $.ajax({
         url: '?route=/painelCategoriasAjax',
         method: 'GET',
+        beforeSend: function() {
+            $('#categorias-container').css('height', containerAltura + 'px');
+        },
         success: function(data) {
             $('#categorias-container').html(data);
+
+            $('#categorias-container').css('height', 'auto');
         },
         error: function() {
             console.error('Erro ao carregar as categorias.');
