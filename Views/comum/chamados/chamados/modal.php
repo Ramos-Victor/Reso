@@ -274,7 +274,7 @@
                         <textarea class="form-control" name="feedback" id="feedback" rows="3" readonly></textarea>
                     </div>
                     <div class="form-group">
-                        <label><strong>Nota de Avalalição de atendimento:</strong></label>
+                        <label><strong>Nota de Avaliação de atendimento:</strong></label>
                         <input class="form-control" name="nota" id="nota" readonly>
                     </div>
                     <input type="hidden" name="cd" id="cd">

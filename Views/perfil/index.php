@@ -178,14 +178,6 @@ else{
                                     </div>
 
                                     <div class="form-group row">
-                                        <label class="col-sm-3 col-form-label">Nome Completo</label>
-                                        <div class="col-sm-9">
-                                            <input type="text" class="form-control" name="nomereal"
-                                                value="<?= $l['nm_real'] ?>" placeholder="Seu nome completo">
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group row">
                                         <label class="col-sm-3 col-form-label">E-mail</label>
                                         <div class="col-sm-9">
                                             <input type="email" class="form-control" name="email"
@@ -257,19 +249,15 @@ function previewFile() {
 document.addEventListener('DOMContentLoaded', function() {
     const originalValues = {
         nome: document.querySelector('input[name="nome"]').value,
-        nomereal: document.querySelector('input[name="nomereal"]').value,
         email: document.querySelector('input[name="email"]').value,
         telefone: document.querySelector('input[name="telefone"]').value,
-        nascimento: document.querySelector('input[name="nascimento"]').value,
         imagem: document.getElementById('previewImage').src
     };
 
     document.querySelector('button[type="reset"]').addEventListener('click', function() {
         document.querySelector('input[name="nome"]').value = originalValues.nome;
-        document.querySelector('input[name="nomereal"]').value = originalValues.nomereal;
         document.querySelector('input[name="email"]').value = originalValues.email;
         document.querySelector('input[name="telefone"]').value = originalValues.telefone;
-        document.querySelector('input[name="nascimento"]').value = originalValues.nascimento;
 
         document.getElementById('previewImage').src = originalValues.imagem;
 
@@ -283,7 +271,6 @@ document.addEventListener('DOMContentLoaded', function() {
     if(!empty($_POST)){
         if ($_POST['action'] == "Editar") {
            Editar(
-                $_POST['nomereal'] ?: null,
                 $_POST['telefone']?: null,
                 $_POST['id'],
                 "?route=/config"

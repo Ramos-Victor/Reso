@@ -23,7 +23,7 @@ function ListarChamados($status = null) {
     c.cd_chamado, 
     c.nm_chamado, 
     c.ds_chamado, 
-    DATE_FORMAT(c.dt_abertura, "%d/%m/%Y") as dt_abertura, 
+    c.dt_abertura as dt_abertura, 
     DATE_FORMAT(c.dt_fechamento, "%d/%m/%Y") as dt_fechamento, 
     s.nm_status as st_chamado, 
     c.ds_recado,

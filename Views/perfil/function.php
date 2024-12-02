@@ -1,7 +1,7 @@
 <?php
     function BuscarporId(){
         global $con;
-        $sql = 'SELECT cd_usuario, nm_usuario, url_imagem_perfil, nm_email, nr_telefone, nm_real FROM tb_usuario WHERE cd_usuario = ?';
+        $sql = 'SELECT cd_usuario, nm_usuario, url_imagem_perfil, nm_email, nr_telefone FROM tb_usuario WHERE cd_usuario = ?';
         
         $stmt = $con->prepare($sql);
         $stmt->bind_param('s',$_SESSION['id']);
@@ -19,10 +19,10 @@
 
     function Editar($nmReal,$nrTelefone,$id,$pagina){
         global $con;
-            $sql = 'UPDATE tb_usuario SET nr_telefone = ?, nm_real = ? WHERE cd_usuario = ?';
+            $sql = 'UPDATE tb_usuario SET nr_telefone = ? WHERE cd_usuario = ?';
 
             $stmt = $con->prepare($sql);
-            $stmt->bind_param('sss',$nrTelefone,$nmReal,$id);
+            $stmt->bind_param('ss',$nrTelefone,$id);
             $res = $stmt->execute();
 
             if($res){

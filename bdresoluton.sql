@@ -39,7 +39,6 @@ CREATE TABLE IF NOT EXISTS `db_resoluton`.`tb_usuario` (
   `st_ativo` TINYINT NOT NULL DEFAULT 1,
   `verificado` CHAR(1) NOT NULL DEFAULT '0',
   `dt_exclusao` DATETIME NULL,
-  `nm_real` VARCHAR(45) NULL,
   `nr_telefone` VARCHAR(45) NULL,
   `id_cargo_reso` INT NOT NULL DEFAULT 1,
   `url_imagem_perfil` VARCHAR(150) NULL,
@@ -378,3 +377,5 @@ insert into tb_st_chamado (nm_status) values
 ("Aberto"),
 ("Andamento"),
 ("Concluido");
+
+select * from tb_usuario;

@@ -28,7 +28,7 @@ if ($listar && count($listar) > 0) {
                 <td data-label="Descrição">
                     <?= strlen($l['ds_chamado']) > 30 ? substr($l['ds_chamado'], 0, 30) . '...' : $l['ds_chamado'] ?>
                 </td>
-                <td data-label="Abertura"><?= $l['dt_abertura'] ?></td>
+                <td data-label="Abertura"><?=strlen($l['dt_abertura']) > 10 ? substr($l['dt_abertura'], 0, 10) . '' : $$l['dt_abertura']  ?></td>
                 <td data-label="Fechamento">
                     <?php if($l['st_chamado'] == 'Concluido') echo $l['dt_fechamento']; else echo "—"; ?></td>
                 <td data-label="Status">

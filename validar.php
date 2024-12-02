@@ -6,7 +6,7 @@
 		global $con;
 
 		$sql = 'SELECT 
-				cd_usuario, nm_usuario, nm_email, verificado, id_cargo_reso
+				cd_usuario, nm_usuario, nm_email,url_imagem_perfil, verificado, id_cargo_reso
 				FROM tb_usuario 
 				WHERE
 				nm_email = ? AND
@@ -24,6 +24,7 @@
 			$_SESSION['usuario'] = $r['nm_usuario'];
 			$_SESSION['verificado'] = $r['verificado'];
 			$_SESSION['email'] = $r['nm_email'];
+			$_SESSION['imgPerfil'] = $r['url_imagem_perfil'];
 			$_SESSION['cargoReso'] = $r['id_cargo_reso'] * 1;
 			Confirma("Bem vindo ao Resolut.on!", "?route=/unidades");
 		} else {

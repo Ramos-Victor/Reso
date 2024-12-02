@@ -44,6 +44,18 @@ $routes = [
     '/painelAjax' => function () {  
         require __DIR__ . '/Views/painel/listar_ajax.php';
     },
+    '/dadosGraficoFechamento' => function () {  
+        require __DIR__ . '/Views/painel/graficos/graficosFechamento.php';
+    },
+    '/dadosGraficoAbertura' => function () {  
+        require __DIR__ . '/Views/painel/graficos/graficosAbertura.php';
+    },
+    '/dadosGraficoCategoria' => function () {  
+        require __DIR__ . '/Views/painel/graficos/graficosChamadosCategoria.php';
+    },
+    '/dadosGraficoMediaAVA' => function () {  
+        require __DIR__ . '/Views/painel/graficos/graficosMediaAvaliacao.php';
+    },
     '/painelUsuarios' => function () {
         $_SESSION['PaginaAnterior']= "?route=/painelUsuarios";
         require __DIR__ . '/Views/painel/usuarios/index.php';

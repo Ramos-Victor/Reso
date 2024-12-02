@@ -7,6 +7,8 @@ function ListarUsuarios()
     $sql = 'SELECT u.cd_usuario,
             u.nm_usuario,
             u.nm_email,
+            u.nr_telefone,
+            u.nm_real,
             DATE_FORMAT(un.dt_entrada, "%d/%m/%Y") as dt_entrada,
             un.id_cargo,
             c.nm_cargo as cargo_usuario,

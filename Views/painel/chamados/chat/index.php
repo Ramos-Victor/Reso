@@ -177,6 +177,7 @@ include_once  './Views/painel/header.php';
                 <div class="input-group">
                     <form id="form-mensagem">
                         <input type="hidden" name="id_chamado" value="<?= $_GET['idChamado'] ?>">
+                        <?php if($_GET['stChamado']!='Concluido'){?>
                         <input type="text" class="form-control a" name="mensagem" placeholder="Digite sua mensagem"
                             required>
                         <div class="input-group-append">
@@ -184,6 +185,7 @@ include_once  './Views/painel/header.php';
                                 <i class="fa fa-paper-plane" style="font-size:25px"></i>
                             </button>
                         </div>
+                        <?php } ?>
                     </form>
                 </div>
             </div>

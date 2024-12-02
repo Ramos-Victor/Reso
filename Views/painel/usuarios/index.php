@@ -112,7 +112,7 @@ tbody tr {
                                     <button class="btn btn-primary btn-sm editar" data-toggle="modal"
                                         data-target="#editar" title="Editar" cd="<?php echo $l['id_usuario']; ?>"
                                         nome="<?php echo $l['nm_usuario']; ?>" cargo="<?php echo $l['id_cargo']; ?>"
-                                        data="<?php echo $l['dt_entrada']; ?>">
+                                        data="<?php echo $l['dt_entrada']; ?>" telefone="<?php echo $l['nr_telefone']; ?>">
                                         <i class="botoes bi bi-pencil-fill"></i> Editar
                                     </button>
                                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal"

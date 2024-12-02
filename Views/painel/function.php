@@ -7,7 +7,7 @@
         $sql = 'SELECT nm_status, COUNT(*) AS total 
                 FROM tb_chamado 
                 INNER JOIN tb_st_chamado ON st_chamado = cd_st_chamado
-                WHERE id_unidade = "' . $_SESSION['unidade'] . '" 
+                WHERE id_unidade = "'.$_SESSION['unidade'].'" AND st_ativo=1
                 GROUP BY nm_status';
     
         $res = $con->query($sql);
