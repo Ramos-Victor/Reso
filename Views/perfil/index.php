@@ -284,7 +284,6 @@ document.addEventListener('DOMContentLoaded', function() {
         if ($_POST['action'] == "Editar") {
            Editar(
                 $_POST['nomereal'] ?: null,
-                $_POST['nascimento'] ?: null,
                 $_POST['telefone']?: null,
                 $_POST['id'],
                 "?route=/config"
