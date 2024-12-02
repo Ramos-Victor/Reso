@@ -11,7 +11,7 @@ $sql = 'SELECT
             JOIN 
                 tb_usuario u ON c.id_usuario_fechamento = u.cd_usuario
             WHERE 
-                c.dt_fechamento IS NOT NULL AND c.id_unidade = "'.$_SESSION['unidade'].'"  AND c.st_ativo = 1 
+                c.dt_fechamento IS NOT NULL c.st_ativo=1 AND c.id_unidade = "'.$_SESSION['unidade'].'"  AND c.st_ativo = 1 
             GROUP BY 
                 id_usuario_fechamento, 
                 nm_usuario
