@@ -23,8 +23,8 @@ function CriarUnidade($nome, $criador, $pagina) {
 
 function inserirUnidade($nome) {
     global $con;
-    $codigo =  hash('sha256',$nome);
-    $sql = 'INSERT INTO tb_unidade (nm_unidade, codigo_unidade) VALUES (?, ?)';
+    $codigo =  $nome.time();
+    $sql = 'INSERT INTO tb_unidade (nm_unidade, codigo_unidade) VALUES (?, sha2(?,256))';
     $stmt = $con->prepare($sql);
     
     if (!$stmt) {
@@ -37,7 +37,7 @@ function inserirUnidade($nome) {
         throw new Exception("Erro ao criar a unidade: " . $stmt->error);
     }
     
-    $sql5 = 'SELECT cd_unidade as cdUnidade from tb_unidade WHERE codigo_unidade = ?';
+    $sql5 = 'SELECT cd_unidade as cdUnidade from tb_unidade WHERE codigo_unidade = sha2(?,256)';
     $stmt5 = $con->prepare($sql5);
     $stmt5->bind_param('s', $codigo);
     $stmt5->execute();
