@@ -62,7 +62,6 @@
                         required>
                     <br>
                     <select name="sala" id="sala" class="form-control">
-                        <option value="" selected>Selecione uma Sala</option>
                         <?php
                             $salas = ListarSalas();
 
