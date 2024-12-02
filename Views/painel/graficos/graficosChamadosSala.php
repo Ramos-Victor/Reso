@@ -10,10 +10,10 @@ FROM
     tb_sala s
 JOIN 
     tb_equipamento e ON e.id_sala = s.cd_sala
-JOIN 
+INNER JOIN 
     tb_chamado c ON c.id_equipamento = e.cd_equipamento
 WHERE 
-    c.st_ativo = 1 AND c.dt_abertura IS NOT NULL AND c.id_unidade = 2
+    c.st_ativo = 1 AND c.dt_abertura IS NOT NULL AND c.id_unidade = "'.$_SESSION['unidade'].'"
 GROUP BY 
     sala';
 
