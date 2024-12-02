@@ -162,6 +162,12 @@ body{
     .a {
         width: 15rem;
     }
+
+    body{
+    margin:0;
+    padding:0;
+    height: 80vh;
+}
 }
 </style>
 
