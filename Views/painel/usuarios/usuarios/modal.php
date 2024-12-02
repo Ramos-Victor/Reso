@@ -32,6 +32,40 @@
     </div>
 </div>
 
+<div class="modal fade" id="ver" data-backdrop="static">
+    <div class="modal-dialog modal-md ">
+        <div class="modal-content">
+            <form method="post" enctype="multipart/form-data" class="form-group">
+                <div class="modal-header">
+                    VER INFORMAÇÕES USUARIO
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" name="cd" id="cd">
+                    <br>
+                    <label for="nome" class="">Nome do Usuario</label>
+                    <input type="text" name="nome" id="nome" class="form-control" rows="5" readonly></input>
+                    <br>
+                    <label for="nome" class="">Data de entrada</label>
+                    <input type="text" name="data" id="data" class="form-control" rows="5" readonly></input>
+                    <br>
+                    <label for="cargo" class="">Cargo</label>
+                    <input type="text" name="cargo" class="form-control" id="cargo" readonly>
+                    <br>
+                    <label for="telefone" class="">Telefone</label>
+                    <input type="text" name="telefone" class="form-control" id="telefone" readonly>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary" data-dismiss="modal">
+                        Fechar
+                    </button>
+                    <input type="submit" class="btn btn-primary text-white" name="action" value="Editar">
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <div class="modal fade" id="deletar" data-backdrop="static">
     <div class="modal-dialog modal-md ">
         <div class="modal-content">

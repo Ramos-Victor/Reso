@@ -104,7 +104,11 @@ tbody tr {
                             foreach ($listar as $index => $l) {
                     ?>
                             <tr class="text-center" id="id<?= $l['cd_usuario'] ?>">
-                                <td data-label="Nome"><?php echo $l['nm_usuario']; ?></td>
+                                <td data-label="Nome">
+                                <img src="<?php if($_SESSION['imgPerfil']){ echo "assets/img/PerfilImgs/".$_SESSION['imgPerfil'];}else{ echo "assets/img/PerfilImgs/iconpadraoperfil.png";} ?>" alt="Profile" class="rounded-circle mr-2"
+                                style="width: 40px; height: 40px; object-fit: cover;">
+                                    <?php echo $l['nm_usuario'] ?>
+                                </td>
                                 <td data-label="Cargo"><?php echo strtoupper($l['cargo_usuario']); ?></td>
                                 <td data-label="Data"><?php echo $l['dt_entrada']; ?></td>
                                 <td data-label="Ações" class="btn-group" style="border:none;column-gap:5px;">
@@ -112,7 +116,7 @@ tbody tr {
                                     <button class="btn btn-primary btn-sm editar" data-toggle="modal"
                                         data-target="#editar" title="Editar" cd="<?php echo $l['id_usuario']; ?>"
                                         nome="<?php echo $l['nm_usuario']; ?>" cargo="<?php echo $l['id_cargo']; ?>"
-                                        data="<?php echo $l['dt_entrada']; ?>" telefone="<?php echo $l['nr_telefone']; ?>">
+                                        data="<?php echo $l['dt_entrada']; ?>">
                                         <i class="botoes bi bi-pencil-fill"></i> Editar
                                     </button>
                                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal"
@@ -121,8 +125,13 @@ tbody tr {
                                         data="<?php echo $l['dt_entrada']; ?>">
                                         <i class="botoes bi bi-trash-fill"></i> Remover
                                     </button>
-                                    <?php }else{ echo "-----------------------";} ?>
-
+                                    <?php }?>
+                                    <button class="btn btn-success btn-sm ver" data-toggle="modal"
+                                        data-target="#ver" title="ver" cd="<?php echo $l['id_usuario']; ?>"
+                                        nome="<?php echo $l['nm_usuario']; ?>" cargo="<?php echo $l['id_cargo']; ?>"
+                                        data="<?php echo $l['dt_entrada']; ?>" telefone="<?= $l['nr_telefone'] ?? "Não especificado" ?>">
+                                        <i class="botoes bi bi-eye-fill"></i> Ver
+                                    </button>
                                 </td>
                             </tr>
                             <?php

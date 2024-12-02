@@ -17,7 +17,7 @@
         return $resultado;
     }
 
-    function Editar($nmReal,$nrTelefone,$id,$pagina){
+    function Editar($nrTelefone,$id,$pagina){
         global $con;
             $sql = 'UPDATE tb_usuario SET nr_telefone = ? WHERE cd_usuario = ?';
 
