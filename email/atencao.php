@@ -116,6 +116,15 @@ body {
     height:6rem;
     width:6rem;
 }
+
+.bene{
+    font-family: "bene";
+}
+
+@font-face {
+  font-family: "bene";
+  src: url('./assets/fontes/wedges/Wedges.ttf');
+}
 </style>
 
 <body>
@@ -123,7 +132,7 @@ body {
     <div class="container">
         <div class="logoetitulo">
             <img src="./assets/img/logoresoluton.png" alt="Logo Resolut.On" class="logo">
-            <h2>Resolut.On</h2>
+            <h2 class="bene">Resolut.On</h2>
         </div>
         <div class="message-box">
             <h1>Verifique seu email para ter acesso ao painel!</h1>

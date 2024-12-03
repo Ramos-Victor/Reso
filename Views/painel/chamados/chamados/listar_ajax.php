@@ -25,7 +25,7 @@ if ($listar && count($listar) > 0) {
             <?php foreach ($listar as $l) { ?>
             <tr class="text-center">
                 <td data-label="Titulo"><?= $l['nm_chamado'] ?></td>
-                <td data-label="Descricao">
+                <td data-label="Descrição">
                     <?= strlen($l['ds_chamado']) > 30 ? substr($l['ds_chamado'], 0, 30) . '...' : $l['ds_chamado'] ?>
                 </td>
                 <td data-label="Abertura"><?=strlen($l['dt_abertura']) > 10 ? substr($l['dt_abertura'], 0, 10) . '' : $$l['dt_abertura']  ?></td>

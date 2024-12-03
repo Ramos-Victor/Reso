@@ -4,80 +4,87 @@ if (!defined('ROUTING_ACCESS')) {
     die('<h1 style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">Acesso direto não permitido</h1>');
 }
 
-    require_once 'header.php';
-    require_once 'validar.php';
+require_once 'header.php';
+require_once 'validar.php';
 
-	$jaexiste = false;
+$jaexiste = false;
 
-    if(!empty($_POST) && $_POST['action']=="Cadastrar") {
-        $jaexiste = !ValidarCadastro($_POST['usuario'], $_POST['email'], $_POST['senha']);
-    }
+if(!empty($_POST) && $_POST['action']=="Cadastrar") {
+    $jaexiste = !ValidarCadastro($_POST['usuario'], $_POST['email'], $_POST['senha']);
+}
 ?>
-<style>
-body {
-    height: 100vh;
-    background: linear-gradient(111deg,
-            #0000ffb4 0%,
-            #0000b14f 50%,
-            #000000 100%),
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23444444' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23525055'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E"),
-        #0e161e;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: Arial, sans-serif;
-}
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro - Resolut.on</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css">
+    <style>
+    body {
+        height: 100vh;
+        background: linear-gradient(111deg,
+                #0000ffb4 0%,
+                #0000b14f 50%,
+                #000000 100%),
+            url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400' viewBox='0 0 800 800'%3E%3Cg fill='none' stroke='%23444444' stroke-width='1'%3E%3Cpath d='M769 229L1037 260.9M927 880L731 737 520 660 309 538 40 599 295 764 126.5 879.5 40 599-197 493 102 382-31 229 126.5 79.5-69-63'/%3E%3Cpath d='M-31 229L237 261 390 382 603 493 308.5 537.5 101.5 381.5M370 905L295 764'/%3E%3Cpath d='M520 660L578 842 731 737 840 599 603 493 520 660 295 764 309 538 390 382 539 269 769 229 577.5 41.5 370 105 295 -36 126.5 79.5 237 261 102 382 40 599 -69 737 127 880'/%3E%3Cpath d='M520-140L578.5 42.5 731-63M603 493L539 269 237 261 370 105M902 382L539 269M390 382L102 382'/%3E%3Cpath d='M-222 42L126.5 79.5 370 105 539 269 577.5 41.5 927 80 769 229 902 382 603 493 731 737M295-36L577.5 41.5M578 842L295 764M40-201L127 80M102 382L-261 269'/%3E%3C/g%3E%3Cg fill='%23525055'%3E%3Ccircle cx='769' cy='229' r='5'/%3E%3Ccircle cx='539' cy='269' r='5'/%3E%3Ccircle cx='603' cy='493' r='5'/%3E%3Ccircle cx='731' cy='737' r='5'/%3E%3Ccircle cx='520' cy='660' r='5'/%3E%3Ccircle cx='309' cy='538' r='5'/%3E%3Ccircle cx='295' cy='764' r='5'/%3E%3Ccircle cx='40' cy='599' r='5'/%3E%3Ccircle cx='102' cy='382' r='5'/%3E%3Ccircle cx='127' cy='80' r='5'/%3E%3Ccircle cx='370' cy='105' r='5'/%3E%3Ccircle cx='578' cy='42' r='5'/%3E%3Ccircle cx='237' cy='261' r='5'/%3E%3Ccircle cx='390' cy='382' r='5'/%3E%3C/g%3E%3C/svg%3E"),
+            #0e161e;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: Arial, sans-serif;
+    }
 
-.back-button {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    background-color: #03305c;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    text-decoration: none;
-    font-size: 14px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s ease;
-}
+    .back-button {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background-color: #03305c;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-size: 14px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        transition: background-color 0.3s ease;
+    }
 
-.back-button:hover {
-    background-color: #022a50;
-}
+    .back-button:hover {
+        background-color: #022a50;
+    }
 
-.login-card {
-    width: 100%;
-    max-width: 400px;
-    padding: 2rem;
-    background-color: rgba(255, 255, 255, 0.9);
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    text-align: center;
-}
+    .login-card {
+        width: 100%;
+        max-width: 400px;
+        padding: 2rem;
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+        text-align: center;
+    }
 
-.logo {
-    max-width: 120px;
-    margin-bottom: 1rem;
-}
+    .logo {
+        max-width: 120px;
+        margin-bottom: 1rem;
+    }
 
-.login-card h3 {
-    color: #03305c;
-    margin-bottom: 1.5rem;
-}
+    .login-card h3 {
+        color: #03305c;
+        margin-bottom: 1.5rem;
+    }
 
-.btn-custom {
-    background-color: #f8cf40;
-    color: #03305c;
-    border: none;
-}
+    .btn-custom {
+        background-color: #f8cf40;
+        color: #03305c;
+        border: none;
+    }
 
-.btn-custom:hover {
-    background-color: #e3b530;
-}
-</style>
-
+    .btn-custom:hover {
+        background-color: #e3b530;
+    }
+    </style>
+</head>
 <body>
     <a href="?route=/" class="back-button">Voltar</a>
     <div class="container-fluid">
@@ -105,8 +112,7 @@ body {
                         <label for="confirmarSenha">Confirmar Senha</label>
                         <input type="password" class="form-control" id="confirmarSenha" name="confirmarSenha"
                             placeholder="Confirme sua senha" required>
-                        <small id="senhaErro" class="form-text text-danger" style="display: none;">As senhas não
-                            coincidem.</small>
+                        <small id="senhaErro" class="form-text text-danger" style="display: none;"></small>
                         <?php if ($jaexiste): ?>
                         <small class="form-text text-danger">Email ou Nome de usuário já em uso.</small>
                         <?php endif; ?>
@@ -185,13 +191,48 @@ body {
         const confirmarSenha = document.getElementById('confirmarSenha').value;
         const senhaErro = document.getElementById('senhaErro');
 
+       
+        const temMaiuscula = /[A-Z]/.test(senha);
+        const temMinuscula = /[a-z]/.test(senha);
+        const temCaractereEspecial = /[!@#$%^&*(),.?":{}|<>]/.test(senha);
+        const tamanhoValido = senha.length >= 5;
+
+
         if (senha !== confirmarSenha) {
+            senhaErro.textContent = 'As senhas não coincidem.';
             senhaErro.style.display = 'block';
             return false;
-        } else {
-            senhaErro.style.display = 'none';
-            return true;
         }
+
+       
+        if (!tamanhoValido) {
+            senhaErro.textContent = 'A senha deve ter no mínimo 5 caracteres.';
+            senhaErro.style.display = 'block';
+            return false;
+        }
+
+        if (!temMaiuscula) {
+            senhaErro.textContent = 'A senha deve conter pelo menos uma letra maiúscula.';
+            senhaErro.style.display = 'block';
+            return false;
+        }
+
+        if (!temMinuscula) {
+            senhaErro.textContent = 'A senha deve conter pelo menos uma letra minúscula.';
+            senhaErro.style.display = 'block';
+            return false;
+        }
+
+        if (!temCaractereEspecial) {
+            senhaErro.textContent = 'A senha deve conter pelo menos um caractere especial (!@#$%^&*(),.?":{}|<>).';
+            senhaErro.style.display = 'block';
+            return false;
+        }
+
+        
+        senhaErro.style.display = 'none';
+        return true;
     }
     </script>
 </body>
+</html>

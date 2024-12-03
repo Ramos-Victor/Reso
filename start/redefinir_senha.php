@@ -119,6 +119,20 @@ body {
     height: 6rem;
     width: 6rem;
 }
+
+#senhaErro {
+    color: red;
+    margin-top: 10px;
+}
+
+.bene{
+    font-family: "bene";
+}
+
+@font-face {
+  font-family: "bene";
+  src: url('./assets/fontes/wedges/Wedges.ttf');
+}
 </style>
 
 <body>
@@ -126,17 +140,68 @@ body {
     <div class="container">
         <div class="logoetitulo">
             <img src="./assets/img/logoresoluton.png" alt="Logo Resolut.On" class="logo">
-            <h2>Resolut.On</h2>
+            <h2 class="bene">Resolut.On</h2>
         </div>
         <div class="message-box">
-            <form method="POST">
+            <form method="POST" onsubmit="return validarSenhas()">
                 <h1>Digite sua nova senha</h1>
                 <input type="password" class="form-control mb-3" name="senha" id="senha" placeholder="Digite sua nova senha">
                 <input type="password" class="form-control mb-3" name="confirmarSenha" id="confirmarSenha" placeholder="Confirme a senha">
-                <input type="submit" name="action" value="Continuar" class="btn">
+                <small id="senhaErro" class="form-text text-danger" style="display: none;"></small>
+                <input type="submit" name="action" value="Continuar" class="btn mt-2">
             </form>
         </div>
     </div>
+
+    <script>
+    function validarSenhas() {
+        const senha = document.getElementById('senha').value;
+        const confirmarSenha = document.getElementById('confirmarSenha').value;
+        const senhaErro = document.getElementById('senhaErro');
+
+       
+        const temMaiuscula = /[A-Z]/.test(senha);
+        const temMinuscula = /[a-z]/.test(senha);
+        const temCaractereEspecial = /[!@#$%^&*(),.?":{}|<>]/.test(senha);
+        const tamanhoValido = senha.length >= 5;
+
+
+        if (senha !== confirmarSenha) {
+            senhaErro.textContent = 'As senhas não coincidem.';
+            senhaErro.style.display = 'block';
+            return false;
+        }
+
+       
+        if (!tamanhoValido) {
+            senhaErro.textContent = 'A senha deve ter no mínimo 5 caracteres.';
+            senhaErro.style.display = 'block';
+            return false;
+        }
+
+        if (!temMaiuscula) {
+            senhaErro.textContent = 'A senha deve conter pelo menos uma letra maiúscula.';
+            senhaErro.style.display = 'block';
+            return false;
+        }
+
+        if (!temMinuscula) {
+            senhaErro.textContent = 'A senha deve conter pelo menos uma letra minúscula.';
+            senhaErro.style.display = 'block';
+            return false;
+        }
+
+        if (!temCaractereEspecial) {
+            senhaErro.textContent = 'A senha deve conter pelo menos um caractere especial (!@#$%^&*(),.?":{}|<>).';
+            senhaErro.style.display = 'block';
+            return false;
+        }
+
+        
+        senhaErro.style.display = 'none';
+        return true;
+    }
+    </script>
 </body>
 
 </html>

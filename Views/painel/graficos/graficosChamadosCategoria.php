@@ -1,35 +1,62 @@
-<?php 
+<?php
 require_once 'conect.php';
 global $con;
 header('Content-Type: application/json');
-$sql = 
-'SELECT 
+
+$sql =
+'SELECT
     ec.categoria_nm AS Categoria,
+    YEAR(c.dt_abertura) AS Ano,
+    MONTH(c.dt_abertura) AS Mes,
     COUNT(c.cd_chamado) AS qtdChamados
-FROM 
+FROM
     tb_equipamento_categoria ec
-LEFT JOIN 
+LEFT JOIN
     tb_equipamento e ON e.id_categoria = ec.cd_categoria
-INNER JOIN 
-    tb_chamado c ON c.id_equipamento = e.cd_equipamento 
-    AND c.dt_abertura IS NOT NULL  
-    AND c.st_ativo = 1  AND c.id_unidade = "'.$_SESSION['unidade'].'"
-GROUP BY 
-    ec.cd_categoria, 
-    ec.categoria_nm
-ORDER BY 
+INNER JOIN
+    tb_chamado c ON c.id_equipamento = e.cd_equipamento
+WHERE
+    c.dt_abertura IS NOT NULL
+    AND c.st_ativo = 1 
+    AND c.id_unidade = "'.$_SESSION['unidade'].'"
+GROUP BY
+    ec.cd_categoria,
+    ec.categoria_nm,
+    YEAR(c.dt_abertura),
+    MONTH(c.dt_abertura)
+ORDER BY
+    Ano, 
+    Mes, 
     qtdChamados DESC';
 
 $result = $con->query($sql);
-$dados = [
-    'Categoria' => [],
-    'qtdChamados' => []
-];
+$dados = [];
 
 while ($row = $result->fetch_assoc()) {
-    $dados['Categoria'][] = $row['Categoria'];
-    $dados['qtdChamados'][] = $row['qtdChamados'];
+    $key = $row['Ano'] . '-' . str_pad($row['Mes'], 2, '0', STR_PAD_LEFT);
+    
+    if (!isset($dados[$key])) {
+        $dados[$key] = [
+            'Ano' => $row['Ano'],
+            'Mes' => $row['Mes'],
+            'Categorias' => [],
+            'QtdChamados' => []
+        ];
+    }
+    
+    $dados[$key]['Categorias'][] = $row['Categoria'];
+    $dados[$key]['QtdChamados'][] = $row['qtdChamados'];
 }
 
+$outputDados = [];
+foreach ($dados as $periodo => $info) {
+    $outputDados[] = [
+        'Periodo' => $periodo,
+        'Ano' => $info['Ano'],
+        'Mes' => $info['Mes'],
+        'Categorias' => $info['Categorias'],
+        'QtdChamados' => $info['QtdChamados']
+    ];
+}
 
-echo json_encode($dados);
+echo json_encode($outputDados ?: []);

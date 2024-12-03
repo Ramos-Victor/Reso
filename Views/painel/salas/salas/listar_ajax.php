@@ -21,7 +21,7 @@ if ($listar) {
                 <td data-label="Nome"><?= $l['nm_sala'] ?></td>
                 <td data-label="Data"><?= $l['dt_sala'] ?></td>
                 <td data-label="Descrição">
-                    <?= strlen($l['ds_sala']) > 30 ? substr($l['ds_sala'], 0, 30) . '...' : $l['ds_sala'] ?>
+                    <?= strlen($l['ds_sala']) > 20 ? substr($l['ds_sala'], 0, 20) . '...' : $l['ds_sala'] ?>
                 </td>
                 <?php if($l['UsuAtivo'] ==1){ ?>
                 <td data-label="Por"><a href="?route=/painelUsuarios#id<?= $l['id_usuario'] ?>"><?= $l['nm_usuario'] ?></a></td>
