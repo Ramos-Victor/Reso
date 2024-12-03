@@ -30,7 +30,7 @@ if ($listar) {
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                         title="Deletar" cd="<?= $l['cd_categoria']; ?>" nome="<?= $l['categoria_nm']; ?>"
                         criado="<?= $l['id_usuario']; ?>" data="<?= $l['dt_categoria']; ?>" style="font-size: 14px;">
-                        <i class="bi bi-trash3-fill" style="font-size: 16px;"></i> Deletar
+                        <i class="bi bi-trash3-fill" style="font-size: 16px;"></i> Excluir
                     </button>
                     <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
                         title="Editar" cd="<?= $l['cd_categoria']; ?>" nome="<?= $l['categoria_nm']; ?>"

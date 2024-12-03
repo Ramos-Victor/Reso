@@ -59,7 +59,7 @@ if ($listar && count($listar) > 0) {
                     <?php if ($_SESSION['cargo'] != 'comum' || $l['st_chamado'] == 'Aberto') { ?>
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                         title="Deletar" cd="<?= $l['cd_chamado']; ?>" titulo="<?= $l['nm_chamado']; ?>">
-                        <i class="botoes bi bi-trash3-fill"></i> Deletar
+                        <i class="botoes bi bi-trash3-fill"></i> Excluir
                     </button>
                     <?php } 
                     ?>

@@ -34,7 +34,7 @@ if ($listar && count($listar) > 0) {
                 <td class="btn-group" style="border:none;column-gap:5px;">
                     <button class="btn btn-danger btn-sm deletar" data-toggle="modal" data-target="#deletar"
                         title="Deletar" cd="<?= $l['cd_equipamento']; ?>" nome="<?= $l['nm_equipamento']; ?>">
-                        <i class="botoes bi bi-trash3-fill"></i> Deletar
+                        <i class="botoes bi bi-trash3-fill"></i> Excluir
                     </button>
                     <button class="btn btn-primary btn-sm editar" data-toggle="modal" data-target="#editar"
                         cd="<?= $l['cd_equipamento']; ?>" nome="<?= $l['nm_equipamento']; ?>"
